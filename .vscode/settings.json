@@ -1,0 +1,22 @@
+{
+    "42header.username": "phkevin",
+    "42header.email": "phkevin@42luxembourg.lu",
+    "files.associations": {
+        "src.h": "c",
+        "libgetnextline.h": "c",
+        "bit": "c",
+        "cmath": "c",
+        "compare": "c",
+        "concepts": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "limits": "c",
+        "new": "c",
+        "typeinfo": "c",
+        "mlx.h": "c",
+        "stdio.h": "c",
+        "libftprintf.h": "c",
+        "libft.h": "c",
+        "initializer_list": "c"
+    }
+}

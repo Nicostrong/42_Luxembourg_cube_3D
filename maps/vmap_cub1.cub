@@ -1,0 +1,16 @@
+NO ./gfx/colorstone.xpm
+SO ./gfx/bluestone.xpm
+WE ./gfx/greystone.xpm
+EA ./gfx/wood.xpm
+
+FT ./gfx/floor.xpm
+CT ./gfx/sky.xpm
+
+F 255,248,220
+C 135,206,250
+
+MAP
+111
+1E1
+101
+111

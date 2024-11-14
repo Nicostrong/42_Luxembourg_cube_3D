@@ -1,0 +1,329 @@
+Source :
+
+- https://github.com/Hbuisser/Cub3d-42/tree/master
+- https://harm-smits.github.io/42docs/libs/minilibx
+- https://harm-smits.github.io/42docs/projects/cub3d
+- https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf
+- https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
+- https://gamecodeschool.com/essentials/calculating-heading-in-2d-games-using-trigonometric-functions-part-1/
+- https://reactive.so/post/42-a-comprehensive-guide-to-cub3d/
+- https://hackmd.io/@nszl/H1LXByIE2
+- https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html
+- https://pulgamecanica.herokuapp.com/posts/mlx-transparency
+- https://velog.io/@dogfootbirdfoot/MiniLibX
+- https://amara.org/videos/KqyOUKlYAxdG/fr/2010287/
+- https://github.com/vgauther/mlx_img
+- https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
+- https://tomfevrier.io/projet/cub3d
+- https://github.com/iciamyplant/Cub3d-Linux
+- https://github.com/qst0/ft_libgfx
+- https://www.youtube.com/watch?v=xZe0ZYPzxkg
+- https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
+- https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
+
+
+
+******************************************************************************
++ Controle data map 			(Recontroler des sécuriter)
++ Solveur map 				(Recontroler des sécutiter)
++ mini map 				(pour confirmer le solveur) 
+- Afficher raycaste sur map 		(pour visualiser les rayon)
+******************************************************************************
+
+
+
+******************************************************************************
+CMD Test:
+
+valgrind --track-origins=yes --leak-check=full ./cub3D map.cub
+valgrind --track-origins=yes --leak-check=full ./cub3D vmap_simple0.cub
+
+valgrind --track-origins=yes ./cub3D map.cub
+
+
+./cub3D 2> test_error
+
+./cub3D 1> test 
+
+
+valgrind_full ./cub3D vmap_cub0.cub
+
+******************************************************************************
+
+
+
+******************************************************************************
+Map decomposition info
+
+
+
+Map:
+ 
+R 1920 1080
+NO ./textures/colorstone.xpm
+SO ./textures/bluestone.xpm
+WE ./textures/greystone.xpm
+EA ./textures/wood.xpm
+
+F 255,248,220
+C 135,206,250
+
+1111111111111111111111111
+1000000000110000000000001
+101100000111000000S000001
+1001000000000000000000001
+1111111110110000011100001
+1000000000110000011101111
+1111011111111101110000001
+1111011111111101110101001
+1100000011010101110000001
+1000000000000000110000001
+1000000000000000110101001
+1100000111010101111101101
+1111011111110101110111101
+1111111111111111111111111
+
+
+
+Resolution:
+	R 1920 1080
+
+
+
+Orientation et Adresse des texture des mûrs:
+	NO ./textures/texture_0.xpm
+	SO ./textures/texture_1.xpm
+	WE ./textures/texture_2.xpm
+	EA ./textures/texture_3.xpm
+
+
+
+Couleur sol:
+	F 255,248,220
+
+
+
+Couleur plafond:
+	C 135,206,250
+
+
+
+Plan:
+
+	0 			= espace vide
+	1 			= mûrs
+	N|S|E|W 	= Point de depart avec orientation du player
+
+	1111111111111111111111111
+	1000000000110000000000001
+	101100000111000000S000001
+	1001000000000000000000001
+	1111111110110000011100001
+	1000000000110000011101111
+	1111011111111101110000001
+	1111011111111101110101001
+	1100000011010101110000001
+	1000000000000000110000001
+	1000000000000000110101001
+	1100000111010101111101101
+	1111011111110101110111101
+	1111111111111111111111111
+
+******************************************************************************
+
+
+
+******************************************************************************
+Enregistrer les texture dans des structure au lancement
+
+Au total 6 texture pour l'environnement
+
+4 pour les mûres
+2 pour le sol et le ciel
+******************************************************************************
+
+
+
+******************************************************************************
+Tous les trucs tricky auxquels il faut penser à propos des arguments :
+ + Nombre d’arguments invalide : moins de 2 arguments ou plus de 3
+ - 3 arguments mais le 3ème n’est pas --save
+ + 2 arguments mais un fichier lol.cub.c
+ + Fichier .cub n’existe pas
+ - Le .cub est un directory
+Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la map :
+ + Il manque quelque chose (R, NO, SO, S…)
+ - Deux fois la même chose (deux R, deux NO..)
+ - Résolution avec des int plus grands que int max
+ - Résolution avec une virgule ou un autre caractère dedans
+ - Résolution avec 3 chiffres, ou un seul, ou un 0
+ - F ou C avec un chiffre qui manque, ou un chiffre en trop
+ - F ou C avec une virgule en moins ou une virgule en trop
+ - F ou C avec un int supérieur à int max : doit renvoyer une erreur
+ - F ou C avec un chiffre supérieur à 255
+ + Un identifiant mauvais genre (X au lieu de R, ou E au lieu de EA)
+Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
+ - Une ligne vide dans la map : “Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)"
+ + Un caractère incorrect dans la map, genre un 4
+ + Une map ouverte
+ + “Les espaces sont une partie valable de la carte, c’est à vous de les gérer correctement” : pour moi les espaces vides sont des murs
+ - La map est avant un autre élément
+ + Il n’y a pas de map
+ + Pas de joueur
+ - plusieurs joueurs
+******************************************************************************
+
+
+
+******************************************************************************
+Validate parametre:
+
+il faut controler le fichier .cub afin de calider la presence des parametre
+minimum requis
+
+lors de lecture du fichier il faut detecter les token "NO/SO/WE/EA" pour les
+texture des mures
+
+NO ./textures/colorstone.xpm
+SO ./textures/bluestone.xpm
+WE ./textures/greystone.xpm
+EA ./textures/wood.xpm
+
+Une fois les texture des mûre detecter l'on peu passer au textures du sol et 
+ciel qui sont enregistrer sous les token "FT/CT" si aucune texture trouver alors
+on cherche les token de colorisation "F/C"
+
+F 255,248,220
+C 135,206,250
+
+******************************************************************************
+
+
+
+******************************************************************************
+Validate map:
+
+Il faut controler que la map soit valide, en prenant en exemple la map suivante
+
+(map valide)
+MAP
+1111111111111111111111111
+1000000000110000000000001
+101100000111000000S000001
+1001000000000000000000001
+1111111110110000011100001
+1000000000110000011101111
+1111011111111101110000001
+1111011111111101110101001
+1100000011010101110000001
+1000000000000000110000001
+1000000000000000110101001
+1100000111010101111101101
+1111011111110101110111101
+1111111111111111111111111
+
+Dans un premier temps on va controler le tokens qui indique la fin de config du
+du fichier ".cub"
+
+Token = MAP
+
+Ensuite les bords si il sont bien fermer par un char "1" sachant que la 
+premier et derniere ligne ne doivent contenire que des "1" au niveau de la map.
+Les espaces entre deux morceaux de map sont accepter.
+
+Pour valider les characteres de la map, on va parcourir chaque characteres et
+comparer les characteres qui l'entoure.
+******************************************************************************
+
+
+-
+******************************************************************************
+Raycasting:
+
+idee de base:
+predire la position de l'user par rapport a sa distance de deplacement.
+Controler si ses future position se retourve dans un mures si oui alors on
+retourn la pposition du mure. 
+
+Save la position user dans un vecteur2
+	Vecteur2 pos;
+	pos.x = x;
+	pos.y = y;
+
+	int orientation;
+	0° = Nord
+	90° = Est
+	180° = Sud
+	270° = Ouest
+
+Si le plan le FOV on le meme angle alors il sera de 90°
+
+
+Concepts de Base
+
+    Rayon : Un rayon est une ligne imaginaire qui part de la position de la 
+	caméra (ou du joueur) et s'étend dans la direction où la caméra regarde.
+	Il est utilisé pour détecter les intersections avec les murs et autres
+	objets dans l'environnement.
+
+    Plan de Projection : C'est la surface où les intersections des rayons sont 
+	projetées pour créer l'image finale. La distance entre la caméra et cette 
+	surface influence la perspective.
+
+    World Space vs. Screen Space : Le monde (où se trouvent les murs et autres 
+	objets) est en 2D, tandis que l'écran est en 2D également, mais il est 
+	utilisé pour afficher une vue 3D de ce monde.
+
+Étapes du Raycasting
+
+    Configuration de la Caméra :
+        Définissez la position de la caméra et son angle de vision.
+        Le champ de vision (FOV) est généralement constant et peut être défini 
+		en degrés.
+
+    Lancer des Rayons :
+        Pour chaque colonne de pixels de l'écran, un rayon est lancé à partir 
+		de la position de la caméra dans la direction appropriée. 
+		L'angle du rayon est calculé en fonction de la position de la caméra 
+		et de l'angle de vision.
+
+    Détection des Intersections :
+        Pour chaque rayon, vous devez vérifier s'il intersecte un mur. 
+		Cela peut être réalisé en utilisant l'algorithme de DDA 
+		(Digital Differential Analyzer) ou l'algorithme de raycasting basé sur 
+		les bords.
+        Si une intersection est trouvée, calculez la distance à laquelle le 
+		rayon a frappé un mur.
+
+    Calcul de la Hauteur du Mur :
+        Utilisez la distance de l'intersection pour déterminer la hauteur du 
+		mur à afficher à cet emplacement sur l'écran. Cela peut être effectué 
+		à l'aide de la formule suivante :
+        hauteur=hauteur de la cameˊra×hauteur de l’eˊcrandistance
+        hauteur=distancehauteur de la cameˊra×hauteur de l’eˊcran​
+
+    Projections et Textures :
+        Projetez la texture du mur sur la surface d'affichage. Vous devez 
+		calculer quel segment de la texture utiliser en fonction de l'endroit 
+		où le rayon a frappé le mur.
+        Chaque mur peut avoir une texture différente, ce qui ajoute du réalisme.
+
+    Affichage Final :
+        Les colonnes de pixels sont dessinées à l'écran pour former une image 
+		complète de l'environnement en 3D.
+
+
+Pour dessiner le premir rayon l'on va se baser sur l'orientation de l'user
+donc le r0 = 90 si l'use regarde au sud.
+
+******************************************************************************
+
+
+
+******************************************************************************
+Construction mure mini Map
+
+Commencer par parcourire les data de la map
+
+Mettre en place un scale pour la dimension des mures.
+******************************************************************************

@@ -1,14 +1,12 @@
 # executable
-*.a
-./*.a
-./../*.a
-./../../*.a
-./../../../*.a
+./a
+./../a
+./../../a
+./../../../a
 
 # executable
-*.out
-./*.out
-./../*.out
+./a.out
+./..
 ./../../*.out
 ./../../../*.out
 
@@ -41,11 +39,11 @@
 ./../../../*.DS_Store
 
 # clion config
-*.idea
-./*.idea
-./../*.idea
-./../../*.idea
-./../../../*.idea
+.idea
+./.idea
+./../.idea
+./../../.idea
+./../../../.idea
 
 # Prerequisites
 *.d

@@ -50,7 +50,7 @@ void	*mlx_init()
 
 
 /*
-** pshm_format of -1 :	Not XYBitmap|XYPiymap|ZPiymap
+** pshm_format of -1 :	Not XYBitmap|XYPixmap|ZPixmap
 ** alpha libX need a check of the DISPLAY env var, or shm is allowed
 ** in remote Xserver connections.
 */
@@ -64,7 +64,7 @@ int		mlx_int_deal_shm(t_xvar *xvar)
 
 	xvar->use_xshm = XShmQueryVersion(xvar->display,&bidon,&bidon,&(use_pshm));
 	if (xvar->use_xshm && use_pshm)
-		xvar->pshm_format = XShmPiymapFormat(xvar->display);
+		xvar->pshm_format = XShmPixmapFormat(xvar->display);
 	else
 		xvar->pshm_format = -1;
 	gethostname(buff,32);

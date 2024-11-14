@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/13 11:59:02 by phkevin          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:00:14 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 # define NBTEXTURES 6
 
 /*Configurarion clavier azerty = 1*/
-# define ISAZERTY 1
+# define ISAZERTY 0
 
 /* Para Mini Map */
 # define PRAY 5				// Taille du player

@@ -33,7 +33,7 @@
 /* #include	<X11/xpm.h> */
 
 
-# define MLX_TYPE_SHM_PIymap 3
+# define MLX_TYPE_SHM_PIXMAP 3
 # define MLX_TYPE_SHM 2
 # define MLX_TYPE_XIMAGE 1
 
@@ -85,7 +85,7 @@ typedef struct	s_win_list
 typedef struct	s_img
 {
 	XImage			*image;
-	Piymap			pix;
+	Pixmap			pix;
 	GC				gc;
 	int				size_line;
 	int				bpp;

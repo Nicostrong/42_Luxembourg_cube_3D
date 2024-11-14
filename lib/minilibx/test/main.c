@@ -127,7 +127,7 @@ int	main()
   printf("OK\n");
   sleep(2);
 
-  printf(" => Image1 ZPiymap %dx%d ...",IM1_SX,IM1_SY);
+  printf(" => Image1 ZPixmap %dx%d ...",IM1_SX,IM1_SY);
   if (!(im1 = mlx_new_image(mlx,IM1_SX,IM1_SY)))
     {
       printf(" !! KO !!\n");
@@ -139,7 +139,7 @@ int	main()
 
   printf(" => Fill Image1 ...");
   color_map_2(data1,bpp1,sl1,IM1_SX,IM1_SY,endian1, 1);
-  printf("OK (piymap : %d)\n",(int)((t_img *)im1)->pix);
+  printf("OK (pixmap : %d)\n",(int)((t_img *)im1)->pix);
 
   printf(" => Put Image1 ...");
   mlx_put_image_to_window(mlx,win1,im1,20,20);
@@ -151,7 +151,7 @@ int	main()
   printf("OK\n");
   sleep(2);
 
-  printf(" => Image3 ZPiymap %dx%d ...",IM3_SX,IM3_SY);
+  printf(" => Image3 ZPixmap %dx%d ...",IM3_SX,IM3_SY);
   if (!(im3 = mlx_new_image(mlx,IM3_SX,IM3_SY)))
     {
       printf(" !! KO !!\n");
@@ -163,7 +163,7 @@ int	main()
 
   printf(" => Fill Image3 ...");
   color_map_2(data3,bpp3,sl3,IM3_SX,IM3_SY,endian3, 1);
-  printf("OK (piymap : %d)\n",(int)((t_img *)im3)->pix);
+  printf("OK (pixmap : %d)\n",(int)((t_img *)im3)->pix);
 
   printf(" => Put Image3 ...");
   mlx_put_image_to_window(mlx,win1,im3,20,20);

@@ -56,7 +56,7 @@ void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)
 	new_win->expose_hook = mlx_int_do_nothing;
 	*/
 	bzero(&(new_win->hooks), sizeof(new_win->hooks));
-	ymapRaised(xvar->display,new_win->window);
+	XMapRaised(xvar->display,new_win->window);
 	mlx_int_wait_first_expose(xvar,new_win->window);
 	return (new_win);
 }

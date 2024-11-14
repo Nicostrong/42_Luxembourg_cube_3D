@@ -82,7 +82,7 @@ int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)
     printf("back previous mode\n");
   
   XMoveWindow(xvar->display, win->window, 0, 0);
-  ymapRaised(xvar->display, win->window);
+  XMapRaised(xvar->display, win->window);
 
   if (fullscreen)
     {

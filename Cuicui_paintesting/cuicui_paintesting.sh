@@ -6,7 +6,7 @@
 #    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:27:58 by phkevin           #+#    #+#              #
-#    Updated: 2024/09/12 14:39:48 by phkevin          ###   Luxembour.lu       #
+#    Updated: 2024/11/18 12:02:35 by phkevin          ###   Luxembour.lu       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,10 @@ main() {
 		    # Sous-menu pour les tests
 		    echo -e "${CYAN}Choisissez un test :${NC}"
 		    echo -e "${YELLOW}1) Philosopher${NC}"
-		    echo -e "${YELLOW}2) Rush 01${NC}"
-		    echo -e "${YELLOW}3) Rush 02${NC}"
-		    echo -e "${YELLOW}4) Quitter${NC}"
+			echo -e "${YELLOW}2) MiniTalk${NC}"
+		    echo -e "${YELLOW}3) Rush 01${NC}"
+		    echo -e "${YELLOW}4) Rush 02${NC}"
+		    echo -e "${YELLOW}5) Quitter${NC}"
 		    
 		    read -p "Votre choix : " TEST_CHOICE
 		    
@@ -104,10 +105,67 @@ main() {
 		            ;;
 		    	#######################################################
 		    	#
-		        # RUSH 01
+		        # MINITALK
 		        #
 		        #######################################################
 		        2)
+					#options
+					#-a test tout
+					#-m teste la mandatory
+					#-b teste les bonus
+					#-q	quitte le tester
+					
+					# Sous-menu pour le test
+					echo -e "${CYAN}Choisissez une option pour le test de minitalk :${NC}"
+					echo -e "${YELLOW}1) All${NC}"
+		    		echo -e "${YELLOW}2) Mandatory${NC}"
+					echo -e "${YELLOW}3) Bonus${NC}"
+					echo -e "${YELLOW}4) Quitter${NC}"
+					
+					read -p "Votre choix : " MINI_CHOICE
+
+					case "$MINI_CHOICE" in
+					#######################################################
+					#
+				    # ALL
+				    #
+				    #######################################################
+				    1)
+						gnome-terminal -- bash -c "python3 ./paintest/minitalk/minitalk_tester.py -a; bash"
+						;;
+                    #######################################################
+					#
+				    # MANDATORY
+				    #
+				    ####################################################### 
+				    2)
+						gnome-terminal -- bash -c "python3 ./paintest/minitalk/minitalk_tester.py -m; bash"
+						;;
+                    #######################################################
+					#
+				    # BONUS
+				    #
+				    ####################################################### 
+				    3)
+						gnome-terminal -- bash -c "python3 ./paintest/minitalk/minitalk_tester.py -b; bash"
+						;;
+                    #######################################################
+					#
+				    # QUITTER
+				    #
+				    ####################################################### 
+				    4)
+				        echo -e "${CYAN}Merci d'avoir utilisé Cuicui Pain-testing.${NC}"
+				        exit
+				  	  ;;
+				esac
+				;;
+		    	#######################################################
+		    	#
+		        # RUSH 01
+		        #
+		        #######################################################
+		        3)
 					# Sous-menu pour le rush01
 					echo -e "${CYAN}Choisissez une action pour Rush 01 :${NC}"
 					echo -e "${YELLOW}1) Generer des map${NC}"
@@ -267,7 +325,7 @@ main() {
 			    # RUSH 02
 			    #
 			    ####################################################### 
-			    3)
+			    4)
 			        gnome-terminal -- bash -c "cd paintest/rush02/athill_r02/ && python3 tester.py; bash"
 			        exit
 			        ;;
@@ -276,7 +334,7 @@ main() {
 		        # EXIT
 		        #
 		        ####################################################### 
-		        4)
+		        5)
 		            echo -e "${CYAN}Merci d'avoir utilisé Cuicui Pain-testing.${NC}"
 		            exit
 		            ;;

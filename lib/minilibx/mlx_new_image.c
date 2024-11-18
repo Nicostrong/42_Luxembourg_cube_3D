@@ -87,13 +87,13 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
   shmctl(img->shm.shmid,IPC_RMID,0);
   if (xvar->pshm_format==format)
     {
-      img->pix = XShmCreatePiymap(xvar->display,xvar->root,img->shm.shmaddr,
+      img->pix = XShmCreatePixmap(xvar->display,xvar->root,img->shm.shmaddr,
 				  &(img->shm),width,height,xvar->depth);
-      img->type = MLX_TYPE_SHM_PIymap;
+      img->type = MLX_TYPE_SHM_PIXMAP;
     }
   else
     {
-      img->pix = XCreatePiymap(xvar->display,xvar->root,
+      img->pix = XCreatePixmap(xvar->display,xvar->root,
 			       width,height,xvar->depth);
       img->type = MLX_TYPE_SHM;
     }
@@ -129,7 +129,7 @@ void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)
   img->bpp = img->image->bits_per_pixel;
   img->width = width;
   img->height = height;
-  img->pix = XCreatePiymap(xvar->display,xvar->root,width,height,xvar->depth);
+  img->pix = XCreatePixmap(xvar->display,xvar->root,width,height,xvar->depth);
   img->format = format;
   img->type = MLX_TYPE_XIMAGE;
   if (xvar->do_flush)
@@ -143,9 +143,9 @@ void	*mlx_new_image(t_xvar *xvar,int width, int height)
   t_img	*img;
 
   if (xvar->use_xshm)
-    if (img = mlx_int_new_xshm_image(xvar,width,height,ZPiymap))
+    if (img = mlx_int_new_xshm_image(xvar,width,height,ZPixmap))
       return (img);
-  return (mlx_int_new_image(xvar,width,height,ZPiymap));
+  return (mlx_int_new_image(xvar,width,height,ZPixmap));
 }
 
 void	*mlx_new_image2(t_xvar *xvar,int width, int height)
@@ -153,7 +153,7 @@ void	*mlx_new_image2(t_xvar *xvar,int width, int height)
   t_img	*img;
 
   if (xvar->use_xshm)
-    if (img = mlx_int_new_xshm_image(xvar,width,height,XYPiymap))
+    if (img = mlx_int_new_xshm_image(xvar,width,height,XYPixmap))
       return (img);
-  return (mlx_int_new_image(xvar,width,height,XYPiymap));
+  return (mlx_int_new_image(xvar,width,height,XYPixmap));
 }

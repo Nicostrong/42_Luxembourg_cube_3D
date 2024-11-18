@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:41:39 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 11:50:22 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/11/18 12:15:29 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	confgfx(t_data *f)
 		if ((f->gfxfloor == 1 || f->gfxf == 1) 
 		&& (f->gfxsky == 1 || f->gfxc == 1))
 			return (1);
+	
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/11/11 09:34:29 by phkevin          ###   Luxembour.lu       #
+#    Updated: 2024/11/18 11:26:17 by phkevin          ###   Luxembour.lu       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,11 +85,11 @@ PURPLE = 	\033[0;35m
 #	Rules
 ################################################################################
 
-all:	$(LIBFT_DIR)/libft.a \
-		$(FTPRINTF_DIR)/libftprintf.a \
-		$(GNL_DIR)/libgetnextline.a \
-		$(SRC_DIR)/libsrc.a \
-		$(NAME)
+all: $(LIBFT_DIR)/libft.a \
+	 $(FTPRINTF_DIR)/libftprintf.a \
+	 $(GNL_DIR)/libgetnextline.a \
+	 $(SRC_DIR)/libsrc.a \
+	 $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(FLAGWS) -o $(NAME) $(OBJS) $(LIB)
@@ -133,7 +133,7 @@ fclean: clean
 re: fclean all
 	@echo "$(GREEN)all RE compiled!$(NO_COLOR)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
 
 ################################################################################
 #	Extra

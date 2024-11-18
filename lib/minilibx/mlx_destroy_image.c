@@ -14,7 +14,7 @@
 
 int	mlx_destroy_image(t_xvar *xvar, t_img *img)
 {
-  if (img->type == MLX_TYPE_SHM_PIymap ||
+  if (img->type == MLX_TYPE_SHM_PIXMAP ||
       img->type == MLX_TYPE_SHM)
     {
       XShmDetach(xvar->display, &(img->shm));
@@ -22,7 +22,7 @@ int	mlx_destroy_image(t_xvar *xvar, t_img *img)
       /* shmctl IPC_RMID already done */
     }
   XDestroyImage(img->image);  /* For image & shm-image. Also free img->data */
-  XFreePiymap(xvar->display, img->pix);
+  XFreePixmap(xvar->display, img->pix);
   if (img->gc)
     XFreeGC(xvar->display, img->gc);
   free(img);

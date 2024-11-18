@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:11:28 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/14 10:09:56 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/11/18 14:19:43 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_print_wall(t_data *f, int sx, int sy)
 	x_center = WIDTH - (sx / 2);
 	y_center = HEIGHT - (sy / 2);
 
+	printf("sx %d, sy %d", x_center, y_center);
+
 	// Initialiser les coordonnées de départ
 	y_start = y_center;
 	while (y_start >= HEIGHT - sy && y_start <= HEIGHT)
@@ -61,7 +63,7 @@ void	ft_print_wall(t_data *f, int sx, int sy)
 			int distance = abs(f->userd.coox - map_x) + abs(f->userd.cooy - map_y);
 
 			// Vérifier si la position dans la carte est un mur ('1')
-			if (f->map[map_y][map_x] == '1' && distance <= 3)
+			if (f->map[map_y][map_x] == '1' && distance <= 50)
 			{
 				// Dessiner le mur (couleur noire par exemple)
 				ft_pixel_put(f, x_start + (sx / 4), y_start + (sy / 4), ft_get_color(col[0], col[1], col[2]));
@@ -80,7 +82,7 @@ void	ft_print_wall(t_data *f, int sx, int sy)
 		else
 			y_start++;
 	}
-
+	ft_put_circle(f, y_center, x_center);
 	free(col);
 
 

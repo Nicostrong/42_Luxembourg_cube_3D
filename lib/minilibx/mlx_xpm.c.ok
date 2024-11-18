@@ -17,7 +17,7 @@ extern struct s_col_name mlx_col_name[];
 #define	RETURN	{ if (colors) free(colors); if (tab) free(tab); \
 		  if (colors_direct) free(colors_direct); \
                   if (img) {XDestroyImage(img->image); \
-                            XFreePiymap(xvar->display,img->pix);free(img);} \
+                            XFreePixmap(xvar->display,img->pix);free(img);} \
                   return ((void *)0);}
 
 
@@ -131,7 +131,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   int	height;
   XImage	*clip_img;
   XGCValues	xgcv;
-  Piymap	clip_pix;
+  Pixmap	clip_pix;
 
   colors = 0;
   colors_direct = 0;
@@ -174,7 +174,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 	{
 	  if (!(clip_data = malloc(4*width*height)) ||   /* ok, nice size .. */
 	      !(clip_img = XCreateImage(xvar->display, xvar->visual,
-					1, XYPiymap, 0, clip_data,
+					1, XYPixmap, 0, clip_data,
 					width, height, 8, (width+7)/8)) )
 	    RETURN;
 	  memset(clip_data, 0xFF, 4*width*height);
@@ -229,7 +229,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
     }
   if (clip_data)
     {
-      if (!(clip_pix = XCreatePiymap(xvar->display, xvar->root,
+      if (!(clip_pix = XCreatePixmap(xvar->display, xvar->root,
 					   width, height, 1)) )
 	RETURN;
       img->gc = XCreateGC(xvar->display, clip_pix, 0, &xgcv);

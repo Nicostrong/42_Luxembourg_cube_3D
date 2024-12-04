@@ -6,7 +6,7 @@
 #    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/11/11 16:22:02 by phkevin          ###   Luxembour.lu       #
+#    Updated: 2024/12/04 13:15:22 by phkevin          ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAMECC	=	src
 CC		=	clang
-FLAGWS	=	 -g -O3 -Wall -Wextra -Werror
+FLAGWS	=	 -g -O2 -Wall -Wextra -Werror -D DEBUG=1
 AR		=	ar rcs
 RM		=	/bin/rm -f
 

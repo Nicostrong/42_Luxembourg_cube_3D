@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 10:01:20 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/18 13:36:23 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/04 12:09:56 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_rendermap(t_data *f)
 	//20% de la surface d'affichage
 	print_fond(f, WIDTH, HEIGHT);
 	ft_print_fond(f, sx, sy);
-	ft_print_wall(f, sx, sy); 
+	//ft_print_wall(f, sx, sy); 
 	//ft_print_spawn(f, sx, sy);
 	fr_print_ray(f, sx, sy);
 	ft_print_player(f, sx, sy);

@@ -6,7 +6,7 @@
 #    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/11/18 11:26:17 by phkevin          ###   Luxembour.lu       #
+#    Updated: 2024/12/04 13:13:55 by phkevin          ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ################################################################################
 
 CC		=	clang
-FLAGWS	=	-g -Wall -Wextra -Werror -Imlx_linux -O3
+FLAGWS	=	-g -Wall -Wextra -Werror -Imlx_linux -O2
 AR		=	ar rcs
 RM		=	/bin/rm -f
 

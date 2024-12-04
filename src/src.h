@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/18 09:47:10 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/04 13:06:41 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # include <sys/time.h>
 
 /* DEBUG */
-# define DEBUG 1
+#ifndef DEBUG
+# define DEBUG 0
+#endif
 
 /* Color reset*/
 # define NOCOLORS "\033[0m"
@@ -155,7 +157,7 @@ typedef struct s_data
 	int			bpp;
 	int			line_len;
 	int			endian;
-	char		*fic;
+	char		*fic;						// path .cub
 	long		lastfram;					// Timer de la derniere frame
 	int			gfxno;						// 1 si NO trouvé, 0 sinon
 	int			gfxso;						// 1 si SO trouvé, 0 sinon
@@ -173,6 +175,7 @@ typedef struct s_data
     int			isspawn;      				// 1 si spawn trouvé, 0 sinon
 	int			spposx;						// Position spawn en x
 	int			spposy;						// Position spawn en y
+	int			sprot;						// Orientation player 0 => EST, 270 = N, 90 = S
 	t_texture	gfx[NBTEXTURES];
 	t_keyb		keyb;
 	t_user		userd;

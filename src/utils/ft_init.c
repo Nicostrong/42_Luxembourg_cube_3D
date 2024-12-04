@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:46:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/08 11:53:12 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/04 13:43:58 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,22 @@ static void	init_user(t_data *f)
 	f->userd.dir = 270;
 }
 
+/*
+t_data	*init_struct(void)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(data));
+	if (!data)
+		ft_exit_error(E_MALLOC, NULL);
+	data->keyb.is_azerty = ISAZERTY;
+	data->userd.dir = 270;
+	return (data);
+}*/
+
 void	init_struct(t_data *f)
 {
+
 	init_data(f);
 	init_key(f);
 	init_user(f);

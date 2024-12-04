@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:32:16 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/04 13:46:14 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int main(int argc, char *argv[])
 	mlx_hook(f.win, 6, 1L << 6, &mouse_move, &f);
 	mlx_loop_hook(f.mlx, update_key, &f);
 	mlx_loop(f.mlx);
-	
-	
+	return (0);
+}
+
 	/*printf("##############################################\n");
 	printf("			MISSING FILE\n");
 	printf("##############################################\n\n");
@@ -150,7 +151,3 @@ int main(int argc, char *argv[])
 	ft_vali(f.fic, &f);
 	f.fic = NULL;
 	printf("##############################################\n\n");*/
-
-	
-	return (0);
-}

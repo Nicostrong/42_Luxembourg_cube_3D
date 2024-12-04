@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 13:06:41 by phkevin          ###   Luxembourg.lu     */
+/*   Updated: 2024/12/04 13:44:42 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <sys/time.h>
+
+/*	includes	*/
+# include "../includes/error.h"
 
 /* DEBUG */
 #ifndef DEBUG
@@ -223,7 +226,8 @@ void	ft_init_mlx(t_data *f);
  /*
   * Fonction init
   */
-void	init_struct(t_data *f);
+//t_data	*init_struct(void);
+void		init_struct(t_data *data);
 
  /*
   * Fonction render
@@ -241,6 +245,7 @@ void    ft_load_wall(t_data *f);
  */
 void    ft_vali(char *fic, t_data *f);
 void 	ft_val_para(char *str, t_data *f);
+int		ft_exit_error(char *str, t_data *data);
 
 /*
  * Fonction draw

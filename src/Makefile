@@ -6,7 +6,7 @@
 #    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/04 13:15:22 by phkevin          ###   Luxembourg.lu      #
+#    Updated: 2024/12/04 13:33:55 by phkevin          ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ FILES		=	ft_close.c \
 				draw/ft_put_circle.c \
 				file/file.c \
 				texture/ft_load_textures.c \
+				validate/ft_check_arg.c \
 				validate/ft_validate.c \
 				validate/ft_validate_para.c \
 				validate/ft_validate_map.c \

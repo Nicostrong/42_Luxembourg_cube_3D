@@ -6,7 +6,7 @@
 /*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:51:07 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:43:16 by phkevin          ###   ########.fr       */
+/*   Updated: 2024/12/04 13:42:18 by phkevin          ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,15 @@
  */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*pts;
+	size_t	size_total;
+	void	*ptr;
 
-	if (nmemb == 0 || size == 0)
-	{
-		pts = malloc(1);
-		return (pts);
-	}
-	if ((nmemb * size) > 2147483647 || nmemb > 2147483647 || size > 2147483647)
+	size_total = nmemb * size;
+	if (size_total / nmemb != size)
 		return (NULL);
-	else
-	{
-		pts = (char *)malloc((nmemb * size) * sizeof(*pts));
-		if (!pts)
-			return (NULL);
-		ft_bzero(pts, (nmemb * size));
-		return (pts);
-	}
+	ptr = malloc(size_total);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, size_total);
+	return (ptr);
 }

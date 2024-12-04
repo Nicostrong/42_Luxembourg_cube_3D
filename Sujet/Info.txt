@@ -22,6 +22,8 @@ Source :
 - https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
 
 
+- http://wolf3d.atw.hu/
+
 
 ******************************************************************************
 + Controle data map 			(Recontroler des sécuriter)

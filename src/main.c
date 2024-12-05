@@ -6,13 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/05 09:09:58 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/05 18:04:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_3d.h"
-#include "../includes/setting_game.h"
-#include "../includes/struct3d.h"
+#include "../includes/structures.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -34,22 +33,20 @@
  * </return>
  *
  */
-
 int main(int argc, char *argv[])
 {
 	t_info	*info;
 
 	ft_check_arg(argc, argv);
-	info = ft_init_info(argv[1]);
-	ft_parse_map_bonus(info);
+	info = ft_get_all_info(argv[1]);
 
-	ft_init_mlx(&f);
+	/*ft_init_mlx(&f);
 	mlx_hook(f.win, 17, 0, &ft_close, &f);
 	mlx_mouse_hook(f.win, &mouse_click, &f);
 	mlx_hook(f.win, 2, 1L << 0, &pr_key, &f);
 	mlx_hook(f.win, 3, 1L << 1, &rl_key, &f);
 	mlx_hook(f.win, 6, 1L << 6, &mouse_move, &f);
 	mlx_loop_hook(f.mlx, update_key, &f);
-	mlx_loop(f.mlx);
+	mlx_loop(f.mlx);*/
 	return (0);
 }

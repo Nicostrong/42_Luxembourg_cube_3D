@@ -1,5 +1,5 @@
 /* XPM */
-static char *_abce947d5ee4994875cc55e0b75d093[] = {
+static char *sky[] = {
 /* columns rows colors chars-per-pixel */
 "256 256 256 2 ",
 "   c #49373B",

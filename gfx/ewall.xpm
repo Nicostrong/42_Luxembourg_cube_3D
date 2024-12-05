@@ -1,5 +1,5 @@
 /* XPM */
-static char *_9371c3f06e347cdf75cb9bea4e901e6[] = {
+static char *e_wall[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 9 1 ",
 "  c #28200C",

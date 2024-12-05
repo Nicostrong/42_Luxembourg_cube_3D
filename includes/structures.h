@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct3d.h                                         :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 09:04:33 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/05 19:47:11 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT3D_H
-# define STRUCT3D_H
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
 /**
  * Enum: Texture type
  */
 typedef enum e_texture_type
 {
-	WALL_N,
-	WALL_S,
-	WALL_E,
-	WALL_W,
-	SKY,
-	FLOOR
-}	t_texture_type;
+	FLOOR,								//	0
+	SKY,								//	1
+	WALL_N,								//	2 => position player
+	WALL_E,								//	3 => position player
+	WALL_S,								//	4 => position player
+	WALL_W								//	5 => position player
+}	t_type_image;
 
 /**
  * Struct: Texture data
  */
 typedef struct s_texture
 {
-	char			*addr;
-	int				h;
-	int				w;
-	t_texture_type 	type;
-}					t_texture;
+	char			*img_path;			//	Path to the image
+	int				h;					//	Height of the image
+	int				w;					//	Width of the image
+	void			*img;				//	Image
+	t_type_image 	type;				//	Type of the texture
+}					t_img;
 
 /**
  * Struct: Keyboard data
@@ -94,7 +95,7 @@ typedef struct s_data
 	int				spposx;				// Position spawn en x
 	int				spposy;				// Position spawn en y
 	int				sprot;				// Orientation player E = 0, N = 270, S = 90
-	t_texture		gfx[NBTEXTURES];
+	//t_texture		gfx[NBTEXTURES];
 	t_keyb			keyb;
 	t_user			userd;
 }					t_data;
@@ -123,8 +124,35 @@ typedef struct s_anim
  *	Nico structure for setting game
  */
 
+/*
+ *	Color RGB
+ */
+
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
+
+/*
+ *	Link between char and variable in structure
+ */
+
+typedef struct s_info_map
+{
+    char    	*key;			//	Key to select the variable
+    char    	**path;			//	Pointer for path of the image
+    t_color 	**color;		//	Pointer for the color of the image
+}   t_info_map;
+
+ /*
+  *	Main structure
+  */
+
 typedef struct s_info
 {
+	int			fd;				//	fd file .cub
 	int			h;				//	height of map
 	int			w;				//	width of map
 	int			user_y;			//	position y of player
@@ -136,16 +164,32 @@ typedef struct s_info
 	int			c_nbr;			//	number of collectable
 	int			img_len;		//	dim of the image (64 x 64)
 	char		*map_path;		//	path of the map
+	char		*line;			//	line read
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
 	void		*win;			//	windows
-	void		*s_img;			//	sky image
-	void		*f_img;			//	floor image
-	void		*w_n_img;		//	wall north image
-	void		*w_e_img;		//	wall east image
-	void		*w_s_img;		//	wall south image
-	void		*w_w_img;		//	wall weast image
+	t_img		*s_img;			//	sky image
+	t_img		*f_img;			//	floor image
+	t_img		*w_n_img;		//	wall north image
+	t_img		*w_e_img;		//	wall east image
+	t_img		*w_s_img;		//	wall south image
+	t_img		*w_w_img;		//	wall weast image
+	t_color		*floor_color;	//	floor color
+	t_color		*sky_color;		//	sky color
 	t_anim		*c_anim;		//	animation of collectable
+	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
+
+/*
+ *	Strucuture fonctions
+ */
+
+
+void	ft_init_img(t_info **info);
+void	ft_free_info(t_info *info);
+void	ft_free_window(t_info *info);
+
+t_info	*ft_init_info(char *path);
+t_info	*ft_get_all_info(char *path);
 
 #endif

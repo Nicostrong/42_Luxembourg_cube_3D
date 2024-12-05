@@ -15,7 +15,8 @@
         "stdio.h": "c",
         "libftprintf.h": "c",
         "libft.h": "c",
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "cube_3d.h": "c"
     },
     "files.exclude": {
         "**/.git": true,
@@ -31,4 +32,7 @@
     "editor.rulers": [
         80
     ],
+    "C_Cpp.doxygen.generatedStyle": "/**",
+    "C_Cpp.default.cppStandard": "c++98",
+    "C_Cpp.autocompleteAddParentheses": true,
 }

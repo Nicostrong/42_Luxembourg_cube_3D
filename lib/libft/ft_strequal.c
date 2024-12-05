@@ -3,27 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:15:50 by phkevin           #+#    #+#             */
-/*   Updated: 2024/08/22 19:32:49 by phkevin          ###   Luxembour.lu      */
+/*   Created: 2024/08/22 15:00:34 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/08/28 13:54:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Compare deux chaînes de caractères pour vérifier leur égalité.
+/*
+ * <cat>bool</cat>
  *
- * Cette fonction utilise `ft_strcmp` pour comparer deux chaînes de caractères.
- * Elle retourne 1 si les chaînes sont égales et 0 si elles sont différentes.
+ * <summary>
+ *	int	ft_strequal(const char *s1, const char *s2)
+ * </summary>
  *
- * @param str1 La première chaîne de caractères à comparer.
- * @param str2 La seconde chaîne de caractères à comparer.
- * @return int Retourne 1 si les chaînes sont égales, 0 sinon.
+ * <description>
+ *	ft_strcmp compare if two strings are equal or not.
+ * </description>
+ *
+ * <param type="const void *" name="s1">string 1</param>
+ * <param type="const void *" name="s2">string 2</param>
+ *
+ * <return>
+ *	1, if s1 == s2,
+ *	0, if s1 != s2,
+ * </return>
+ *
  */
-int	ft_strequal(const char *str1, const char *str2)
-{
-	return (!ft_strcmp(str1, str2));
-}
 
+int	ft_strequal(const char *s1, const char *s2)
+{
+	return (ft_strcmp(s1, s2) == 0);
+}

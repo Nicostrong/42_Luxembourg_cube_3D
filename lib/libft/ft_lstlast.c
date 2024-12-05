@@ -3,31 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 09:13:26 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:50:04 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 17:39:42 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:41 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Renvoie le dernier élément d'une liste.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction renvoie un pointeur vers le dernier élément de la liste 
- * chaînée `lst`.
- * Si `lst` est NULL, la fonction retourne NULL.
+ * <summary>
+ * 	t_list	*ft_lstlast(t_list *lst)
+ * </summary>
  *
- * @param lst Un pointeur vers la première structure de la liste.
- * @return Un pointeur vers le dernier élément de la liste, ou NULL si la 
- * liste est vide.
+ * <description>
+ * 	ft_lstlast loop over the linked list to finc the last list.
+ * </description>
+ *
+ * <param type="t_list *" name="lst">linked list</param>
+ *
+ * <return>
+ * 	a pointer to the last list.
+ * </return>
+ *
  */
+
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
-	while (lst->next != NULL)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }

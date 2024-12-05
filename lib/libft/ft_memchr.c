@@ -3,41 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 14:53:26 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:05:14 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:42:18 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:46 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Recherche un caractère dans une zone mémoire.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction recherche le caractère `c` dans les `n` premiers octets de la
- * zone mémoire pointée par `s`. Si le caractère est trouvé, un pointeur vers 
- * la première occurrence du caractère est retourné. Sinon, la fonction 
- * retourne NULL.
+ * <summary>
+ *	void	*ft_memchr(condt void *s, int c, size_t n)
+ * </summary>
  *
- * @param s Un pointeur vers la zone mémoire à analyser.
- * @param c Le caractère à rechercher.
- * @param n Le nombre d'octets à analyser.
- * @return Un pointeur vers la première occurrence de `c` dans la zone mémoire,
- * ou NULL si `c` n'est pas trouvé.
+ * <description>
+ *	ft_memchr scan an area memory pointed by s on n bytes to find the char c.
+ * </description>
+ *
+ * <param type="const void *" name="s">source of memory area</param>
+ * <param type="int" name="c">char to find</param>
+ * <param type="size_t" name="n">number of byte to scan</param>
+ *
+ * <return>
+ *	a pointer to the matching byte or a NULL pointer no occurence matching.
+ * </return>
+ *
  */
+
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
+	unsigned char	*area;
 
-	str = (unsigned char *)s;
-	if (n == 0)
-		return (NULL);
-	while (n-- > 0)
+	area = (unsigned char *)s;
+	while (n--)
 	{
-		if (*str == (unsigned char)c)
-			return (str);
-		str++;
+		if (*area == (unsigned char)c)
+			return ((void *)area);
+		area++;
 	}
 	return (NULL);
 }

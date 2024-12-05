@@ -3,43 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 14:25:44 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:25:27 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:41:58 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/08/22 14:59:17 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Compare les n premiers caractères de deux chaînes de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction compare les n premiers caractères des chaînes de caractères 
- * `s1` et `s2`.
- * Elle retourne un entier négatif, nul ou positif si `s1` est respectivement 
- * inférieure, égale ou supérieure à `s2`. La comparaison s'arrête si un 
- * caractère nul est atteint dans l'une ou l'autre des chaînes ou si n 
- * caractères ont été comparés.
+ * <summary>
+ *	int	ft_strncmp(const char *s1, const char *s2, size_t n)
+ * </summary>
  *
- * @param s1 La première chaîne de caractères à comparer.
- * @param s2 La deuxième chaîne de caractères à comparer.
- * @param n Le nombre de caractères à comparer.
- * @return Un entier négatif si la première chaîne est inférieure, 0 si elles 
- * sont égales, ou un entier positif si la première chaîne est supérieure.
+ * <description>
+ *	ft_strncmp compare two strings at most n char.
+ * </description>
+ *
+ * <param type="const void *" name="s1">string 1</param>
+ * <param type="const void *" name="s2">string 2</param>
+ * <param type="size_t" name="n">number of byte to compare</param>
+ *
+ * <return>
+ *	0, if s1 == s2,
+ *	a positive value if s1 < s2,
+ *	a negative value if s1 > s2.
+ * </return>
+ *
  */
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	size_t	index;
 
-	i = 0;
-	while (i < n && (s1[i] && s2[i]))
+	index = 0;
+	if (n == 0)
+		return ((unsigned char)0);
+	while (*s1 == *s2 && (n - index) > 1)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		s1++;
+		s2++;
+		index++;
 	}
-	if (i < n && ((s1[i] == 0 && s2[i] != 0) || (s1[i] != 0 && s2[i] == 0)))
-		return ((unsigned char) s1[i] - (unsigned char) s2[i]);
-	return (0);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

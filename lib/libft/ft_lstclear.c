@@ -3,37 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 13:09:06 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:48:05 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/26 13:16:45 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Supprime et libère la mémoire de tous les éléments d'une liste.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction supprime et libère la mémoire de tous les éléments de la
- * liste chaînée `lst`, en appliquant la fonction `del` à chaque élément.
- * Ensuite, elle met à NULL le pointeur de tête de liste `lst`.
+ * <summary>
+ *	void	ft_lstclear(t_list **lst, void (*del)(void *))
+ * </summary>
  *
- * @param lst Un pointeur vers un pointeur vers la première structure de la 
- * liste.
- * @param del Le pointeur vers la fonction utilisée pour supprimer le contenu 
- * d'un élément.
+ * <description>
+ * 	ft_lstclear del and free memory of eatch element of the linked list.  It set
+ * 	the original pointer at NULL.
+ * </description>
+ *
+ * <param type="t_list **" name="lst">list of linked list</param>
+ * <param type="void *" name="f">del function (void *)</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*lsttmp;
 
-	if (lst == NULL)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*current_lst;
+	t_list	*next_lst;
+
+	if (!lst)
 		return ;
-	while (*lst)
+	current_lst = *lst;
+	while (current_lst)
 	{
-		lsttmp = (*lst)->next;
-		ft_lstdelone((*lst), del);
-		(*lst) = lsttmp;
+		next_lst = current_lst->next;
+		ft_lstdelone(current_lst, del);
+		current_lst = next_lst;
 	}
+	*lst = NULL;
 }

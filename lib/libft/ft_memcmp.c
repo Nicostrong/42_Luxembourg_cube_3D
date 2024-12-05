@@ -3,46 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 16:24:39 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:07:31 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:42:27 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Compare deux zones mémoire.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction compare les `n` premiers octets des zones mémoire `s1` et 
- * `s2`.
- * Elle retourne un entier inférieur, égal ou supérieur à zéro si les `n` 
- * premiers octets de `s1` sont respectivement inférieurs, égaux ou supérieurs
- * aux `n` premiers octets de `s2`.
+ * <summary>
+ *	int	ft_memcmp(const void *s1, const void* s2, size_t n)
+ * </summary>
  *
- * @param s1 Un pointeur vers la première zone mémoire à comparer.
- * @param s2 Un pointeur vers la deuxième zone mémoire à comparer.
- * @param n Le nombre d'octets à comparer.
- * @return Un entier inférieur, égal ou supérieur à zéro selon que les `n` 
- * premiers octets de `s1` sont respectivement inférieurs, égaux ou supérieurs 
- * aux `n` premiers octets de `s2`.
+ * <description>
+ *	ft_memcmp compare the n first byte of the memory area s1 with the memory
+ *	area s2.
+ * </description>
+ *
+ * <param type="const void *" name="s1">memory area 1</param>
+ * <param type="const void *" name="s2">memory area 2</param>
+ * <param type="size_t" name="n">number of byte to scan</param>
+ *
+ * <return>
+ *	0 if no difference or more than 0 if different.
+ * </return>
+ *
  */
+
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char	*sa;
-	const unsigned char	*sb;
+	unsigned char	*src1;
+	unsigned char	*src2;
+	size_t			index;
 
-	sa = s1;
-	sb = s2;
-	if (n == 0)
-		return (0);
-	while (n--)
+	src1 = (unsigned char *)s1;
+	src2 = (unsigned char *)s2;
+	index = 0;
+	while (index < n)
 	{
-		if (*sa != *sb)
-			return (*sa - *sb);
-		sa++;
-		sb++;
+		if (src1[index] != src2[index])
+			return (src1[index] - src2[index]);
+		index++;
 	}
 	return (0);
 }

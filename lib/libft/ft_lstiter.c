@@ -3,32 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 13:37:44 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:49:39 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/26 14:28:38 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Supprime et libère la mémoire d'un élément d'une liste.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction supprime et libère la mémoire de l'élément `lst` de la liste
- * chaînée en appliquant la fonction `del` à son contenu. Ensuite, elle libère
- * la mémoire de la structure elle-même.
+ * <summary>
+ * 	void	ft_lstiter(t_list *lst, void (*f)(void *))
+ * </summary>
  *
- * @param lst Un pointeur vers la structure à supprimer.
- * @param del Le pointeur vers la fonction utilisée pour supprimer le contenu 
- * de l'élément.
+ * <description>
+ * 	ft_lstiter iter the list and apply a function on eatch element of the list.
+ * </description>
+ *
+ * <param type="t_list *" name="lst">list of linked list to del</param>
+ * <param type="void *" name="f">function with param (void *)</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == NULL || (*f) == NULL)
+	if (!lst)
 		return ;
-	while (lst != NULL)
+	while (lst)
 	{
 		f(lst->content);
 		lst = lst->next;

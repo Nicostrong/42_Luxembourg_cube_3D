@@ -1,6 +1,4 @@
 {
-    "42header.username": "phkevin",
-    "42header.email": "phkevin@42luxembourg.lu",
     "files.associations": {
         "src.h": "c",
         "libgetnextline.h": "c",
@@ -27,5 +25,8 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/*.o": true
-    }
+    },
+    "editor.rulers": [
+        80
+    ],
 }

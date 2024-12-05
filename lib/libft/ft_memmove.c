@@ -3,49 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 09:43:32 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:09:03 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:31:10 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Copie une zone mémoire vers une autre, même en cas de chevauchement.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction copie les `n` premiers octets de la zone mémoire pointée par 
- * `src` vers la zone mémoire pointée par `dest`. La copie est effectuée de
- * manière sûre, même si les deux zones mémoire se chevauchent partiellement 
- * ou totalement.
+ * <summary>
+ *	void	*ft_memmove(void *dst, const void *src, size_t n)
+ * </summary>
  *
- * @param dest Un pointeur vers la destination de la copie.
- * @param src Un pointeur vers la source de la copie.
- * @param n Le nombre d'octets à copier.
- * @return Un pointeur vers la destination de la copie.
+ * <description>
+ *	ft_memmove copy n bytes from memory area src to tempory memory area.
+ *	it check if memory area are overlap.
+ *	//!\\ n max == ft_strlen(src) + 1 //!\\
+ * </description>
+ *
+ * <param type="void *" name="dst">memory area of destination</param>
+ * <param type="const void *" name="src">source of memory area</param>
+ * <param type="size_t" name="n">number of byte to copy</param>
+ *
+ * <return>
+ *	void *.
+ * </return>
+ *
  */
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	char		*dstr;
-	const char	*sstr;
-	size_t		i;
 
-	dstr = (char *)dest;
-	sstr = (const char *)src;
-	if (dstr < sstr)
-	{
-		i = 0;
-		while (i < n)
-		{
-			dstr[i] = sstr[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (n--)
-			dstr[n] = sstr[n];
-	}
-	return (dest);
+void	*ft_memmove(void *dst, const void *src, size_t n)
+{
+	unsigned char	*d;
+	unsigned char	*s;
+
+	if (!dst && ! src)
+		return (NULL);
+	if (dst < src)
+		return (ft_memcpy(dst, src, n));
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	while (n--)
+		*(d + n) = *(s + n);
+	return (dst);
 }

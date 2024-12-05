@@ -3,31 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 12:23:59 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:48:49 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/26 09:01:52 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Supprime et libère la mémoire d'un élément d'une liste.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction supprime et libère la mémoire de l'élément `lst` de la liste
- * chaînée en appliquant la fonction `del` à son contenu. Ensuite, elle libère
- * la mémoire de la structure elle-même.
+ * <summary>
+ * 	void	ft_lstdelone(t_list *lst, void (*del)(void *))
+ * </summary>
  *
- * @param lst Un pointeur vers la structure à supprimer.
- * @param del Le pointeur vers la fonction utilisée pour supprimer le contenu 
- * de l'élément.
+ * <description>
+ * 	ft_lstdelone remove of the linked list the element lst in calling the
+ * 	function del. this function free corectely the list.
+ * </description>
+ *
+ * <param type="t_list *" name="lst">list of linked list to del</param>
+ * <param type="void *" name="del">dellist function with param (void *)</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (lst != NULL && del != NULL)
-	{
-		del(lst->content);
-		free(lst);
-	}
+	if (!lst)
+		return ;
+	del(lst->content);
+	free(lst);
 }

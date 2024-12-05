@@ -3,49 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 12:49:35 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:40:01 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:42:34 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/11/11 09:55:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Convertit une chaîne de caractères en entier.
+/*
+ * <cat>bool</cat>
  *
- * Cette fonction convertit une chaîne de caractères représentant un nombre
- * en un entier (int). Elle gère les espaces initiaux, les signes '+' et '-',
- * et les dépassements de capacité. Si le nombre dépasse la plage des entiers
- * signés, la fonction retourne 0.
+ * <summary>
+ *	static int	ft_isspace(int c)
+ * </summary>
  *
- * @param str La chaîne de caractères à convertir.
- * @return L'entier converti de la chaîne de caractères.
+ * <description>
+ *	ft_isspace function test the char passed in param if it's an spacename.
+ *	an spacename is this char[9-13 && 32].
+ * </description>
+ *
+ * <param type="int" name="c">char to test</param>
+ *
+ * <return>
+ *	1 if c is in spacename
+ *	or
+ *	0 if c isn't in spacename.
+ * </return>
+ *
  */
-int	ft_atoi(const char *str)
-{
-	long int	result;
-	int			op;
 
-	op = 0;
-	result = 0;
-	while (*str && ((*str >= 9 && *str <= 13) || *str == 32))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			op++;
-		str++;
-	}
-	while (ft_isdigit(*str))
-	{
-		result = result * 10 + (*str - 48);
-		str++;
-	}
-	if ((op % 2) == 1)
-		result *= -1;
-	if (result < -2147483648 || result > 2147483647)
+static int	ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+/*
+ * <cat>convert</cat>
+ *
+ * <summary>
+ *	int	ft_atoi(const char *nptr)
+ * </summary>
+ *
+ * <description>
+ *	atoi convert a string with numerical char to interger type.
+ *	it pass all space determined by isspace, can take only optional char '+'
+ *	or '-', and numerical char.
+ * </description>
+ *
+ * <param type="const void *" name="nptr">pointer to string to convert</param>
+ *
+ * <return>
+ *	an interger like written on the *nptr with '-' if the number is negatif.
+ * </return>
+ *
+ */
+
+int	ft_atoi(const char *nptr)
+{
+	char	*s;
+	int		nb;
+	int		neg;
+
+	if (!nptr)
 		return (0);
-	return ((int)result);
+	s = (char *)nptr;
+	nb = 0;
+	neg = 0;
+	while (ft_isspace(*s))
+		s++;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			neg = 1;
+		s++;
+	}
+	while (ft_isdigit(*s))
+	{
+		nb = (nb * 10) + (*s - '0');
+		s++;
+	}
+	if (neg)
+		return (-nb);
+	return (nb);
 }

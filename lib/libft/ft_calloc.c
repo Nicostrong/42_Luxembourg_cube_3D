@@ -3,27 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 13:51:07 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 13:42:18 by phkevin          ###   Luxembourg.lu     */
+/*   Created: 2024/02/23 13:47:01 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/11/06 11:46:26 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Alloue et initialise la mémoire pour un tableau.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction alloue la mémoire pour un tableau de `nmemb` éléments de 
- * `size` octets chacun et initialise tous les octets à zéro. Si `nmemb` ou 
- * `size` est 0, elle alloue 1 octet. Si la taille totale demandée dépasse la 
- * capacité maximale d'un entier signé, elle retourne NULL.
+ * <summary>
+ *	void	*ft_calloc(size_t nmemb, size_t size)
+ * </summary>
  *
- * @param nmemb Le nombre d'éléments à allouer.
- * @param size La taille de chaque élément.
- * @return Un pointeur vers la mémoire allouée ou NULL en cas d'erreur.
+ * <description>
+ *	ft_calloc allocate memory and set all byte to 0. check the overflow of
+ *	size_t for malloc.
+ * </description>
+ *
+ * <param type="size_t" name="nmemb">number of member</param>
+ * <param type="size_t" name="size">size in byte of a member</param>
+ *
+ * <return>
+ *	if nmemb or size == 0 => NULL
+ *	else => a pointeur with (nmemb * size) byte to 0.
+ * </return>
+ *
  */
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	size_total;

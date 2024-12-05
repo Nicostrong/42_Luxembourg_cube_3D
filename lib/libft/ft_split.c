@@ -1,144 +1,146 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:25:11 by phkevin           #+#    #+#             */
-/*   Updated: 2024/02/26 11:25:12 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 15:04:24 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/11/02 17:06:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Libère la mémoire allouée pour un tableau de chaînes de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction libère la mémoire allouée pour un tableau de chaînes de 
- * caractères terminé par un pointeur NULL. Elle libère d'abord la mémoire de 
- * chaque chaîne de caractères, puis celle du tableau lui-même.
+ * <summary>
+ *	static int	countsection(char const *s, char c)
+ * </summary>
  *
- * @param str Le tableau de chaînes de caractères à libérer.
+ * <description>
+ *	ft_countword count all section in a string. eatch section are separated by
+ *	the char c.
+ * </description>
+ *
+ * <param type="char cont *" name="s">string to evaluate</param>
+ * <param type="char" name="c">char of separation of section</param>
+ *
+ * <return>
+ *	number of section in the string.
+ * </return>
+ *
  */
-void	ft_free_split(char **str)
-{
-	int	i;
 
-	i = 0;
-	if (str == NULL)
-		return ;
-	while (str[i])
+static int	countsection(char const *s, char const c)
+{
+	int	section;
+	int	index;
+
+	section = 0;
+	index = 0;
+	while (s[index])
 	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
+		while (s[index] == c)
+			index++;
+		if (s[index] && s[index] != c)
+		{
+			section++;
+			while (s[index] && s[index] != c)
+				index++;
+		}
 	}
-	free(str);
-	str = NULL;
+	return (section);
 }
 
-/**
- * @brief Compte le nombre de mots dans une chaîne de caractères en fonction 
- * d'un délimiteur.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction compte le nombre de mots dans la chaîne de caractères `s`, 
- * en considérant le caractère `c` comme délimiteur. Un mot est défini comme 
- * une séquence de caractères ne contenant pas le délimiteur `c`.
+ * <summary>
+ *	static char	*ft_malloc_row(char const s, char c)
+ * </summary>
  *
- * @param s La chaîne de caractères à analyser.
- * @param c Le caractère délimiteur.
- * @return Le nombre de mots dans la chaîne de caractères.
+ * <description>
+ * 	ft_malloc_row allocate memory for a section of string ans copy the section
+ * 	to this pointer.
+ * </description>
+ *
+ * <param type="char const *" name="s">string to cut in section</param>
+ * <param type="char" name="c">char separator of section</param>
+ *
+ * <return>
+ *	a pointer allocated with the section copyed in area memory.
+ * </return>
+ *
  */
-static int	ft_countword(char const *s, char c)
-{
-	int	nb;
-	int	i;
 
-	nb = 1;
-	i = 1;
-	if (s[0] == '\0')
-		return (0);
-	while (s[i] != '\0')
+static char	*ft_malloc_row(char const *s, char c)
+{
+	char	*row;
+	int		index;
+
+	index = 0;
+	while (s[index] && s[index] != c)
+		index++;
+	row = (char *)ft_calloc((index + 1), sizeof(char));
+	if (!row)
+		return (NULL);
+	index = 0;
+	while (s[index] && s[index] != c)
 	{
-		if (s[i] == c && s[i - 1] != c)
-			nb++;
-		i++;
+		row[index] = s[index];
+		index++;
 	}
-	if (s[i - 1] == c)
-		nb--;
-	return (nb);
+	row[index] = 0;
+	return (row);
 }
 
-/**
- * @brief Extrait un mot d'une chaîne de caractères en fonction d'un délimiteur.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction extrait un mot de la chaîne de caractères `s`, en commençant à
- * l'indice `start` et en utilisant le caractère `c` comme délimiteur. Le mot 
- * extrait est alloué dynamiquement et renvoyé.
+ * <summary>
+ * 	char	**ft_split(char const *s, char c)
+ * </summary>
  *
- * @param s La chaîne de caractères à analyser.
- * @param c Le caractère délimiteur.
- * @param start L'indice à partir duquel commencer l'extraction.
- * @return Un pointeur vers le mot extrait, ou NULL en cas d'erreur 
- * d'allocation.
+ * <description>
+ * 	ft_split cut a string at eatch char c and save eatch little sting in an
+ * 	array.
+ * </description>
+ *
+ * <param type="char const *" name="s">string to split</param>
+ * <param type="char" name="c">char of split</param>
+ *
+ * <return>
+ * 	creat and allocate an array of strings and terminate by NULL.
+ * </return>
+ *
  */
-static char	*get_word(char const *s, char c, int start)
-{
-	char	*res;
-	int		i;
-	int		si;
 
-	i = 0;
-	si = 0;
-	while (s[start + si] != '\0' && s[start + si] != c)
-		si++;
-	res = (char *)malloc((si + 1) * sizeof(char *));
-	while (i < si)
-	{
-		res[i] = s[start + i];
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
-}
-
-/**
- * @brief Divise une chaîne de caractères en mots en fonction d'un délimiteur.
- *
- * Cette fonction divise la chaîne de caractères `s` en mots en utilisant le 
- * caractère `c` comme délimiteur. Les mots extraits sont stockés dans un 
- * tableau de chaînes de caractères qui est alloué dynamiquement. Le tableau 
- * résultant est terminé par un pointeur NULL.
- *
- * @param s La chaîne de caractères à diviser.
- * @param c Le caractère délimiteur.
- * @return Un tableau de chaînes de caractères représentant les mots extraits, 
- * ou NULL en cas d'erreur d'allocation.
- */
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	char	*word;
-	int		i;
-	int		i_res;
+	char	**array;
+	int		index;
 
+	index = 0;
 	if (!s)
 		return (NULL);
-	res = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
-	i = 0;
-	i_res = 0;
-	while (s[i] == c && *s)
-		i++;
-	while (i_res < ft_countword(s, c))
+	array = (char **)ft_calloc((countsection(s, c) + 1), sizeof (char *));
+	if (!array)
+		return (NULL);
+	while (*s)
 	{
-		word = get_word(s, c, i);
-		res[i_res++] = ft_strdup(word);
-		i += ft_strlen(word);
-		free(word);
-		while (s[i] == c)
-			i++;
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
+		{
+			array[index++] = ft_malloc_row(s, c);
+			if (!array)
+				return (ft_free_array(array));
+			while (*s && *s != c)
+				s++;
+		}
 	}
-	res[i_res] = NULL;
-	return (res);
+	array[index] = NULL;
+	return (array);
 }

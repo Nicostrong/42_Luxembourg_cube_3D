@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 11:42:48 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:43:41 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/19 15:37:05 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Vérifie si un caractère est alphanumérique.
+/*
+ * <cat>bool</cat>
  *
- * Cette fonction vérifie si le caractère passé en argument est une lettre 
- * (majuscule ou minuscule) ou un chiffre.
+ * <summary>
+ *	int	ft_isalnum(int c)
+ * </summary>
  *
- * @param c Le caractère à vérifier.
- * @return 1 si le caractère est alphanumérique, 0 sinon.
+ * <description>
+ *	checks if the character is in the standard "C" [a-z] || [A-Z] || [0-9].
+ * </description>
+ *
+ * <param type="int" name="c">char to test</param>
+ *
+ * <return>
+ *	1 if c is alpha numerical.
+ *	0 if c isn't alpha numerical.
+ * </return>
+ *
  */
+
 int	ft_isalnum(int c)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

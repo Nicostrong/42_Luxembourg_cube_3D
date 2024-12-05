@@ -3,37 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:13:04 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:09:46 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 09:48:29 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Remplit une zone mémoire avec une valeur spécifique.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction remplit les `n` premiers octets de la zone mémoire pointée 
- * par `s` avec la valeur `c`.
+ * <summary>
+ *	void	*ft_memset(void *s, int c, size_t n)
+ * </summary>
  *
- * @param s Un pointeur vers la zone mémoire à remplir.
- * @param c La valeur à utiliser pour remplir la zone mémoire.
- * @param n Le nombre d'octets à remplir.
- * @return Un pointeur vers la zone mémoire remplie.
+ * <description>
+ *	ft_memset fills the n first bytes of memory pointed by s with the value
+ *	of c.
+ * </description>
+ *
+ * <param type="void *" name="s">memory area to fills</param>
+ * <param type="int" name="c">value of fill</param>
+ * <param type="size_t" name="n">number of byte to fills</param>
+ *
+ * <return>
+ *	void *.
+ * </return>
+ *
  */
+
 void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t	i;
-	char	*str;
+	unsigned char	*str;
 
-	i = 0;
-	str = (char *) s;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (str);
+	str = (unsigned char *)s;
+	while (n--)
+		*str++ = c;
+	return (s);
 }

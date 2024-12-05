@@ -3,73 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 09:23:08 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:46:30 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 15:49:15 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/09/06 10:03:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Compte le nombre de chiffres d'un entier.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction compte le nombre de chiffres présents dans un entier, y 
- * compris le signe s'il est négatif.
+ * <summary>
+ *	static int	ft_count_digit(long long n)
+ * </summary>
  *
- * @param n L'entier dont on veut compter le nombre de chiffres.
- * @return Le nombre de chiffres dans l'entier.
+ * <description>
+ *	ft_count_digit count the number of digit on n.
+ * </description>
+ *
+ * <param type="long long" name="n">nomber</param>
+ *
+ * <return>
+ *	the number of digit in the number n.
+ * </return>
+ *
  */
-static int	ft_count_char(int n)
-{
-	int	i;
 
-	i = 0;
-	if (n < 0)
-		i++;
-	if (n == 0)
+static int	ft_count_digit(long long n)
+{
+	int	len;
+
+	if (n == 0 || n == -0)
 		return (1);
+	len = 0;
+	if (n < 0)
+		len = 1;
 	while (n)
 	{
 		n /= 10;
-		i++;
+		len++;
 	}
-	return (i);
+	return (len);
 }
 
-/**
- * @brief Convertit un entier en une chaîne de caractères.
+/*
+ * <cat>convert</cat>
  *
- * Cette fonction convertit un entier en une chaîne de caractères. Elle alloue
- * dynamiquement la mémoire nécessaire pour la chaîne résultante et la retourne.
- * Si l'allocation de mémoire échoue, elle retourne NULL.
+ * <summary>
+ *	char	*ft_itoa(int n)
+ * </summary>
  *
- * @param n L'entier à convertir en chaîne de caractères.
- * @return Un pointeur vers la chaîne de caractères résultante, ou NULL en cas 
- * d'erreur.
+ * <description>
+ *	ft_itoa convert an integer to string. it allocate memory to create the 
+ *	string.
+ * </description>
+ *
+ * <param type="int" name="n">integer to convert in string</param>
+ *
+ * <return>
+ *	a pointer allocated to the string.
+ * </return>
+ *
  */
+
 char	*ft_itoa(int n)
 {
-	char		*str;
+	int			len;
 	long long	nbr;
-	int			nb_len;
+	char		*ret;
 
+	len = ft_count_digit(n);
 	nbr = (long long)n;
-	nb_len = ft_count_char(nbr);
-	str = (char *)malloc((nb_len + 1) * sizeof(char));
-	if (!str)
+	if (n < 0)
+		nbr *= -1;
+	ret = (char *)ft_calloc((len + 1), sizeof(char));
+	if (!ret)
 		return (NULL);
-	if (nbr < 0)
-		nbr = -nbr;
-	str[nb_len--] = '\0';
-	while (nb_len >= 0)
+	ret[len--] = '\0';
+	while (len >= 0)
 	{
-		str[nb_len] = nbr % 10 + '0';
-		nbr = nbr / 10;
-		nb_len--;
+		ret[len] = nbr % 10 + '0';
+		nbr /= 10;
+		len--;
 	}
 	if (n < 0)
-		str[0] = '-';
-	return (str);
+		ret[0] = '-';
+	return (ret);
 }

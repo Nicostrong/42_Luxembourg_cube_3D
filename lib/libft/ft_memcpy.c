@@ -3,37 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 09:36:41 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:08:24 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 09:48:29 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/08/30 09:18:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Copie une zone mémoire vers une autre.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction copie les `n` premiers octets de la zone mémoire pointée par 
- * `src` vers la zone mémoire pointée par `dest`. Les deux zones mémoire ne 
- * doivent pas se chevaucher.
+ * <summary>
+ *	void	*ft_memcpy(void *dest, const void *src, size_t n)
+ * </summary>
  *
- * @param dest Un pointeur vers la destination de la copie.
- * @param src Un pointeur vers la source de la copie.
- * @param n Le nombre d'octets à copier.
- * @return Un pointeur vers la destination de la copie.
+ * <description>
+ *	ft_memcpy copy n bytes from memory area src to memory area dest.
+ *	it check if memory area are overlap.
+ * </description>
+ *
+ * <param type="void *" name="dest">memory area of destination</param>
+ * <param type="const void *" name="src">source of memory area</param>
+ * <param type="size_t" name="n">number of byte to copy</param>
+ *
+ * <return>
+ *	void *.
+ * </return>
+ *
  */
+
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char		*dstr;
-	const char	*sstr;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	sstr = (char *) src;
-	dstr = (char *) dest;
-	if (!dest && !src)
-		return (0);
+	if (!dest || !src)
+		return (NULL);
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	while (n--)
-		dstr[n] = sstr[n];
+		*d++ = *s++;
 	return (dest);
 }

@@ -3,34 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:41:11 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/18 12:50:37 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 08:33:54 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Calcule la longueur d'une chaîne de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction calcule la longueur de la chaîne de caractères `str`, 
- * c'est-à-dire le nombre de caractères avant le caractère nul de fin de chaîne.
+ * <summary>
+ *	size_t	ft_strlen(const char *s)
+ * </summary>
  *
- * @param str La chaîne de caractères dont calculer la longueur.
- * @return Le nombre de caractères dans la chaîne de caractères, excluant le 
- * caractère nul de fin de chaîne.
+ * <description>
+ *	ft_strlen count the number of bytes on the string s without the '\0'
+ * </description>
+ *
+ * <param type="const char *" name="s">string to evaluate</param>
+ *
+ * <return>
+ *	number of bytes in the string without the null terminate char.
+ * </return>
+ *
  */
-size_t	ft_strlen(const char *str)
-{
-	size_t	nb;
 
-	nb = 0;
-	while (*str != '\0')
-	{
-		str++;
-		nb++;
-	}
-	return (nb);
+size_t	ft_strlen(const char *s)
+{
+	size_t	nb_bytes;
+
+	if (!s)
+		return (0);
+	nb_bytes = 0;
+	while (*s++)
+		nb_bytes++;
+	return (nb_bytes);
 }

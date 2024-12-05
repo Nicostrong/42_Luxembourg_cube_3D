@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 13:37:53 by phkevin          ###   Luxembourg.lu     */
+/*   Updated: 2024/12/05 08:56:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ERROR_H
 
 # define E_USAGE	"\033[1;31mUsage\n - ./cub3d <map.cub>\033[0m\n"
+# define E_CUB		"\033[1;31mError\n - Not a .cub file\033[0m\n"
+# define E_HIDDEN	"\033[1;31mError\n - Hidden file .cub not a map\033[0m\n"
 # define E_MAP		"\033[1;31mError\n - Bad map.\033[0m\n"
 # define E_XPM		"\033[1;31mError\n - XPM error.\033[0m\n"
 # define E_TEXTURE	"\033[1;31mError\n - File texture.\033[0m\n"
@@ -32,5 +34,10 @@
 # define E_EXIT		"\033[1;31mError\n - Missing exit on map.\033[0m\n"
 # define E_MALLOC	"\033[1;31mError\n - Malloc.\033[0m\n"
 # define E_OPEN		"\033[1;31mError\n - File not readable.\033[0m\n"
+
+/*
+ *	Fonction error
+ */
+
 
 #endif

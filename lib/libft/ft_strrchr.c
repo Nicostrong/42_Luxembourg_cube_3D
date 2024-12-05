@@ -3,42 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 12:58:32 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:27:51 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:41:44 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Recherche le dernier caractère donné dans une chaîne de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction recherche la dernière occurrence du caractère `c` dans la 
- * chaîne de caractères `s`.
- * Elle retourne un pointeur vers la dernière occurrence de `c` dans `s`, ou 
- * NULL si `c` n'est pas trouvé.
+ * <summary>
+ *	char	*ft_strrchr(const char *s, int c)
+ * </summary>
  *
- * @param s La chaîne de caractères dans laquelle rechercher.
- * @param c Le caractère à rechercher.
- * @return Un pointeur vers la dernière occurrence de `c` dans `s`, ou NULL 
- * si non trouvé.
+ * <description>
+ *	ft_strchr chearch the last occurence of the char c and return a pointer
+ *	to this occurence.
+ * </description>
+ *
+ * <param type="const void *" name="s">string to parce</param>
+ * <param type="int" name="c">char to find</param>
+ *
+ * <return>
+ *	a pointer to the last occurence of the char c or 0 if the char c not in
+ *	the string.
+ * </return>
+ *
  */
+
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*last;
 
 	last = NULL;
 	if (c > 127)
-		return ((char *) s);
+		return ((char *)s);
 	while (*s)
 	{
 		if (*s == c)
-			last = (char *) s;
+			last = (char *)s;
 		s++;
 	}
 	if (*s == c)
-		return ((char *) s);
+		return ((char *)s);
 	return (last);
 }

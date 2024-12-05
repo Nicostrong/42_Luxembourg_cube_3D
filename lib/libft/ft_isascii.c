@@ -3,23 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:04:55 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:44:25 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/19 15:51:53 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:26 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @brief Vérifie si un caractère est un caractère ASCII.
+#include "libft.h"
+
+/*
+ * <cat>bool</cat>
  *
- * Cette fonction vérifie si le caractère passé en argument appartient
- * à l'ensemble des caractères ASCII (valeurs entre 0 et 127).
+ * <summary>
+ *	int	ft_isascii(int c)
+ * </summary>
  *
- * @param c Le caractère à vérifier.
- * @return 1 si le caractère est un caractère ASCII, 0 sinon.
+ * <description>
+ *	checks if the character is in the standard "C" ascii [0-127].
+ * </description>
+ *
+ * <param type="int" name="c">char to test</param>
+ *
+ * <return>
+ *	1 if c is ascii char.
+ *	0 if c isn't ascii char.
+ * </return>
+ *
  */
+
 int	ft_isascii(int c)
 {
-	return ((c >= 0) && (c <= 127));
+	return (c >= 0 && c <= 127);
 }

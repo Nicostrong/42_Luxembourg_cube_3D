@@ -3,30 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 13:09:45 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:19:06 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 16:20:29 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Applique une fonction à chaque caractère d'une chaîne avec son indice.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction applique la fonction `f` à chaque caractère de la chaîne de 
- * caractères `s`, en lui passant l'indice de chaque caractère en premier 
- * argument.
+ * <summary>
+ * 	void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+ * </summary>
  *
- * @param s La chaîne de caractères à parcourir.
- * @param f La fonction à appliquer à chaque caractère.
+ * <description>
+ *	ft_striteri call for eatch char of the string s, a function who apply some
+ *	modification at eatch char of the string.
+ * </description>
+ *
+ * <param type="char *" name="s">string to evaluate</param>
+ * <param type="void *" name="f">function with param (u_int, char *)</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
-{
-	unsigned int	i;
 
-	i = 0;
-	while (*s)
-		f(i++, s++);
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	index;
+
+	index = 0;
+	while (s[index])
+	{
+		f(index, &s[index]);
+		index++;
+	}
 }

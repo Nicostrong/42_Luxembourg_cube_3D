@@ -3,39 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 09:19:00 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:47:06 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/26 08:12:32 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:35 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Ajoute un élément à la fin d'une liste chaînée.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction ajoute un élément `new` à la fin de la liste chaînée `lst`.
- * Si `lst` est NULL, `lst` pointera vers `new` après l'ajout. Si `new` est 
- * NULL, la fonction ne fait rien.
+ * <summary>
+ *	void	ft_lstadd_back(t_list **lst, t_list *new)
+ * </summary>
  *
- * @param lst Un pointeur vers un pointeur vers la première structure de la 
- * liste.
- * @param new Un pointeur vers la structure à ajouter à la fin de la liste.
+ * <description>
+ *	ft_lstadd_back add a new list at the end of the liked list.
+ * </description>
+ *
+ * <param type="t_list **" name="lst">list of linked list</param>
+ * <param type="t_list *" name="new">list to add</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
+
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*lsladd;
-
-	if (lst == NULL || new == NULL)
+	if (!new)
 		return ;
-	if (*lst == NULL)
-	{
+	if (*lst)
+		ft_lstlast(*lst)->next = new;
+	else
 		*lst = new;
-		return ;
-	}
-	lsladd = *lst;
-	while (lsladd->next != NULL)
-		lsladd = lsladd->next;
-	lsladd->next = new;
 }

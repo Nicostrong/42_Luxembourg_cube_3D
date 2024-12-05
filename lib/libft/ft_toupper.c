@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 11:58:24 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:30:35 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:41:12 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:10:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Convertit un caractère en majuscule s'il est alphabétique et en 
- * minuscule.
+/*
+ * <cat>convert</cat>
  *
- * Cette fonction convertit le caractère `c` en majuscule s'il est alphabétique 
- * et en minuscule.
+ * <summary>
+ *	int	ft_toupper(int c)
+ * </summary>
  *
- * @param c Le caractère à convertir.
- * @return Le caractère converti en majuscule s'il est alphabétique, sinon le 
- * même caractère.
+ * <description>
+ *	ft_toupper replace a lower alpha char to capitalize char.
+ * </description>
+ *
+ * <param type="int" name="c">char to test</param>
+ *
+ * <return>
+ *	the uppercase of the lowercase c, or the char c if is'nt alpha char.
+ * </return>
+ *
  */
+
 int	ft_toupper(int c)
 {
-	if (ft_isalpha(c))
-	{
-		if ((c >= 97) && (c <= 122))
-			c = c - 32;
-	}
+	if (ft_isalpha(c) == 2)
+		return (c - 32);
 	return (c);
 }

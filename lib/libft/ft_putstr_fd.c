@@ -3,28 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 14:34:20 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:13:19 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 16:34:08 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Écrit une chaîne de caractères dans un descripteur de fichier.
+/*
+ * <cat>print</cat>
  *
- * Cette fonction écrit la chaîne de caractères `s` dans le descripteur de 
- * fichier spécifié par `fd`.
+ * <summary>
+ *	void	ft_putstr_fd(char *s, int fd)
+ * </summary>
  *
- * @param s La chaîne de caractères à écrire.
- * @param fd Le descripteur de fichier dans lequel écrire.
+ * <description>
+ *	ft_putchar_fd write the string s on the output designed by fd.
+ * </description>
+ *
+ * <param type="char *" name="s">string to print</param>
+ * <param type="int" name="fd">number of the file descriptor</param>
+ *
+ * <return>
+ *	void.
+ * </return>
+ *
  */
+
 void	ft_putstr_fd(char *s, int fd)
 {
+	if (!s)
+		return ;
 	while (*s)
-	{
-		write(fd, s++, 1);
-	}
+		ft_putchar_fd(*s++, fd);
 }

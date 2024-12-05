@@ -3,24 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 10:43:19 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/16 10:44:19 by phkevin          ###   ########.fr       */
+/*   Created: 2024/06/19 08:53:00 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/10/18 09:07:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Libère un tableau de chaînes de caractères.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction libère chaque chaîne de caractères dans le tableau `array`,
- * puis libère le tableau lui-même. Elle renvoie toujours `NULL`.
+ * <summary>
+ *	char **ft_free_array(char **array)
+ * </summary>
  *
- * @param array Le tableau de chaînes de caractères à libérer.
- * @return Toujours `NULL`.
+ * <description>
+ *	ft_free_array free all element of the array and the array.
+ * </description>
+ *
+ * <param type="char **" name="array">array of char* to free</param>
+ *
+ * <return>
+ *	NULL.
+ * </return>
+ *
  */
+
 char	**ft_free_array(char **array)
 {
 	int	index;

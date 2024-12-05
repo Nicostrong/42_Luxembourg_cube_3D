@@ -3,27 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 09:39:48 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:29:06 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 14:39:32 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Supprime les caractères spécifiés en début et en fin de chaîne.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction crée une nouvelle chaîne en supprimant les caractères 
- * spécifiés dans `set` en début et en fin de la chaîne `s1`. La nouvelle 
- * chaîne est allouée dynamiquement.
+ * <summary>
+ * 	char	*ft_strtrim(char const *s1, char const *set)
+ * </summary>
  *
- * @param s1 La chaîne à trimmer.
- * @param set Les caractères à supprimer en début et en fin de chaîne.
- * @return Une nouvelle chaîne, résultat du trim, ou NULL en cas d'échec 
- * d'allocation mémoire.
+ * <description>
+ * 	ft_strtrim creat a new malloc string and remove all char in set at the start
+ * 	and at the end of the original string.
+ * </description>
+ *
+ * <param type="char const *" name="s1">string to trim</param>
+ * <param type="char const *" name="set">set of char to remove</param>
+ *
+ * <return>
+ * 	a pointer allocated with the new string without the set char.
+ * </return>
+ *
  */
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;

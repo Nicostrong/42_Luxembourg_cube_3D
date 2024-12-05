@@ -3,50 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 14:07:52 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:51:20 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/26 14:37:18 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:42 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Applique une fonction à chaque élément d'une liste et crée une 
- * nouvelle liste.
+/*
+ * <cat>list</cat>
+ * <summary>
+ *	t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+ * </summary>
  *
- * Cette fonction applique la fonction `f` à chaque élément de la liste `lst` 
- * et crée une nouvelle liste avec les éléments modifiés. La fonction `del` est
- * utilisée pour supprimer le contenu des éléments de la nouvelle liste en cas 
- * d'erreur. Si `lst` est NULL ou si `f` ou `del` sont NULL, la fonction 
- * retourne NULL.
+ * <description>
+ * 	ft_lstmap apply a function on eatch element of the linked list and save the
+ * 	modification on a new linked list. the del function is just to delete if
+ * 	it's necesary.
+ * </description>
  *
- * @param lst Un pointeur vers le premier élément de la liste d'origine.
- * @param f Le pointeur vers la fonction à appliquer à chaque élément de la 
- * liste.
- * @param del Le pointeur vers la fonction utilisée pour supprimer le contenu 
- * des éléments de la nouvelle liste en cas d'erreur.
- * @return Un pointeur vers le premier élément de la nouvelle liste, ou NULL en
- * cas d'erreur.
+ * <param type="t_list *" name="lst">list of linked list to modify</param>
+ * <param type="void *" name="*f">function to apply mod (void *)</param>
+ * <param type="void" name="*del">del function  (void *)</param>
+ *
+ * <return>
+ * 	a new linked list or NULL if allocation fail.
+ * </return>
+ *
  */
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*lstmp;
+	t_list	*newlst;
+	t_list	*tmplst;
 
-	if (lst == NULL || f == NULL || del == NULL)
+	if (!lst)
 		return (NULL);
-	lstmp = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	while (lst != NULL)
+	newlst = NULL;
+	while (lst)
 	{
-		ft_lstadd_back(&lstmp, ft_lstnew(f(lst->content)));
+		tmplst = ft_lstnew(f(lst->content));
+		if (!tmplst)
+		{
+			ft_lstclear(&lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&newlst, tmplst);
 		lst = lst->next;
 	}
-	if (lstmp == NULL)
-	{
-		del(lstmp);
-		return (NULL);
-	}
-	return (lstmp);
+	return (newlst);
 }

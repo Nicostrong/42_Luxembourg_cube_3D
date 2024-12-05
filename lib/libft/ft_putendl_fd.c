@@ -3,30 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 14:42:14 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:11:28 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 16:44:25 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Écrit une chaîne de caractères suivie d'un saut de ligne dans un 
- * descripteur de fichier.
+/*
+ * <cat>print</cat>
  *
- * Cette fonction écrit la chaîne de caractères `s` dans le descripteur de 
- * fichier spécifié par `fd`, suivie d'un saut de ligne.
+ * <summary>
+ *	void	ft_putendl_fd(char *s, int fd)
+ * </summary>
  *
- * @param s La chaîne de caractères à écrire.
- * @param fd Le descripteur de fichier dans lequel écrire.
+ * <description>
+ *	ft_putendl_fd write the string s on the output designed by fd with '\n'.
+ * </description>
+ *
+ * <param type="char *" name="s">string to print</param>
+ * <param type="int" name="fd">number of the file descriptor</param>
+ *
+ * <return>
+ *	void
+ * </return>
+ *
  */
+
 void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s)
-	{
-		write(fd, s++, 1);
-	}
-	write(fd, "\n", 1);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

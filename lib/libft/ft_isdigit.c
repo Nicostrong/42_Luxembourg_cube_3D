@@ -3,23 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 10:17:22 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:44:46 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/19 15:20:13 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:27 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @brief Vérifie si un caractère est un chiffre.
+#include "libft.h"
+
+/*
+ * <cat>bool</cat>
  *
- * Cette fonction vérifie si le caractère passé en argument est un chiffre
- * (compris entre '0' et '9').
+ * <summary>
+ *	int	ft_isdigit(int c)
+ * </summary>
  *
- * @param c Le caractère à vérifier.
- * @return 1 si le caractère est un chiffre, 0 sinon.
+ * <description>
+ *	checks if the character is in the standard "C" [0-9].
+ * </description>
+ *
+ * <param type="int" name="c">char to test</param>
+ *
+ * <return>
+ *	1 if c is digit.
+ *	0 if c isn't digit.
+ * </return>
+ *
  */
+
 int	ft_isdigit(int c)
 {
-	return ((c >= '0') && (c <= '9'));
+	return (c >= '0' && c <= '9');
 }

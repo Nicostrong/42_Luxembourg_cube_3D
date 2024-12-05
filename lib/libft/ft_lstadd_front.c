@@ -3,29 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 09:09:53 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:47:33 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 17:27:55 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Ajoute un élément au début d'une liste chaînée.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction ajoute un élément `new` au début de la liste chaînée `lst`.
- * Si `lst` est NULL, `lst` pointera vers `new` après l'ajout. Si `new` est 
- * NULL, la fonction ne fait rien.
+ * <summary>
+ *	void	ft_lstadd_front(t_list **lst, t_list *new)
+ * </summary>
  *
- * @param lst Un pointeur vers un pointeur vers la première structure de la 
- * liste.
- * @param new Un pointeur vers la structure à ajouter au début de la liste.
+ * <description>
+ * 	ft_lstadd_front add a new list at the front of the liked list.
+ * </description>
+ *
+ * <param type="t_list **" name="lst">list of linked list</param>
+ * <param type="t_list *" name="new">list to add</param>
+ *
+ * <return>
+ *	a pointer to a new list.
+ * </return>
+ *
  */
+
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !new)
+	if (!new)
 		return ;
 	new->next = *lst;
 	*lst = new;

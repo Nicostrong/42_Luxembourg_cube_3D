@@ -3,44 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 17:37:20 by phkevin           #+#    #+#             */
-/*   Updated: 2024/07/26 17:41:27 by phkevin          ###   ########.fr       */
+/*   Created: 2024/08/22 14:58:23 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/11/02 11:04:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Compare les caractères de deux chaînes de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction compare les caractères des chaînes de caractères 
- * `s1` et `s2`.
- * Elle retourne un entier négatif, nul ou positif si `s1` est respectivement 
- * inférieure, égale ou supérieure à `s2`. La comparaison s'arrête si un 
- * caractère nul est atteint dans l'une ou l'autre des chaînes ou si n 
- * caractères ont été comparés.
+ * <summary>
+ *	int	ft_strcmp(const char *s1, const char *s2)
+ * </summary>
  *
- * @param s1 La première chaîne de caractères à comparer.
- * @param s2 La deuxième chaîne de caractères à comparer.
- * @return Un entier négatif si la première chaîne est inférieure, 0 si elles 
- * sont égales, ou un entier positif si la première chaîne est supérieure.
+ * <description>
+ *	ft_strcmp compare two strings completly.
+ * </description>
+ *
+ * <param type="const void *" name="s1">string 1</param>
+ * <param type="const void *" name="s2">string 2</param>
+ *
+ * <return>
+ *	0, if s1 == s2,
+ *	a positive value if s1 < s2,
+ *	a negative value if s1 > s2.
+ * </return>
+ *
  */
+
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
-	int lens;
-
-	i = 0;
-	lens = ft_strlen(s1);
-	while (i < lens && (s1[i] && s2[i]))
+	if (!s1)
+		return (0 - (unsigned char)*s2);
+	if (!s2)
+		return ((unsigned char)*s1);
+	while (*s1 && (*s1 == *s2))
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		s1++;
+		s2++;
 	}
-	if (i < lens && ((s1[i] == 0 && s2[i] != 0) || (s1[i] != 0 && s2[i] == 0)))
-		return ((unsigned char) s1[i] - (unsigned char) s2[i]);
-	return (0);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

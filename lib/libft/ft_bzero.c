@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:59:41 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:42:25 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 10:22:14 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:17 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Remplit une zone mémoire de zéros.
+/*
+ * <cat>memory</cat>
  *
- * Cette fonction remplit les `n` premiers octets de la zone mémoire pointée
- * par `s` avec des zéros (valeurs nulles).
+ * <summary>
+ *	void	ft_bzero(void *s, size_t n)
+ * </summary>
  *
- * @param s Le pointeur vers la zone mémoire à remplir.
- * @param n Le nombre d'octets à remplir avec des zéros.
+ * <description>
+ *	ft_bzero erases n bytes of memory area pointed by s with '\0' char.
+ *	it's call ft_memset.
+ * </description>
+ *
+ * <param type="void *" name="s">memory area</param>
+ * <param type="size_t" name="n">number of byte to erase</param>
+ *
+ * <return>
+ *	void.
+ * </return>
+ *
  */
+
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	str = (char *) s;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
+	ft_memset(s, 0, n);
 }

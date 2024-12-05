@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
+#    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/04 13:13:55 by phkevin          ###   Luxembourg.lu      #
+#    Updated: 2024/12/05 08:18:05 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,25 +27,28 @@ NAME		=	cub3D
 OBJS_DIR	=	./
 OBJS		=	$(addprefix $(OBJS_DIR), $(FILES:.c=.o))
 
-FILES		=	main.c \
+FILES		=	./src/main.c \
 
 ################################################################################
 #	Compilation: Libft
 ################################################################################
 
 LIBFT_DIR		=	./lib/libft
+LIBFT_NAME		=	-lft
 
 ################################################################################
 #	Compilation: FtPrintf
 ################################################################################
 
 FTPRINTF_DIR	=	./lib/ftprintf
+FTPRINTF_NAME	=	-lftprintf
 
 ################################################################################
 #	Compilation: GetNextLine
 ################################################################################
 
-GNL_DIR			=	./lib/getnextline
+GNL_DIR			=	./lib/gnl
+GNL_NAME		=	-lgnl
 
 ################################################################################
 #	Compilation: MinilibX
@@ -64,9 +67,9 @@ SRC_DIR			=	./src
 ################################################################################
 
 LIB		=	-L$(SRC_DIR) -lsrc \
-			-L$(LIBFT_DIR) -lft \
-			-L$(FTPRINTF_DIR) -lftprintf \
-			-L$(GNL_DIR) -lgetnextline \
+			-L$(LIBFT_DIR) $(LIBFT_NAME) \
+			-L$(FTPRINTF_DIR) $(FTPRINTF_NAME) \
+			-L$(GNL_DIR) $(GNL_NAME) \
 			-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
 			
 ################################################################################

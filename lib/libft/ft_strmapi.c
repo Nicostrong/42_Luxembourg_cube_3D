@@ -3,41 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 12:43:50 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:23:46 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 16:05:29 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Applique une fonction à chaque caractère d'une chaîne avec son indice 
- * et crée une nouvelle chaîne.
+/*
+ * <cat>convert</cat>
  *
- * Cette fonction applique la fonction `f` à chaque caractère de la chaîne de 
- * caractères `s`, en lui passant l'indice de chaque caractère en premier 
- * argument. Elle crée une nouvelle chaîne avec les résultats de l'application 
- * de `f` à chaque caractère.
+ * <summary>
+ *	char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+ * </summary>
  *
- * @param s La chaîne de caractères à parcourir.
- * @param f La fonction à appliquer à chaque caractère avec son indice.
- * @return Un pointeur vers la nouvelle chaîne de caractères créée, ou NULL en 
- * cas d'erreur d'allocation.
+ * <description>
+ *	ft_strmapi call for eatch char of the string s a function who make some
+ *	modification a the char. it creat a new string and allocate memory for this
+ *	string.
+ * </description>
+ *
+ * <param type="char const *" name="s">string to evaluate</param>
+ * <param type="char *" name="f">function with param type (u_int, char)</param>
+ *
+ * <return>
+ *	a pointer allocated with the new string.
+ * </return>
+ *
  */
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*res;
-	unsigned int	i;
+	char			*ret;
+	unsigned int	index;
 
-	res = (char *) malloc ((ft_strlen(s) + 1) * sizeof(char));
-	i = 0;
-	while (i < ft_strlen(s))
+	index = 0;
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!ret)
+		return (NULL);
+	while (s[index])
 	{
-		res[i] = (*f)(i, s[i]);
-		i++;
+		ret[index] = f(index, s[index]);
+		index++;
 	}
-	res[i] = '\0';
-	return (res);
+	ret[index] = '\0';
+	return (ret);
 }

@@ -3,33 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 09:16:33 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:04:26 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/25 17:34:07 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Calcule la taille d'une liste chaînée.
+/*
+ * <cat>list</cat>
  *
- * Cette fonction calcule le nombre d'éléments présents dans la liste chaînée 
- * `lst` et retourne ce nombre.
+ * <summary>
+ * 	int	ft_lstsize(t_list *lst)
+ * </summary>
  *
- * @param lst Un pointeur vers le premier élément de la liste.
- * @return Le nombre d'éléments présents dans la liste.
+ * <description>
+ * 	ft_lstsize cunt the number of list in lst.
+ * </description>
+ *
+ * <param type="t_list *" name="lst">linked list</param>
+ *
+ * <return>
+ * 	number of list.
+ * </return>
+ *
  */
+
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (lst != NULL)
+	len = 0;
+	while (lst)
 	{
 		lst = lst->next;
-		i++;
+		len++;
 	}
-	return (i);
+	return (len);
 }

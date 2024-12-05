@@ -3,42 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 15:50:58 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/18 14:06:54 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/23 15:48:15 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/08/28 15:41:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Duplique une chaîne de caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction duplique la chaîne de caractères `s` et renvoie un pointeur 
- * vers la nouvelle chaîne allouée dynamiquement. La mémoire pour la nouvelle 
- * chaîne est allouée à l'aide de malloc.
+ * <summary>
+ *	char	*ft_strdup(const char *s)
+ *</summary>
  *
- * @param s La chaîne de caractères à dupliquer.
- * @return Un pointeur vers la nouvelle chaîne dupliquée, ou NULL en cas 
- * d'erreur d'allocation.
+ * <description>
+ *	ft_strdup duplicate the string pointed by s to a new pointer.
+ * </description>
+ *
+ * <param type="const char *" name="s">string to duplicate</param>
+ *
+ * <return>
+ *	a new string where copied on memory area allocated with malloc.
+ * </return>
+ *
  */
+
 char	*ft_strdup(const char *s)
 {
-	int		index;
-	char	*dest;
+	char	*cpy;
+	size_t	len_s;
 
-	if (s == NULL)
-		return NULL;
-	dest = (char *) malloc ((ft_strlen(s) + 1) * sizeof(char));
-	if (dest == NULL)
+	if (!s)
 		return (NULL);
-	index = 0;
-	while (s[index] != '\0')
-	{
-		dest[index] = s[index];
-		index++;
-	}
-	dest[index] = '\0';
-	return (dest);
+	len_s = ft_strlen(s) + 1;
+	cpy = (char *)malloc(len_s * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	cpy = ft_memcpy(cpy, s, len_s);
+	return (cpy);
 }

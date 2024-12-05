@@ -3,51 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 16:06:56 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:27:13 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:42:06 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:09:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Recherche une sous-chaîne de caractères dans une chaîne de manière 
- * sécurisée avec une limite de taille.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction recherche la première occurrence de la sous-chaîne `little` 
- * dans la chaîne `big`, jusqu'à une taille maximale `len`. Si `little` est une 
- * chaîne vide, un pointeur vers `big` est renvoyé.
- * Sinon, la recherche se fait jusqu'à une longueur maximale de `len` 
- * caractères. 
- * Si `little` est trouvé dans `big`, un pointeur vers le premier caractère de 
- * la première occurrence de `little` dans `big` est renvoyé.
- * Sinon, un pointeur NULL est renvoyé.
+ * <summary>
+ *	char	*ft_strnstr(const char *big, const char *little, size_t len)
+ * </summary>
  *
- * @param big La chaîne dans laquelle rechercher.
- * @param little La sous-chaîne à rechercher.
- * @param len La taille maximale de la recherche.
- * @return Un pointeur vers la première occurrence de `little` dans `big`, ou 
- * NULL si non trouvé ou si `len` est atteint.
+ * <description>
+ *	ft_strnstr chearch little string on big string.
+ * </description>
+ *
+ * <param type="const char *" name="big">source of memory area</param>
+ * <param type="const char *" name="little">source of memory area</param>
+ * <param type="size_t" name="len">number of byte to copy</param>
+ *
+ * <return>
+ *	if little is empty => pointer to big.
+ *	if no occurence of little in big => NULL.
+ *	if little in big => pointer to little in big.
+ * </return>
+ *
  */
+
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	litlen;
+	char	*cp_big;
+	char	*cp_lit;
 	size_t	i_b;
+	size_t	len_lit;
 
-	litlen = ft_strlen((char *) little);
-	if (little[0] == '\0')
-	{
-		return ((char *) big);
-	}
+	cp_big = (char *)big;
+	cp_lit = (char *)little;
+	len_lit = ft_strlen(little);
+	if (!little || *cp_lit == 0)
+		return (cp_big);
 	i_b = 0;
-	while (big[i_b] && i_b < len)
+	while (i_b < len && cp_big[i_b])
 	{
-		if (big[i_b] == little[0] && (len - i_b >= litlen))
-			if (!ft_strncmp((char *)&big[i_b], (char *)little, litlen))
-				return ((char *)&big[i_b]);
+		if (cp_big[i_b] == cp_lit[0])
+		{
+			if (len - i_b >= len_lit)
+				if (!ft_strncmp((const char *)&cp_big[i_b], little, len_lit))
+					return (&cp_big[i_b]);
+		}
 		i_b++;
 	}
-	return (0);
+	return (NULL);
 }

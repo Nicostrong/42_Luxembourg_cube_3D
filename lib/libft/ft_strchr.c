@@ -3,40 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 12:23:31 by phkevin           #+#    #+#             */
-/*   Updated: 2024/06/03 17:17:58 by phkevin          ###   ########.fr       */
+/*   Created: 2024/02/20 13:41:33 by nfordoxc          #+#    #+#             */
+/*   Updated: 2024/06/17 11:08:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Cherche la première occurrence d'un caractère dans une chaîne de 
- * caractères.
+/*
+ * <cat>str</cat>
  *
- * Cette fonction recherche la première occurrence du caractère `c` dans la 
- * chaîne de caractères `s`.
+ * <summary>
+ *	char	*ft_strchr(const char *s, int c)
+ * </summary>
  *
- * @param s La chaîne de caractères à rechercher.
- * @param c Le caractère à trouver.
- * @return Un pointeur vers la première occurrence du caractère dans la chaîne, 
- * ou NULL si le caractère n'est pas trouvé.
+ * <description>
+ *	ft_strchr chearch the first occurence of the char c and return a pointer
+ *	to this occurence.
+ * </description>
+ *
+ * <param type="const void *" name="s">string to parce</param>
+ * <param type="int" name="c">char to find</param>
+ *
+ * <return>
+ *	a pointer to the first occurence of the char c or 0 if the char c not in
+ *	the string.
+ * </return>
+ *
  */
+
 char	*ft_strchr(const char *s, int c)
 {
-	if (c > 127)
-		return ((char *) s);
-	while (*s)
-	{
-		if (*s == c)
-		{
-			return ((char *) s);
-		}
+	while (*s && *s != (char)c)
 		s++;
-	}
-	if (*s == c)
-		return ((char *) s);
-	return (0);
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }

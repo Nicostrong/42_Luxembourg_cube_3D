@@ -1,18 +1,11 @@
 # executable
-*.a
-./*.a
-./../*.a
-./../../*.a
-./../../../*.a
-
-# executable
 *.out
 ./*.out
 ./../*.out
 ./../../*.out
 ./../../../*.out
 
-# temfile vim
+# tempfile vim
 *.swp
 ./*.swp
 ./../*.swp
@@ -46,6 +39,18 @@
 ./../*.idea
 ./../../*.idea
 ./../../../*.idea
+
+# clang analyze
+*.plist
+./*.plist
+./../*.plist
+./../../*.plist
+./../../../*.plist
+*.gch
+./*.gch
+./../*.gch
+./../../*.gch
+./../../../*.gch
 
 # Prerequisites
 *.d

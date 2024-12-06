@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:46:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 13:43:58 by phkevin          ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 09:29:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Initialise les données de la structure t_data.

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 15:24:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 13:25:55 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 int	ft_perror_exit(char *str_error, t_info *info)
 {
+	ft_print_info(info);
 	ft_putendl_fd(str_error, 2);
 	if (info)
 		ft_free_info(info);

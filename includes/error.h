@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/05 19:41:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 13:45:27 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,19 @@
 # define E_OPEN		"\033[1;31mError\n - File not readable.\033[0m\n"
 # define E_MLX		"\033[1;31mError\n - Mlx error.\033[0m\n"
 
+#define W_N_IMG_E	1 << 0
+#define W_S_IMG_E	1 << 1
+#define W_E_IMG_E	1 << 2
+#define W_W_IMG_E	1 << 3
+#define F_IMG_E		1 << 4
+#define S_IMG_E		1 << 5
+
 /*
  *	Fonction error
  */
 
-int	ft_perror_exit(char *str_error, t_info *info);
+int		ft_perror_exit(char *str_error, t_info *info);
+
+void	ft_error_msg(int value, int exit, t_info *info);
 
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_fond.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:08:45 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 13:29:02 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Remplit une zone de fond avec une couleur gris ardoise.

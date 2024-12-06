@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 17:57:19 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 12:09:49 by phkevin          ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 09:29:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src.h" 
+#include "../../includes/cube_3d.h"
 
 /*void	ft_init(t_data *f)
 {

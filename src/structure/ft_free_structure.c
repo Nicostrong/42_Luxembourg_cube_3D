@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_struct.c                                   :+:      :+:    :+:   */
+/*   ft_free_structure.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 18:37:11 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 12:05:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_free_window(t_info *info)
  * </return>
  *
  */
+/*
 static void	ft_free_anim(t_anim *anim, t_info *info)
 {
 	int	index;
@@ -84,7 +85,7 @@ static void	ft_free_anim(t_anim *anim, t_info *info)
 		ft_free(anim);
 		anim = NULL;
 	}
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -107,17 +108,45 @@ static void	ft_free_anim(t_anim *anim, t_info *info)
 static void	ft_free_images(t_info *info)
 {
 	if (info->s_img)
-		mlx_destroy_image(info->mlx, info->s_img);
+	{
+		ft_free(info->s_img->img_path);
+		mlx_destroy_image(info->mlx, info->s_img->img);
+		ft_free(info->s_img);
+	}
 	if (info->f_img)
-		mlx_destroy_image(info->mlx, info->f_img);
+	{
+		ft_free(info->f_img->img_path);
+		mlx_destroy_image(info->mlx, info->f_img->img);
+		ft_free(info->f_img);
+	}
 	if (info->w_n_img)
+	{
+		ft_free(info->w_n_img->img_path);
 		mlx_destroy_image(info->mlx, info->w_n_img);
+		ft_free(info->w_n_img);
+	}
 	if (info->w_e_img)
+	{
+		ft_free(info->w_e_img->img_path);
 		mlx_destroy_image(info->mlx, info->w_e_img);
+		ft_free(info->w_e_img);
+	}
 	if (info->w_s_img)
+	{
+		ft_free(info->w_s_img->img_path);
 		mlx_destroy_image(info->mlx, info->w_s_img);
+		ft_free(info->w_s_img);
+	}
 	if (info->w_w_img)
+	{
+		ft_free(info->w_w_img->img_path);
 		mlx_destroy_image(info->mlx, info->w_w_img);
+		ft_free(info->w_w_img);
+	}
+	if (info->floor_color)
+		ft_free(info->floor_color);
+	if (info->sky_color)
+		ft_free(info->sky_color);
 }
 
 /*
@@ -144,18 +173,18 @@ static void	ft_free_path(t_info *info)
 		ft_free(info->map_path);
 	if (info->line)
 		ft_free(info->line);
-	if (info->s_path)
-		ft_free(info->s_path);
-	if (info->f_path)
-		ft_free(info->f_path);
-	if (info->w_n_path)
-		ft_free(info->w_n_path);
-	if (info->w_e_path)
-		ft_free(info->w_e_path);
-	if (info->w_s_path)
-		ft_free(info->w_s_path);
-	if (info->w_w_path)
-		ft_free(info->w_w_path);
+	if (info->s_img && info->s_img->img_path)
+		ft_free(info->s_img->img_path);
+	if (info->f_img && info->f_img->img_path)
+		ft_free(info->f_img->img_path);
+	if (info->w_n_img && info->w_n_img->img_path)
+		ft_free(info->w_n_img->img_path);
+	if (info->w_e_img && info->w_e_img->img_path)
+		ft_free(info->w_e_img->img_path);
+	if (info->w_s_img && info->w_s_img->img_path)
+		ft_free(info->w_s_img->img_path);
+	if (info->w_w_img && info->w_w_img->img_path)
+		ft_free(info->w_w_img->img_path);
 }
 
 /*
@@ -181,7 +210,7 @@ void	ft_free_info(t_info *info)
 {
 	if (!info)
 		return ;
-	if (info->fd)
+	if (info->fd > 2)
 		close(info->fd);
 	if (info->line)
 	{
@@ -198,7 +227,7 @@ void	ft_free_info(t_info *info)
 	if (info->info_map)
 		ft_free(info->info_map);
 	ft_free_images(info);
-	ft_free_anim(info->c_anim, info);
+	//ft_free_anim(info->c_anim, info);
 	ft_free_window(info);
 	ft_free(info);
 }

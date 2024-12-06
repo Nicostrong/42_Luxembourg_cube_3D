@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_generator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:18:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 16:31:11 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:44 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Alloue de la mémoire pour une carte 2D.

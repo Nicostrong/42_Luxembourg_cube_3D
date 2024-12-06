@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_col.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:09 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 16:39:17 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:29:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Convertit une chaîne de caractères en tableau de couleurs RGB.

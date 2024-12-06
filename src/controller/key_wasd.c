@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_wasd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 17:48:42 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/31 09:57:37 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:27:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Assigne l'état des touches WASD selon l'entrée clavier reçue.

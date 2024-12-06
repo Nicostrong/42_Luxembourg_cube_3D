@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   aff_map_ctr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:37:33 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/04 13:16:31 by phkevin          ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 09:28:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /*void	aff_map_ctr(t_data *f)
 {

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/05 10:19:51 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/06 13:38:23 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ RM				=	rm -f
 LIBFT_DIR		=	./lib/libft
 FT_PRINTF_DIR	=	./lib/ft_printf
 GNL_DIR			=	./lib/gnl
-MLX_DIR			=	./lib/minilibx
+MLX_DIR			=	./lib/mlx_linux
 
 LIBFT_NAME		=	-lft
 FT_PRINTF_NAME	=	-lftprintf
@@ -60,37 +60,42 @@ MYLIBS_BONUS	=
 #	Mandatory part															   #
 ################################################################################
 
+#					./src/controller/key_wasd.c \
+#					./src/controller/key_zqsd.c \
+#					./src/controller/keyboard.c \
+#					./src/controller/mouse.c \
+#					./src/debug/aff_map_ctr.c \
+#					./src/draw/ft_colors.c \
+#					./src/draw/ft_pixel_put.c \
+#					./src/draw/ft_put_circle.c \
+#					./src/file/file.c \
+#					./src/map_generator/map_generator.c \
+#					./src/minimap/fr_print_player.c \
+#					./src/minimap/ft_print_fond.c \
+#					./src/minimap/ft_print_ray.c \
+#					./src/minimap/ft_print_spawn.c \
+#					./src/minimap/ft_print_wall.c \
+#					./src/minimap/map_render.c \
+#					./src/texture/ft_load_textures.c \
+#					./src/utils/ft_close.c \
+#					./src/utils/ft_init.c \
+#					./src/utils/ft_parse_col.c \
+#					./src/utils/ft_time.c \
+#					./src/utils/init.c \
+#					./src/utils/render.c \
+#					./src/validate/ft_validate.c \
+#					./src/validate/ft_validate_map.c \
+
 SRC				=	./src/main.c \
-					./src/controller/key_wasd.c \
-					./src/controller/key_zqsd.c \
-					./src/controller/keyboard.c \
-					./src/controller/mouse.c \
-					./src/debug/aff_map_ctr.c \
-					./src/draw/ft_colors.c \
-					./src/draw/ft_pixel_put.c \
-					./src/draw/ft_put_circle.c \
+					./src/debug/ft_print_info.c \
 					./src/exit/ft_exit.c \
-					./src/file/file.c \
-					./src/map_generator/map_generator.c \
-					./src/minimap/fr_print_player.c \
-					./src/minimap/ft_print_fond.c \
-					./src/minimap/ft_print_ray.c \
-					./src/minimap/ft_print_spawn.c \
-					./src/minimap/ft_print_wall.c \
-					./src/minimap/map_render.c \
+					./src/exit/ft_error.c \
 					./src/structure/ft_free_structure.c \
 					./src/structure/ft_init_structure.c \
-					./src/texture/ft_load_textures.c \
-					./src/utils/ft_close.c \
-					./src/utils/ft_init.c \
-					./src/utils/ft_parse_col.c \
-					./src/utils/ft_time.c \
-					./src/utils/init.c \
-					./src/utils/render.c \
 					./src/validate/ft_check_arg.c \
-					./src/validate/ft_validate_map.c \
 					./src/validate/ft_validate_para.c \
-					./src/validate/ft_validate.c \
+					./src/parser/ft_parse_utils.c \
+					./src/parser/ft_parse.c \
 
 OBJ				=	$(SRC:.c=.o)
 
@@ -202,12 +207,12 @@ endef
 all:		$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(FT_PRINTF_DIR)/$(FT_PRINTF_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
-			$(MLX_DIR) \
+			$(MLX_DIR)/libmlx_Linux.a \
 			$(NAME)
 
 $(NAME):	NUM_FILES=$(NB_SRC)
 $(NAME):		$(OBJ)
-	@$(LIB_PROG) $(LIB_NAME) $(OBJ) > /dev/null 2>&1
+	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ) $(MYLIBS) -o $(NAME)
 
 %.o :		%.c
 	$(call compile_c_to_o)
@@ -221,7 +226,7 @@ $(GNL_DIR)/$(GNL_NAME):
 $(FT_PRINTF_DIR)/$(FT_PRINTF_NAME):
 	@$(MAKE) -sC $(FT_PRINTF_DIR)
 
-$(MLX_DIR):
+$(MLX_DIR)/libmlx_Linux.a:
 	@$(MAKE) -sC $(MLX_DIR)
 
 clean:
@@ -233,6 +238,7 @@ clean:
 	$(call delete_progress, ./src/file/*.o)
 	$(call delete_progress, ./src/map_generator/*.o)
 	$(call delete_progress, ./src/minimap/*.o)
+	$(call delete_progress, ./src/parser/*.o)
 	$(call delete_progress, ./src/structure/*.o)
 	$(call delete_progress, ./src/texture/*.o)
 	$(call delete_progress, ./src/utils/*.o)
@@ -247,7 +253,6 @@ fclean: clean
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 	@$(MAKE) -sC $(FT_PRINTF_DIR) fclean
-	@$(MAKE) -sC $(MLX_DIR) fclean
 
 re: fclean all
 	@echo "$(GREEN)all RE compiled!$(NO_COLOR)"

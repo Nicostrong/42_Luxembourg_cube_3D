@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 19:47:11 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 12:48:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ typedef struct s_info
 	t_img		*w_w_img;		//	wall weast image
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
-	t_anim		*c_anim;		//	animation of collectable
+	//t_anim		*c_anim;		//	animation of collectable
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 
@@ -184,6 +184,9 @@ typedef struct s_info
  *	Strucuture fonctions
  */
 
+//	DEBUG
+
+void	ft_print_info(t_info *info);
 
 void	ft_init_img(t_info **info);
 void	ft_free_info(t_info *info);

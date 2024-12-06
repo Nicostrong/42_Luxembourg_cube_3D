@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:18:50 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 13:27:56 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:55 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Affiche les rayons émis par le joueur dans une zone définie.

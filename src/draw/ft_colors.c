@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_colors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 09:23:06 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/28 16:25:48 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Crée une couleur en format entier à partir des valeurs T, R, G et B.

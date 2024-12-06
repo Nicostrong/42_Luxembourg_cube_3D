@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fr_print_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:15:41 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 16:09:10 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Affiche le joueur sous forme de cercle au centre de la zone donnée.

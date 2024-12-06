@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 19:35:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 13:24:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	ft_ismap(char *line)
 {
 	int		i;
 
+	printf("ft_ismap\n");
 	i = -1;
 	while (line[++i])
 		if (!ft_strchr(" 01NSEW", line[i]))
@@ -67,6 +68,7 @@ static void	ft_get_map(t_info *info)
 	char	**map;
 	int		i;
 
+	printf("ft_get_map\n");
 	map = ft_calloc(1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
@@ -75,10 +77,10 @@ static void	ft_get_map(t_info *info)
 	{
 		if (ft_ismap(info->line))
 		{
-			map[++i] = ft_append_str(map, info->line);
-			if (!map[i])
+			map = ft_append_str(map, info->line);
+			if (!map)
 				ft_perror_exit(E_MALLOC, info);
-			if (info->w < ft_strlen(info->line))
+			if (info->w < (int)ft_strlen(info->line))
 				info->w = ft_strlen(info->line);
 			info->h++;
 			ft_free(info->line);
@@ -109,14 +111,11 @@ static void	ft_get_map(t_info *info)
  * </return>
  *
  */
-static t_color	*ft_extract_color(char *str)
+static t_color	*ft_extract_color(char *str, t_color *color)
 {
 	char	**array;
-	t_color	*color;
 
-	color = ft_calloc(1, sizeof(t_color));
-	if (!color)
-		return (NULL);
+	printf("ft_extract_color\n");
 	array = ft_split(str, ',');
 	color->r = ft_atoi(array[0]);
 	color->g = ft_atoi(array[1]);
@@ -157,12 +156,11 @@ static int	ft_extract_info(t_info *info, char **array)
 	{
 		if (ft_strequal(array[0], info->info_map[i].key))
 		{
+			printf("path dans array[1] = %s\n", array[1]);
 			if (info->info_map[i].path && !*(info->info_map[i].path))
 				*(info->info_map[i].path) = ft_strdup(array[1]);
-			else if (info->info_map[i].color && !*(info->info_map[i].color))
-				*(info->info_map[i].color) = ft_extract_color(array[1]);
-			else
-				return (ft_free_array(array), 1);
+			else if (info->info_map[i].color)
+				ft_extract_color(array[1], *info->info_map[i].color);
 			return (ft_free_array(array), 0);
 		}
 	}
@@ -194,13 +192,17 @@ void	ft_read_file(t_info *info)
 	char	**array;
 	int		error;
 
+	printf("ft_read_file\n");
 	error = 0;
 	info->line = get_next_line(info->fd);
+	info->line[ft_strlen(info->line) - 1] = '\0';
 	while (info->line && !error)
 	{
 		if (ft_strlen(info->line) > 0)
 		{
 			array = ft_split(info->line, ' ');
+			printf("DEBUG array lecture fichier\n");
+			ft_putstrarray(array);
 			if (array[0] && array[1])
 				error = ft_extract_info(info, array);
 			else if (ft_strequal(array[0], "MAP") || ft_ismap(info->line))
@@ -210,11 +212,15 @@ void	ft_read_file(t_info *info)
 					ft_free_array(array);
 					ft_free(info->line);
 					info->line = get_next_line(info->fd);
+					info->line[ft_strlen(info->line) - 1] = '\0';
 				}
 				ft_get_map(info);
 			}
+			else
+				printf("No thing to do\n");
 		}
 		ft_free(info->line);
+		info->line = NULL;
 		if (!error)
 			info->line = get_next_line(info->fd);
 	}

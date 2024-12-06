@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:31 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/05 17:48:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 11:21:17 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,8 @@ static int	ft_check_not_cub(char *path)
  */
 static int	ft_check_open_cub(char *path)
 {
-	int		fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	if (access(path, R_OK) == -1)
 		return (0);
-	close(fd);
 	return (1);
 }
 

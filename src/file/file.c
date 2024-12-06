@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:15 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/30 10:54:08 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Initialise le chemin du fichier dans la structure t_data.

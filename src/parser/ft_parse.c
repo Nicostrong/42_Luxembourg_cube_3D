@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 20:21:27 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 13:45:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static void	ft_get_size_xpm(t_info *info)
 {
+	(void)info;
 	// pour chaque path de xpm
 	// ouvrir le xpm  => test error lecture
 	// rechercher la ligne qui commence par '"'
@@ -63,6 +64,7 @@ static int	ft_flood_fill(char **map, int x, int y, t_info *info)
 		return (0);
 	if (!ft_flood_fill(map, x - 1, y, info))
 		return (0);
+	return (1);
 }
 
 /*
@@ -90,6 +92,7 @@ static void	ft_check_map(t_info *info)
 	int	i;
 	int	j;
 
+	printf("ft_check_map\n");
 	map_cpy = ft_strarraycpy(info->map);
 	if (!map_cpy)
 		ft_perror_exit(E_MALLOC, info);
@@ -136,18 +139,24 @@ static void	ft_check_map(t_info *info)
  */
 static void	ft_check_path(t_info *info)
 {
+	int	error;
+
+	error = 0;
+	printf("ft_check_path\n");
 	if (!info->w_n_img->img_path || access(info->w_n_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_NOT, info);
+		error |= W_N_IMG_E;
 	if (!info->w_s_img->img_path || access(info->w_s_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_SOT, info);
+		error |= W_S_IMG_E;
 	if (!info->w_e_img->img_path || access(info->w_e_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_EAT, info);
+		error |= W_E_IMG_E;
 	if (!info->w_w_img->img_path || access(info->w_w_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_WET, info);
+		error |= W_W_IMG_E;
 	if (!info->f_img->img_path || access(info->f_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_FT, info);
+		error |= F_IMG_E;
 	if (!info->s_img->img_path || access(info->s_img->img_path, F_OK) == -1)
-		ft_perror_exit(E_CT, info);
+		error |= S_IMG_E;
+	if (error)
+		ft_error_msg(error, 1, info);
 }
 
 /*
@@ -174,11 +183,9 @@ t_info	*ft_get_all_info(char *path)
 	t_info	*info;
 
 	info = ft_init_info(path);
-	info->fd = open(path, O_RDONLY);
-	if (info->fd < 0)
-		ft_perror_exit(E_OPEN, info);
 	ft_read_file(info);
 	ft_check_path(info);
 	ft_check_map(info);
 	ft_get_size_xpm(info);
+	return (info);
 }

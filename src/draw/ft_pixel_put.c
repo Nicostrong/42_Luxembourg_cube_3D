@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pixel_put.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:54:20 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/28 16:27:20 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:28:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Place un pixel de couleur donnée à des coordonnées spécifiques.

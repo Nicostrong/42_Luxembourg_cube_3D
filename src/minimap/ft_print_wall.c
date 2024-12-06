@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_wall.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:11:28 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/18 14:19:43 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:29:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Affiche un mur en noir dans une zone définie.

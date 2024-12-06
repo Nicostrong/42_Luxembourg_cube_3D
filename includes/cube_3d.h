@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/05 19:35:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/06 10:18:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include "fcntl.h"
 # include "stdio.h"
-# include "../lib/minilibx/mlx.h"
+# include "../lib/mlx_linux/mlx.h"
 //# include <X11/keysym.h>
 # include <math.h>
 # include <sys/time.h>

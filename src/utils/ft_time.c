@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_time.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:29:44 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/30 15:21:49 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:29:42 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Récupère l'heure actuelle en millisecondes.

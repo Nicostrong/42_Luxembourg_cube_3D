@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:41:39 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/18 12:15:29 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:30:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h"
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Vérifie si toutes les textures graphiques nécessaires sont 

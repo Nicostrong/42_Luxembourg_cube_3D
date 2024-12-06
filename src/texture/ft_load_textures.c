@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:06:02 by phkevin           #+#    #+#             */
-/*   Updated: 2024/10/21 09:50:05 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:29:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Définit la largeur et la hauteur d'une texture.

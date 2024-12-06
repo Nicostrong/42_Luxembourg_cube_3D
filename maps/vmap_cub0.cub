@@ -1,6 +1,9 @@
   NO ./gfx/colorstone.xpm
+
      SO ./gfx/bluestone.xpm
+
   WE ./gfx/greystone.xpm
+
 EA ./gfx/wood.xpm
 
 FT ./gfx/floor.xpm

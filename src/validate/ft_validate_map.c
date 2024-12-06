@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:20:55 by phkevin           #+#    #+#             */
-/*   Updated: 2024/11/11 16:43:09 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2024/12/06 09:30:03 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src.h" 
+#include "../../includes/cube_3d.h"
 
 /**
  * @brief Initialise la position et la direction de l'utilisateur.

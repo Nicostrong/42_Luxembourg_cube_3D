@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 08:13:04 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/14 09:10:12 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/09 10:22:27 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,11 @@ static char	*ft_get_line(char *str)
 		*(line + index) = *(str + index);
 		index++;
 	}
-	if (*(str + index) == '\n')
+	/*if (*(str + index) == '\n')
 	{
 		*(line + index) = '\n';
 		index++;
-	}
+	}*/
 	*(line + index) = 0;
 	return (line);
 }

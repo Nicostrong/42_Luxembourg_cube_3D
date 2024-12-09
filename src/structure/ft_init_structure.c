@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/06 13:04:58 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/09 12:12:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,17 +134,17 @@ static t_info_map	*ft_init_info_path(t_info *info)
 	if (!info_map)
 		ft_perror_exit(E_MALLOC, info);
 	info_map[0].key = "NO";
-	info_map[0].path = &info->w_n_img->img_path;
+	info_map[0].t_img = &info->w_n_img;
 	info_map[1].key = "SO";
-	info_map[1].path = &info->w_s_img->img_path;
+	info_map[1].t_img = &info->w_s_img;
 	info_map[2].key = "WE";
-	info_map[2].path = &info->w_w_img->img_path;
+	info_map[2].t_img = &info->w_w_img;
 	info_map[3].key = "EA";
-	info_map[3].path = &info->w_e_img->img_path;
+	info_map[3].t_img = &info->w_e_img;
 	info_map[4].key = "FT";
-	info_map[4].path = &info->f_img->img_path;
+	info_map[4].t_img = &info->f_img;
 	info_map[5].key = "CT";
-	info_map[5].path = &info->s_img->img_path;
+	info_map[5].t_img = &info->s_img;
 	info_map[6].key = "F";
 	info_map[6].color = &info->floor_color;
 	info_map[7].key = "C";

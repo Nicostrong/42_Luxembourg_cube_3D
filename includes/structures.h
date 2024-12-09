@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/06 12:48:12 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/09 13:40:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,10 @@ typedef struct s_color
 
 typedef struct s_info_map
 {
-    char    	*key;			//	Key to select the variable
-    char    	**path;			//	Pointer for path of the image
-    t_color 	**color;		//	Pointer for the color of the image
-}   t_info_map;
+	char		*key;			//	Key to select the variable
+	t_img		**t_img;			//	Pointer for path of the image
+	t_color		**color;		//	Pointer for the color of the image
+}				t_info_map;
 
  /*
   *	Main structure
@@ -158,13 +158,10 @@ typedef struct s_info
 	int			user_y;			//	position y of player
 	int			user_x;			//	position x of player
 	int			user_deg;		//	orientation of player
-	int			c_fund;			//	nbr of collectables fund
-	int			move_nbr;		//	number of move
 	int			p_nbr;			//	number of player
-	int			c_nbr;			//	number of collectable
-	int			img_len;		//	dim of the image (64 x 64)
+	int			padding;		//	from -10 to 10 for the player change the position
 	char		*map_path;		//	path of the map
-	char		*line;			//	line read
+	char		*line;			//	line read>
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
 	void		*win;			//	windows
@@ -186,6 +183,7 @@ typedef struct s_info
 
 //	DEBUG
 
+void	ft_print_map(t_info *info);
 void	ft_print_info(t_info *info);
 
 void	ft_init_img(t_info **info);

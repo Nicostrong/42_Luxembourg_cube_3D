@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/06 13:16:37 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/09 13:43:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	ft_print_info(t_info *info)
 		printf("user_x: %d\n", info->user_x);
 	if (info->user_deg >= 0)
 		printf("user_deg: %d\n", info->user_deg);
-	if (info->c_fund >= 0)
+	/*if (info->c_fund >= 0)
 		printf("c_fund: %d\n", info->c_fund);
 	if (info->move_nbr >= 0)
-		printf("move_nbr: %d\n", info->move_nbr);
+		printf("move_nbr: %d\n", info->move_nbr);*/
 	if (info->p_nbr >= 0)
 		printf("p_nbr: %d\n", info->p_nbr);
 	if (info->map_path)
@@ -54,6 +54,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->w_n_img->img_path);
 		printf("h: %d\n", info->w_n_img->h);
 		printf("w: %d\n", info->w_n_img->w);
+		printf("img: %p\n", info->w_n_img->img);
 	}
 	if (info->w_e_img)
 	{
@@ -61,6 +62,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->w_e_img->img_path);
 		printf("h: %d\n", info->w_e_img->h);
 		printf("w: %d\n", info->w_e_img->w);
+		printf("img: %p\n", info->w_e_img->img);
 	}
 	if (info->w_s_img)
 	{
@@ -68,6 +70,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->w_s_img->img_path);
 		printf("h: %d\n", info->w_s_img->h);
 		printf("w: %d\n", info->w_s_img->w);
+		printf("img: %p\n", info->w_s_img->img);
 	}
 	if (info->w_w_img)
 	{
@@ -75,6 +78,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->w_w_img->img_path);
 		printf("h: %d\n", info->w_w_img->h);
 		printf("w: %d\n", info->w_w_img->w);
+		printf("img: %p\n", info->w_w_img->img);
 	}
 	if (info->s_img)
 	{
@@ -82,6 +86,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->s_img->img_path);
 		printf("h: %d\n", info->s_img->h);
 		printf("w: %d\n", info->s_img->w);
+		printf("img: %p\n", info->s_img->img);
 	}
 	if (info->f_img)
 	{
@@ -89,6 +94,7 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->f_img->img_path);
 		printf("h: %d\n", info->f_img->h);
 		printf("w: %d\n", info->f_img->w);
+		printf("img: %p\n", info->f_img->img);
 	}
 	if (info->floor_color)
 	{
@@ -107,4 +113,12 @@ void	ft_print_info(t_info *info)
 		printf("path: %s\n", info->s_img->img_path);
 	}
 	
+}
+
+void	ft_print_map(t_info *info)
+{
+	if (info->map)
+		ft_putstrarray(info->map);
+	else
+		printf("map is NULL\n");
 }

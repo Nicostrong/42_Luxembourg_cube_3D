@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 13:38:41 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 10:47:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ void	ft_free_window(t_info *info)
 		mlx_destroy_window(info->mlx, info->win);
 		info->win = NULL;
 	}
+	if (info->img)
+		ft_free(info->img);
+	if (info->addr)
+		ft_free(info->addr);
+	if (info->mini_win)
+	{
+		mlx_clear_window(info->mlx, info->mini_win);
+		mlx_destroy_window(info->mlx, info->mini_win);
+		info->win = NULL;
+	}
+	if (info->mini_img)
+		ft_free(info->mini_img);
+	if (info->mini_addr)
+		ft_free(info->mini_addr);
 	if (info->mlx)
 	{
 		mlx_loop_end(info->mlx);

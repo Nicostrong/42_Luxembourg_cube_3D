@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/06 13:38:23 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/10 16:31:22 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,14 @@ RM				=	rm -f
 LIBFT_DIR		=	./lib/libft
 FT_PRINTF_DIR	=	./lib/ft_printf
 GNL_DIR			=	./lib/gnl
-MLX_DIR			=	./lib/mlx_linux
+MLX_L_DIR		=	./lib/mlx_linux
+MLX_M_DIR		=	./lib/mlx_mac
 
 LIBFT_NAME		=	-lft
 FT_PRINTF_NAME	=	-lftprintf
 GNL_NAME		=	-lgnl
+MLX_L_NAME		=	-lmlx -lXext -lX11 -lm -lz
+MLX_M_NAME		=	-lmlx -framework OpenGL -framework AppKit 
 
 LIB_PROG		=
 LIB_OPTI		=
@@ -52,7 +55,8 @@ LIB_NAME		=
 MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
 					-L$(GNL_DIR) $(GNL_NAME)\
 					-L$(FT_PRINTF_DIR) $(FT_PRINTF_NAME)\
-					-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
+					-L$(MLX_DIR)  $(MLX_L_NAME)\
+					#-L$(MLX_M_DIR) $(MLX_M_NAME)\
 
 MYLIBS_BONUS	=
 
@@ -78,7 +82,6 @@ MYLIBS_BONUS	=
 #					./src/minimap/map_render.c \
 #					./src/texture/ft_load_textures.c \
 #					./src/utils/ft_close.c \
-#					./src/utils/ft_init.c \
 #					./src/utils/ft_parse_col.c \
 #					./src/utils/ft_time.c \
 #					./src/utils/init.c \
@@ -96,6 +99,7 @@ SRC				=	./src/main.c \
 					./src/validate/ft_validate_para.c \
 					./src/parser/ft_parse_utils.c \
 					./src/parser/ft_parse.c \
+					./src/utils/ft_init.c \
 
 OBJ				=	$(SRC:.c=.o)
 
@@ -207,7 +211,7 @@ endef
 all:		$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(FT_PRINTF_DIR)/$(FT_PRINTF_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
-			$(MLX_DIR)/libmlx_Linux.a \
+			$(MLX_L_DIR)/libmlx_Linux.a \
 			$(NAME)
 
 $(NAME):	NUM_FILES=$(NB_SRC)
@@ -227,7 +231,10 @@ $(FT_PRINTF_DIR)/$(FT_PRINTF_NAME):
 	@$(MAKE) -sC $(FT_PRINTF_DIR)
 
 $(MLX_DIR)/libmlx_Linux.a:
-	@$(MAKE) -sC $(MLX_DIR)
+	@$(MAKE) -sC $(MLX_L_DIR)
+
+#$(MLX_M_DIR/$(MLX_M_NAME)):
+#	@$(MAKE) -sC $(MLX_M_DIR)
 
 clean:
 	$(call delete_progress, ./src/*.o)

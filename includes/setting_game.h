@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 07:32:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 10:35:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define NBRAY			10			//	number ray
 # define RAYECART		10.0		//	scale ray
 # define WSCALE			4			//	size wall
+# define MINI_TITRE		"Mini map"
+# define MINI_W			100
+# define MINI_H			50
 
 /*
  *	Mouse setting

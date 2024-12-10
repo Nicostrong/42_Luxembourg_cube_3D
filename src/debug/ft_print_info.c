@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 13:43:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 11:03:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->w_n_img->h);
 		printf("w: %d\n", info->w_n_img->w);
 		printf("img: %p\n", info->w_n_img->img);
+		printf("addr: %p\n", info->w_n_img->addr);
 	}
 	if (info->w_e_img)
 	{
@@ -63,6 +64,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->w_e_img->h);
 		printf("w: %d\n", info->w_e_img->w);
 		printf("img: %p\n", info->w_e_img->img);
+		printf("addr: %p\n", info->w_e_img->addr);
 	}
 	if (info->w_s_img)
 	{
@@ -71,6 +73,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->w_s_img->h);
 		printf("w: %d\n", info->w_s_img->w);
 		printf("img: %p\n", info->w_s_img->img);
+		printf("addr: %p\n", info->w_s_img->addr);
 	}
 	if (info->w_w_img)
 	{
@@ -79,6 +82,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->w_w_img->h);
 		printf("w: %d\n", info->w_w_img->w);
 		printf("img: %p\n", info->w_w_img->img);
+		printf("addr: %p\n", info->w_w_img->addr);
 	}
 	if (info->s_img)
 	{
@@ -87,6 +91,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->s_img->h);
 		printf("w: %d\n", info->s_img->w);
 		printf("img: %p\n", info->s_img->img);
+		printf("addr: %p\n", info->s_img->addr);
 	}
 	if (info->f_img)
 	{
@@ -95,6 +100,7 @@ void	ft_print_info(t_info *info)
 		printf("h: %d\n", info->f_img->h);
 		printf("w: %d\n", info->f_img->w);
 		printf("img: %p\n", info->f_img->img);
+		printf("addr: %p\n", info->f_img->addr);
 	}
 	if (info->floor_color)
 	{
@@ -102,7 +108,6 @@ void	ft_print_info(t_info *info)
 		printf("r: %d\n", info->floor_color->r);
 		printf("g: %d\n", info->floor_color->g);
 		printf("b: %d\n", info->floor_color->b);
-		printf("path: %s\n", info->f_img->img_path);
 	}
 	if (info->sky_color)
 	{
@@ -110,9 +115,7 @@ void	ft_print_info(t_info *info)
 		printf("r: %d\n", info->sky_color->r);
 		printf("g: %d\n", info->sky_color->g);
 		printf("b: %d\n", info->sky_color->b);
-		printf("path: %s\n", info->s_img->img_path);
 	}
-	
 }
 
 void	ft_print_map(t_info *info)

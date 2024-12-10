@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 12:20:17 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 09:54:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ static int	ft_ismap(char *line)
 static void	ft_get_map(t_info *info)
 {
 	char	**map;
-	int		i;
 
 	map = ft_calloc(1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
-	i = -1;
 	while (info && info->line && ft_strncmp(info->line, "\n", 1))
 	{
 		if (ft_strlen(info->line) < 3)

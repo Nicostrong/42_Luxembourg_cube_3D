@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/09 13:53:22 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 10:48:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@
 # define E_SPAWN	"\033[1;31mError\n\tMissing player on map.\033[0m\n"
 # define E_EXIT		"\033[1;31mError\n\tMissing exit on map.\033[0m\n"
 # define E_MALLOC	"\033[1;31mError\n\tMalloc.\033[0m\n"
+# define E_WIN		"\033[1;31mError\n\tmlx new window.\033[0m\n"
+# define E_IMG		"\033[1;31mError\n\tmlx new image.\033[0m\n"
+# define E_ADR		"\033[1;31mError\n\tmlx get data addr.\033[0m\n"
+# define E_M_WIN	"\033[1;31mError\n\tmlx new window for minimap.\033[0m\n"
+# define E_M_IMG	"\033[1;31mError\n\tmlx new image for minimap.\033[0m\n"
+# define E_M_ADR	"\033[1;31mError\n\tmlx get data addr for minimap.\033[0m\n"
 
 #define W_N_IMG_E	1 << 0
 #define W_S_IMG_E	1 << 1

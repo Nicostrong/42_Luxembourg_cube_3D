@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/06 10:18:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 16:19:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 
 # include "fcntl.h"
 # include "stdio.h"
-# include "../lib/mlx_linux/mlx.h"
-//# include <X11/keysym.h>
+/*
+# include "../lib/mlx_linux/mlx.h"	// FOR LINUX
+# include <X11/keysym.h>			//	FOR LINUX
+*/
+# include "../lib/mlx_mac/mlx.h"	//	FOR MAC
 # include <math.h>
 # include <sys/time.h>
 
@@ -31,11 +34,6 @@
 # include "../lib/libft/libft.h"
 # include "../lib/ft_printf/libftprintf.h"
 # include "../lib/gnl/get_next_line.h"
-
-/*
-*	Other includes
-*/
-
 # include "./structures.h"
 
 /* DEBUG */
@@ -72,7 +70,9 @@ int		is_ficexiste(char *fic);
 /*
 * Fonction init mlx
 */
-void	ft_init_mlx(t_data *f);
+
+//void	ft_init_mlx(t_data *f);
+void	ft_init_mlx(t_info *info);
 
 /*
 * Fonction init

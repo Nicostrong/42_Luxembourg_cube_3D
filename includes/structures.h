@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 13:40:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 11:04:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_texture
 	int				h;					//	Height of the image
 	int				w;					//	Width of the image
 	void			*img;				//	Image
+	void			*addr;				//	Address of image
 	t_type_image 	type;				//	Type of the texture
 }					t_img;
 
@@ -142,7 +143,7 @@ typedef struct s_color
 typedef struct s_info_map
 {
 	char		*key;			//	Key to select the variable
-	t_img		**t_img;			//	Pointer for path of the image
+	t_img		**t_img;		//	Pointer for path of the image
 	t_color		**color;		//	Pointer for the color of the image
 }				t_info_map;
 
@@ -159,12 +160,19 @@ typedef struct s_info
 	int			user_x;			//	position x of player
 	int			user_deg;		//	orientation of player
 	int			p_nbr;			//	number of player
-	int			padding;		//	from -10 to 10 for the player change the position
+	int			padding;		//	from -5 to 5 for the player change the position
+	int			bpp;			//	bits by pixell
+	int			endian;			//	endian
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
 	void		*win;			//	windows
+	void		*img;			//	img to print
+	void		*addr;			//	address of image game
+	void		*mini_win;		//	windows minimap
+	void		*mini_img;		//	miniap img
+	void		*mini_addr;		//	address of minimap image
 	t_img		*s_img;			//	sky image
 	t_img		*f_img;			//	floor image
 	t_img		*w_n_img;		//	wall north image

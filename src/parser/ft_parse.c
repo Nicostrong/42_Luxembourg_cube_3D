@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 13:52:20 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/10 11:03:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ static void	ft_set_all_xpm(t_info *info)
 				(*info->info_map[i].t_img)->img_path, \
 				&(*info->info_map[i].t_img)->w, &(*info->info_map[i].t_img)->h);
 			if (!(*info->info_map[i].t_img)->img)
-				ft_perror_exit(E_XPM, info);
+				ft_perror_exit(E_IMG, info);
+			(*info->info_map[i].t_img)->addr = mlx_get_data_addr(info->mlx, \
+				&info->bpp, &info->w, &info->endian);
+			if (!(*info->info_map[i].t_img)->addr)
+				ft_perror_exit(E_ADR, info);
 		}
 	}
 }

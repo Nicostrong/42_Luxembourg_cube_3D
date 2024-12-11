@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/10 11:04:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/11 08:52:09 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ typedef struct s_info
 	int			padding;		//	from -5 to 5 for the player change the position
 	int			bpp;			//	bits by pixell
 	int			endian;			//	endian
+	int			use_f_img;		//	1 if use floor image, 0 if use color
+	int			use_s_img;		//	1 if use sky image, 0 if use color
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array

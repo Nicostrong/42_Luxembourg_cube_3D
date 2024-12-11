@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/10 16:31:22 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/11 09:04:40 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ LIB_NAME		=
 MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
 					-L$(GNL_DIR) $(GNL_NAME)\
 					-L$(FT_PRINTF_DIR) $(FT_PRINTF_NAME)\
-					-L$(MLX_DIR)  $(MLX_L_NAME)\
+					-L$(MLX_L_DIR)  $(MLX_L_NAME)\
 					#-L$(MLX_M_DIR) $(MLX_M_NAME)\
 
 MYLIBS_BONUS	=
@@ -82,6 +82,7 @@ MYLIBS_BONUS	=
 #					./src/minimap/map_render.c \
 #					./src/texture/ft_load_textures.c \
 #					./src/utils/ft_close.c \
+#					./src/utils/ft_init.c \
 #					./src/utils/ft_parse_col.c \
 #					./src/utils/ft_time.c \
 #					./src/utils/init.c \
@@ -97,9 +98,10 @@ SRC				=	./src/main.c \
 					./src/structure/ft_init_structure.c \
 					./src/validate/ft_check_arg.c \
 					./src/validate/ft_validate_para.c \
-					./src/parser/ft_parse_utils.c \
+					./src/parser/ft_parse_utils_1.c \
+					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
-					./src/utils/ft_init.c \
+					./src/utils/ft_init_mlx.c \
 
 OBJ				=	$(SRC:.c=.o)
 
@@ -211,7 +213,7 @@ endef
 all:		$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(FT_PRINTF_DIR)/$(FT_PRINTF_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
-			$(MLX_L_DIR)/libmlx_Linux.a \
+			$(MLX_L_DIR)/$(MLX_L_NAME)\
 			$(NAME)
 
 $(NAME):	NUM_FILES=$(NB_SRC)
@@ -230,7 +232,7 @@ $(GNL_DIR)/$(GNL_NAME):
 $(FT_PRINTF_DIR)/$(FT_PRINTF_NAME):
 	@$(MAKE) -sC $(FT_PRINTF_DIR)
 
-$(MLX_DIR)/libmlx_Linux.a:
+$(MLX_L_DIR)/$(MLX_L_NAME):
 	@$(MAKE) -sC $(MLX_L_DIR)
 
 #$(MLX_M_DIR/$(MLX_M_NAME)):
@@ -253,7 +255,7 @@ clean:
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@$(MAKE) -sC $(GNL_DIR) clean
 	@$(MAKE) -sC $(FT_PRINTF_DIR) clean
-	@$(MAKE) -sC $(MLX_DIR) clean
+	@$(MAKE) -sC $(MLX_L_DIR) clean
 
 fclean: clean
 	$(call delete_file, $(NAME))

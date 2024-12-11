@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/10 16:19:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/11 09:00:09 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 # include "fcntl.h"
 # include "stdio.h"
-/*
+
 # include "../lib/mlx_linux/mlx.h"	// FOR LINUX
 # include <X11/keysym.h>			//	FOR LINUX
-*/
-# include "../lib/mlx_mac/mlx.h"	//	FOR MAC
+
+//# include "../lib/mlx_mac/mlx.h"	//	FOR MAC
 # include <math.h>
 # include <sys/time.h>
 
@@ -156,5 +156,6 @@ int		ft_check_arg(int argc, char **argv);
 int		ft_perror_exit(char *str_error, t_info *info);
 
 void	ft_read_file(t_info *info);
+void	ft_check_map(t_info *info);
 
 #endif

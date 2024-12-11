@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:46:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/06 09:29:31 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/11 09:01:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	init_user(t_data *f)
 	f->userd.dir = 270;
 }
 
-/*
 t_data	*init_struct(void)
 {
 	t_data	*data;
@@ -60,7 +59,7 @@ t_data	*init_struct(void)
 	data->keyb.is_azerty = ISAZERTY;
 	data->userd.dir = 270;
 	return (data);
-}*/
+}
 
 void	init_struct(t_data *f)
 {

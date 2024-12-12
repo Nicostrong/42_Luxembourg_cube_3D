@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/11 09:00:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 07:21:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@
 
 # include "fcntl.h"
 # include "stdio.h"
-
-# include "../lib/mlx_linux/mlx.h"	// FOR LINUX
-# include <X11/keysym.h>			//	FOR LINUX
-
-//# include "../lib/mlx_mac/mlx.h"	//	FOR MAC
 # include <math.h>
 # include <sys/time.h>
+
+# if defined(__linux__)
+
+	# include "../lib/mlx_linux/mlx.h"
+	# include <X11/keysym.h>
+
+# elif defined(__APPLE__) && defined(__MACH__)
+
+	# include "../lib/mlx_mac/mlx.h"
+
+# endif
 
 /*
 *	Personal Library
 */
 
 # include "../lib/libft/libft.h"
-# include "../lib/ft_printf/libftprintf.h"
 # include "../lib/gnl/get_next_line.h"
 # include "./structures.h"
 

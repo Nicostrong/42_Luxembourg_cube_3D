@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 10:06:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2024/11/18 11:06:01 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/12 07:37:10 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -184,35 +184,17 @@ bonus:		NUM_FILES=$(NB_BONUS)
 bonus:		$(OBJ_BONUS)
 	@$(LIB_PROG) $(LIB_NAME) $(OBJ_BONUS) > /dev/null 2>&1
 
-deb:		tester
-	$(DEB) ./$(TESTER) $(ARG)
-	
-deb_bonus:	tester_bonus
-	$(DEB) ./$(TESTER_BONUS)
-
 %.o : %.c
 	$(call compile_c_to_o)
 
 optimize:		$(NAME)
 	$(call optimise_lib)
 
-tester:			NUM_FILES=$(NB_TESTER)
-tester:			$(OBJ_TESTER)
-tester:			$(NAME)
-	@$(CC) $(CFLAGS) $(CC_OPT) $(OBJ_TESTER) $(LIB_DIR) $(LIB_NAME) -o $(TESTER)
-
-tester_bonus:	NUM_FILES=$(NB_TESTER_BONUS)
-tester_bonus:	$(OBJ_BONUS_TESTER)
-tester_bonus:	bonus
-	@$(CC) $(CFLAGS) $(CC_OPT) $(OBJ_BONUS_TESTER) $(LIB_DIR) $(LIB_NAME) -o $(TESTER_BONUS)
-
 clean:
 	$(call delete_progress, *.o)
 
 fclean: 		clean
 	$(call delete_file, $(LIB_NAME))
-	$(call delete_file, $(TESTER))
-	$(call delete_file, $(TESTER_BONUS))
 
 re : 			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/10 10:47:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 07:24:44 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ft_free_window(t_info *info)
 		ft_free(info->mini_addr);
 	if (info->mlx)
 	{
-		mlx_loop_end(info->mlx);
-		mlx_destroy_display(info->mlx);
+		//mlx_loop_end(info->mlx);
+		//mlx_destroy_display(info->mlx);
 		ft_free(info->mlx);
 		info->mlx = NULL;
 	}
@@ -216,7 +216,7 @@ void	ft_free_info(t_info *info)
 	if (info->info_map)
 		ft_free(info->info_map);
 	ft_free_all_images(info);
-	mlx_loop_end(info->mlx);
+	//mlx_loop_end(info->mlx);
 	//ft_free_anim(info->c_anim, info);
 	ft_free_window(info);
 	ft_free(info);

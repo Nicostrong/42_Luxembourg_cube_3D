@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:03:36 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/11 09:03:57 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 17:03:06 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,11 @@ void	ft_init_mlx(t_info *info)
 	info->mini_addr = mlx_get_data_addr(info->mlx, &info->bpp, &info->w, &info->endian);
 	if (!info->mini_addr)
 		ft_perror_exit(E_M_ADR, info);
+	printf("DEBUG ALL POINTER OF MLX\n");
+	printf("info->win = %p\n", info->win);
+	printf("info->img = %p\n", info->img);
+	printf("info->addr = %p\n", info->addr);
+	printf("info->mini_win = %p\n", info->mini_win);
+	printf("info->mini_img = %p\n", info->mini_img);
+	printf("info->mini_addr = %p\n", info->mini_addr);
 }

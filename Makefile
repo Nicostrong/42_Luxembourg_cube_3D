@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/11 09:04:40 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/12 07:35:25 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,22 @@ MLX_M_DIR		=	./lib/mlx_mac
 LIBFT_NAME		=	-lft
 FT_PRINTF_NAME	=	-lftprintf
 GNL_NAME		=	-lgnl
-MLX_L_NAME		=	-lmlx -lXext -lX11 -lm -lz
-MLX_M_NAME		=	-lmlx -framework OpenGL -framework AppKit 
+MLX_L_NAME		=	-lmlx
+MLX_M_NAME		=	-lmlx
+MLX_L_FLAGS		=	-lXext -lX11 -lm -lz
+MLX_M_FLAGS		=	-framework OpenGL -framework AppKit
+
+UNAME			=	$(shell uname)
+ifeq ($(UNAME), Linux)
+	MLX_DIR		=	$(MLX_L_DIR)
+	MLX_NAME	=	$(MLX_L_NAME)
+	MLX_FLAGS	=	$(MLX_L_FLAGS)
+else
+	MLX_DIR		=	$(MLX_M_DIR)
+	MLX_NAME	=	$(MLX_M_NAME)
+	MLX_FLAGS	=	$(MLX_M_FLAGS)
+endif
+
 
 LIB_PROG		=
 LIB_OPTI		=
@@ -54,9 +68,8 @@ LIB_NAME		=
 
 MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
 					-L$(GNL_DIR) $(GNL_NAME)\
-					-L$(FT_PRINTF_DIR) $(FT_PRINTF_NAME)\
-					-L$(MLX_L_DIR)  $(MLX_L_NAME)\
-					#-L$(MLX_M_DIR) $(MLX_M_NAME)\
+					-L$(MLX_DIR)  $(MLX_NAME)\
+					$(MLX_FLAGS)
 
 MYLIBS_BONUS	=
 
@@ -210,10 +223,9 @@ endef
 #	Rules
 ################################################################################
 
-all:		$(LIBFT_DIR)/$(LIBFT_NAME) \
-			$(FT_PRINTF_DIR)/$(FT_PRINTF_NAME) \
+all:		$(MLX_DIR)/$(MLX_NAME)\
+			$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
-			$(MLX_L_DIR)/$(MLX_L_NAME)\
 			$(NAME)
 
 $(NAME):	NUM_FILES=$(NB_SRC)
@@ -229,14 +241,8 @@ $(LIBFT_DIR)/$(LIBFT_NAME):
 $(GNL_DIR)/$(GNL_NAME):
 	@$(MAKE) -sC $(GNL_DIR)
 
-$(FT_PRINTF_DIR)/$(FT_PRINTF_NAME):
-	@$(MAKE) -sC $(FT_PRINTF_DIR)
-
-$(MLX_L_DIR)/$(MLX_L_NAME):
-	@$(MAKE) -sC $(MLX_L_DIR)
-
-#$(MLX_M_DIR/$(MLX_M_NAME)):
-#	@$(MAKE) -sC $(MLX_M_DIR)
+$(MLX_DIR)/$(MLX_NAME):
+	@$(MAKE) -sC $(MLX_DIR)
 
 clean:
 	$(call delete_progress, ./src/*.o)
@@ -254,14 +260,12 @@ clean:
 	$(call delete_progress, ./src/validate/*.o)
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@$(MAKE) -sC $(GNL_DIR) clean
-	@$(MAKE) -sC $(FT_PRINTF_DIR) clean
-	@$(MAKE) -sC $(MLX_L_DIR) clean
+	@$(MAKE) -sC $(MLX_DIR) clean
 
 fclean: clean
 	$(call delete_file, $(NAME))
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
 	@$(MAKE) -sC $(GNL_DIR) fclean
-	@$(MAKE) -sC $(FT_PRINTF_DIR) fclean
 
 re: fclean all
 	@echo "$(GREEN)all RE compiled!$(NO_COLOR)"

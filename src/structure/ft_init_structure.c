@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/09 12:12:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 10:10:55 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ static void	ft_init_img_color(t_info *info)
 	info->w_w_img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!info->w_w_img)
 		ft_perror_exit(E_MALLOC, info);
-	info->floor_color = (t_color *)ft_calloc(1, sizeof(t_color));
+	/*info->floor_color = (t_color *)ft_calloc(1, sizeof(t_color));
 	if (!info->floor_color)
 		ft_perror_exit(E_MALLOC, info);
 	info->sky_color = (t_color *)ft_calloc(1, sizeof(t_color));
 	if (!info->sky_color)
 		ft_perror_exit(E_MALLOC, info);
+	*/
 }
 
 /*

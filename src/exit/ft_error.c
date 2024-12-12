@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:32:13 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/06 13:47:28 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 10:24:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	ft_error_msg(int value, int exit, t_info *info)
 		ft_putendl_fd(E_FT, 2);
 	if (value & S_IMG_E)
 		ft_putendl_fd(E_CT, 2);
+	if (value & E_COL_S)
+		ft_putendl_fd(E_C, 2);
+	if (value & E_COL_F)
+		ft_putendl_fd(E_F, 2);
 	if (exit)
-		ft_perror_exit(E_TEXTURE, info);
+		ft_perror_exit(NULL, info);
 }

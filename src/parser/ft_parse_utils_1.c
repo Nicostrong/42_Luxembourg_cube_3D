@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/11 08:56:17 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 10:22:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,35 @@ static void	ft_get_map(t_info *info)
  * </return>
  *
  */
-static t_color	*ft_extract_color(char *str, t_color *color, t_info *info)
+static void	ft_extract_color(char *str, char *color, t_info *info)
 {
 	char	**array;
+	t_color	*new;
 
-	array = ft_split(str, ',');
-	color->r = ft_atoi(array[0]);
-	color->g = ft_atoi(array[1]);
-	color->b = ft_atoi(array[2]);
+	new = (t_color *)ft_calloc(1, sizeof(t_color));
+	if (!new)
+		ft_perror_exit(E_MALLOC, info);
+	if (!str)
+		return ;
+	array = ft_split(color, ',');
+	new->r = ft_atoi(array[0]);
+	new->g = ft_atoi(array[1]);
+	new->b = ft_atoi(array[2]);
 	ft_free_array(array);
-	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255 \
-		|| color->b < 0 || color->b > 255)
-		return (ft_perror_exit(E_COLOR, info), NULL);
-	return (color);
+	if (new->r < 0 || new->r > 255 || new->g < 0 || new->g > 255 \
+		|| new->b < 0 || new->b > 255)
+	{
+		if (ft_strequal(str, "F"))
+			ft_perror_exit(E_F_COLOR, info);
+		else if (ft_strequal(str, "C"))
+			ft_perror_exit(E_C_COLOR, info);
+	}
+	if (ft_strequal(str, "F"))
+		info->floor_color = new;
+	else if (ft_strequal(str, "C"))
+		info->sky_color = new;
+	else
+		ft_free(new);
 }
 
 /*
@@ -156,7 +172,7 @@ static int	ft_extract_info(t_info *info, char **array)
 			if (info->info_map[i].t_img && !(*(info->info_map[i].t_img))->img_path)
 				(*(info->info_map[i].t_img))->img_path = ft_strdup(array[1]);
 			else if (info->info_map[i].color)
-				ft_extract_color(array[1], *info->info_map[i].color, info);
+				ft_extract_color(array[0], array[1], info);
 			return (0);
 		}
 	}

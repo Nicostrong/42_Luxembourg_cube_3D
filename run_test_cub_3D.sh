@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 09:46:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2024/12/09 13:48:45 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/12 10:39:38 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,55 +47,112 @@ list_valid_map=(
 	
 )
 
+error_count=0
+
 chmod -r ./maps/error_test/no_read.cub
-make re
+#make re
 clear
 
-echo -e "\033[1;94m _______   ______   _______    _______       ______\033[0m"
-echo -e "\033[1;94m|__   __| |  ____| |   ____|  |__   __|     /      |\033[0m"
-echo -e "\033[1;94m   | |    | |___   |  |____      | |       /  / |  |\033[0m"
-echo -e "\033[1;94m   | |    |  ___|  |_____  |     | |      /__/  |  |\033[0m"
-echo -e "\033[1;94m   | |    | |____   _____| |     | |            |  |\033[0m"
-echo -e "\033[1;94m   |_|    |______| |_______|     |_|            |__|\033[0m"
+echo -e "\033[1;94m _______   ______   _______    _______       _____\033[0m"
+echo -e "\033[1;94m|__   __| |  ____| |   ____|  |__   __|     /     |\033[0m"
+echo -e "\033[1;94m   | |    | |___   |  |____      | |       /  /|  |\033[0m"
+echo -e "\033[1;94m   | |    |  ___|  |_____  |     | |      /__/ |  |\033[0m"
+echo -e "\033[1;94m   | |    | |____   _____| |     | |           |  |\033[0m"
+echo -e "\033[1;94m   |_|    |______| |_______|     |_|           |__|\033[0m"
 echo ""
 
 for i in "${!params[@]}"
 do
+	TEMPFILE=$(mktemp)
 	echo -e "\033[1;94mTEST $((i + 1)): ./cube3D ${params[i]}\033[1;93m"
-	./cube3D ${params[i]}
+	./cube3D ${params[i]} &> $TEMPFILE
+
+	if grep -q "Error" $TEMPFILE || grep -q "Usage" $TEMPFILE; then
+		echo -e "\033[1;92mOK => Bad argument catching.\033[0m"
+	else
+		echo -e "\033[1;91mKO => Bad argument not catching.\033[0m"
+		((error_count++))
+	fi
+
+	rm $TEMPFILE
 done
 
 for i in "${!list_error_map[@]}"
 do
+	TEMPFILE=$(mktemp)
 	echo -e "\033[1;94mTEST $((i + 1)): ./cube3D ./maps/error_test/${list_error_map[i]}\033[1;93m"
-	./cube3D ./maps/error_test/${list_error_map[i]}
+	./cube3D ./maps/error_test/${list_error_map[i]} 2> $TEMPFILE
+
+	if grep -q "Error" $TEMPFILE; then
+		echo -e "\033[1;92mOK => Error message detected.\033[0m"
+	else
+		echo -e "\033[1;91mKO => Error message not detected.\033[0m"
+		((error_count++))
+	fi
+
+	rm $TEMPFILE
+done
+
+
+echo -e "\033[1;94m _______   ______   _______    _______      ______\033[0m"
+echo -e "\033[1;94m|__   __| |  ____| |   ____|  |__   __|    /  __   \\ \033[0m"
+echo -e "\033[1;94m   | |    | |___   |  |____      | |      /__/  /  /\033[0m"
+echo -e "\033[1;94m   | |    |  ___|  |_____  |     | |          /  /\033[0m"
+echo -e "\033[1;94m   | |    | |____   _____| |     | |        /  /___\033[0m"
+echo -e "\033[1;94m   |_|    |______| |_______|     |_|       (_______)\033[0m"
+echo ""
+
+for i in "${!params[@]}"
+do
+	TEMPFILE=$(mktemp)
+	echo -e "\033[1;94mTEST VALGRIND $((i + 1)): ./cube3D ${params[i]}\033[1;93m"
+	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-fds=yes ./cube3D ${params[i]} &> $TEMPFILE
+
+	# Variables pour stocker les valeurs de fuites de mémoire
+	def_lost_bytes=$(grep "definitely lost:" $TEMPFILE | awk '{print $4}')
+	ind_lost_bytes=$(grep "indirectly lost:" $TEMPFILE | awk '{print $4}')
+	pos_lost_bytes=$(grep "possibly lost:" $TEMPFILE | awk '{print $4}')
+	still_reach_bytes=$(grep "still reachable:" $TEMPFILE | awk '{print $4}')
+	suppressed_bytes=$(grep "suppressed:" $TEMPFILE | awk '{print $4}')
+
+	# Vérifie les fuites de mémoire
+	if [[ $def_lost_bytes -gt 0 || $ind_lost_bytes -gt 0 || $pos_lost_bytes -gt 0 || $still_reach_bytes -gt 0 || $suppressed_bytes -gt 0 ]]; then
+		echo -e "\033[1;91mMemory leaks detected :\033[0m"
+		grep -E "definitely lost:|indirectly lost:|possibly lost:|still reachable:|suppressed:" $TEMPFILE
+		((error_count++))
+	else
+		echo -e "\033[1;92mNo memory leaks detected.\033[0m"
+	fi
+
+	# Affiche l'utilisation de la heap
+	HEAP_USAGE=$(grep -E "total heap usage:|in use at exit:" $TEMPFILE)
+	if [ -n "$HEAP_USAGE" ]; then
+		echo -e "\033[1;94total heap usage :\033[0m"
+		echo "$HEAP_USAGE"
+	fi
+
+	# Vérifie les descripteurs de fichiers non fermés
+	FD_COUNT=$(grep -E "FILE DESCRIPTORS: [0-9]+ open" $TEMPFILE | awk '{print $4}')
+	if [ -n "$FD_COUNT" ] && [ "$FD_COUNT" -gt 3 ]; then
+		echo -e "\033[1;91mFile descriptor open detected :\033[0m"
+		grep -A 3 "FILE DESCRIPTORS:" $TEMPFILE | grep -v "std"
+		((error_count++))
+	else
+		echo -e "\033[1;92mNo file descriptor detected.\033[0m"
+	fi
+
+	# Affiche les autres erreurs possibles
+	ERROR_SUMMARY=$(grep -E "ERROR SUMMARY:" $TEMPFILE)
+	if [ -n "$ERROR_SUMMARY" ]; then
+		echo -e "\033[1;94mERROR SUMMARY:\033[0m"
+		echo "$ERROR_SUMMARY"
+	fi
+
+	# Nettoyage
+	rm $TEMPFILE
 done
 
 : <<'EOF'
-echo -e "\033[1;94m _______   ______   _______    _______      ________\033[0m"
-echo -e "\033[1;94m|__   __| |  ____| |   ____|  |__   __|    /  __    |\033[0m"
-echo -e "\033[1;94m   | |    | |___   |  |____      | |      /__/  /  /\033[0m"
-echo -e "\033[1;94m   | |    |  ___|  |_____  |     | |          /  /\033[0m"
-echo -e "\033[1;94m   | |    | |____   _____| |     | |        /  /____\033[0m"
-echo -e "\033[1;94m   |_|    |______| |_______|     |_|       |________|\033[0m"
-echo ""
-
-for prefix in s w e p r
-do
-	case $prefix in
-		s|w) max=5;;
-		e) max=6;;
-		p) max=4;;
-		r) max=1;;
-		ok) max=16;;
-	esac
-	for i in $(seq 1 $max)
-	do
-		echo -e "\033[1;94m${prefix}_${i}.ber\033[1;93m"
-		./so_long ./test/mandatory/maps/${prefix}_${i}.ber
-	done
-done
-
 echo -e "\033[1;94m _______   ______   _______    _______      _______\033[0m"
 echo -e "\033[1;94m|__   __| |  ____| |   ____|  |__   __|    |____   |\033[0m"
 echo -e "\033[1;94m   | |    | |___   |  |____      | |          __|  |\033[0m"
@@ -332,7 +389,6 @@ do
 done
 EOF
 
-# Bouclage sur tout avec valgrind
 echo -e "\033[1;94m _______  _   ___    _\033[0m"
 echo -e "\033[1;94m|  ____| |_| |   \  | |\033[0m"
 echo -e "\033[1;94m| |__     _  | |\ \ | |\033[0m"
@@ -342,6 +398,9 @@ echo -e "\033[1;94m|_|      |_| |_|   \__|\033[0m"
 echo ""
 
 # Affiche le nombre total d'erreurs détectées
-echo -e "\n\033[1;93mNombre total d'erreurs détectées : $error_count\033[0m"
-
+if ((error_count == 0)); then
+	echo -e "\033[1;92mAucune erreur détectée.\033[0m"
+else
+	echo -e "\n\033[1;91mNombre total d'erreurs détectées : $error_count\033[0m"
+fi
 chmod +r ./maps/error_test/no_read.cub

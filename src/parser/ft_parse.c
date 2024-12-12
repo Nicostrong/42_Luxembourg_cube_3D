@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/11 09:44:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/12 10:26:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,11 +179,11 @@ static void	ft_check_path(t_info *info)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_check_sky_floor(t_info *info)
+ * 	void	ft_check_color_s_f(t_info *info)
  * </summary>
  *
  * <description>
- * 	ft_check_sky_floor check if the sky and the floor are valid.
+ * 	ft_check_color_s_f check if the sky and the floor color are valid.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
@@ -193,12 +193,17 @@ static void	ft_check_path(t_info *info)
  * </return>
  *
  */
-static void	ft_check_sky_floor(t_info *info)
+static void	ft_check_color_s_f(t_info *info)
 {
+	int	error;
+
+	error = 0;
 	if (!info->sky_color)
-		ft_perror_exit(E_SKY, info);
+		error |= 1 << 6;
 	if (!info->floor_color)
-		ft_perror_exit(E_FLOOR, info);
+		error |= 1 << 7;
+	if (error)
+		ft_error_msg(error, 1, info);
 }
 
 /*
@@ -226,7 +231,7 @@ t_info	*ft_get_all_info(char *path)
 
 	info = ft_init_info(path);
 	ft_read_file(info);
-	ft_check_sky_floor(info);
+	ft_check_color_s_f(info);
 	ft_check_path(info);
 	//ft_print_map(info);
 	ft_check_map(info);

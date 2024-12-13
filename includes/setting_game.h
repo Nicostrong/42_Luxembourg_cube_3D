@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/12 17:03:52 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 13:32:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WSCALE			4			//	size wall
 # define MINI_TITRE		"Mini map"
 # define MINI_W			300
-# define MINI_H			150
+# define MINI_H			210
 
 /*
  *	Mouse setting
@@ -56,5 +56,13 @@
  */
 
 # define SENSMOU 		1
+
+/*
+ *	Event game
+ */
+
+int		ft_press_key(int keysym, t_info *info);
+
+void	ft_put_circle(t_info *info, int centx, int centy);
 
 #endif

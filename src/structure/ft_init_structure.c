@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/12 10:10:55 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 10:58:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/error.h"
 #include "../../includes/structures.h"
+#include "../../includes/setting_game.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -59,6 +60,44 @@ void	ft_init_img(t_info **info)
 		(*info)->w_w_img->img_path, &(*info)->w_w_img->h, &(*info)->w_w_img->w);
 	if (!(*info)->w_w_img)
 		ft_perror_exit(E_XPM, *info);
+}
+
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
+ * </summary>
+ *
+ * <description>
+ * 	ft_init_info_win create a windows structure
+ * </description>
+ *
+ * <param type="t_info *" name="info">structure info</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+static t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
+{
+	t_win	*windows;
+
+	windows = (t_win *)ft_calloc(1, sizeof(t_win));
+	if (!windows)
+		ft_perror_exit(E_MALLOC, info);
+	windows->win = mlx_new_window(info->mlx, w, h, title);
+	if (!windows->win)
+		ft_perror_exit(E_WIN, info);
+	windows->img = mlx_new_image(info->mlx, w, h);
+	if (!windows->img)
+		ft_perror_exit(E_IMG, info);
+	windows->addr = mlx_get_data_addr(windows->img, &windows->bpp, \
+		&windows->size_line, &windows->endian);
+	if (!windows->addr)
+		ft_perror_exit(E_ADR, info);
+	return (windows);
 }
 
 /*
@@ -187,6 +226,8 @@ t_info	*ft_init_info(char *path)
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_perror_exit(E_MLX, info);
+	info->win_g = ft_init_info_win(info, WIDTH, HEIGHT, TITLE);
+	info->win_m = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
 	ft_init_img_color(info);
 	info->info_map = ft_init_info_path(info);
 	return (info);

@@ -16,7 +16,10 @@
         "libftprintf.h": "c",
         "libft.h": "c",
         "initializer_list": "c",
-        "cube_3d.h": "c"
+        "cube_3d.h": "c",
+        "keysym.h": "c",
+        "keysymdef.h": "c",
+        "setting_game.h": "c"
     },
     "files.exclude": {
         "**/.git": true,

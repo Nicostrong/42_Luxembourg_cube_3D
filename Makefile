@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/12 07:35:25 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/13 13:27:58 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,10 @@ MYLIBS_BONUS	=
 #					./src/validate/ft_validate_map.c \
 
 SRC				=	./src/main.c \
+					./src/controller/ft_press_key.c \
 					./src/debug/ft_print_info.c \
+					./src/draw/ft_colors.c \
+					./src/draw/ft_put_player.c \
 					./src/exit/ft_exit.c \
 					./src/exit/ft_error.c \
 					./src/structure/ft_free_structure.c \
@@ -114,7 +117,6 @@ SRC				=	./src/main.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
-					./src/utils/ft_init_mlx.c \
 
 OBJ				=	$(SRC:.c=.o)
 

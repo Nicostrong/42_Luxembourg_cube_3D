@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/12 07:24:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 11:10:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,22 @@
  */
 void	ft_free_window(t_info *info)
 {
-	if (info->win)
+	if (info->win_g)
 	{
-		mlx_clear_window(info->mlx, info->win);
-		mlx_destroy_window(info->mlx, info->win);
-		info->win = NULL;
+		mlx_clear_window(info->mlx, info->win_g->win);
+		mlx_destroy_window(info->mlx, info->win_g->img);
+		info->win_g->win = NULL;
+		ft_free(info->win_g->addr);
+		ft_free(info->win_g);
 	}
-	if (info->img)
-		ft_free(info->img);
-	if (info->addr)
-		ft_free(info->addr);
-	if (info->mini_win)
+	if (info->win_m)
 	{
-		mlx_clear_window(info->mlx, info->mini_win);
-		mlx_destroy_window(info->mlx, info->mini_win);
-		info->win = NULL;
+		mlx_clear_window(info->mlx, info->win_m->win);
+		mlx_destroy_window(info->mlx, info->win_m->img);
+		info->win_m->win = NULL;
+		ft_free(info->win_m->addr);
+		ft_free(info->win_m);
 	}
-	if (info->mini_img)
-		ft_free(info->mini_img);
-	if (info->mini_addr)
-		ft_free(info->mini_addr);
 	if (info->mlx)
 	{
 		//mlx_loop_end(info->mlx);

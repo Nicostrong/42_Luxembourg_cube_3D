@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/12 07:21:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 13:32:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	init_struct(t_data *data);
 /*
 * Fonction render
 */
-void	ft_render(t_data *f);
+//void	ft_render(t_data *f);
 
 /*
 * Fonction load texture
@@ -106,9 +106,9 @@ int 	ft_exit_error(char *str, t_data *data);
 /*
 * Fonction draw
 */
-void	ft_pixel_put(t_data *data, int x, int y, int color);
-int		ft_get_color(int r, int g, int b);
-void	ft_put_circle(t_data *f, int centx, int centy);
+//void	ft_pixel_put(t_data *data, int x, int y, int color);
+//int		ft_get_color(int r, int g, int b);
+//void	ft_put_circle(t_data *f, int centx, int centy);
 
 /*
 * Fonction key_wasd

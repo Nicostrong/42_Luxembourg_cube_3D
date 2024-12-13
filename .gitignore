@@ -102,3 +102,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# json file
+*.json

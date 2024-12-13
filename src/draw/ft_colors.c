@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 09:23:06 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/06 09:28:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 13:25:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ static int	trgb(int t, int r, int g, int b)
  * Cette fonction crée une couleur en utilisant `trgb`, en fixant la 
  * transparence à 0 et en combinant les valeurs rouge, verte et bleue.
  *
+ * @param t Composante transparence (0-255).
  * @param r Composante rouge de la couleur (0-255).
  * @param g Composante verte de la couleur (0-255).
  * @param b Composante bleue de la couleur (0-255).
  * @return Couleur en format entier (RGB).
  */
-int	ft_get_color(int r, int g, int b)
+int	ft_get_color(int t,int r, int g, int b)
 {
-	return (trgb(0, r, g, b));
+	return (trgb(t, r, g, b));
 }

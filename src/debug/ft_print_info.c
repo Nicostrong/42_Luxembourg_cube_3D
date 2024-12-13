@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/10 11:03:00 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 10:29:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,14 @@ void	ft_print_info(t_info *info)
 		printf("info is NULL\n");
 		return ;
 	}
-	if (info->fd > 0)
-		printf("fd: %d\n", info->fd);
-	if (info->h >= 0)
-		printf("h: %d\n", info->h);
-	if (info->w >= 0)
-		printf("w: %d\n", info->w);
-	if (info->user_y >= 0)
-		printf("user_y: %d\n", info->user_y);
-	if (info->user_x >= 0)
-		printf("user_x: %d\n", info->user_x);
-	if (info->user_deg >= 0)
-		printf("user_deg: %d\n", info->user_deg);
+	printf("fd of the map: %d\n", info->fd);
+	printf("height of the map: %d\n", info->h);
+	printf("width of the map: %d\n", info->w);
+	printf("position user_y: %d\n", info->user_y);
+	printf("position user_x: %d\n", info->user_x);
+	printf("rotation user_deg: %d\n", info->user_deg);
+	printf("position on cell pad_x: %d\n", info->pad_x);
+	printf("position on cell pad_y: %d\n", info->pad_y);
 	/*if (info->c_fund >= 0)
 		printf("c_fund: %d\n", info->c_fund);
 	if (info->move_nbr >= 0)
@@ -124,4 +120,17 @@ void	ft_print_map(t_info *info)
 		ft_putstrarray(info->map);
 	else
 		printf("map is NULL\n");
+}
+
+void	ft_print_user_data(t_info *info)
+{
+	printf("USER DATA\n");
+	printf("fd of the map: %d\n", info->fd);
+	printf("height of the map: %d\n", info->h);
+	printf("width of the map: %d\n", info->w);
+	printf("position user_y: %d\n", info->user_y);
+	printf("position user_x: %d\n", info->user_x);
+	printf("rotation user_deg: %d\n", info->user_deg);
+	printf("position on cell pad_x: %d\n", info->pad_x);
+	printf("position on cell pad_y: %d\n", info->pad_y);
 }

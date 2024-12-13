@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/11 08:52:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 11:06:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,19 @@ typedef struct s_info_map
 	t_color		**color;		//	Pointer for the color of the image
 }				t_info_map;
 
+/*
+ *	Structure for windows
+ */
+typedef struct s_info_windows
+{
+	int			bpp;			//	bits by pixell
+	int			size_line;		//	size line
+	int			endian;			//	endian
+	char		*addr;			//	address of image game
+	void		*win;			//	windows
+	void		*img;			//	img to print
+}				t_win;
+
  /*
   *	Main structure
   */
@@ -160,21 +173,16 @@ typedef struct s_info
 	int			user_x;			//	position x of player
 	int			user_deg;		//	orientation of player
 	int			p_nbr;			//	number of player
-	int			padding;		//	from -5 to 5 for the player change the position
-	int			bpp;			//	bits by pixell
-	int			endian;			//	endian
+	int			pad_x;			//	padding in x from -10 to 10, 0 is center
+	int			pad_y;			//	padding in y from -10 to 10, 0 is center
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
-	void		*win;			//	windows
-	void		*img;			//	img to print
-	void		*addr;			//	address of image game
-	void		*mini_win;		//	windows minimap
-	void		*mini_img;		//	miniap img
-	void		*mini_addr;		//	address of minimap image
+	t_win		*win_g;			//	structure window for game
+	t_win		*win_m;			//	structure window for minimap	
 	t_img		*s_img;			//	sky image
 	t_img		*f_img;			//	floor image
 	t_img		*w_n_img;		//	wall north image
@@ -195,6 +203,7 @@ typedef struct s_info
 
 void	ft_print_map(t_info *info);
 void	ft_print_info(t_info *info);
+void	ft_print_user_data(t_info *info);
 
 void	ft_init_img(t_info **info);
 void	ft_free_info(t_info *info);

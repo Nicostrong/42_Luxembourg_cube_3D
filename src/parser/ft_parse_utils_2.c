@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/11 08:59:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 12:51:41 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
 static void	ft_set_direction(char c, t_info *info)
 {
 	if (c == 'N')
-		info->user_deg = 270;
-	else if (c == 'E')
 		info->user_deg = 0;
-	else if (c == 'S')
+	else if (c == 'E')
 		info->user_deg = 90;
-	else if (c == 'W')
+	else if (c == 'S')
 		info->user_deg = 180;
+	else if (c == 'W')
+		info->user_deg = 270;
 	return ;
 }
 
@@ -125,6 +125,7 @@ static void	ft_get_pos_player(char **map, t_info *info)
 				info->user_y = i;
 				info->p_nbr++;
 				ft_set_direction(map[i][j], info);
+				map[i][j] = 'P';
 			}
 		}
 	}

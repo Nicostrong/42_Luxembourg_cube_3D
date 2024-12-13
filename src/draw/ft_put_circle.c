@@ -6,11 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:26:39 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/06 09:28:27 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/13 13:26:58 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
+#include "../../includes/setting_game.h"
 
 /**
  * @brief Dessine des lignes verticales pour un cercle à partir du centre.

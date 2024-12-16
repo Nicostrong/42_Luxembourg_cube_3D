@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/13 13:35:26 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/16 12:37:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
 	while (i <= px)
 	{
 		if (py >= 0 && (py <= HEIGHT || py <= WIDTH ))
-			ft_pixel_put(info, i, py, ft_get_color(255, 0, 255, 0));
+			ft_pixel_put(info, i, py, ft_get_color(255, 0, 0, 255));
 		if (ny >= 0 && (ny <= HEIGHT || ny <= WIDTH))
-			ft_pixel_put(info, i, ny, ft_get_color(255, 0, 255, 0));
+			ft_pixel_put(info, i, ny, ft_get_color(255, 0, 0, 255));
 		i++;
 	}
 }
@@ -77,9 +77,9 @@ static void coloris_axe_1(t_info *info, int centx, int centy, int x, int y)
 	while (i <= px)
 	{
 		if (py >= 0 && (py <= HEIGHT || py <= WIDTH))
-			ft_pixel_put(info, i, py, ft_get_color(255, 0, 255, 0));
+			ft_pixel_put(info, i, py, ft_get_color(255, 0, 0, 255));
 		if (ny >= 0 && (ny <= HEIGHT || ny <= WIDTH))
-			ft_pixel_put(info, i, ny, ft_get_color(255, 0, 255, 0));
+			ft_pixel_put(info, i, ny, ft_get_color(255, 0, 0, 255));
 		i++;
 	}
 }

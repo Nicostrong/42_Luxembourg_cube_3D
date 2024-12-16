@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/13 10:29:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/16 09:39:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,8 @@ void	ft_print_user_data(t_info *info)
 	printf("rotation user_deg: %d\n", info->user_deg);
 	printf("position on cell pad_x: %d\n", info->pad_x);
 	printf("position on cell pad_y: %d\n", info->pad_y);
+	if (info->pad_x == 10 || info->pad_x == -10)
+		ft_print_map(info);
+	else if (info->pad_y == 10 || info->pad_y == -10)
+		ft_print_map(info);
 }

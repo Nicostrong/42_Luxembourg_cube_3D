@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/16 12:34:20 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 12:41:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ int main(int argc, char *argv[])
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
 	ft_print_info(info);
-	//mlx_hook(info->win_m->win, 17, 0, &ft_exit, info);
+	mlx_hook(info->win_m->win, 17, 0, &ft_exit, info);
 	ft_render(info);
+	
 	mlx_hook(info->win_g->win, 17, 0, &ft_exit, info);
-	mlx_hook(info->win_m->win, 2, 1L << 0, &ft_press_key, info);
+	if (LINUX)
+		mlx_hook(info->win_m->win, 2, 1L << 0, &ft_press_key, info);
+	else if (MACOS)
+		mlx_hook(info->win_m->win, 2, 1L << 0, &ft_press_key_mac, info);
 	mlx_loop(info->mlx);
 
 	/*

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/12 10:22:22 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 12:44:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void	ft_read_file(t_info *info)
 		if (ft_strlen(info->line) > 0)
 		{
 			array = ft_split(info->line, ' ');
-			if (array[0] && array[1])
+			if (array[0] && array[1] && !ft_ismap(info->line))
 				error = ft_extract_info(info, array);
 			else if (ft_ismap(info->line))
 				ft_get_map(info);

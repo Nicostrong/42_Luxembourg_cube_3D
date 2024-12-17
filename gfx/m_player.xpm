@@ -1,5 +1,5 @@
 /* XPM */
-static char * scrogneugneu_xpm[] = {
+static char * m_player[] = {
 "42 42 1315 2",
 "  	c None",
 ". 	c #CCD877",

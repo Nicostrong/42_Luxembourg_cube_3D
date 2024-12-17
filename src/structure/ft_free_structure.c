@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/13 11:10:31 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 11:53:46 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ static void	ft_free_all_images(t_info *info)
 		ft_free_img_struct(info->w_s_img, info);
 	if (info->w_w_img)
 		ft_free_img_struct(info->w_w_img, info);
+	if (info->player)
+		ft_free_img_struct(info->player, info);
 }
 
 /*

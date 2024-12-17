@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/16 12:34:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 11:50:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef struct s_info
 	t_img		*w_e_img;		//	wall east image
 	t_img		*w_s_img;		//	wall south image
 	t_img		*w_w_img;		//	wall weast image
+	t_img		*player;		//	player image
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
 	//t_anim		*c_anim;		//	animation of collectable

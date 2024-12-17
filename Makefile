@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/16 10:32:08 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/17 08:05:03 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,8 +103,15 @@ MYLIBS_BONUS	=
 #					./src/validate/ft_validate.c \
 #					./src/validate/ft_validate_map.c \
 
-SRC				=	./src/main.c \
-					./src/controller/ft_press_key.c \
+ifeq ($(UNAME), Linux)
+	SRC_OS		=	./src/controller/ft_press_key.c
+else
+	SRC_OS		=	./src/controller/ft_press_key_mac.c
+endif
+
+SRC_COMMON		=	./src/main.c \
+					./src/controller/ft_move.c \
+					./src/controller/ft_render.c \
 					./src/debug/ft_print_info.c \
 					./src/draw/ft_colors.c \
 					./src/draw/ft_put_player.c \
@@ -117,6 +124,8 @@ SRC				=	./src/main.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
+
+SRC				=	$(SRC_COMMON) $(SRC_OS)
 
 OBJ				=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/16 09:39:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 15:46:58 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,15 @@ void	ft_print_info(t_info *info)
 		printf("r: %d\n", info->sky_color->r);
 		printf("g: %d\n", info->sky_color->g);
 		printf("b: %d\n", info->sky_color->b);
+	}
+	if (info->player)
+	{
+		printf("player_img:\n");
+		printf("path: %s\n", info->player->img_path);
+		printf("h: %d\n", info->player->h);
+		printf("w: %d\n", info->player->w);
+		printf("img: %p\n", info->player->img);
+		printf("addr: %p\n", info->player->addr);
 	}
 }
 

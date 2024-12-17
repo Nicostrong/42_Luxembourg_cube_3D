@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/13 13:32:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 15:40:46 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 # define RAYECART		10.0		//	scale ray
 # define WSCALE			4			//	size wall
 # define MINI_TITRE		"Mini map"
-# define MINI_W			300
+# define MINI_W			294
 # define MINI_H			210
+
 
 /*
  *	Mouse setting
@@ -62,7 +63,13 @@
  */
 
 int		ft_press_key(int keysym, t_info *info);
+int		ft_press_key_mac(int keysym, t_info *info);
 
+void	ft_up(t_info *info);
+void	ft_down(t_info *info);
+void	ft_left(t_info *info);
+void	ft_right(t_info *info);
+void	ft_render(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
 
 #endif

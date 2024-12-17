@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/13 13:32:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/17 07:52:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@
 
 	# include "../lib/mlx_linux/mlx.h"
 	# include <X11/keysym.h>
+	# define LINUX 1
+	# define MACOS 0
 
 # elif defined(__APPLE__) && defined(__MACH__)
 
 	# include "../lib/mlx_mac/mlx.h"
+	# define MACOS 1
+	# define LINUX 0
 
 # endif
 

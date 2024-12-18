@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2024/12/17 08:05:03 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2024/12/18 10:41:37 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,12 +111,12 @@ endif
 
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_move.c \
-					./src/controller/ft_render.c \
 					./src/debug/ft_print_info.c \
 					./src/draw/ft_colors.c \
 					./src/draw/ft_put_player.c \
 					./src/exit/ft_exit.c \
 					./src/exit/ft_error.c \
+					./src/minimap/ft_minimap.c \
 					./src/structure/ft_free_structure.c \
 					./src/structure/ft_init_structure.c \
 					./src/validate/ft_check_arg.c \

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 15:40:46 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/18 11:26:10 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ft_up(t_info *info);
 void	ft_down(t_info *info);
 void	ft_left(t_info *info);
 void	ft_right(t_info *info);
-void	ft_render(t_info *info);
+//void	ft_render(t_info *info);
+void	ft_minimap(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
 
 #endif

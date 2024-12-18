@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 11:53:46 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/18 10:05:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,24 @@ void	ft_free_window(t_info *info)
 {
 	if (info->win_g)
 	{
+		mlx_destroy_image(info->mlx, info->win_g->img);
 		mlx_clear_window(info->mlx, info->win_g->win);
-		mlx_destroy_window(info->mlx, info->win_g->img);
+		mlx_destroy_window(info->mlx, info->win_g->win);
 		info->win_g->win = NULL;
-		ft_free(info->win_g->addr);
 		ft_free(info->win_g);
 	}
 	if (info->win_m)
 	{
+		mlx_destroy_image(info->mlx, info->win_m->img);
 		mlx_clear_window(info->mlx, info->win_m->win);
-		mlx_destroy_window(info->mlx, info->win_m->img);
+		mlx_destroy_window(info->mlx, info->win_m->win);
 		info->win_m->win = NULL;
-		ft_free(info->win_m->addr);
 		ft_free(info->win_m);
 	}
 	if (info->mlx)
 	{
 		//mlx_loop_end(info->mlx);
-		//mlx_destroy_display(info->mlx);
+		mlx_destroy_display(info->mlx);
 		ft_free(info->mlx);
 		info->mlx = NULL;
 	}

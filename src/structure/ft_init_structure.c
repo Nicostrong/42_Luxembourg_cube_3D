@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 18:01:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/18 10:11:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ static void	ft_init_img_color(t_info *info)
 	if (info->player)
 	{
 		info->player->img_path = ft_strdup("./gfx/m_player.xpm");
-		info->player->w = 42;
-		info->player->h = 42;
+		info->player->w = 21;
+		info->player->h = 21;
 		info->player->img = mlx_xpm_file_to_image(info->mlx, \
 			info->player->img_path, &info->player->w, &info->player->h);
 		info->player->addr = mlx_get_data_addr(info->player->img, \

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:59:21 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/08 10:07:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/18 13:26:25 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strremoveset(char const *s1, char *charset);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_formatsubstr(char const *s, int st, size_t l, char c);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 
 char		**ft_strarraycpy(char **array);

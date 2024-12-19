@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:33:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:09:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
  * </return>
  *
  */
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	nb_bytes;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:42:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/11 09:55:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
  * </return>
  *
  */
-
 static int	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
@@ -61,7 +60,6 @@ static int	ft_isspace(int c)
  * </return>
  *
  */
-
 int	ft_atoi(const char *nptr)
 {
 	char	*s;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:04:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/10/02 20:23:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
  * </return>
  *
  */
-
 void	ft_putstrarray(char **a_str)
 {
 	int	index;

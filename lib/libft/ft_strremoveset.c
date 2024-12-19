@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:53:12 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/13 11:56:41 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
  * </return>
  *
  */
-
 char	*ft_strremoveset(char const *s1, char *charset)
 {
 	int		i;

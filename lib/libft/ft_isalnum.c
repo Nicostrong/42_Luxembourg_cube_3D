@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:37:05 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:08:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
  * </return>
  *
  */
-
 int	ft_isalnum(int c)
 {
 	return (ft_isdigit(c) || ft_isalpha(c));

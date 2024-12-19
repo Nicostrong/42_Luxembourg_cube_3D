@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:23:49 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:14:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * </return>
  *
  */
-
 int	ft_isint(long long nbr)
 {
 	if (nbr > 2147483647 || nbr < -2147483648)

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:53:00 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/10/18 09:07:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
  * </return>
  *
  */
-
 char	**ft_free_array(char **array)
 {
 	int	index;

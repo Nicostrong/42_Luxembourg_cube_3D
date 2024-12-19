@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:42:27 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:08:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
  * </return>
  *
  */
-
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*src1;

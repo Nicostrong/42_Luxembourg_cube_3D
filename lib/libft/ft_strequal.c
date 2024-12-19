@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:00:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/08/28 13:54:16 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * </return>
  *
  */
-
 int	ft_strequal(const char *s1, const char *s2)
 {
 	return (ft_strcmp(s1, s2) == 0);

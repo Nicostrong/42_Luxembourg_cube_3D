@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:51:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 22/09/2024 15:29:36 by Nicostrong       ###   ########.lu       */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * </return>
  *
  */
-
 char	*ft_join_array(char **a_str, char *sep)
 {
 	char	*join;

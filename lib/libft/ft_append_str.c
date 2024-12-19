@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:51:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/06 12:43:55 by nfordoxc         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
  * </return>
  *
  */
-
 char	**ft_append_str(char **array, char *str)
 {
 	char	**new_array;

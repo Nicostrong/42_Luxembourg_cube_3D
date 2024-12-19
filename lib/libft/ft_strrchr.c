@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:41:44 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:09:54 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
  * </return>
  *
  */
-
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*last;

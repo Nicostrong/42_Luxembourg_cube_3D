@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 11:44:25 by nfordoxc          #+#    #+#             */
-/*   Updated: 22/09/2024 15:29:55 by Nicostrong       ###   ########.lu       */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
  * </return>
  *
  */
-
 int	ft_charchr(const char *s, char c)
 {
 	int	index;

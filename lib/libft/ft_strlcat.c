@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:41:00 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:09:05 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
  * </return>
  *
  */
-
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	len_src;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:39:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:09:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * </return>
  *
  */
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;

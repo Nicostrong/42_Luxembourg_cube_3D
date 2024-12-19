@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:04:24 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/11/02 17:06:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * </return>
  *
  */
-
 static int	countsection(char const *s, char const c)
 {
 	int	section;
@@ -74,7 +73,6 @@ static int	countsection(char const *s, char const c)
  * </return>
  *
  */
-
 static char	*ft_malloc_row(char const *s, char c)
 {
 	char	*row;
@@ -116,7 +114,6 @@ static char	*ft_malloc_row(char const *s, char c)
  * </return>
  *
  */
-
 char	**ft_split(char const *s, char c)
 {
 	char	**array;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:41:58 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/08/22 14:59:17 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
  * </return>
  *
  */
-
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	index;

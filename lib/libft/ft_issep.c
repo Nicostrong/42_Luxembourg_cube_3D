@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:05:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/09/09 10:07:28 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
  * </return>
  *
  */
-
 int	ft_issep(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\n');

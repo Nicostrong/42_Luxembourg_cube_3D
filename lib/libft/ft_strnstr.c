@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:42:06 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:09:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
  * </return>
  *
  */
-
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	char	*cp_big;

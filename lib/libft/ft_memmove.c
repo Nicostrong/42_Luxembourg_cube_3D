@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:31:10 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/06/17 11:08:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
  * </return>
  *
  */
-
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
 	unsigned char	*d;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/18 11:26:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 16:53:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SETTING_GAME_H
 
 # define TITLE			"Cube3D"	//	Project name
-# define WIDTH			1500			//	1920
-# define HEIGHT			1000			//	1080
+# define WIDTH			1500		//	1920
+# define HEIGHT			1000		//	1080
 # define NBTEXTURES		6			//	Number of textures
 
 # define ISAZERTY		0			//	bool keyboard azerty
@@ -32,6 +32,8 @@
 # define MINI_TITRE		"Mini map"
 # define MINI_W			294
 # define MINI_H			210
+# define MINI_I_PL		"./gfx/m_player.xpm"	//	image player
+# define MINI_S_PL		21			//	size image player
 
 
 /*

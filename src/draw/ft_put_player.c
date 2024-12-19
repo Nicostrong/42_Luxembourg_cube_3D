@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 16:07:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 10:04:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_pixel_put(t_info *info, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = info->win_m->addr + (y * info->win_m->size_line + x * (info->win_m->bpp / 8));
+	dst = info->mini->addr + (y * info->mini->size + x * (info->mini->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 

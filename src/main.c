@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/18 11:29:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 18:12:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,23 @@ int main(int argc, char *argv[])
 
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
+	printf("INFOS WIN GAME\n");
+	printf("size : %d\n", info->game->size);
+	printf("bpp : %d\n", info->game->bpp);
+	printf("endian : %d\n", info->game->endian);
+	printf("INFOS WIN MINI\n");
+	printf("size : %d\n", info->mini->size);
+	printf("bpp : %d\n", info->mini->bpp);
+	printf("endian : %d\n", info->mini->endian);
 	//ft_print_info(info);
-	mlx_hook(info->win_g->win, 17, 0, &ft_exit, info);
-	mlx_hook(info->win_m->win, 17, 0, &ft_exit, info);
+	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
+	mlx_hook(info->mini->win, 17, 0, &ft_exit, info);
 	//ft_render(info);
 	ft_minimap(info);
 	if (LINUX)
-		mlx_hook(info->win_m->win, 2, 1L << 0, &ft_press_key, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key, info);
 	else if (MACOS)
-		mlx_hook(info->win_m->win, 2, 1L << 0, &ft_press_key_mac, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
 	mlx_loop(info->mlx);
 
 	/*

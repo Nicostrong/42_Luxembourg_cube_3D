@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/18 10:11:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 16:53:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
 	if (!windows->img)
 		ft_perror_exit(E_IMG, info);
 	windows->addr = mlx_get_data_addr(windows->img, &windows->bpp, \
-		&windows->size_line, &windows->endian);
+		&windows->size, &windows->endian);
 	if (!windows->addr)
 		ft_perror_exit(E_ADR, info);
 	return (windows);
@@ -141,13 +141,13 @@ static void	ft_init_img_color(t_info *info)
 	info->player = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (info->player)
 	{
-		info->player->img_path = ft_strdup("./gfx/m_player.xpm");
-		info->player->w = 21;
-		info->player->h = 21;
+		info->player->img_path = ft_strdup(MINI_I_PL);
+		info->player->w = MINI_S_PL;
+		info->player->h = MINI_S_PL;
 		info->player->img = mlx_xpm_file_to_image(info->mlx, \
 			info->player->img_path, &info->player->w, &info->player->h);
 		info->player->addr = mlx_get_data_addr(info->player->img, \
-			&info->win_m->bpp, &info->win_m->size_line, &info->win_m->endian);
+			&info->player->bpp, &info->player->size, &info->player->endian);
 	}
 	/*info->floor_color = (t_color *)ft_calloc(1, sizeof(t_color));
 	if (!info->floor_color)
@@ -237,8 +237,8 @@ t_info	*ft_init_info(char *path)
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_perror_exit(E_MLX, info);
-	info->win_g = ft_init_info_win(info, WIDTH, HEIGHT, TITLE);
-	info->win_m = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
+	info->game = ft_init_info_win(info, WIDTH, HEIGHT, TITLE);
+	info->mini = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
 	ft_init_img_color(info);
 	info->info_map = ft_init_info_path(info);
 	return (info);

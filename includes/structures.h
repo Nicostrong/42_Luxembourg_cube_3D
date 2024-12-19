@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 11:50:16 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 15:10:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_texture
 	char			*img_path;			//	Path to the image
 	int				h;					//	Height of the image
 	int				w;					//	Width of the image
+	int				bpp;				//	Bits per pixel
+	int				size;				//	Size line
+	int				endian;				//	Endian
 	void			*img;				//	Image
 	void			*addr;				//	Address of image
 	t_type_image 	type;				//	Type of the texture
@@ -153,7 +156,7 @@ typedef struct s_info_map
 typedef struct s_info_windows
 {
 	int			bpp;			//	bits by pixell
-	int			size_line;		//	size line
+	int			size;			//	size line
 	int			endian;			//	endian
 	char		*addr;			//	address of image game
 	void		*win;			//	windows
@@ -181,8 +184,8 @@ typedef struct s_info
 	char		*line;			//	line read>
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
-	t_win		*win_g;			//	structure window for game
-	t_win		*win_m;			//	structure window for minimap	
+	t_win		*game;			//	structure window for game
+	t_win		*mini;			//	structure window for minimap	
 	t_img		*s_img;			//	sky image
 	t_img		*f_img;			//	floor image
 	t_img		*w_n_img;		//	wall north image

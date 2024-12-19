@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/18 10:05:54 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 09:09:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,26 @@
  */
 void	ft_free_window(t_info *info)
 {
-	if (info->win_g)
+	if (info->game)
 	{
-		mlx_destroy_image(info->mlx, info->win_g->img);
-		mlx_clear_window(info->mlx, info->win_g->win);
-		mlx_destroy_window(info->mlx, info->win_g->win);
-		info->win_g->win = NULL;
-		ft_free(info->win_g);
+		mlx_destroy_image(info->mlx, info->game->img);
+		mlx_clear_window(info->mlx, info->game->win);
+		mlx_destroy_window(info->mlx, info->game->win);
+		info->game->win = NULL;
+		ft_free(info->game);
 	}
-	if (info->win_m)
+	if (info->mini)
 	{
-		mlx_destroy_image(info->mlx, info->win_m->img);
-		mlx_clear_window(info->mlx, info->win_m->win);
-		mlx_destroy_window(info->mlx, info->win_m->win);
-		info->win_m->win = NULL;
-		ft_free(info->win_m);
+		mlx_destroy_image(info->mlx, info->mini->img);
+		mlx_clear_window(info->mlx, info->mini->win);
+		mlx_destroy_window(info->mlx, info->mini->win);
+		info->mini->win = NULL;
+		ft_free(info->mini);
 	}
 	if (info->mlx)
 	{
 		//mlx_loop_end(info->mlx);
-		mlx_destroy_display(info->mlx);
+		//mlx_destroy_display(info->mlx);	//	FOR LINUX
 		ft_free(info->mlx);
 		info->mlx = NULL;
 	}

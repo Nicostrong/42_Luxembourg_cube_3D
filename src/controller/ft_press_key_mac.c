@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 08:02:55 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/19 17:58:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ int	ft_press_key_mac(int keysym, t_info *info)
 		info->user_deg += 360;
 	else if (info->user_deg >= 360)
 		info->user_deg -= 360;
-	ft_print_user_data(info);
+	//ft_print_user_data(info);
 	//ft_print_map(info);
-	ft_render(info);
+	//ft_render(info);
+	if ((keysym >= 0 && keysym <= 14) || (keysym >= 123 && keysym <= 126))
+		ft_minimap(info);
 	return (0);
 }

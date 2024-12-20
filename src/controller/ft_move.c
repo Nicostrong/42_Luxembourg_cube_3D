@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/18 11:47:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/20 10:31:20 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_up(t_info *info)
 			info->pad_y--;
 		else
 		{
-			info->pad_y = 10;
+			info->pad_y = 9;
 			info->map[info->user_y][info->user_x] = '0';
 			info->user_y--;
 			info->map[info->user_y][info->user_x] = 'P';
@@ -45,7 +45,7 @@ void	ft_up(t_info *info)
 				info->pad_y--;
 			else
 			{
-				info->pad_y = 10;
+				info->pad_y = 9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_y--;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -56,7 +56,7 @@ void	ft_up(t_info *info)
 	{
 		if (info->pad_x > -6)
 		{
-			if (info->pad_y > -10)
+			if (info->pad_y > -9)
 				info->pad_y--;
 			else
 			{
@@ -71,7 +71,7 @@ void	ft_up(t_info *info)
 	{
 		if (info->pad_x > -6 && info->pad_x < 6)
 		{
-			if (info->pad_y > -10)
+			if (info->pad_y > -9)
 				info->pad_y--;
 			else
 			{
@@ -102,7 +102,7 @@ void	ft_down(t_info *info)
 			info->pad_y++;
 		else
 		{
-			info->pad_y = -10;
+			info->pad_y = -9;
 			info->map[info->user_y][info->user_x] = '0';
 			info->user_y++;
 			info->map[info->user_y][info->user_x] = 'P';
@@ -116,7 +116,7 @@ void	ft_down(t_info *info)
 				info->pad_y++;
 			else
 			{
-				info->pad_y = -10;
+				info->pad_y = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_y++;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -131,7 +131,7 @@ void	ft_down(t_info *info)
 				info->pad_y++;
 			else
 			{
-				info->pad_y = -10;
+				info->pad_y = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_y++;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -146,7 +146,7 @@ void	ft_down(t_info *info)
 				info->pad_y++;
 			else
 			{
-				info->pad_y = -10;
+				info->pad_y = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_y++;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -173,7 +173,7 @@ void	ft_left(t_info *info)
 			info->pad_x--;
 		else
 		{
-			info->pad_x = 10;
+			info->pad_x = 9;
 			info->map[info->user_y][info->user_x] = '0';
 			info->user_x--;
 			info->map[info->user_y][info->user_x] = 'P';
@@ -187,7 +187,7 @@ void	ft_left(t_info *info)
 				info->pad_x--;
 			else
 			{
-				info->pad_x = 10;
+				info->pad_x = 9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x--;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -202,7 +202,7 @@ void	ft_left(t_info *info)
 				info->pad_x--;
 			else
 			{
-				info->pad_x = 10;
+				info->pad_x = 9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x--;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -217,7 +217,7 @@ void	ft_left(t_info *info)
 				info->pad_x--;
 			else
 			{
-				info->pad_x = 10;
+				info->pad_x = 9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x--;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -244,7 +244,7 @@ void	ft_right(t_info *info)
 			info->pad_x++;
 		else
 		{
-			info->pad_x = -10;
+			info->pad_x = -9;
 			info->map[info->user_y][info->user_x] = '0';
 			info->user_x++;
 			info->map[info->user_y][info->user_x] = 'P';
@@ -258,7 +258,7 @@ void	ft_right(t_info *info)
 				info->pad_x++;
 			else
 			{
-				info->pad_x = -10;
+				info->pad_x = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x++;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -273,7 +273,7 @@ void	ft_right(t_info *info)
 				info->pad_x++;
 			else
 			{
-				info->pad_x = -10;
+				info->pad_x = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x++;
 				info->map[info->user_y][info->user_x] = 'P';
@@ -288,7 +288,7 @@ void	ft_right(t_info *info)
 				info->pad_x++;
 			else
 			{
-				info->pad_x = -10;
+				info->pad_x = -9;
 				info->map[info->user_y][info->user_x] = '0';
 				info->user_x++;
 				info->map[info->user_y][info->user_x] = 'P';

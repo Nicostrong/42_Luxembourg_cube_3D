@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 19:33:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/20 14:17:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,69 +49,129 @@ static char	**ft_create_map(t_info *info)
 		else
 			map[i] = ft_formatsubstr(s, info->user_x - 3, width, '$');
 	}
-	map[i] = NULL;
 	printf("\nINFO USER\n");
 	printf("user_x: %d\n", info->user_x);
 	printf("user_y: %d\n", info->user_y);
 	printf("pad_x: %d\n", info->pad_x);
 	printf("pad_y: %d\n\n", info->pad_y);
 	ft_putstrarray(map);
-	printf("update reusis\n");
 	return (map);
 }
 
-static void	ft_set_color(t_info *info, int color, int pos_y, int pos_x)
+static void	ft_set_bloc(t_info *info, int color, int py, int px, int sy, int sx)
 {
 	int	x;
 	int	y;
 	int	index;
 
-	y = pos_y * 21;
-	while (y < ((pos_y + 1) * 21))
+	/*printf("DEBUG SET BLOC");
+	printf("\tpx: %d", px);
+	printf("\tpy: %d", py);
+	printf("\tsy: %d", sy);
+	printf("\tsx: %d", sx);
+	printf("\tcolor: %.6X\n", color);*/
+	y = -1;
+	while (++y < sy)
 	{
-		x = 0;
-		while (x < ((pos_x + 1) * 21))
+		x = -1;
+		while (++x < sx)
 		{
-			index = (y * info->mini->size) + (x * (info->mini->bpp / 8));
-			info->mini->addr[index] = color & 0xFF;
-			info->mini->addr[index + 1] = (color >> 8) & 0xFF;
-			info->mini->addr[index + 2] = (color >> 16) & 0xFF;
-			info->mini->addr[index + 3] = 0xFF;
-			x++;
+			//printf("index = (%d * %d) + (%d * (%d / 8))\n", y, info->mini->size, x, info->mini->bpp);
+			index = ((py + y) * info->mini->size) + ((px + x) * (info->mini->bpp / 8));
+			if (index < (MINI_W * MINI_H * (info->mini->bpp / 8)))
+			{
+				info->mini->addr[index] = color & 0xFF;
+				info->mini->addr[index + 1] = (color >> 8) & 0xFF;
+				info->mini->addr[index + 2] = (color >> 16) & 0xFF;
+				info->mini->addr[index + 3] = (color >> 24);
+			}
+			else
+			{
+				printf("ERROR : index: %d\n", index);
+				printf("index = (%d * %d) + (%d * (%d / 8))\n", y, info->mini->size, x, info->mini->bpp);
+			}
 		}
+		//printf("index: %d couleur => %.6X\n", index, color);
 		y++;
 	}
-	//printf("index: %d couleur => %.6X\n", index, color);
+	printf("index: %d couleur => %.6X\n", index, color);
 }
 
-static void	ft_char_to_color(char **map, t_info *info)
+static void	ft_char_to_color(char **map, t_info *info, int pxs, int pys)
 {
 	int	color;
 	int	row;
 	int	col;
+	int	sy;
+	int	sx;
+	int	height;
+	int	width;
+	int	px;
+	int	py;
 
+	height = 6;
+	if (info->pad_y == 0)
+		height = 5;
+	width = 8;
+	if (info->pad_x == 0)
+		width = 7;
+	/*printf("\tDEBUG\n");
+	printf("\tpx: %d\n", px);
+	printf("\tpy: %d\n", py);
+	printf("\theight: %d\n", height);
+	printf("\twidth: %d\n", width);*/
 	row = -1;
-	while (map[++row])
+	while (++row < height)
 	{
 		col = -1;
-		while (map[row][++col])
+		while (++col < width)
 		{
-			//printf("row: %d, col: %d, map: %c\n", row, col, map[row][col]);
-			color = 0x000000;
-			//if (map[row][col] == 'P')
-			//	color = 0x0000FF;
+			px = pxs + col * MINI_S_BLOC;
+			py = pys + row * MINI_S_BLOC;
+			color = 0x88FF0000;
 			if (map[row][col] == '1')
-				color = 0xFF0000;	// red
+				color = 0x000000;
 			else if (map[row][col] == ' ')
-				color = 0xFFFF00;	// yellow
-			else if (map[row][col] == '0' || map[row][col] == 'P')
-				color = 0x00FF00;	// green
-			else
-				color = 0x0000FF;	// blue
-			//printf("color a afficher: %.6X\n", color);
-			ft_set_color(info, color, row, col);
+				color = 0xFFFF00;
+			else if (map[row][col] == '0')
+				color = 0x00FF00;
+			else if (map[row][col] == 'P')
+				color = 0x0000FF;
+			sy = MINI_S_BLOC;
+			sx = MINI_S_BLOC;
+			if (row == 0 && py != 0)
+			{
+				sy = 2 * abs(info->pad_y);
+				if (info->pad_y > 0)
+					sy = MINI_S_BLOC - (2 * info->pad_y);
+			}
+			else if (row == height - 1 && info->pad_y != 0)
+			{
+				sy = MINI_S_BLOC - (2 * abs(info->pad_y));
+				if (info->pad_y > 0)
+					sy = 2 * info->pad_y;
+			}
+			if (col == 0 && info->pad_x != 0)
+			{
+				sx = 2 * abs(info->pad_x);
+				if (info->pad_x > 0)
+					sx = MINI_S_BLOC - (2 * info->pad_x);
+			}
+			else if (col == width - 1 && info->pad_x != 0)
+			{
+				sx = MINI_S_BLOC - (2 * abs(info->pad_x));
+				if (info->pad_x > 0)
+					sx = 2 * info->pad_x;
+			}
+			/*printf("DEBUG CTC");
+			printf("\tcol: %d", col);
+			printf("\trow: %d", row);
+			printf("\tsy: %d", sy);
+			printf("\tsx: %d\n", sx);*/
+			ft_set_bloc(info, color, row, col, sy, sx);
 		}
 	}
+	ft_free_array(map);
 }
 
 /*
@@ -129,12 +189,39 @@ void	ft_minimap(t_info *info)
 
 	map = ft_create_map(info);
 	mlx_clear_window(info->mlx, info->mini->win);
-	ft_char_to_color(map, info);
+	ft_char_to_color(map, info, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
-	if (info->player)
+	/*if (info->player)
 		mlx_put_image_to_window(info->mlx, info->mini->win, info->player->img, \
-			(MINI_W / 2) - 10, (MINI_H / 2) - 10);
+			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
-		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
+		ft_put_circle(info, MINI_W / 2, MINI_H / 2);*/
 }
+
+/*
+y = -1;
+	while (++y < ((py + 1) * sy) && y < MINI_H)
+	{
+		x = -1;
+		while (++x < ((px + 1) * sx) && x < MINI_W)
+		{
+			//printf("index = (%d * %d) + (%d * (%d / 8))\n", y, info->mini->size, x, info->mini->bpp);
+			index = (y * info->mini->size) + (x * (info->mini->bpp / 8));
+			if (index < (MINI_W * MINI_H * (info->mini->bpp / 8)))
+			{
+				info->mini->addr[index] = color & 0xFF;
+				info->mini->addr[index + 1] = (color >> 8) & 0xFF;
+				info->mini->addr[index + 2] = (color >> 16) & 0xFF;
+				info->mini->addr[index + 3] = (color >> 24);
+			}
+			else
+			{
+				printf("ERROR : index: %d\n", index);
+				printf("index = (%d * %d) + (%d * (%d / 8))\n", y, info->mini->size, x, info->mini->bpp);
+			}
+		}
+		//printf("index: %d couleur => %.6X\n", index, color);
+		y++;
+	}
+	*/

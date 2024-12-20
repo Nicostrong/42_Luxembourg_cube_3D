@@ -6,34 +6,35 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 16:53:08 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/20 11:16:05 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTING_GAME_H
 # define SETTING_GAME_H
 
-# define TITLE			"Cube3D"	//	Project name
-# define WIDTH			1500		//	1920
-# define HEIGHT			1000		//	1080
-# define NBTEXTURES		6			//	Number of textures
+# define TITLE			"Cube3D"				//	Project name
+# define WIDTH			1500					//	1920
+# define HEIGHT			1000					//	1080
+# define NBTEXTURES		6						//	Number of textures
 
-# define ISAZERTY		0			//	bool keyboard azerty
+# define ISAZERTY		0						//	bool keyboard azerty
 
 /*
  *	Setting Mini Map
  */
 
-# define PRAY 			5			//	size player on minimap
-# define LENRAY			500			//	lenght ray
-# define NBRAY			10			//	number ray
-# define RAYECART		10.0		//	scale ray
-# define WSCALE			4			//	size wall
+# define PRAY 			5						//	size player on minimap
+# define LENRAY			500						//	lenght ray
+# define NBRAY			10						//	number ray
+# define RAYECART		10.0					//	scale ray
+# define WSCALE			4						//	size wall
 # define MINI_TITRE		"Mini map"
-# define MINI_W			294
-# define MINI_H			210
+# define MINI_W			280
+# define MINI_H			200
 # define MINI_I_PL		"./gfx/m_player.xpm"	//	image player
-# define MINI_S_PL		21			//	size image player
+# define MINI_S_PL		10						//	size image player
+# define MINI_S_BLOC	40						//	size bloc
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/20 14:17:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/20 16:03:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**ft_create_map(t_info *info)
 	return (map);
 }
 
-static void	ft_set_bloc(t_info *info, int color, int py, int px, int sy, int sx)
+static int	ft_set_bloc(t_info *info, int color, int py, int px, int sy, int sx)
 {
 	int	x;
 	int	y;
@@ -95,6 +95,7 @@ static void	ft_set_bloc(t_info *info, int color, int py, int px, int sy, int sx)
 		y++;
 	}
 	printf("index: %d couleur => %.6X\n", index, color);
+	return (index);
 }
 
 static void	ft_char_to_color(char **map, t_info *info, int pxs, int pys)
@@ -108,6 +109,7 @@ static void	ft_char_to_color(char **map, t_info *info, int pxs, int pys)
 	int	width;
 	int	px;
 	int	py;
+	int	last_index;
 
 	height = 6;
 	if (info->pad_y == 0)
@@ -168,7 +170,7 @@ static void	ft_char_to_color(char **map, t_info *info, int pxs, int pys)
 			printf("\trow: %d", row);
 			printf("\tsy: %d", sy);
 			printf("\tsx: %d\n", sx);*/
-			ft_set_bloc(info, color, row, col, sy, sx);
+			last_index = ft_set_bloc(info, color, row, col, sy, sx, last_index);
 		}
 	}
 	ft_free_array(map);
@@ -176,12 +178,15 @@ static void	ft_char_to_color(char **map, t_info *info, int pxs, int pys)
 
 /*
  *	pour afficher la minimap :
- *	- on recupere la position du joueur
- *	- on recupere les valeur de pad_x et pad_y
- *	- on va construire un array qui representera la minimap
- *	- pour chaque case de la minimap on va afficher une box de couleur
- *	- on libere le tableau de la minimap
- *	- on va afficher le joueur
+ *	1 - on cree un array de char pour representer la minimap
+ *	2 - on parcourt chaque ligne de l array
+ *	3 - on verifie la valeur de pad_x
+ *	4 - on cree un array avec les len de chaque bloc d une ligne
+ *	5 - on cree un array avec chaque couleur d une ligne
+ *	6 - on verifie la valeur de pad_y et on defini (height_bloc)
+ *	7 - on appel height_bloc la fonction pour imprimer une ligne 
+ *	8 - on passe a la ligne suivante
+ *	9 - on free tous les array cree
  */
 void	ft_minimap(t_info *info)
 {

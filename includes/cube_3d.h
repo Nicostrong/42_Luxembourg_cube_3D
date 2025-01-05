@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/17 07:52:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/03 10:46:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,25 @@
 
 	# include "../lib/mlx_linux/mlx.h"
 	# include <X11/keysym.h>
-	# define LINUX 1
-	# define MACOS 0
+	# define LINUX	1
+	# define MACOS	0
 
 # elif defined(__APPLE__) && defined(__MACH__)
 
 	# include "../lib/mlx_mac/mlx.h"
-	# define MACOS 1
-	# define LINUX 0
+	# define MACOS	1
+	# define LINUX	0
+	# define KA		0
+	# define KE		14
+	# define KZ		6
+	# define KQ		12
+	# define KS		1
+	# define KD		2
+	# define UP		126
+	# define DOWN	125
+	# define LEFT	123
+	# define RIGHT	124
+	# define ESCAP	53
 
 # endif
 
@@ -62,7 +73,7 @@ int		rl_key(int keysym, t_data *f);
 int		update_key(t_data *f);
 int		mouse_click(int mocde);
 //int		mouse_click(int mocde, int x, int y, t_data *f);
-int		mouse_move(int x, int y, t_data *f);
+//int		mouse_move(int x, int y, t_data *f);
 
 /*
 *	Fonction close app

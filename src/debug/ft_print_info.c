@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 15:46:58 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/27 10:42:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_print_info(t_info *info)
 	printf("width of the map: %d\n", info->w);
 	printf("position user_y: %d\n", info->user_y);
 	printf("position user_x: %d\n", info->user_x);
-	printf("rotation user_deg: %d\n", info->user_deg);
-	printf("position on cell pad_x: %d\n", info->pad_x);
-	printf("position on cell pad_y: %d\n", info->pad_y);
+	printf("rotation user_deg: %.2f\n", info->user_deg);
+	printf("position on cell pad_x: %.2f\n", info->pad_x);
+	printf("position on cell pad_y: %.2f\n", info->pad_y);
 	/*if (info->c_fund >= 0)
 		printf("c_fund: %d\n", info->c_fund);
 	if (info->move_nbr >= 0)
@@ -139,11 +139,31 @@ void	ft_print_user_data(t_info *info)
 	printf("width of the map: %d\n", info->w);
 	printf("position user_y: %d\n", info->user_y);
 	printf("position user_x: %d\n", info->user_x);
-	printf("rotation user_deg: %d\n", info->user_deg);
-	printf("position on cell pad_x: %d\n", info->pad_x);
-	printf("position on cell pad_y: %d\n", info->pad_y);
-	if (info->pad_x == 10 || info->pad_x == -10)
+	printf("rotation user_deg: %.2f\n", info->user_deg);
+	printf("position on cell pad_x: %.2f\n", info->pad_x);
+	printf("position on cell pad_y: %.2f\n", info->pad_y);
+	if (info->pad_x == 10.0 || info->pad_x == -10.0)
 		ft_print_map(info);
-	else if (info->pad_y == 10 || info->pad_y == -10)
+	else if (info->pad_y == 10.0 || info->pad_y == -10.0)
 		ft_print_map(info);
+}
+
+void	ft_print_minimap(t_info *info, char **map)
+{
+	printf("MINIMAP DEBUG\n");
+	if (map)
+	{
+		printf("minimap\n");
+		ft_putstrarray(map);
+	}
+	printf("Dim minimap:\n");
+	for (int y = 0; y < 7; y++)
+	{
+		printf("\theights: %d\n", info->heights[y]);
+		for (int x = 0; x < 8; x++)
+			printf("\t\twidths : %d\n", info->widths[x]);
+	}
+	printf("color line:\n");
+	for (int c = 0; c < 8; c++)
+		printf("\tcolors: %d\n", info->colors[c]);
 }

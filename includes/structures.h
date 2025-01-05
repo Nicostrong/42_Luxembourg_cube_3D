@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 15:10:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/02 16:28:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,14 +172,19 @@ typedef struct s_info
 	int			fd;				//	fd file .cub
 	int			h;				//	height of map
 	int			w;				//	width of map
-	int			user_y;			//	position y of player
-	int			user_x;			//	position x of player
-	int			user_deg;		//	orientation of player
+	int			user_y;			//	position y of player on map
+	int			user_x;			//	position x of player on map
+	int			mouse_x;		//	position mouse in x
+	int			mouse_y;		//	position mouse in y
 	int			p_nbr;			//	number of player
-	int			pad_x;			//	padding in x from -10 to 10, 0 is center
-	int			pad_y;			//	padding in y from -10 to 10, 0 is center
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color
+	int			*colors;		//	all color for a line of minimap
+	int			*widths;		//	all widths of minimap
+	int			*heights;		//	all heights of minimap
+	double		user_deg;		//	orientation of player in radian
+	double		pad_x;			//	padding in x from -10. to 10., 0 is center
+	double		pad_y;			//	padding in y from -10. to 10., 0 is center
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array
@@ -208,6 +213,7 @@ typedef struct s_info
 void	ft_print_map(t_info *info);
 void	ft_print_info(t_info *info);
 void	ft_print_user_data(t_info *info);
+void	ft_print_minimap(t_info *info, char **map);
 
 void	ft_render(t_info *info);
 void	ft_init_img(t_info **info);

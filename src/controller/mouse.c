@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 09:42:51 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/06 09:28:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/03 11:02:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
+#include "../../includes/setting_game.h"
 
-static void	move_lr(int x, int y, t_data *f)
+/*static void	move_lr(int x, int y, t_data *f)
 {
 	(void)y;
 
@@ -45,4 +46,4 @@ int	mouse_move(int x, int y, t_data *f)
 		move_lr(x, y, f);
 	//printf("Mouse = x / %d - y :/ %d\n", x, y);
 	return (0);
-}
+}*/

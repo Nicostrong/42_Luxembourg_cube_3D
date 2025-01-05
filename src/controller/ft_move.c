@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/20 10:31:20 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/03 15:35:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,286 +14,146 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 
-void	ft_up(t_info *info)
+static void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
 {
-	char	up_l;
-	char	up;
-	char	up_r;
-
-	up_l = info->map[info->user_y - 1][info->user_x - 1];
-	up = info->map[info->user_y - 1][info->user_x];
-	up_r = info->map[info->user_y - 1][info->user_x + 1];
-	if (info->pad_y > -5)
-		info->pad_y--;
-	else if (up_l == '0' && up == '0' && up_r == '0')
+	if (round(fabs(*new_padx)) > D_WALL && \
+		info->map[info->user_y][info->user_x + dirx] == '1')
 	{
-		if (info->pad_y > -10)
-			info->pad_y--;
-		else
-		{
-			info->pad_y = 9;
-			info->map[info->user_y][info->user_x] = '0';
-			info->user_y--;
-			info->map[info->user_y][info->user_x] = 'P';
-		}
+		if (round(*new_padx) < -D_WALL)
+			*new_padx = -D_WALL;
+		else if (round(*new_padx) > D_WALL)
+			*new_padx = D_WALL;
 	}
-	else if (up_l == '0' && up == '0' && up_r == '1')
+	if (round(fabs(*new_pady)) > D_WALL && \
+		info->map[info->user_y + diry][info->user_x] == '1')
 	{
-		if (info->pad_x < 6)
-		{
-			if (info->pad_y > -10)
-				info->pad_y--;
-			else
-			{
-				info->pad_y = 9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (up_l == '1' && up == '0' && up_r == '0')
-	{
-		if (info->pad_x > -6)
-		{
-			if (info->pad_y > -9)
-				info->pad_y--;
-			else
-			{
-				info->pad_y = 10;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (up_l == '1' && up == '0' && up_r == '1')
-	{
-		if (info->pad_x > -6 && info->pad_x < 6)
-		{
-			if (info->pad_y > -9)
-				info->pad_y--;
-			else
-			{
-				info->pad_y = 10;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
+		if (round(*new_pady) < -D_WALL)
+			*new_pady = -D_WALL;
+		else if (round(*new_pady) > D_WALL)
+			*new_pady = D_WALL;
 	}
 	return ;
 }
 
-void	ft_down(t_info *info)
+static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int next_x, int next_y)
 {
-	char	down_l;
-	char	down;
-	char	down_r;
-
-	down_l = info->map[info->user_y + 1][info->user_x - 1];
-	down = info->map[info->user_y + 1][info->user_x];
-	down_r = info->map[info->user_y + 1][info->user_x + 1];
-	if (info->pad_y < 5)
-		info->pad_y++;
-	else if (down_l == '0' && down == '0' && down_r == '0')
+	if (round(fabs(*new_padx)) > 10 && round(fabs(*new_pady)) >= 10)
 	{
-		if (info->pad_y < 10)
-			info->pad_y++;
-		else
+		if (info->map[next_y][next_x] != '1')
 		{
-			info->pad_y = -9;
 			info->map[info->user_y][info->user_x] = '0';
-			info->user_y++;
+			info->user_x = next_x;
+			info->user_y = next_y;
 			info->map[info->user_y][info->user_x] = 'P';
+			info->pad_x = *new_padx - 20.0;
+			if (*new_padx < 0.0)
+				info->pad_x = *new_padx + 20.0;
+			info->pad_y = *new_pady - 20.0;
+			if (*new_pady < 0.0)
+				info->pad_y = *new_pady + 20.0;
+			return (1);
 		}
 	}
-	else if (down_l == '0' && down == '0' && down_r == '1')
+	return (0);
+}
+
+static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
+{
+	if (round(fabs(*new_pad)) > 10 && !axis)
 	{
-		if (info->pad_x < 6)
+		if (info->map[info->user_y][next] != '1')
 		{
-			if (info->pad_y < 10)
-				info->pad_y++;
+			info->map[info->user_y][info->user_x] = '0';
+			info->user_x = next;
+			info->map[info->user_y][info->user_x] = 'P';
+			if (*new_pad > 0.0)
+				info->pad_x = *new_pad - 20.0;
 			else
-			{
-				info->pad_y = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
+				info->pad_x = *new_pad + 20.0;
+			return (1);
 		}
 	}
-	else if (down_l == '1' && down == '0' && down_r == '0')
+	else if (round(fabs(*new_pad)) > 10 && axis)
 	{
-		if (info->pad_x > -6)
+		if (info->map[next][info->user_x] != '1')
 		{
-			if (info->pad_y < 10)
-				info->pad_y++;
+			info->map[info->user_y][info->user_x] = '0';
+			info->user_y = next;
+			info->map[info->user_y][info->user_x] = 'P';
+			if (*new_pad > 0.0)
+				info->pad_y = *new_pad - 20.0;
 			else
-			{
-				info->pad_y = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
+				info->pad_y = *new_pad + 20.0;
+			return (1);
 		}
 	}
-	else if (down_l == '1' && down == '0' && down_r == '1')
-	{
-		if (info->pad_x > -6 && info->pad_x < 6)
-		{
-			if (info->pad_y < 10)
-				info->pad_y++;
-			else
-			{
-				info->pad_y = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_y++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
+	return (0);
+}
+
+void	ft_move(t_info *info, double new_padx, double new_pady)
+{
+	int		next_x;
+	int		next_y;
+	int		dirx;
+	int		diry;
+
+	dirx = (round(new_padx) > 0) - (round(new_padx) < 0);
+	diry = (round(new_pady) > 0) - (round(new_pady) < 0);
+	next_x = info->user_x + dirx;
+	next_y = info->user_y + diry;
+	if (next_x < 0 || next_x >= info->w || next_y < 0 || next_y > info->h)
+		return ;
+	/*printf("Debug\tpadx: %.2f\tpady: %.2f\n", info->pad_x, info->pad_y);
+	printf("\tnew_padx: %.2f\tnew_pady: %.2f\n", new_padx, new_pady);
+	printf("\tdirx: %d\tdiry: %d\n", dirx, diry);
+	if (dirx == 0.0)
+		printf("\tdirection X : %s\n", "Axe X");
+	else
+		printf("\tdirection X : %s\n", dirx > 0 ? "droite" : "gauche");
+	if (diry == 0.0)
+		printf("\tdirection Y : %s\n", "Axe Y");
+	else
+		printf("\tdirection Y : %s\n", diry > 0 ? "bas" : "haut");
+	printf("\tnow (X.Y) (%d.%d)\n", info->user_x, info->user_y);
+	printf("\tnew (X.Y) (%d.%d)\n", next_x, next_y);
+	printf("\n******************************\n");*/
+	ft_adjust_pads(info, &new_padx, &new_pady, dirx, diry);
+	if (ft_diag_move(info, &new_padx, &new_pady, next_x, next_y))
+		return ;
+	if (ft_axis_move(info, &new_padx, next_x, 0))
+		return ;
+	if (ft_axis_move(info, &new_pady, next_y, 1))
+		return ;
+	info->pad_x = new_padx;
+	info->pad_y = new_pady;
 	return ;
 }
 
-void	ft_left(t_info *info)
+
+int	ft_mouse_move(int x, int y, t_info *info)
 {
-	char	left_u;
-	char	left;
-	char	left_d;
+	//double	new_padx;
+	//double	new_pady;
 
-	left_u = info->map[info->user_y - 1][info->user_x - 1];
-	left = info->map[info->user_y][info->user_x - 1];
-	left_d = info->map[info->user_y + 1][info->user_x - 1];
-	if (info->pad_x > -5)
-		info->pad_x--;
-	else if (left_u == '0' && left == '0' && left_d == '0')
+	if (x < info->mouse_x)
+		info->user_deg -= ROTATE;
+	else if (x > info->mouse_x)
+		info->user_deg += ROTATE;
+	(void)y;
+	/*if (y < info->mouse_y)
 	{
-		if (info->pad_x > -10)
-			info->pad_x--;
-		else
-		{
-			info->pad_x = 9;
-			info->map[info->user_y][info->user_x] = '0';
-			info->user_x--;
-			info->map[info->user_y][info->user_x] = 'P';
-		}
+		//new_padx = info->pad_x + (STEP * cos(info->user_deg));
+		new_pady = info->pad_y + (STEP * sin(info->user_deg));
+		ft_move(info, info->pad_x, new_pady);
 	}
-	else if (left_u == '0' && left == '0' && left_d == '1')
+	else if (y > info->mouse_y)
 	{
-		if (info->pad_y > -6)
-		{
-			if (info->pad_x > -10)
-				info->pad_x--;
-			else
-			{
-				info->pad_x = 9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (left_u == '1' && left == '0' && left_d == '0')
-	{
-		if (info->pad_y < 6)
-		{
-			if (info->pad_x > -10)
-				info->pad_x--;
-			else
-			{
-				info->pad_x = 9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (left_u == '1' && left == '0' && left_d == '1')
-	{
-		if (info->pad_y > -6 && info->pad_y < 6)
-		{
-			if (info->pad_x > -10)
-				info->pad_x--;
-			else
-			{
-				info->pad_x = 9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x--;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	return ;
-}
-
-void	ft_right(t_info *info)
-{
-	char	right_u;
-	char	right;
-	char	right_d;
-
-	right_u = info->map[info->user_y - 1][info->user_x + 1];
-	right = info->map[info->user_y][info->user_x + 1];
-	right_d = info->map[info->user_y + 1][info->user_x + 1];
-	if (info->pad_x < 5)
-		info->pad_x++;
-	else if (right_u == '0' && right == '0' && right_d == '0')
-	{
-		if (info->pad_x < 10)
-			info->pad_x++;
-		else
-		{
-			info->pad_x = -9;
-			info->map[info->user_y][info->user_x] = '0';
-			info->user_x++;
-			info->map[info->user_y][info->user_x] = 'P';
-		}
-	}
-	else if (right_u == '0' && right == '0' && right_d == '1')
-	{
-		if (info->pad_y > -6)
-		{
-			if (info->pad_x < 10)
-				info->pad_x++;
-			else
-			{
-				info->pad_x = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (right_u == '1' && right == '0' && right_d == '0')
-	{
-		if (info->pad_y < 6)
-		{
-			if (info->pad_x < 10)
-				info->pad_x++;
-			else
-			{
-				info->pad_x = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	else if (right_u == '1' && right == '0' && right_d == '1')
-	{
-		if (info->pad_y > -6 && info->pad_y < 6)
-		{
-			if (info->pad_x < 10)
-				info->pad_x++;
-			else
-			{
-				info->pad_x = -9;
-				info->map[info->user_y][info->user_x] = '0';
-				info->user_x++;
-				info->map[info->user_y][info->user_x] = 'P';
-			}
-		}
-	}
-	return ;
+		//new_padx = info->pad_x - (STEP * cos(info->user_deg));
+		new_pady = info->pad_y - (STEP * sin(info->user_deg));
+		ft_move(info, info->pad_x, new_pady);
+	}*/
+	info->mouse_x = x;
+	info->mouse_y = y;
+	ft_minimap(info);
+	return (0);
 }

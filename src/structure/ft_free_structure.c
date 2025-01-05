@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 09:09:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2024/12/23 08:00:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,12 @@ void	ft_free_info(t_info *info)
 		ft_free(info->line);
 		get_next_line(-1);
 	}
+	if (info->colors)
+		ft_free(info->colors);
+	if (info->widths)
+		ft_free(info->widths);
+	if (info->heights)
+		ft_free(info->heights);
 	if (info->map_path)
 		ft_free(info->map_path);
 	if (info->map)

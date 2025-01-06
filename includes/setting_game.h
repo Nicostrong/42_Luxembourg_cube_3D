@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 11:32:31 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/06 13:48:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		ft_press_key_mac(int keysym, t_info *info);
 
 //void	ft_render(t_info *info);
 void	ft_minimap(t_info *info);
+void	ft_raycast(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
 void	ft_move(t_info *info, double new_padx, double new_pady);
 

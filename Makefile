@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/03 11:02:25 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/06 13:46:21 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ SRC_COMMON		=	./src/main.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
+					./src/raycast/ft_raycast.c
 
 SRC				=	$(SRC_COMMON) $(SRC_OS)
 

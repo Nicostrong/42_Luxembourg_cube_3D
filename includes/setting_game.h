@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/03 11:11:12 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/06 11:32:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define D_WALL			5.0						//	distance min near wall
 //# define ROTATE			M_PI / 8				//	rotation value for 16 step
 //# define ROTATE			M_PI / 10				//	rotation value for 20 step
-# define ROTATE			0.1
+# define ROTATE			0.01
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/05 17:56:11 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/06 12:06:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,42 @@
 #include "../../includes/structures.h"
 #include "../../includes/error.h"
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	char	**ft_get_minimap(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_get_minimap create the array for the minimap with the player in center of
+ *  the map.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	the minimap array.
+ * </return>
+ *
+ */
 static char	**ft_get_minimap(t_info *info)
 {
 	char	**map;
 	char	*s;
-	int		height;
-	int		width;
 	int		i;
 
-	height = 5;
+	info->mini_h = 5;
 	if (info->pad_y != 0.0)
-		height = 6;
-	width = 7;
+		info->mini_h = 6;
+	info->mini_w = 7;
 	if (info->pad_x != 0.0)
-		width = 8;
-	map = ft_calloc(height + 1, sizeof(char *));
+		info->mini_w = 8;
+	map = ft_calloc(info->mini_h + 1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
 	i = -1;
-	while (++i < height)
+	while (++i < info->mini_h)
 	{
 		if (info->pad_y >= 0.0 && info->user_y - 2 + i >= 0 && info->user_y - 2 + i < info->h)
 			s = info->map[info->user_y - 2 + i];
@@ -42,13 +59,32 @@ static char	**ft_get_minimap(t_info *info)
 		else
 			s = NULL;
 		if (info->pad_x < 0.0)
-			map[i] = ft_formatsubstr(s, info->user_x - 4, width, '*');
+			map[i] = ft_formatsubstr(s, info->user_x - 4, info->mini_w, '*');
 		else
-			map[i] = ft_formatsubstr(s, info->user_x - 3, width, '*');
+			map[i] = ft_formatsubstr(s, info->user_x - 3, info->mini_w, '*');
 	}
 	return (map);
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_get_color(t_info *info, char *line)
+ * </summary>
+ *
+ * <description>
+ * 	ft_get_color set all color for a line.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="char *" name="line">line of minimap</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 static void	ft_get_color(t_info *info, char *line)
 {
 	int	index;
@@ -66,6 +102,25 @@ static void	ft_get_color(t_info *info, char *line)
 	return ;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_set_img(t_info *info, char **map)
+ * </summary>
+ *
+ * <description>
+ * 	ft_set_img set all pixel of the image.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="char **" name="map">minimap array</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 static void	ft_set_img(t_info *info, char **map)
 {
 	int	m;
@@ -73,11 +128,7 @@ static void	ft_set_img(t_info *info, char **map)
 	int	x;
 	int	y;
 	int	index_pxl;
-	int	nbr_bloc;
 
-	nbr_bloc = 7;
-	if (info->pad_x != 0.0)
-		nbr_bloc = 8;
 	index_pxl = 0;
 	m = -1;
 	while (map[++m])
@@ -87,7 +138,7 @@ static void	ft_set_img(t_info *info, char **map)
 		while (++y < (int)info->heights[m])
 		{
 			w = -1;
-			while (++w < nbr_bloc)
+			while (++w < info->mini_w)
 			{
 				x = -1;
 				while (++x < (int)info->widths[w])
@@ -103,7 +154,22 @@ static void	ft_set_img(t_info *info, char **map)
 }
 
 /*
- *	set la hauteur des blocs a dessiner
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_get_heights(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_get_heights set an int array with all value of height.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
 static void	ft_get_heights(t_info *info)
 {
@@ -128,7 +194,22 @@ static void	ft_get_heights(t_info *info)
 }
 
 /*
- *	set la largueur des block a dessiner
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_get_widths(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_get_widths set an int array with all value of width.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
 static void	ft_get_widths(t_info *info)
 {
@@ -177,6 +258,26 @@ static void	ft_get_widths(t_info *info)
 	}
 }*/
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	int	ft_get_map_case(int coord, int *sizes, int max_value)
+ * </summary>
+ *
+ * <description>
+ * 	ft_get_map_case return the position of pixel on the map.
+ * </description>
+ *
+ * <param type="int" name="coord">coordonnee of the point</param>
+ * <param type="int *" name="sizes">array of sizes</param>
+ * <param type="int" name="max_value">lenght of size array</param>
+ *
+ * <return>
+ * 	the position in the array or -1 if out of array.
+ * </return>
+ *
+ */
 static int	ft_get_map_case(int coord, int *sizes, int max_value)
 {
 	int	i;
@@ -184,7 +285,7 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
 
 	i = -1;
 	cumulative_size = 0;
-	while (++i < max_values)
+	while (++i < max_value)
 	{
 		cumulative_size += sizes[i];
 		if (coord < cumulative_size)
@@ -193,51 +294,72 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
 	return (-1);
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_draw_ray(t_info *info, double x, double y, char **map)
+ * </summary>
+ *
+ * <description>
+ * 	ft_dray_ray draw the ray from the player to the limit of the window or the 
+ *  first wall.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="double" name="x">position of the player in x</param>
+ * <param type="double" name="y">position of the player in y</param>
+ * <param type="char **" name="map">minimap array</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 static void	ft_draw_ray(t_info *info, double x, double y, char **map)
 {
-	int		height;
-	int		width;
 	int		grid_x;
 	int		grid_y;
 	double	dx;
 	double	dy;
 
-	height = 5;
-	if (info->pad_y != 0.0)
-		height = 6;
-	width = 7;
-	if (info->pad_x != 0.0)
-		width = 8;
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
-	printf("dx: %.2f\tdy: %.2f\n", dx, dy);
-	printf("x: %.2f\ty: %.2f\n", x, y);
+	/*printf("***********************\n");
+	printf("center of RAY (%.2f, %.2f)\n", x, y);
+	printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);*/
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
-		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0x000000);
-		grid_x = ft_get_map_case((int)x, info->widths, width);
-		grid_y = ft_get_map_case((int)y, info->heights, height);
-		if (grid_x < 0 || grid_x >= width || grid_y < 0 || grid_y >= height)
-			break ;
-		if (map[grid_y][grid_x] == '1')
-			break ;
-		printf("x : %f\ty: %f\n", x, y);
+		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
+		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
+		if (grid_x < 0 || grid_x >= info->mini_w || grid_y < 0 || grid_y >= info->mini_h)
+			return ;
+		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] ==  ' ')
+			return ;
+		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0xF0F0F0);
 		x += dx;
 		y += dy;
 	}
 }
 
 /*
- *	pour afficher la minimap :
- *	1 - on cree un array de char pour representer la minimap
- *	2 - on parcourt chaque ligne de l array
- *	3 - on verifie la valeur de pad_x
- *	4 - on cree un array avec les len de chaque bloc d une ligne
- *	5 - on cree un array avec chaque couleur d une ligne
- *	6 - on verifie la valeur de pad_y et on defini (height_bloc)
- *	7 - on appel height_bloc la fonction pour imprimer une ligne 
- *	8 - on passe a la ligne suivante
- *	9 - on free tous les array cree
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_minimap(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_minimap draw the minimap om the window minimap. The player is in the 
+ *  center of the window. The function draw the ray of the vision.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
  */
 void	ft_minimap(t_info *info)
 {
@@ -256,6 +378,6 @@ void	ft_minimap(t_info *info)
 			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
 		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
-	ft_draw_ray(info, (MINI_W / 2) - (info->pad_x * MINI_S_BLOC), (MINI_H / 2) - (info->pad_y * MINI_S_BLOC), map);
+	ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
 	ft_free_array(map);
 }

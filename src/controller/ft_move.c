@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/03 15:35:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/06 11:54:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
+ * </summary>
+ *
+ * <description>
+ * 	ft_adjust_pads limite the value of pad near a wall.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="double" name="new_padx">new padx of the player</param>
+ * <param type="double" name="new_pady">new pady of the player</param>
+ * <param type="int" name="dir_x">direction in x</param>
+ * <param type="int" name="dir_y">direction in y</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 static void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
 {
 	if (round(fabs(*new_padx)) > D_WALL && \
@@ -35,6 +57,28 @@ static void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, in
 	return ;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int next_x, int next_y)
+ * </summary>
+ *
+ * <description>
+ * 	ft_diag_move make a diagonal move of the player on the map.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="double" name="new_padx">new padx of the player</param>
+ * <param type="double" name="new_pady">new pady of the player</param>
+ * <param type="int" name="next_x">next case index on the map in x</param>
+ * <param type="int" name="next_y">next case index on the map in y</param>
+ *
+ * <return>
+ * 	1 if diagonal movement or 0.
+ * </return>
+ *
+ */
 static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int next_x, int next_y)
 {
 	if (round(fabs(*new_padx)) > 10 && round(fabs(*new_pady)) >= 10)
@@ -57,6 +101,29 @@ static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int ne
 	return (0);
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
+ * </summary>
+ *
+ * <description>
+ * 	ft_axis_move change the position of the player on x or y. Make some check 
+ * 	before to change the position of the player or limit the value of move if 
+ * 	near a wall.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="double" name="new_pad">new pad of the player</param>
+ * <param type="int" name="next">next case index on the map</param>
+ * <param type="int" name="axis">boolean value for axis x or y</param>
+ *
+ * <return>
+ * 	1 if axis movement or 0.
+ * </return>
+ *
+ */
 static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
 {
 	if (round(fabs(*new_pad)) > 10 && !axis)
@@ -90,6 +157,26 @@ static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
 	return (0);
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_move(t_info *info, double new_padx, double new_pady)
+ * </summary>
+ *
+ * <description>
+ * 	ft_move move the player on the map.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="double" name="new_padx">new pad x of the player</param>
+ * <param type="double" name="new_pady">new pad y of the player</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 void	ft_move(t_info *info, double new_padx, double new_pady)
 {
 	int		next_x;
@@ -129,7 +216,26 @@ void	ft_move(t_info *info, double new_padx, double new_pady)
 	return ;
 }
 
-
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	int	ft_mouse_move(int x, int y, t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_mouse_move change the direction of the player.
+ * </description>
+ *
+ * <param type="int" name="x">position of the mouse</param>
+ * <param type="int" name="y">position of the mouse</param>
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	0.
+ * </return>
+ *
+ */
 int	ft_mouse_move(int x, int y, t_info *info)
 {
 	//double	new_padx;

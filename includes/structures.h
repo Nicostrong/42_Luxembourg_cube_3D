@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/02 16:28:38 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/06 11:26:28 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ typedef struct s_info
 	int			p_nbr;			//	number of player
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color
+	int			mini_h;			//	height of the minimap array
+	int			mini_w;			//	width of the minimap array
 	int			*colors;		//	all color for a line of minimap
 	int			*widths;		//	all widths of minimap
 	int			*heights;		//	all heights of minimap

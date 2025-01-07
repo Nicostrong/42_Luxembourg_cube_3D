@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 13:48:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 17:23:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,19 @@
 # define MINI_S_PL		10						//	size image player
 # define MINI_S_BLOC	40						//	size bloc
 # define STEP			2.0						//	size of step
-# define D_WALL			5.0						//	distance min near wall
+# define D_WALL			0.2						//	distance min near wall
+//# define D_WALL			5.0						//	distance min near wall
 //# define ROTATE			M_PI / 8				//	rotation value for 16 step
 //# define ROTATE			M_PI / 10				//	rotation value for 20 step
-# define ROTATE			0.01
+# define ROTATE			0.05
 
+/*
+ *	Setting raycasting
+ */
+
+# define FOV		M_PI / 3					//	Field of view 60°
+# define D_SCREAN	(WIDTH / 2) / tan(FOV / 2)	//	distance to screan
+# define STEP_RAY	0.1							//	step ray
 
 /*
  *	Mouse setting
@@ -76,8 +84,8 @@ int		ft_press_key_mac(int keysym, t_info *info);
 
 //void	ft_render(t_info *info);
 void	ft_minimap(t_info *info);
-void	ft_raycast(t_info *info);
+void	ft_raycasting(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
-void	ft_move(t_info *info, double new_padx, double new_pady);
+void	ft_move(t_info *info, double new_x, double new_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 11:54:19 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 18:01:25 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
+ * 	void	ft_limit_pos(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
  * </summary>
  *
  * <description>
@@ -36,25 +36,28 @@
  * </return>
  *
  */
-static void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, int dirx, int diry)
+static void	ft_limit_pos(t_info * info, double *new_x, double *new_y, int *next_x, int *next_y)
 {
-	if (round(fabs(*new_padx)) > D_WALL && \
-		info->map[info->user_y][info->user_x + dirx] == '1')
+	int		dirx;
+	int		diry;
+
+	//dirx = (fabs(new_x > info->user_x) > 1e-3) * ((new_x > info->user_x) - (new_x < info->user_x));
+	//diry = (fabs(new_y > info->user_y) > 1e-3) * ((new_y > info->user_y) - (new_y < info->user_y));
+	dirx = (*new_x > info->user_x) - (*new_x < info->user_x);
+	diry = (*new_y > info->user_y) - (*new_y < info->user_y);
+	*next_x = info->x + dirx;
+	*next_y = info->y + diry;
+	if (info->map[*next_y][*next_x] == '1')
 	{
-		if (round(*new_padx) < -D_WALL)
-			*new_padx = -D_WALL;
-		else if (round(*new_padx) > D_WALL)
-			*new_padx = D_WALL;
+		if (dirx < 0 && *new_x < floor(new_x) + D_WALL)
+			*new_x = floor(new_x) + D_WALL;
+		else if (dirx > 0 && *new_x > ceil(new_x) - D_WALL)
+			*new_x = ceil(new_x) - D_WALL;
+		if (diry < 0 && *new_y < floor(new_y) + D_WALL)
+			*new_y = floor(new_y) + D_WALL;
+		else if (diry > 0 && *new_y > ceil(new_y) - D_WALL)
+			*new_y = ceil(new_y) - D_WALL;
 	}
-	if (round(fabs(*new_pady)) > D_WALL && \
-		info->map[info->user_y + diry][info->user_x] == '1')
-	{
-		if (round(*new_pady) < -D_WALL)
-			*new_pady = -D_WALL;
-		else if (round(*new_pady) > D_WALL)
-			*new_pady = D_WALL;
-	}
-	return ;
 }
 
 /*
@@ -79,7 +82,7 @@ static void	ft_adjust_pads(t_info * info, double *new_padx, double *new_pady, in
  * </return>
  *
  */
-static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int next_x, int next_y)
+/*static int	ft_diag_move(t_info *info, double *new_x, double *new_y, int next_x, int next_y)
 {
 	if (round(fabs(*new_padx)) > 10 && round(fabs(*new_pady)) >= 10)
 	{
@@ -99,7 +102,7 @@ static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int ne
 		}
 	}
 	return (0);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -124,7 +127,7 @@ static int	ft_diag_move(t_info *info, double *new_padx, double *new_pady, int ne
  * </return>
  *
  */
-static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
+/*static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
 {
 	if (round(fabs(*new_pad)) > 10 && !axis)
 	{
@@ -155,7 +158,7 @@ static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
 		}
 	}
 	return (0);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -177,19 +180,13 @@ static int	ft_axis_move(t_info *info, double *new_pad, int next, int axis)
  * </return>
  *
  */
-void	ft_move(t_info *info, double new_padx, double new_pady)
+void	ft_move(t_info *info, double new_x, double new_y)
 {
 	int		next_x;
 	int		next_y;
-	int		dirx;
-	int		diry;
 
-	dirx = (round(new_padx) > 0) - (round(new_padx) < 0);
-	diry = (round(new_pady) > 0) - (round(new_pady) < 0);
-	next_x = info->user_x + dirx;
-	next_y = info->user_y + diry;
-	if (next_x < 0 || next_x >= info->w || next_y < 0 || next_y > info->h)
-		return ;
+	next_x = 0;
+	next_y = 0;
 	/*printf("Debug\tpadx: %.2f\tpady: %.2f\n", info->pad_x, info->pad_y);
 	printf("\tnew_padx: %.2f\tnew_pady: %.2f\n", new_padx, new_pady);
 	printf("\tdirx: %d\tdiry: %d\n", dirx, diry);
@@ -204,15 +201,21 @@ void	ft_move(t_info *info, double new_padx, double new_pady)
 	printf("\tnow (X.Y) (%d.%d)\n", info->user_x, info->user_y);
 	printf("\tnew (X.Y) (%d.%d)\n", next_x, next_y);
 	printf("\n******************************\n");*/
-	ft_adjust_pads(info, &new_padx, &new_pady, dirx, diry);
-	if (ft_diag_move(info, &new_padx, &new_pady, next_x, next_y))
+	ft_limit_pos(info, &new_x, &new_y, &next_x, &next_y);
+	/*if (next_x < 0 || next_x >= info->w || next_y < 0 || next_y > info->h)
+		return ;
+	if (ft_diag_move(info, &new_x, &new_y, next_x, next_y))
 		return ;
 	if (ft_axis_move(info, &new_padx, next_x, 0))
 		return ;
 	if (ft_axis_move(info, &new_pady, next_y, 1))
 		return ;
 	info->pad_x = new_padx;
-	info->pad_y = new_pady;
+	info->pad_y = new_pady;*/
+	info->user_x = new_x;
+	info->user_y = new_y;
+	info->x = floor(new_x);
+	info->y = floor(new_y);
 	return ;
 }
 

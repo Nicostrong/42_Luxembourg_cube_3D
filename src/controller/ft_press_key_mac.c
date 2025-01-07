@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/27 14:50:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 16:44:27 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,34 @@
  */
 int	ft_press_key_mac(int keysym, t_info *info)
 {
-	double	new_padx;
-	double	new_pady;
+	double	new_x;
+	double	new_y;
 
 	if (keysym == ESCAP)
 		ft_exit(info);
 	else if (keysym == KZ || keysym == UP)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg));
-		ft_move(info, new_padx, new_pady);
+		new_x = info->user_x + (STEP * cos(info->user_deg));
+		new_y = info->user_y + (STEP * sin(info->user_deg));
+		ft_move(info, new_x, new_y);
 	}
 	else if (keysym == KS || keysym == DOWN)
 	{
-		new_padx = info->pad_x - (STEP * cos(info->user_deg));
-		new_pady = info->pad_y - (STEP * sin(info->user_deg));
-		ft_move(info, new_padx, new_pady);
+		new_x = info->user_x - (STEP * cos(info->user_deg));
+		new_y = info->user_y - (STEP * sin(info->user_deg));
+		ft_move(info, new_x, new_y);
 	}
 	else if (keysym == KQ || keysym == LEFT)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg - M_PI_2));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg - M_PI_2));
-		ft_move(info, new_padx, new_pady);
+		new_x = info->user_x + (STEP * cos(info->user_deg - M_PI_2));
+		new_y = info->user_y + (STEP * sin(info->user_deg - M_PI_2));
+		ft_move(info, new_x, new_y);
 	}
 	else if (keysym == KD || keysym == RIGHT)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg + M_PI_2));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg + M_PI_2));
-		ft_move(info, new_padx, new_pady);
+		new_x = info->user_x + (STEP * cos(info->user_deg + M_PI_2));
+		new_y = info->user_y + (STEP * sin(info->user_deg + M_PI_2));
+		ft_move(info, new_x, new_y);
 	}
 	else if (keysym == KA)
 		info->user_deg += ROTATE;
@@ -74,5 +74,6 @@ int	ft_press_key_mac(int keysym, t_info *info)
 	//ft_print_map(info);
 	if ((keysym >= 0 && keysym <= 14) || (keysym >= 123 && keysym <= 126))
 		ft_minimap(info);
+	ft_raycasting(info);
 	return (0);
 }

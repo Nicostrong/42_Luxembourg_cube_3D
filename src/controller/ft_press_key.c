@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 10:59:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 16:42:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ int	ft_press_key(int keysym, t_info *info)
 		ft_exit(info);
 	else if (keysym == XK_Up || keysym == XK_w)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg));
+		new_padx = info->user_x + (STEP * cos(info->user_deg));
+		new_pady = info->user_y + (STEP * sin(info->user_deg));
 		ft_move(info, new_padx, new_pady);
 	}
 	else if (keysym == XK_Down || keysym == XK_s)
 	{
-		new_padx = info->pad_x - (STEP * cos(info->user_deg));
-		new_pady = info->pad_y - (STEP * sin(info->user_deg));
+		new_padx = info->user_x - (STEP * cos(info->user_deg));
+		new_pady = info->user_y - (STEP * sin(info->user_deg));
 		ft_move(info, new_padx, new_pady);
 	}
 	else if (keysym == XK_Left || keysym == XK_a)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg - M_PI_2));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg - M_PI_2));
+		new_padx = info->user_x + (STEP * cos(info->user_deg - M_PI_2));
+		new_pady = info->user_y + (STEP * sin(info->user_deg - M_PI_2));
 		ft_move(info, new_padx, new_pady);
 	}
 	else if (keysym == XK_Right || keysym == XK_d)
 	{
-		new_padx = info->pad_x + (STEP * cos(info->user_deg + M_PI_2));
-		new_pady = info->pad_y + (STEP * sin(info->user_deg + M_PI_2));
+		new_padx = info->user_x + (STEP * cos(info->user_deg + M_PI_2));
+		new_pady = info->user_y + (STEP * sin(info->user_deg + M_PI_2));
 		ft_move(info, new_padx, new_pady);
 	}
 	else if (keysym == XK_q)
@@ -56,5 +56,6 @@ int	ft_press_key(int keysym, t_info *info)
 	ft_print_user_data(info);
 	//ft_print_map(info);
 	ft_minimap(info);
+	ft_raycasting(info);
 	return (0);
 }

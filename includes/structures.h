@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 11:26:28 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 17:23:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,8 @@ typedef struct s_info
 	int			fd;				//	fd file .cub
 	int			h;				//	height of map
 	int			w;				//	width of map
-	int			user_y;			//	position y of player on map
-	int			user_x;			//	position x of player on map
+	int			x;				//	position x of player
+	int			y;				//	position y of player
 	int			mouse_x;		//	position mouse in x
 	int			mouse_y;		//	position mouse in y
 	int			p_nbr;			//	number of player
@@ -185,8 +185,8 @@ typedef struct s_info
 	int			*widths;		//	all widths of minimap
 	int			*heights;		//	all heights of minimap
 	double		user_deg;		//	orientation of player in radian
-	double		pad_x;			//	padding in x from -10. to 10., 0 is center
-	double		pad_y;			//	padding in y from -10. to 10., 0 is center
+	double		user_y;			//	position y of player on map
+	double		user_x;			//	position x of player on map
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array

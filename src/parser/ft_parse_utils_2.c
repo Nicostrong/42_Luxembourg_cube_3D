@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/24 07:47:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 17:23:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,10 @@ static void	ft_get_pos_player(char **map, t_info *info)
 		{
 			if (ft_strchr("NSEW",map[i][j]))
 			{
-				info->user_x = j;
-				info->user_y = i;
+				info->user_x = j + 0.5;
+				info->x = j;
+				info->user_y = i + 0.5;
+				info->y = i;
 				info->p_nbr++;
 				ft_set_direction(map[i][j], info);
 				map[i][j] = 'P';

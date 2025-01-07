@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/27 10:42:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 16:39:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	ft_print_info(t_info *info)
 	printf("fd of the map: %d\n", info->fd);
 	printf("height of the map: %d\n", info->h);
 	printf("width of the map: %d\n", info->w);
-	printf("position user_y: %d\n", info->user_y);
-	printf("position user_x: %d\n", info->user_x);
+	printf("position user_y: %.2f\n", info->user_y);
+	printf("position user_x: %.2f\n", info->user_x);
 	printf("rotation user_deg: %.2f\n", info->user_deg);
-	printf("position on cell pad_x: %.2f\n", info->pad_x);
-	printf("position on cell pad_y: %.2f\n", info->pad_y);
 	/*if (info->c_fund >= 0)
 		printf("c_fund: %d\n", info->c_fund);
 	if (info->move_nbr >= 0)
@@ -137,15 +135,9 @@ void	ft_print_user_data(t_info *info)
 	printf("fd of the map: %d\n", info->fd);
 	printf("height of the map: %d\n", info->h);
 	printf("width of the map: %d\n", info->w);
-	printf("position user_y: %d\n", info->user_y);
-	printf("position user_x: %d\n", info->user_x);
+	printf("position user_x: %.2f\n", info->user_x);
+	printf("position user_y: %.2f\n", info->user_y);
 	printf("rotation user_deg: %.2f\n", info->user_deg);
-	printf("position on cell pad_x: %.2f\n", info->pad_x);
-	printf("position on cell pad_y: %.2f\n", info->pad_y);
-	if (info->pad_x == 10.0 || info->pad_x == -10.0)
-		ft_print_map(info);
-	else if (info->pad_y == 10.0 || info->pad_y == -10.0)
-		ft_print_map(info);
 }
 
 void	ft_print_minimap(t_info *info, char **map)

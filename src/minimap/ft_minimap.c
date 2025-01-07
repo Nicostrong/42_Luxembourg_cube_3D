@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/06 12:06:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/07 18:01:25 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,12 +316,13 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
  * </return>
  *
  */
-static void	ft_draw_ray(t_info *info, double x, double y, char **map)
+static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 {
 	int		grid_x;
 	int		grid_y;
 	double	dx;
 	double	dy;
+	double	distance;
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
@@ -332,14 +333,16 @@ static void	ft_draw_ray(t_info *info, double x, double y, char **map)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
 		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
+		distance = sqrt(pow(x - (MINI_W / 2), 2) + pow(y - (MINI_H / 2), 2));
 		if (grid_x < 0 || grid_x >= info->mini_w || grid_y < 0 || grid_y >= info->mini_h)
-			return ;
+			return (distance);
 		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] ==  ' ')
-			return ;
-		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0xF0F0F0);
+			return (distance);
+		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0x000000);
 		x += dx;
 		y += dy;
 	}
+	return (distance);
 }
 
 /*
@@ -378,6 +381,6 @@ void	ft_minimap(t_info *info)
 			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
 		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
-	ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
+	printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
 	ft_free_array(map);
 }

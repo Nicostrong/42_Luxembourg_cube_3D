@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 17:23:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 11:35:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define MINI_I_PL		"./gfx/m_player.xpm"	//	image player
 # define MINI_S_PL		10						//	size image player
 # define MINI_S_BLOC	40						//	size bloc
-# define STEP			2.0						//	size of step
+# define STEP			0.05					//	size of step
 # define D_WALL			0.2						//	distance min near wall
 //# define D_WALL			5.0						//	distance min near wall
 //# define ROTATE			M_PI / 8				//	rotation value for 16 step
@@ -86,6 +86,6 @@ int		ft_press_key_mac(int keysym, t_info *info);
 void	ft_minimap(t_info *info);
 void	ft_raycasting(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
-void	ft_move(t_info *info, double new_x, double new_y);
+void	ft_move(t_info *info, double angle_offset, int dir);
 
 #endif

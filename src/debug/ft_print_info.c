@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 16:39:54 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 14:51:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ void	ft_print_user_data(t_info *info)
 	printf("fd of the map: %d\n", info->fd);
 	printf("height of the map: %d\n", info->h);
 	printf("width of the map: %d\n", info->w);
+	printf("case user X: %d\n", info->x);
+	printf("case user Y: %d\n", info->y);
 	printf("position user_x: %.2f\n", info->user_x);
 	printf("position user_y: %.2f\n", info->user_y);
 	printf("rotation user_deg: %.2f\n", info->user_deg);
@@ -148,13 +150,13 @@ void	ft_print_minimap(t_info *info, char **map)
 		printf("minimap\n");
 		ft_putstrarray(map);
 	}
+	printf("position user_x: %.2f\n", info->user_x);
+	printf("position user_y: %.2f\n", info->user_y);
 	printf("Dim minimap:\n");
-	for (int y = 0; y < 7; y++)
-	{
-		printf("\theights: %d\n", info->heights[y]);
-		for (int x = 0; x < 8; x++)
-			printf("\t\twidths : %d\n", info->widths[x]);
-	}
+	for (int y = 0; y < 6; y++)
+		printf("\theights [%d]: %d\n", y, info->heights[y]);
+	for (int x = 0; x < 8; x++)
+		printf("\t\twidths [%d]: %d\n", x, info->widths[x]);
 	printf("color line:\n");
 	for (int c = 0; c < 8; c++)
 		printf("\tcolors: %d\n", info->colors[c]);

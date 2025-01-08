@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/03 10:46:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 11:38:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@
 
 # endif
 
+# if defined(DEBUG)
+	# define DEBUG 1
+# else
+	# define DEBUG 0
+# endif
 /*
 *	Personal Library
 */

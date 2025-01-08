@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 18:01:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 15:50:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
  * </return>
  *
  */
+/*
+ *	VERIFIER LA LOGIQUE POUR COLISION MUR
+ *	PROBLEME LORSQUE LE RAYON CHANGE
+ */
 static void	ft_limit_pos(t_info * info, double *new_x, double *new_y, int *next_x, int *next_y)
 {
 	int		dirx;
@@ -49,14 +53,14 @@ static void	ft_limit_pos(t_info * info, double *new_x, double *new_y, int *next_
 	*next_y = info->y + diry;
 	if (info->map[*next_y][*next_x] == '1')
 	{
-		if (dirx < 0 && *new_x < floor(new_x) + D_WALL)
-			*new_x = floor(new_x) + D_WALL;
-		else if (dirx > 0 && *new_x > ceil(new_x) - D_WALL)
-			*new_x = ceil(new_x) - D_WALL;
-		if (diry < 0 && *new_y < floor(new_y) + D_WALL)
-			*new_y = floor(new_y) + D_WALL;
-		else if (diry > 0 && *new_y > ceil(new_y) - D_WALL)
-			*new_y = ceil(new_y) - D_WALL;
+		if (dirx < 0 && *new_x < floor(*new_x) + D_WALL)
+			*new_x = floor(*new_x) + D_WALL;
+		else if (dirx > 0 && *new_x > ceil(*new_x) - D_WALL)
+			*new_x = ceil(*new_x) - D_WALL;
+		if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
+			*new_y = floor(*new_y) + D_WALL;
+		else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
+			*new_y = ceil(*new_y) - D_WALL;
 	}
 }
 
@@ -180,38 +184,23 @@ static void	ft_limit_pos(t_info * info, double *new_x, double *new_y, int *next_
  * </return>
  *
  */
-void	ft_move(t_info *info, double new_x, double new_y)
+void	ft_move(t_info *info, double angle_offset, int dir)
 {
 	int		next_x;
 	int		next_y;
+	double	new_x;
+	double	new_y;
 
+	new_x = info->user_x + (dir * STEP * cos(info->user_deg + angle_offset));
+	new_y = info->user_y + (dir * STEP * sin(info->user_deg + angle_offset));
 	next_x = 0;
 	next_y = 0;
-	/*printf("Debug\tpadx: %.2f\tpady: %.2f\n", info->pad_x, info->pad_y);
-	printf("\tnew_padx: %.2f\tnew_pady: %.2f\n", new_padx, new_pady);
-	printf("\tdirx: %d\tdiry: %d\n", dirx, diry);
-	if (dirx == 0.0)
-		printf("\tdirection X : %s\n", "Axe X");
-	else
-		printf("\tdirection X : %s\n", dirx > 0 ? "droite" : "gauche");
-	if (diry == 0.0)
-		printf("\tdirection Y : %s\n", "Axe Y");
-	else
-		printf("\tdirection Y : %s\n", diry > 0 ? "bas" : "haut");
-	printf("\tnow (X.Y) (%d.%d)\n", info->user_x, info->user_y);
-	printf("\tnew (X.Y) (%d.%d)\n", next_x, next_y);
-	printf("\n******************************\n");*/
+	printf("******************************\n");
+	printf("new_x: %.2f\tnew_y: %.2f\n", new_x, new_y);
+	printf("******************************\n");
 	ft_limit_pos(info, &new_x, &new_y, &next_x, &next_y);
-	/*if (next_x < 0 || next_x >= info->w || next_y < 0 || next_y > info->h)
-		return ;
-	if (ft_diag_move(info, &new_x, &new_y, next_x, next_y))
-		return ;
-	if (ft_axis_move(info, &new_padx, next_x, 0))
-		return ;
-	if (ft_axis_move(info, &new_pady, next_y, 1))
-		return ;
-	info->pad_x = new_padx;
-	info->pad_y = new_pady;*/
+	printf("new_x: %.2f\tnew_y: %.2f\n", new_x, new_y);
+	printf("******************************\n");
 	info->user_x = new_x;
 	info->user_y = new_y;
 	info->x = floor(new_x);

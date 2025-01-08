@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 18:01:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 14:36:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,30 @@ static char	**ft_get_minimap(t_info *info)
 	int		i;
 
 	info->mini_h = 5;
-	if (info->pad_y != 0.0)
+	if (fabs(info->user_y - info->y) != 0.5)
 		info->mini_h = 6;
+	//printf("fabs user_y - y : %.2f\n", fabs(info->user_y - info->y));
 	info->mini_w = 7;
-	if (info->pad_x != 0.0)
+	if (fabs(info->user_x - info->x) != 0.5)
 		info->mini_w = 8;
+	//printf("fabs user_x - x : %.2f\n", fabs(info->user_x - info->x));
+	//printf("mini_w: %d\tmini_h: %d\n", info->mini_w, info->mini_h);
 	map = ft_calloc(info->mini_h + 1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
 	i = -1;
 	while (++i < info->mini_h)
 	{
-		if (info->pad_y >= 0.0 && info->user_y - 2 + i >= 0 && info->user_y - 2 + i < info->h)
-			s = info->map[info->user_y - 2 + i];
-		else if (info->pad_y < 0.0 && info->user_y - 3 + i >= 0 && info->user_y - 3 + i < info->h)
-			s = info->map[info->user_y - 3 + i];
+		if ((info->user_y - info->y) >= 0.5 && info->y - 2 + i >= 0 && info->y - 2 + i < info->h)
+			s = info->map[info->y - 2 + i];
+		else if ((info->user_y - info->y) < 0.5 && info->y - 3 + i >= 0 && info->y - 3 + i < info->h)
+			s = info->map[info->y - 3 + i];
 		else
 			s = NULL;
-		if (info->pad_x < 0.0)
-			map[i] = ft_formatsubstr(s, info->user_x - 4, info->mini_w, '*');
+		if ((info->user_x - info->x) < 0.5)
+			map[i] = ft_formatsubstr(s, info->x - 4, info->mini_w, '*');
 		else
-			map[i] = ft_formatsubstr(s, info->user_x - 3, info->mini_w, '*');
+			map[i] = ft_formatsubstr(s, info->x - 3, info->mini_w, '*');
 	}
 	return (map);
 }
@@ -174,19 +177,25 @@ static void	ft_set_img(t_info *info, char **map)
 static void	ft_get_heights(t_info *info)
 {
 	int	i;
+	double	offset;
 
+	if ((info->user_y - info->y) <= 0.5)
+		offset = 20 + (int)(40 * (info->user_y - info->y));
+	else
+		offset = 60 - (int)(40 * (info->user_y - info->y));
+	printf("\t\toffset Y: %.2f\n", offset);
 	i = -1;
 	while (++i < 6)
 		info->heights[i] = MINI_S_BLOC;
-	if (info->pad_y < 0)
+	if ((info->user_y - info->y) > 0.5)
 	{
-		info->heights[0] = (int)(STEP * fabs(info->pad_y));
-		info->heights[5] = MINI_S_BLOC - (int)(STEP * fabs(info->pad_y));
+		info->heights[0] = (int)offset;
+		info->heights[5] = MINI_S_BLOC - (int)offset;
 	}
-	else if (info->pad_y > 0)
+	else if ((info->user_y - info->y) < 0.5)
 	{
-		info->heights[0] = MINI_S_BLOC - (int)(STEP * info->pad_y);
-		info->heights[5] = (int)(STEP * info->pad_y);
+		info->heights[0] = MINI_S_BLOC - (int)offset;
+		info->heights[5] = (int)offset;
 	}
 	else
 		info->heights[5] = 0;
@@ -213,50 +222,31 @@ static void	ft_get_heights(t_info *info)
  */
 static void	ft_get_widths(t_info *info)
 {
-	int	i;
+	int		i;
+	double	offset;
 
+	if ((info->user_x - info->x) <= 0.5)
+		offset = 20 + (int)(40 * (info->user_x - info->x));
+	else
+		offset = 60 - (int)(40 * (info->user_x - info->x));
+	printf("\t\toffset X: %.2f\n", offset);
 	i = -1;
 	while (++i < 8)
 		info->widths[i] = MINI_S_BLOC;
-	if (info->pad_x < 0)
+	if ((info->user_x - info->x) > 0.5)
 	{
-		info->widths[0] = (int)(STEP * fabs(info->pad_x));
-		info->widths[7] = MINI_S_BLOC - (int)(STEP * fabs(info->pad_x));
+		info->widths[0] = (int)offset;
+		info->widths[7] = MINI_S_BLOC - (int)offset;
 	}
-	else if (info->pad_x > 0)
+	else if ((info->user_x - info->x) < 0.5)
 	{
-		info->widths[0] = MINI_S_BLOC - (int)(STEP * info->pad_x);
-		info->widths[7] = (int)(STEP * info->pad_x);
+		info->widths[0] = MINI_S_BLOC - (int)offset;
+		info->widths[7] = (int)offset;
 	}
-	else 
+	else
 		info->widths[7] = 0;
 	return ;
 }
-
-/*static int	ft_is_wall(char **map, int x, int y)
-{
-	if (x < 0 || x >= 7 || y < 0 || y >= 5)
-		return (1);
-	return (map[y][x] == '1');
-}*/
-
-/*static void	ft_draw_ray(t_info *info, double x, double y, char **map)
-{
-	int		color;
-	double	dx;
-	double	dy;
-
-	(void)map;
-	color = 0x000000;
-	dx = cos(info->user_deg);
-	dy = sin(info->user_deg);
-	while (x > 0 && y > 0 && x < MINI_W && y < MINI_H)
-	{
-		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, color);
-		x += dx;
-		y += dy;
-	}
-}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -326,9 +316,12 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
-	/*printf("***********************\n");
-	printf("center of RAY (%.2f, %.2f)\n", x, y);
-	printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);*/
+	/*if (DEBUG)
+	{
+		printf("***********************\n");
+		printf("center of RAY (%.2f, %.2f)\n", x, y);
+		printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);
+	}*/
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
@@ -370,9 +363,10 @@ void	ft_minimap(t_info *info)
 
 	mlx_clear_window(info->mlx, info->mini->win);
 	map = ft_get_minimap(info);
-	//ft_putstrarray(map);
 	ft_get_widths(info);
 	ft_get_heights(info);
+	if (DEBUG)
+		ft_print_minimap(info, map);
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
@@ -381,6 +375,7 @@ void	ft_minimap(t_info *info)
 			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
 		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
-	printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
+	if (DEBUG)
+		printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
 	ft_free_array(map);
 }

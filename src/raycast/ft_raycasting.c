@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 16:16:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/08 10:16:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static int	ft_cal_wall_height(t_info *info, double distance)
 	int		h_wall;
 
 	h_wall = (int)((info->w_n_img->size / distance) * D_SCREAN);
-	printf("Distance: %.2f\n", distance);
-	printf("Wall height: %d\n", h_wall);
 	return (h_wall);
 }
 
@@ -93,9 +91,9 @@ void	ft_raycasting(t_info *info)
 		ray_angle = info->user_deg - (FOV / 2) + ((double)x / WIDTH) * FOV;
 		distance = ft_cast_ray(info, ray_angle);
 		h_wall = ft_cal_wall_height(info, distance);
-		printf("ray_angle: %.2f\n", ray_angle);
-		printf("Distance: %.2f\n", distance);
-		printf("Wall height: %d\n", h_wall);
+		//printf("ray_angle: %.2f\n", ray_angle);
+		//printf("Distance: %.2f\n", distance);
+		//printf("Wall height: %d\n", h_wall);
 		ft_cal_wall_pxl(h_wall, &start, &end);
 		//ft_draw(info, &start, &end, x);
 		//printf("Column %d: Wall from pixel %d to %d\n", x, start, end);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/08 14:36:08 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/09 19:14:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ static void	ft_get_widths(t_info *info)
  * </return>
  *
  */
-static int	ft_get_map_case(int coord, int *sizes, int max_value)
+/*static int	ft_get_map_case(int coord, int *sizes, int max_value)
 {
 	int	i;
 	int	cumulative_size;
@@ -282,7 +282,7 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
 			return (i);
 	}
 	return (-1);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -306,7 +306,7 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
  * </return>
  *
  */
-static double	ft_draw_ray(t_info *info, double x, double y, char **map)
+/*static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 {
 	int		grid_x;
 	int		grid_y;
@@ -316,12 +316,12 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
-	/*if (DEBUG)
+	if (DEBUG)
 	{
 		printf("***********************\n");
 		printf("center of RAY (%.2f, %.2f)\n", x, y);
 		printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);
-	}*/
+	}
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
@@ -336,7 +336,7 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 		y += dy;
 	}
 	return (distance);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -365,8 +365,8 @@ void	ft_minimap(t_info *info)
 	map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
-	if (DEBUG)
-		ft_print_minimap(info, map);
+	//if (DEBUG)
+	//	ft_print_minimap(info, map);
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
@@ -375,7 +375,8 @@ void	ft_minimap(t_info *info)
 			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
 		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
-	if (DEBUG)
-		printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
+	//if (DEBUG)
+	//	printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
+	ft_print_user_data(info);
 	ft_free_array(map);
 }

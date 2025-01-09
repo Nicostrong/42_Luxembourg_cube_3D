@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/07 07:41:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/09 09:22:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	ft_perror_exit(char *str_error, t_info *info)
  * </return>
  *
  */
-
 int	ft_exit(t_info *info)
 {
 	//mlx_loop_end(info->mlx);	/:	uncomment for linux

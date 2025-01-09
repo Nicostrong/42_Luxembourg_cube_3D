@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/08 11:48:38 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/09 17:43:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,25 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	int	ft_press_key(int keysym, t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_press_key manage the key pressed by the user on Linux.
+ * </description>
+ *
+ * <param type="int" name="keysym">key pressed</param>
+ * <param type="t_info *" name="info">structure with all info</param>
+ *
+ * <return>
+ * 	exit code 0.
+ * </return>
+ *
+ */
 int	ft_press_key(int keysym, t_info *info)
 {
 	if (keysym == XK_Escape)
@@ -30,10 +49,7 @@ int	ft_press_key(int keysym, t_info *info)
 		info->user_deg -= ROTATE;
 	else if (keysym == XK_Right)
 		info->user_deg += ROTATE;
-	if (info->user_deg > 2 * M_PI)
-		info->user_deg -= 2 * M_PI;
-	else if (info->user_deg < 0)
-		info->user_deg += 2 * M_PI;
+	info->user_deg = ft_normalize_rot(info->user_deg);
 	/*if (DEBUG)
 	{
 		ft_print_user_data(info);

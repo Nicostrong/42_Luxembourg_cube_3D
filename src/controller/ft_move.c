@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/09 19:19:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/10 13:54:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,41 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 
-static int	ft_isforbidden_zone(t_info *info, int dirx, int diry)
+/*int	ft_isforbidden_zone(t_info *info, double newx, double newy)
+{
+	int		x;
+	int		y;
+	double	padx;
+	double	pady;
+
+	x = (int)newx;
+	y = (int)newy;
+	padx = newx - x;
+	pady = newy - y;
+	// Vérifier HG
+	if (padx < D_WALL && pady < D_WALL)
+		if (x > 0 && y > 0 && info->map[y][x - 1] == '0' && \
+			info->map[y - 1][x] == '0' && info->map[y - 1][x - 1] == '1')
+			return (1);
+	// Vérifier HD
+	if (padx > 1 - D_WALL && pady < D_WALL)
+		if (x < info->w - 1 && y > 0 &&	info->map[y][x + 1] == '0' && \
+			info->map[y - 1][x] == '0' && info->map[y - 1][x + 1] == '1')
+			return (1);
+	// Vérifier BG
+	if (padx < D_WALL && pady > 1 - D_WALL)
+		if (x > 0 && y < info->h - 1 &&	info->map[y][x - 1] == '0' && \
+			info->map[y + 1][x] == '0' &&	info->map[y + 1][x - 1] == '1')
+			return (1);
+	// Vérifier BD
+	if (x > 1 - D_WALL && y > 1 - D_WALL)
+		if (x < info->w - 1 && y < info->h - 1 && info->map[y][x + 1] == '0' \
+			&& info->map[y + 1][x] == '0' && info->map[y + 1][x + 1] == '1')
+			return (1);
+	return (0); // Pas dans une zone interdite
+}*/
+
+/*static int	ft_isforbidden_zone(t_info *info, int dirx, int diry)
 {
 	int	x;
 	int	y;
@@ -30,9 +64,9 @@ static int	ft_isforbidden_zone(t_info *info, int dirx, int diry)
 	if (dirx < 0 && diry < 0)
 		return info->map[y - 1][x] == '1' && info->map[y][x - 1] == '1';
 	return (0);
-}
+}*/
 
-static void	ft_check_x(t_info *info, int dirx, int diry, double *new_x)
+/*static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 {
 	int	next_x;
 	int	x;
@@ -48,16 +82,96 @@ static void	ft_check_x(t_info *info, int dirx, int diry, double *new_x)
 		else if (dirx > 0 && *new_x > ceil(*new_x) - D_WALL)
 			*new_x = ceil(*new_x) - D_WALL;
 	}
-	if (ft_isforbidden_zone(info, dirx, diry))
+	if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
 		if (*new_x > info->user_x)
 			*new_x = info->x + (1 - D_WALL);
 		else if (*new_x < info->user_x )
 			*new_x = info->x + D_WALL;
 	}
+}*/
+
+static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
+{
+	int		x;
+	int		y;
+
+	x = info->x;
+	y = info->y;
+	printf("next X |%c|\n", info->map[y][x + dirx]);
+	if (info->map[y][x + dirx] == '1')
+	{
+		printf("\t\tMur dans la direction\n");
+		if (dirx < 0 && *new_x < floor(*new_x) + D_WALL)
+		{
+			printf("\t\tMur a gauche\n");
+			*new_x = floor(*new_x) + D_WALL;
+		}
+		else if (dirx > 0 && *new_x > ceil(*new_x) - D_WALL)
+		{
+			printf("\t\tMur a droite\n");
+			*new_x = ceil(*new_x) - D_WALL;
+		}
+	}
+	else if (info->map[y][x + dirx] == '0' && info->map[y + dirx][x + dirx] == '1')
+	{
+		printf("\t\tPas de mur dans la direction mais au dessus ou en dessous\n");
+		if (dirx < 0 && \
+			((*new_y < y + D_WALL && *new_x - x < D_WALL) || \
+			(*new_y > ceil(*new_y) - D_WALL && *new_x - x < D_WALL)))
+		{
+			printf("\t\tMur au dessus\n");
+			*new_x = floor(*new_x) + D_WALL;
+		}
+		else if (dirx > 0 &&\
+			((*new_y < floor(*new_y) + D_WALL && *new_x > ceil(*new_x) - D_WALL) || \
+			(*new_y > ceil(*new_y) - D_WALL && *new_x - x < D_WALL)))
+		{
+			printf("\t\tMur au dessous\n");
+			*new_x = ceil(*new_x) - D_WALL;
+		}
+	}
 }
 
-static void	ft_check_y(t_info *info, int diry, int dirx, double *new_y)
+static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
+{
+	int		x;
+	int		y;
+
+	x = info->x;
+	y = info->y;
+	printf("next Y |%c|\n", info->map[y + diry][x]);
+	if (info->map[y + diry][x] == '1')
+	{
+		printf("\t\tMur dans la direction\n");
+		if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
+		{
+			printf("\t\tMur en haut\n");
+			*new_y = floor(*new_y) + D_WALL;
+		}
+		else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
+		{
+			printf("\t\tMur en bas\n");
+			*new_y = ceil(*new_y) - D_WALL;
+		}
+	}
+	if (info->map[info->y + diry][info->x + diry] == '1')
+	{
+		printf("\t\tPas de mur dans la direction mais a gauche ou a droite\n");
+		if (diry < 0 && *new_x < floor(*new_x) + D_WALL && *new_y - y > D_WALL)
+		{
+			printf("\t\tMur a gauche\n");
+			*new_y = floor(*new_y) + D_WALL;
+		}
+		else if (diry > 0 && *new_x > ceil(*new_x) - D_WALL && *new_y - y < D_WALL)
+		{
+			printf("\t\tMur a droite\n");
+			*new_y = ceil(*new_y) - D_WALL;
+		}
+	}
+}
+
+/*static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 {
 	int	next_y;
 	int	y;
@@ -76,14 +190,14 @@ static void	ft_check_y(t_info *info, int diry, int dirx, double *new_y)
 				*new_y = ceil(*new_y) - D_WALL;
 		}
 	}
-	if (ft_isforbidden_zone(info, dirx, diry))
+	if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
 		if (*new_y > info->user_y)
 			*new_y = info->y + (1 - D_WALL);
 		else if (*new_y < info->user_y)
 			*new_y = info->y + D_WALL;
 	}
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -112,22 +226,23 @@ static void	ft_check_wall(t_info * info, double *new_x, double *new_y)
 
 	dirx = (*new_x > info->user_x) - (*new_x < info->user_x);
 	diry = (*new_y > info->user_y) - (*new_y < info->user_y);
-	if (dirx && !diry)
-		ft_check_x(info, dirx, diry, new_x);
-	if (diry && !dirx)
-		ft_check_y(info, diry, dirx, new_y);
-	if (dirx && diry)
+	printf("\t\tCHECK WALLL\n");
+	printf("\t\t\tdirx: %d\tdiry: %d\n", dirx, diry);
+	if (dirx != 0 && !diry)
 	{
-		if (info->map[info->x + dirx][info->y + diry] == '1')
-		{
-			ft_check_x(info, dirx, diry, new_x);
-			ft_check_y(info, diry, dirx, new_y);
-		}
-		else
-		{
-			ft_check_x(info, dirx, diry, new_x);
-			ft_check_y(info, diry, dirx, new_y);
-		}
+		printf("\t\t\tAXE X\n");
+		ft_check_x(info, dirx, new_x, new_y);
+	}
+	if (diry != 0 && !dirx)
+	{
+		printf("\t\t\tAXE Y\n");
+		ft_check_y(info, diry, new_y, new_x);
+	}
+	if (diry && dirx)
+	{
+		printf("\t\t\tAXE X et Y\n");
+		ft_check_x(info, dirx, new_x, new_y);
+		ft_check_y(info, diry, new_y, new_x);
 	}
 }
 
@@ -161,7 +276,9 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	printf("******************************\n");
 	printf("new_x: %.2f\tnew_y: %.2f\n", new_x, new_y);
 	printf("******************************\n");
-	ft_check_wall(info, &new_x, &new_y);
+	if ((new_x - info->x) < D_WALL || (new_x - info->x) > 1 - D_WALL || \
+		(new_y - info->y) < D_WALL || (new_y - info->y) > 1 - D_WALL)
+		ft_check_wall(info, &new_x, &new_y);
 	printf("new_x: %.2f\tnew_y: %.2f\n", new_x, new_y);
 	printf("******************************\n");
 	info->map[info->y][info->x] = '0';
@@ -195,14 +312,14 @@ void	ft_move(t_info *info, double angle_offset, int dir)
  */
 int	ft_mouse_move(int x, int y, t_info *info)
 {
-	//double	new_padx;
-	//double	new_pady;
-
-	(void)y;
 	if (x < info->mouse_x)
 		info->user_deg -= ROTATE;
 	else if (x > info->mouse_x)
 		info->user_deg += ROTATE;
+	if (y < info->mouse_x)
+		ft_move(info, 0, 1);
+	if (y > info->mouse_y)
+		ft_move(info, 0, -1);
 	info->user_deg = ft_normalize_rot(info->user_deg);
 	info->mouse_x = x;
 	info->mouse_y = y;

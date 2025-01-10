@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/09 09:26:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/10 13:23:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
 		ft_print_user_data(info);*/
 	ft_minimap(info);
 	if (LINUX)
-		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key, info);
+		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key, info);
 	else if (MACOS)
-		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
+		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key_mac, info);
 	mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
 	//mlx_loop_hook(info->mlx, (void *)ft_raycasting, info);
 	mlx_loop(info->mlx);

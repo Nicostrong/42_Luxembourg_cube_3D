@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/08 14:51:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/10 09:40:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void	ft_print_info(t_info *info)
 {
+	printf("***************\n");
 	printf("INFO STRUCTURE\n");
+	printf("***************\n");
 	if (!info)
 	{
 		printf("info is NULL\n");
@@ -131,7 +133,9 @@ void	ft_print_map(t_info *info)
 
 void	ft_print_user_data(t_info *info)
 {
+	printf("***************\n");
 	printf("USER DATA\n");
+	printf("***************\n");
 	printf("fd of the map: %d\n", info->fd);
 	printf("height of the map: %d\n", info->h);
 	printf("width of the map: %d\n", info->w);
@@ -144,7 +148,9 @@ void	ft_print_user_data(t_info *info)
 
 void	ft_print_minimap(t_info *info, char **map)
 {
+	printf("***************\n");
 	printf("MINIMAP DEBUG\n");
+	printf("***************\n");
 	if (map)
 	{
 		printf("minimap\n");

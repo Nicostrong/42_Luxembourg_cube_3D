@@ -1,0 +1,23 @@
+info pour la mlx
+
+EVENT :
+
+Num		Nom (X11)		Description
+2		KeyPress		Une touche du clavier est pressée.
+3		KeyRelease		Une touche du clavier est relâchée.
+4		ButtonPress		Un bouton de souris est pressé.
+5		ButtonRelease	Un bouton de souris est relâché.
+6		MotionNotify	La souris est déplacée.
+12		Expose			La fenêtre est redessinée (par exemple après avoir été masquée ou minimisée).
+17		DestroyNotify	La fenêtre est fermée (par exemple par un clic sur le bouton de fermeture).
+
+MASK :
+
+Val of Mask	Nom du masque		Description
+1L << 0		KeyPressMask		Surveiller les pressions de touches.
+1L << 1		KeyReleaseMask		Surveiller les relâchements de touches.
+1L << 2		ButtonPressMask		Surveiller les pressions de boutons de souris.
+1L << 3		ButtonReleaseMask	Surveiller les relâchements de boutons de souris.
+1L << 6		PointerMotionMask	Surveiller les mouvements de la souris.
+1L << 15	StructureNotifyMask	Surveiller les événements liés à la structure de la fenêtre (fermeture, etc.).
+0			Aucun masque		Utilisé pour des événements qui ne nécessitent pas de masque spécifique.

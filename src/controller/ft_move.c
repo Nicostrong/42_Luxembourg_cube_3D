@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/10 13:54:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/11 20:52:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,38 +98,20 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 
 	x = info->x;
 	y = info->y;
-	printf("next X |%c|\n", info->map[y][x + dirx]);
 	if (info->map[y][x + dirx] == '1')
 	{
-		printf("\t\tMur dans la direction\n");
-		if (dirx < 0 && *new_x < floor(*new_x) + D_WALL)
-		{
-			printf("\t\tMur a gauche\n");
+		if (dirx < 0 && *new_x - x < D_WALL)
 			*new_x = floor(*new_x) + D_WALL;
-		}
-		else if (dirx > 0 && *new_x > ceil(*new_x) - D_WALL)
-		{
-			printf("\t\tMur a droite\n");
+		else if (dirx > 0 && *new_x - x > 1 - D_WALL)
 			*new_x = ceil(*new_x) - D_WALL;
-		}
 	}
-	else if (info->map[y][x + dirx] == '0' && info->map[y + dirx][x + dirx] == '1')
+	else if (info->map[y + dirx][x + dirx] == '1' && \
+			info->map[y + dirx][x] == '0')
 	{
-		printf("\t\tPas de mur dans la direction mais au dessus ou en dessous\n");
-		if (dirx < 0 && \
-			((*new_y < y + D_WALL && *new_x - x < D_WALL) || \
-			(*new_y > ceil(*new_y) - D_WALL && *new_x - x < D_WALL)))
-		{
-			printf("\t\tMur au dessus\n");
-			*new_x = floor(*new_x) + D_WALL;
-		}
-		else if (dirx > 0 &&\
-			((*new_y < floor(*new_y) + D_WALL && *new_x > ceil(*new_x) - D_WALL) || \
-			(*new_y > ceil(*new_y) - D_WALL && *new_x - x < D_WALL)))
-		{
-			printf("\t\tMur au dessous\n");
-			*new_x = ceil(*new_x) - D_WALL;
-		}
+		if (dirx < 0 && *new_x - x < D_WALL && (*new_y - y < D_WALL || *new_y - y > 1 - D_WALL))
+			*new_x = x + D_WALL;
+		else if (dirx > 0 && *new_x - x > 1 - D_WALL && (*new_y - y < D_WALL || *new_y - y > 1 - D_WALL))
+			*new_x = x + 1 - D_WALL;
 	}
 }
 
@@ -140,34 +122,21 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 
 	x = info->x;
 	y = info->y;
-	printf("next Y |%c|\n", info->map[y + diry][x]);
 	if (info->map[y + diry][x] == '1')
 	{
-		printf("\t\tMur dans la direction\n");
 		if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
-		{
-			printf("\t\tMur en haut\n");
 			*new_y = floor(*new_y) + D_WALL;
-		}
 		else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
-		{
-			printf("\t\tMur en bas\n");
 			*new_y = ceil(*new_y) - D_WALL;
-		}
 	}
-	if (info->map[info->y + diry][info->x + diry] == '1')
+	else if (info->map[info->y + diry][x] == '0' && \
+			info->map[y + diry][x + diry] == '1' && \
+			info->map[y][x + diry] == '0')
 	{
-		printf("\t\tPas de mur dans la direction mais a gauche ou a droite\n");
-		if (diry < 0 && *new_x < floor(*new_x) + D_WALL && *new_y - y > D_WALL)
-		{
-			printf("\t\tMur a gauche\n");
-			*new_y = floor(*new_y) + D_WALL;
-		}
-		else if (diry > 0 && *new_x > ceil(*new_x) - D_WALL && *new_y - y < D_WALL)
-		{
-			printf("\t\tMur a droite\n");
-			*new_y = ceil(*new_y) - D_WALL;
-		}
+		if (diry < 0 && *new_y - y < D_WALL && (*new_x - x < D_WALL || *new_x - x > 1 - D_WALL))
+			*new_y = y + D_WALL;
+		else if (diry > 0 && *new_y - y > 1 - D_WALL && (*new_x - x < D_WALL || *new_x - x > 1 - D_WALL))
+			*new_y = y + 1 - D_WALL;
 	}
 }
 
@@ -310,19 +279,37 @@ void	ft_move(t_info *info, double angle_offset, int dir)
  * </return>
  *
  */
+/*int	ft_mouse_move(int x, int y, t_info *info)
+{
+	if (x < (WIDTH / 2) - 50)
+		info->mouse_rot = 1;
+	else if (x > (WIDTH / 2) + 50)
+		info->mouse_rot = -1;
+	else
+		info->mouse_rot = 0;
+	if (y < (HEIGHT / 2) - 50)
+		info->mouse_dir = 1;
+	else if (y > (HEIGHT / 2) + 50)
+		info->mouse_dir = -1;
+	else
+		info->mouse_dir = 0;
+	return (0);
+}*/
+
 int	ft_mouse_move(int x, int y, t_info *info)
 {
-	if (x < info->mouse_x)
+	if (x < (WIDTH / 2) - 100)
 		info->user_deg -= ROTATE;
-	else if (x > info->mouse_x)
+	else if (x > (WIDTH / 2) + 100)
 		info->user_deg += ROTATE;
-	if (y < info->mouse_x)
+	else
+		info->mouse_rot = 0;
+	if (y < (HEIGHT / 2) - 100)
 		ft_move(info, 0, 1);
-	if (y > info->mouse_y)
+	else if (y > (HEIGHT / 2) + 100)
 		ft_move(info, 0, -1);
-	info->user_deg = ft_normalize_rot(info->user_deg);
-	info->mouse_x = x;
-	info->mouse_y = y;
+	else
+		info->mouse_dir = 0;
 	ft_minimap(info);
 	return (0);
 }

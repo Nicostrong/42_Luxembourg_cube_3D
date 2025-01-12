@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/09 17:24:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/11 18:57:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,8 @@ typedef struct s_info
 	int			w;				//	width of map
 	int			x;				//	position x of player
 	int			y;				//	position y of player
-	int			mouse_x;		//	position mouse in x
-	int			mouse_y;		//	position mouse in y
+	int			mouse_dir;		//	direction of move with mouse
+	int			mouse_rot;		//	rotation with mouse mouse
 	int			p_nbr;			//	number of player
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color

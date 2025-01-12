@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/10 13:40:28 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/11 20:54:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,6 +375,7 @@ void	ft_minimap(t_info *info)
 			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
 	else
 		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
+	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
 	if (DEBUG)
 		printf("distance: %.2f\n", ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map));
 	//ft_print_user_data(info);

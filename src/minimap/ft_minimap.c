@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 09:28:57 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 11:33:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
-//#include "../../includes/setting_game.h"
 #include "../../includes/minimap.h"
 #include "../../includes/structures.h"
 
@@ -220,16 +219,12 @@ void	ft_minimap(t_info *info)
 	map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
-	if (DEBUG)
-		ft_print_minimap(info, map);
+	/*if (DEBUG)
+		ft_print_minimap(info, map);*/
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
-	if (info->player)
-		mlx_put_image_to_window(info->mlx, info->mini->win, info->player->img, \
-			(MINI_W / 2) - 5, (MINI_H / 2) - 5);
-	else
-		ft_put_circle(info, MINI_W / 2, MINI_H / 2);
+	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
 	len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
 	if (DEBUG)

@@ -6,25 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/11 18:57:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 10:54:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-
-/**
- * Enum: Texture type
- */
-typedef enum e_texture_type
-{
-	FLOOR,								//	0
-	SKY,								//	1
-	WALL_N,								//	2 => position player
-	WALL_E,								//	3 => position player
-	WALL_S,								//	4 => position player
-	WALL_W								//	5 => position player
-}	t_type_image;
 
 /**
  * Struct: Texture data
@@ -39,7 +26,6 @@ typedef struct s_texture
 	int				endian;				//	Endian
 	void			*img;				//	Image
 	void			*addr;				//	Address of image
-	t_type_image 	type;				//	Type of the texture
 }					t_img;
 
 /**
@@ -174,7 +160,6 @@ typedef struct s_info
 	int			w;				//	width of map
 	int			x;				//	position x of player
 	int			y;				//	position y of player
-	int			mouse_dir;		//	direction of move with mouse
 	int			mouse_rot;		//	rotation with mouse mouse
 	int			p_nbr;			//	number of player
 	int			use_f_img;		//	1 if use floor image, 0 if use color

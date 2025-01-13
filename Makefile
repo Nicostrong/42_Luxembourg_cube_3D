@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/13 10:03:38 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/13 11:18:06 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,8 @@ else
 endif
 
 SRC_COMMON		=	./src/main.c \
+					./src/controller/ft_check_wall.c \
+					./src/controller/ft_mouse_move.c \
 					./src/controller/ft_move.c \
 					./src/debug/ft_print_info.c \
 					./src/draw/ft_put_player.c \
@@ -91,6 +93,7 @@ SRC_COMMON		=	./src/main.c \
 					./src/exit/ft_exit.c \
 					./src/minimap/ft_minimap_utils.c \
 					./src/minimap/ft_minimap.c \
+					./src/minimap/ft_put_player.c \
 					./src/parser/ft_check_arg.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \

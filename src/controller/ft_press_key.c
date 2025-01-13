@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/09 17:43:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 10:00:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -50,11 +51,6 @@ int	ft_press_key(int keysym, t_info *info)
 	else if (keysym == XK_Right)
 		info->user_deg += ROTATE;
 	info->user_deg = ft_normalize_rot(info->user_deg);
-	/*if (DEBUG)
-	{
-		ft_print_user_data(info);
-		ft_print_map(info);
-	}*/
 	ft_minimap(info);
 	//ft_raycasting(info);
 	return (0);

@@ -65,4 +65,5 @@
     "C_Cpp.default.cppStandard": "c++98",
     "C_Cpp.autocompleteAddParentheses": true,
     "C_Cpp.errorSquiggles": "disabled",
+    "makefile.configureOnOpen": false,
 }

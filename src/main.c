@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/11 20:49:33 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 09:55:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_3d.h"
 #include "../includes/structures.h"
 #include "../includes/setting_game.h"
+#include "../includes/minimap.h"
 
 /*static int	ft_update_player(t_info *info)
 {
@@ -61,19 +62,18 @@ int main(int argc, char *argv[])
 	/*if (DEBUG)
 		ft_print_user_data(info);*/
 	if (LINUX)
+	{
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key, info);
+	}
 	else if (MACOS)
+	{
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key_mac, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
+	}
 	mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
 	//mlx_loop_hook(info->mlx, &ft_update_player, info);
 	//mlx_loop_hook(info->mlx, (void *)ft_raycasting, info);
 	mlx_loop(info->mlx);
-	/*
-	mlx_mouse_hook(f.win, &mouse_click, &f);
-	mlx_hook(f.win, 2, 1L << 0, &pr_key, &f);
-	mlx_hook(f.win, 3, 1L << 1, &rl_key, &f);
-	mlx_hook(f.win, 6, 1L << 6, &mouse_move, &f);
-	mlx_loop_hook(f.mlx, update_key, &f);
-	mlx_loop(f.mlx);*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/17 12:44:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 09:36:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,8 @@ static int	ft_extract_info(t_info *info, char **array)
 	{
 		if (ft_strequal(array[0], info->info_map[i].key))
 		{
-			if (info->info_map[i].t_img && !(*(info->info_map[i].t_img))->img_path)
+			if (info->info_map[i].t_img && \
+				!(*(info->info_map[i].t_img))->img_path)
 				(*(info->info_map[i].t_img))->img_path = ft_strdup(array[1]);
 			else if (info->info_map[i].color)
 				ft_extract_color(array[0], array[1], info);

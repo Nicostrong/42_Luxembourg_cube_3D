@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/07 10:03:08 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/13 10:03:38 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,32 +77,6 @@ MYLIBS_BONUS	=
 #	Mandatory part															   #
 ################################################################################
 
-#					./src/controller/key_wasd.c \
-#					./src/controller/key_zqsd.c \
-#					./src/controller/keyboard.c \
-#					./src/controller/mouse.c \
-#					./src/debug/aff_map_ctr.c \
-#					./src/draw/ft_colors.c \
-#					./src/draw/ft_pixel_put.c \
-#					./src/draw/ft_put_circle.c \
-#					./src/file/file.c \
-#					./src/map_generator/map_generator.c \
-#					./src/minimap/fr_print_player.c \
-#					./src/minimap/ft_print_fond.c \
-#					./src/minimap/ft_print_ray.c \
-#					./src/minimap/ft_print_spawn.c \
-#					./src/minimap/ft_print_wall.c \
-#					./src/minimap/map_render.c \
-#					./src/texture/ft_load_textures.c \
-#					./src/utils/ft_close.c \
-#					./src/utils/ft_init.c \
-#					./src/utils/ft_parse_col.c \
-#					./src/utils/ft_time.c \
-#					./src/utils/init.c \
-#					./src/utils/render.c \
-#					./src/validate/ft_validate.c \
-#					./src/validate/ft_validate_map.c \
-
 ifeq ($(UNAME), Linux)
 	SRC_OS		=	./src/controller/ft_press_key.c
 else
@@ -112,19 +86,18 @@ endif
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_move.c \
 					./src/debug/ft_print_info.c \
-					./src/draw/ft_colors.c \
 					./src/draw/ft_put_player.c \
-					./src/exit/ft_exit.c \
 					./src/exit/ft_error.c \
+					./src/exit/ft_exit.c \
+					./src/minimap/ft_minimap_utils.c \
 					./src/minimap/ft_minimap.c \
-					./src/structure/ft_free_structure.c \
-					./src/structure/ft_init_structure.c \
-					./src/validate/ft_check_arg.c \
-					./src/validate/ft_validate_para.c \
+					./src/parser/ft_check_arg.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
-					./src/raycast/ft_raycasting.c
+					./src/raycast/ft_raycasting.c \
+					./src/structure/ft_free_structure.c \
+					./src/structure/ft_init_structure.c
 
 SRC				=	$(SRC_COMMON) $(SRC_OS)
 

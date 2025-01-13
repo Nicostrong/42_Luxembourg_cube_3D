@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/11 20:52:00 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/13 09:55:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
 
 /*int	ft_isforbidden_zone(t_info *info, double newx, double newy)
 {
@@ -66,31 +67,6 @@
 	return (0);
 }*/
 
-/*static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
-{
-	int	next_x;
-	int	x;
-
-	x = info->x;
-	next_x = x + dirx;
-	if (*new_x - x > D_WALL && *new_x - x < 1 - D_WALL)
-		return ;
-	if (dirx && info->map[info->y][next_x] == '1')
-	{
-		if (dirx < 0 && *new_x < floor(*new_x) + D_WALL)
-			*new_x = floor(*new_x) + D_WALL;
-		else if (dirx > 0 && *new_x > ceil(*new_x) - D_WALL)
-			*new_x = ceil(*new_x) - D_WALL;
-	}
-	if (ft_isforbidden_zone(info, *new_x, *new_y))
-	{
-		if (*new_x > info->user_x)
-			*new_x = info->x + (1 - D_WALL);
-		else if (*new_x < info->user_x )
-			*new_x = info->x + D_WALL;
-	}
-}*/
-
 static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 {
 	int		x;
@@ -139,34 +115,6 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 			*new_y = y + 1 - D_WALL;
 	}
 }
-
-/*static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
-{
-	int	next_y;
-	int	y;
-
-	y = info->y;
-	next_y = y + diry;
-	if (*new_y - y > D_WALL && *new_y - y < 1 - D_WALL)
-		return ;
-	if (diry)
-	{
-		if (info->map[next_y][info->x] == '1')
-		{
-			if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
-				*new_y = floor(*new_y) + D_WALL;
-			else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
-				*new_y = ceil(*new_y) - D_WALL;
-		}
-	}
-	if (ft_isforbidden_zone(info, *new_x, *new_y))
-	{
-		if (*new_y > info->user_y)
-			*new_y = info->y + (1 - D_WALL);
-		else if (*new_y < info->user_y)
-			*new_y = info->y + D_WALL;
-	}
-}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -279,23 +227,6 @@ void	ft_move(t_info *info, double angle_offset, int dir)
  * </return>
  *
  */
-/*int	ft_mouse_move(int x, int y, t_info *info)
-{
-	if (x < (WIDTH / 2) - 50)
-		info->mouse_rot = 1;
-	else if (x > (WIDTH / 2) + 50)
-		info->mouse_rot = -1;
-	else
-		info->mouse_rot = 0;
-	if (y < (HEIGHT / 2) - 50)
-		info->mouse_dir = 1;
-	else if (y > (HEIGHT / 2) + 50)
-		info->mouse_dir = -1;
-	else
-		info->mouse_dir = 0;
-	return (0);
-}*/
-
 int	ft_mouse_move(int x, int y, t_info *info)
 {
 	if (x < (WIDTH / 2) - 100)

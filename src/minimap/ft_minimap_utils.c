@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:19:44 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 09:59:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/14 11:38:32 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void	ft_get_heights(t_info *info)
 		offset = 20 + (int)(40 * (info->user_y - info->y));
 	else
 		offset = 60 - (int)(40 * (info->user_y - info->y));
-	printf("\t\toffset Y: %.2f\n", offset);
 	i = -1;
 	while (++i < 6)
 		info->heights[i] = MINI_S_BLOC;
@@ -172,7 +171,6 @@ void	ft_get_widths(t_info *info)
 		offset = 20 + (int)(40 * (info->user_x - info->x));
 	else
 		offset = 60 - (int)(40 * (info->user_x - info->x));
-	printf("\t\toffset X: %.2f\n", offset);
 	i = -1;
 	while (++i < 8)
 		info->widths[i] = MINI_S_BLOC;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 13:29:37 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/14 11:27:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  */
 void	ft_put_player(t_info *info, t_img *player, int x, int y)
 {
-	int			index;
+	/*int			index;
 	int			line;
 	int			mini_x;
 	int			mini_y;
@@ -45,7 +45,13 @@ void	ft_put_player(t_info *info, t_img *player, int x, int y)
 				mini_data[mini_y * (info->mini->size / 4) + mini_x] = pixel;
 			}
 		}
-	}
+	}*/
+	if (player)
+		mlx_put_image_to_window(info->mlx, info->mini->win, player->img, \
+				x - 5, y - 5);
+	else
+		ft_put_circle(info, x, y);
+	return ;
 }
 	/*if (player)
 		mlx_put_image_to_window(info->mlx, info->mini->win, player->img, \

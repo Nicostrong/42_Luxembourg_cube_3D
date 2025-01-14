@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 08:03:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/14 08:04:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ int	ft_perror_exit(char *str_error, t_info *info)
  */
 int	ft_exit(t_info *info)
 {
-	if (LINUX)
-		mlx_loop_end(info->mlx);
+	LOOP_END(info);
 	ft_free_info(info);
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 08:04:05 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/14 08:05:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	ft_free_window(t_info *info)
 	}
 	if (info->mlx)
 	{
-		if (LINUX)
-			mlx_destroy_display(info->mlx);
+		DESTROY(info->mlx);
 		ft_free(info->mlx);
 		info->mlx = NULL;
 	}

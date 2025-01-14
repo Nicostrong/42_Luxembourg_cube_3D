@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 11:33:54 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/14 11:37:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,12 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
-	if (DEBUG)
+	/*if (DEBUG)
 	{
 		printf("***********************\n");
 		printf("center of RAY (%.2f, %.2f)\n", x, y);
 		printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);
-	}
+	}*/
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
@@ -227,8 +227,9 @@ void	ft_minimap(t_info *info)
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
 	len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
-	if (DEBUG)
-		printf("distance: %.2f\n", len_ray);
+	(void)len_ray;
+	//if (DEBUG)
+	//	printf("distance: %.2f\n", len_ray);
 	//ft_print_user_data(info);
 	ft_free_array(map);
 }

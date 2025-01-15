@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/15 12:06:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 12:59:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 #include "../includes/setting_game.h"
 #include "../includes/minimap.h"
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ *	void	ft_title(void)
+ * </summary>
+ *
+ * <description>
+ *	ft_title print the title of the game on the terminal.
+ * </description>
+ *
+ * <param type="void" name=""></param>
+ *
+ * <return>
+ *	void.
+ * </return>
+ *
+ */
 void	ft_title(void)
 {
 	printf(BBLUE"⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭\n"RESET);
@@ -26,6 +44,7 @@ void	ft_title(void)
 	printf(BBLUE"⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭\n"RESET);
 	return ;
 }
+
 /*
  * <cat>cube_3D</cat>
  *

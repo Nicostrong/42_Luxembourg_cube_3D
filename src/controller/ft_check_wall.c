@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:57:24 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 11:18:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 13:29:05 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,27 @@ static int	ft_isforbidden_zone(t_info *info, double new_x, double new_y)
  */
 static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 {
-	int		x;
-	int		y;
-
-	x = info->x;
-	y = info->y;
-	if (info->map[y][x + dirx] == '1')
+	if (info->map[info->y][info->x + dirx] == '1')
 	{
-		if (dirx < 0 && *new_x - x < D_WALL)
+		printf(REDC"\tWALL in X + dirx\n"RESET);
+		if (dirx < 0 && *new_x - info->x < D_WALL)
 			*new_x = floor(*new_x) + D_WALL;
-		else if (dirx > 0 && *new_x - x > 1 - D_WALL)
+		else if (dirx > 0 && *new_x - info->x > 1 - D_WALL)
 			*new_x = ceil(*new_x) - D_WALL;
 	}
 	else if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
-		if (info->user_x - x >= D_WALL && info->user_x - x <= 1 - D_WALL)
+		printf(REDC"\tFORBIDDEN ZONE X\n"RESET);
+		if (info->user_x - info->x >= D_WALL && \
+			info->user_x - info->x <= 1 - D_WALL)
 		{
-			if (dirx < 0 && *new_x - x < D_WALL && \
-			(*new_y - y < D_WALL || *new_y - y > 1 - D_WALL))
-				*new_x = x + D_WALL;
-			else if (dirx > 0 && *new_x - x > 1 - D_WALL && \
-				(*new_y - y < D_WALL || *new_y - y > 1 - D_WALL))
-				*new_x = x + 1 - D_WALL;
+			printf(REDC"\told pos.X allowed\n"RESET);
+			if (dirx < 0 && *new_x - info->x < D_WALL && \
+			(*new_y - info->y < D_WALL || *new_y - info->y > 1 - D_WALL))
+				*new_x = info->x + D_WALL;
+			else if (dirx > 0 && *new_x - info->x > 1 - D_WALL && \
+				(*new_y - info->y < D_WALL || *new_y - info->y > 1 - D_WALL))
+				*new_x = info->x + 1 - D_WALL;
 		}
 	}
 }
@@ -133,13 +132,9 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
  */
 static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 {
-	int		x;
-	int		y;
-
-	x = info->x;
-	y = info->y;
-	if (info->map[y + diry][x] == '1')
+	if (info->map[info->y + diry][info->x] == '1')
 	{
+		printf(REDC"\tWALL in Y + diry\n"RESET);
 		if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
 			*new_y = floor(*new_y) + D_WALL;
 		else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
@@ -147,14 +142,17 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 	}
 	else if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
-		if (info->user_y - y >= D_WALL && info->user_y - y <= 1 - D_WALL)
+		printf(REDC"\tFORBIDDEN ZONE Y\n"RESET);
+		if (info->user_y - info->y >= D_WALL && \
+			info->user_y - info->y <= 1 - D_WALL)
 		{
-			if (diry < 0 && *new_y - y < D_WALL && \
-				(*new_x - x < D_WALL || *new_x - x > 1 - D_WALL))
-				*new_y = y + D_WALL;
-			else if (diry > 0 && *new_y - y > 1 - D_WALL && \
-				(*new_x - x < D_WALL || *new_x - x > 1 - D_WALL))
-				*new_y = y + 1 - D_WALL;
+			printf(REDC"\told pos.Y allowed\n"RESET);
+			if (diry < 0 && *new_y - info->y < D_WALL && \
+				(*new_x - info->x < D_WALL || *new_x - info->x > 1 - D_WALL))
+				*new_y = info->y + D_WALL;
+			else if (diry > 0 && *new_y - info->y > 1 - D_WALL && \
+				(*new_x - info->x < D_WALL || *new_x - info->x > 1 - D_WALL))
+				*new_y = info->y + 1 - D_WALL;
 		}
 	}
 }

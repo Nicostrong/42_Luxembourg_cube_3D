@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/14 11:37:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 13:42:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,6 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
-	/*if (DEBUG)
-	{
-		printf("***********************\n");
-		printf("center of RAY (%.2f, %.2f)\n", x, y);
-		printf("delta x: %.2f\tdelta y: %.2f\n", dx, dy);
-	}*/
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
@@ -213,7 +207,6 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 void	ft_minimap(t_info *info)
 {
 	char	**map;
-	double	len_ray;
 
 	mlx_clear_window(info->mlx, info->mini->win);
 	map = ft_get_minimap(info);
@@ -226,10 +219,9 @@ void	ft_minimap(t_info *info)
 	mlx_do_sync(info->mlx);
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
-	len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
-	(void)len_ray;
-	//if (DEBUG)
-	//	printf("distance: %.2f\n", len_ray);
+	info->len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
+	if (DEBUG)
+		printf(BYELLOW"Len of ray from plyer to wall: %.2f\n"RESET, info->len_ray);
 	//ft_print_user_data(info);
 	ft_free_array(map);
 }

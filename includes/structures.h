@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 10:54:19 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 13:40:34 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,8 @@ typedef struct s_info
 	int			*heights;		//	all heights of minimap
 	double		user_deg;		//	orientation of player in radian
 	double		user_y;			//	position y of player on map
-	double		user_x;			//	position x of player on map
+	double		user_x;			//	position x of player on map.
+	double		len_ray;		//	lenght of ray from player and wall
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array

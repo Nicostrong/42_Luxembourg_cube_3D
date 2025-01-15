@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 11:30:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 13:35:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	printf("new_x:\t\t%.2f\tnew_y:\t\t%.2f\n", new_x, new_y);
 	printf("***************************************************************\n");
 	ft_check_wall(info, &new_x, &new_y);
-	printf("adjustation:\nnew_x: %.2f\tnew_y: %.2f\n\t"BLUEC"MOVING\n"RESET, new_x, new_y);
+	printf("adjustation:\nnew_x: %.2f\tnew_y: %.2f\n\t"BBLUE"MOVING\n"RESET, new_x, new_y);
 	printf("***************************************************************\n");
+	if (info->map[(int)floor(new_y)][(int)floor(new_x)] == '1')
+		return ;
 	info->map[info->y][info->x] = '0';
 	info->user_x = new_x;
 	info->user_y = new_y;
@@ -59,7 +61,24 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	info->map[info->y][info->x] = 'P';
 	return ;
 }
-
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	double	ft_normalize_rot(double angle)
+ * </summary>
+ *
+ * <description>
+ * 	ft_normalize_rot put the rotation radian on the range [0;PI] or [0;-PI].
+ * </description>
+ *
+ * <param type="double" name="angle">angle to adjuste</param>
+ *
+ * <return>
+ * 	the new value of the angle adjusted or not.
+ * </return>
+ *
+ */
 double	ft_normalize_rot(double angle)
 {
 	while (angle > M_PI)

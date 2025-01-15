@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/14 08:04:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 11:24:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # else
 	# define DEBUG 0
 # endif
+
 /*
 *	Personal Library
 */
@@ -64,6 +65,7 @@
 # include "../lib/libft/libft.h"
 # include "../lib/gnl/get_next_line.h"
 # include "./structures.h"
+# include "./color.h"
 
 /* DEBUG */
 #ifndef DEBUG

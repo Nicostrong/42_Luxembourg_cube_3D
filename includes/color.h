@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:06:21 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/05 07:09:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 11:31:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
  *	Reset color
  */
 
-# define NOCOLOR	"\033[0m"
+# define RESET		"\033[0m"
 
 /*
  *	Bold color
  */
 
-# define REDG		"\033[1;31m"
-# define GREENG		"\033[1;32m"
-# define YELLOWG	"\033[1;93m"
-# define GOLDG		"\033[1;33m"
-# define BLUEG		"\033[1;34m"
-# define MAGENTAG	"\033[1;35m"
-# define CYANG		"\033[1;36m"
+# define BRED		"\033[1;31m"
+# define BGREEN		"\033[1;32m"
+# define BYELLOW	"\033[1;93m"
+# define BGOLD		"\033[1;33m"
+# define BBLUE		"\033[1;34m"
+# define BMAGENTA	"\033[1;35m"
+# define BCYAN		"\033[1;36m"
 
 /*
  *	Blink color

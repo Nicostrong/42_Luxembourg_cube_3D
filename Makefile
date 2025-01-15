@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/13 11:18:06 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/15 11:29:14 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,11 +118,11 @@ RESET			=	'\033[0m'
 
 BLACK			=	'\033[0;30m'
 RED				=	'\033[0;31m'
-GREEN			=	'\033[0;92m'
+GREEN			=	'\033[0;32m'
 YELLOW			=	'\033[0;93m'
-BLUE			=	'\033[0;94m'
-PURPLE			=	'\033[0;95m'
-CYAN			=	'\033[0;96m'
+BLUE			=	'\033[0;34m'
+PURPLE			=	'\033[0;35m'
+CYAN			=	'\033[0;36m'
 WHITE			=	'\033[0;97m'
 
 # Bold
@@ -135,6 +135,17 @@ BBLUE			=	'\033[1;94m'
 BPURPLE			=	'\033[1;95m'
 BCYAN			=	'\033[1;96m'
 BWHITE			=	'\033[1;97m'
+
+# Blink
+
+CBLACK			=	'\033[5;30m'
+CRED			=	'\033[5;31m'
+CGREEN			=	'\033[5;32m'
+CYELLOW			=	'\033[5;93m'
+CBLUE			=	'\033[5;34m'
+CPURPLE			=	'\033[5;35m'
+CCYAN			=	'\033[5;36m'
+CWHITE			=	'\033[5;97m'
 
 ################################################################################
 #	Progress bar															   #

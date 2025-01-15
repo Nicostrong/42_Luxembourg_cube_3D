@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/14 11:43:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 11:30:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 
 	new_x = info->user_x + (dir * STEP * cos(info->user_deg + angle_offset));
 	new_y = info->user_y + (dir * STEP * sin(info->user_deg + angle_offset));
-	printf("******************************\n");
-	printf("\tFT_MOVE\n");
-	printf("******************************\n");
+	printf("***************************************************************\n");
+	printf(BYELLOW"\t\t\tMOVE of player\n"RESET);
+	printf("***************************************************************\n");
 	printf("current_x:\t%.2f\tcurrent_y:\t%.2f\n", info->user_x, info->user_y);
 	printf("new_x:\t\t%.2f\tnew_y:\t\t%.2f\n", new_x, new_y);
-	printf("******************************\n");
+	printf("***************************************************************\n");
 	ft_check_wall(info, &new_x, &new_y);
-	printf("new_x: %.2f\tnew_y: %.2f\n", new_x, new_y);
-	printf("******************************\n");
+	printf("adjustation:\nnew_x: %.2f\tnew_y: %.2f\n\t"BLUEC"MOVING\n"RESET, new_x, new_y);
+	printf("***************************************************************\n");
 	info->map[info->y][info->x] = '0';
 	info->user_x = new_x;
 	info->user_y = new_y;

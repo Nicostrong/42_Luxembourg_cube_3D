@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/14 07:45:05 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/15 12:06:21 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include "../includes/setting_game.h"
 #include "../includes/minimap.h"
 
+void	ft_title(void)
+{
+	printf(BBLUE"⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭\n"RESET);
+	printf(BBLUE"⸭"BYELLOW" ■■■■ ■  ■ ■■■  ■■■■  ■■■  ■■■   "BBLUE"⸭\n"RESET);
+	printf(BBLUE"⸭"BYELLOW" ■    ■  ■ ■  ■ ■    ■   ■ ■  ■  "BBLUE"⸭\n"RESET);
+	printf(BBLUE"⸭"BYELLOW" ■    ■  ■ ■■■  ■■■    ■■  ■   ■ "BBLUE"⸭\n"RESET);
+	printf(BBLUE"⸭"BYELLOW" ■    ■  ■ ■  ■ ■    ■   ■ ■  ■  "BBLUE"⸭\n"RESET);
+	printf(BBLUE"⸭"BYELLOW" ■■■■ ■■■■ ■■■  ■■■■  ■■■  ■■■   "BBLUE"⸭\n"RESET);
+	printf(BBLUE"⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭⸭\n"RESET);
+	return ;
+}
 /*
  * <cat>cube_3D</cat>
  *
@@ -42,6 +53,7 @@ int main(int argc, char *argv[])
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
 	//ft_print_info(info);
+	ft_title();
 	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
 	mlx_hook(info->mini->win, 17, 0, &ft_exit, info);
 	ft_minimap(info);

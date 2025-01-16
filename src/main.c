@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/15 12:59:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/16 11:12:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int main(int argc, char *argv[])
 		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
 	}
 	mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
-	//mlx_loop_hook(info->mlx, (void *)ft_raycasting, info);
 	mlx_loop(info->mlx);
 	return (0);
 }

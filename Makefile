@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/15 11:29:14 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/16 17:19:30 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
-CC_OPT			=	-g -o2 -D DEBUG=1
+CC_OPT			=	-g -o3 -D DEBUG=1
 CC_DEF			=	
 
 DEB				=	valgrind
@@ -228,7 +228,7 @@ all:		$(MLX_DIR)/$(MLX_NAME)\
 			$(NAME)
 
 $(NAME):	NUM_FILES=$(NB_SRC)
-$(NAME):		$(OBJ)
+$(NAME):	$(OBJ)
 	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ) $(MYLIBS) -o $(NAME)
 
 %.o :		%.c
@@ -267,7 +267,8 @@ fclean: clean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 
 re: fclean all
-	@echo "$(GREEN)all RE compiled!$(NO_COLOR)"
+	@echo ""
+	@echo "$(CGREEN)all files of the programm $(NAME) recompiled with success!$(RESET)"
 
 .PHONY: all clean fclean re debug
 

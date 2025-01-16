@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 13:42:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/16 16:22:28 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/minimap.h"
 #include "../../includes/structures.h"
+#include "../../includes/setting_game.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -220,8 +221,9 @@ void	ft_minimap(t_info *info)
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
 	info->len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
-	if (DEBUG)
-		printf(BYELLOW"Len of ray from plyer to wall: %.2f\n"RESET, info->len_ray);
+	//if (DEBUG)
+	//	printf(BYELLOW"Len of ray from plyer to wall: %.2f\n"RESET, info->len_ray);
 	//ft_print_user_data(info);
 	ft_free_array(map);
+	ft_raycasting(info);
 }

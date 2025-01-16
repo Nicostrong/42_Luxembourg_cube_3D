@@ -6,96 +6,314 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/09 09:19:16 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/16 20:30:33 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/raycasting.h"
 #include "../../includes/structures.h"
 
-static double	ft_cast_ray(t_info *info, double ray_angle)
+static void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
 {
-	double	distance;
-	int		wall;
-	int		x;
+	char	*pixel;
 	int		y;
 
-	wall = 0;
-	distance = 0.0;
-	while (!wall && distance < WIDTH)
+	if (x < 0 || x >= WIDTH || y_end < 0 || y_start >= HEIGHT)
+		return ;
+	if (y_start < 0)
+		y_start = 0;
+	if (y_end >= HEIGHT)
+		y_end = HEIGHT - 1;
+	y = 0;
+	while (y < y_start)
 	{
-		distance += STEP_RAY;
-		x = (int)(info->user_x + (distance * cos(ray_angle)) / info->w_n_img->size);
-		y = (int)(info->user_y + (distance * sin(ray_angle)) / info->w_n_img->size);
-		if (info->map[y][x] == '1' || info->map[y][x] == ' ')
-			wall = 1;
+		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
+		*(unsigned int *)pixel = 0x0000FF;
+		y++;
 	}
-	return (distance);
-}
-
-static int	ft_cal_wall_height(t_info *info, double distance)
-{
-	int		h_wall;
-
-	h_wall = (int)((info->w_n_img->size / distance) * D_SCREAN);
-	return (h_wall);
-}
-
-static void	ft_cal_wall_pxl(int h_wall, int *start, int *end)
-{
-	*start = (HEIGHT / 2) - (h_wall / 2);
-	*end = (HEIGHT / 2) + (h_wall / 2);
-	if (*start < 0)
-		*start = 0;
-	if (*end > HEIGHT)
-		*end = HEIGHT;
-	return ;
-}
-
-/*static void	ft_draw(t_info *info, int *start, int *end, int x)
-{
-	int	wall;
-	int	sky;
-	int	floor;
-	int	y;
-
-	wall = 0xFF0000;
-	sky = 0x0000FF;
-	floor = 0xFFFF00;
-	y = -1;
-	while (++y < HEIGHT)
+	while (y < y_end)
 	{
-		if (y < *start)
-			mlx_pixel_put(info->mlx, info->game->win, x, y, sky);
-		else if (y >= *start && y <= *end)
-			mlx_pixel_put(info->mlx, info->game->win, x, y, wall);
-		else
-			mlx_pixel_put(info->mlx, info->game->win, x, y, floor);
+		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
+		*(unsigned int *)pixel = color;
+		y++;
 	}
+	while (y < HEIGHT)
+	{
+		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
+		*(unsigned int *)pixel = 0x00FFFF;;
+		y++;
+	}
+}
 
+/*static void	ft_draw_diag(t_win *win, int x_start, int x_end, int draw_start, int draw_end, int next_draw_start, int next_draw_end, int color)
+{
+	int	band_width;
+	int	x;
+	int	y_start;
+	int	y_end;
+
+	band_width = x_end - x_start;
+	x = x_start;
+	while (x < x_end)
+	{
+		y_start = draw_start + (x - x_start) * (next_draw_start - draw_start) / band_width;
+		y_end = draw_end + (x - x_start) * (next_draw_end - draw_end) / band_width;
+		ft_set_pixel(win, x, y_start, y_end, color);
+		x++;
+	}
 }*/
 
+/*
+Plan détaillé :
+1 Récupérer les informations nécessaires :
+	Position du joueur (player_x, player_y)
+	Direction de la vue du joueur (dir_x, dir_y)
+	Plan de la caméra (plane_x, plane_y)
+	La carte 2D qui contient les informations des murs (map[x][y]).
+2 Tracer les rayons :
+	Diviser la fenêtre en "colonnes" correspondant à chaque pixel horizontal.
+	Pour chaque colonne, calculer la direction du rayon.
+	Calculer l'intersection du rayon avec les murs en utilisant l'algorithme DDA (Digital Differential Analyzer).
+3 Calculer la hauteur des murs :
+	Utiliser la distance entre le joueur et le mur pour calculer la hauteur à afficher.
+	Plus la distance est grande, plus le mur semble petit.
+4 Dessiner la scène 3D :
+	Pour chaque colonne, dessiner un segment vertical correspondant à la hauteur du mur.
+	Ajouter des textures si nécessaire.
+*/
 void	ft_raycasting(t_info *info)
 {
-	int		x;
-	int		h_wall;
-	int		start;
-	int		end;
-	double	ray_angle;
-	double	distance;
+	double	camera_x, ray_dir_x, ray_dir_y;
+	double	dir_x, dir_y, plane_x, plane_y;
+	double	delta_dist_x, delta_dist_y, side_dist_x, side_dist_y, perp_wall_dist;
+	int		map_x, map_y, step_x, step_y, hit, side;
+	int		line_height, draw_start, draw_end;
+	int		prev_draw_end; // next_draw_start, next_draw_end; // prev_draw_start,
+	//int		section_width = WIDTH / NBRAY; // Largeur d'une section (par exemple, 100 pixels)
+	int		x, color;  //i
 
-	x = -1;
-	while (++x < WIDTH)
+	// Direction et plan de la caméra
+	dir_x = cos(info->user_deg);
+	dir_y = sin(info->user_deg);
+	plane_x = -dir_y * tan(FOV / 2.0);
+	plane_y = dir_x * tan(FOV / 2.0);
+
+	prev_draw_end = HEIGHT / 2; // Point de départ pour le sol (base du mur précédent)
+
+	// Parcourir chaque colonne de l'écran
+	for (x = 0; x < WIDTH; x++)
 	{
-		ray_angle = info->user_deg - (FOV / 2) + ((double)x / WIDTH) * FOV;
-		distance = ft_cast_ray(info, ray_angle);
-		h_wall = ft_cal_wall_height(info, distance);
-		//printf("ray_angle: %.2f\n", ray_angle);
-		//printf("Distance: %.2f\n", distance);
-		//printf("Wall height: %d\n", h_wall);
-		ft_cal_wall_pxl(h_wall, &start, &end);
-		//ft_draw(info, &start, &end, x);
-		//printf("Column %d: Wall from pixel %d to %d\n", x, start, end);
+		// Calcul de la direction du rayon
+		camera_x = 2 * x / (double)(WIDTH - 1) - 1;
+		ray_dir_x = dir_x + plane_x * camera_x;
+		ray_dir_y = dir_y + plane_y * camera_x;
+
+		// Initialisation de DDA
+		map_x = (int)info->user_x;
+		map_y = (int)info->user_y;
+
+		delta_dist_x = fabs(1 / ray_dir_x);
+		delta_dist_y = fabs(1 / ray_dir_y);
+
+		if (ray_dir_x < 0)
+		{
+			step_x = -1;
+			side_dist_x = (info->user_x - map_x) * delta_dist_x;
+		}
+		else
+		{
+			step_x = 1;
+			side_dist_x = (map_x + 1.0 - info->user_x) * delta_dist_x;
+		}
+		if (ray_dir_y < 0)
+		{
+			step_y = -1;
+			side_dist_y = (info->user_y - map_y) * delta_dist_y;
+		}
+		else
+		{
+			step_y = 1;
+			side_dist_y = (map_y + 1.0 - info->user_y) * delta_dist_y;
+		}
+
+		// Boucle DDA
+		hit = 0;
+		while (!hit)
+		{
+			if (side_dist_x < side_dist_y)
+			{
+				side_dist_x += delta_dist_x;
+				map_x += step_x;
+				side = 0;
+			}
+			else
+			{
+				side_dist_y += delta_dist_y;
+				map_y += step_y;
+				side = 1;
+			}
+			hit = info->map[map_y][map_x] == '1';
+		}
+
+		// Calcul de la distance perpendiculaire
+		if (side == 0)
+			perp_wall_dist = (map_x - info->user_x + (1 - step_x) / 2) / ray_dir_x;
+		else
+			perp_wall_dist = (map_y - info->user_y + (1 - step_y) / 2) / ray_dir_y;
+
+		// Calcul de la hauteur du mur
+		line_height = (int)(HEIGHT / perp_wall_dist);
+
+		// Limites de dessin
+		draw_start = -line_height / 2 + HEIGHT / 2;
+		if (draw_start < 0) draw_start = 0;
+
+		draw_end = line_height / 2 + HEIGHT / 2;
+		if (draw_end >= HEIGHT) draw_end = HEIGHT - 1;
+
+		// Déterminer la couleur du mur
+		color = (side == 0) ? 0xFF0000 : 0xAAAAAA;
+
+		// Dessiner le mur
+		ft_set_pixel(info->game, x, draw_start, draw_end, color);
+
+		// Ajouter une ligne horizontale si une discontinuité est détectée
+		if (draw_start > prev_draw_end)
+		{
+			// Ligne horizontale pour délimiter le sol
+			ft_set_pixel(info->game, x, prev_draw_end, draw_start, 0x000000); // Noir
+		}
+		// Mettre à jour la base du mur précédent
+		prev_draw_end = draw_end;
 	}
+	// Afficher l'image mise à jour
+	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 }
+
+/*
+FONCTION OK MAIS TROP NRJVORE
+void	ft_raycasting(t_info *info)
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_wall_dist;
+	int		x;
+	//int		y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	//int		next_draw_start;
+	//int		next_draw_end;
+	int		color;
+
+	dir_x = cos(info->user_deg);
+	dir_y = sin(info->user_deg);
+	plane_x = -dir_y * tan(FOV / 2.0);
+	plane_y = dir_x * tan(FOV / 2.0);
+	x = 0;
+	//next_draw_start = 0;
+	//next_draw_end = 0;
+	while (x < WIDTH)
+	{
+		//	calcul de la direction du rayon
+		camera_x = 2 * x / (double)(WIDTH - 1) - 1;
+		ray_dir_x = dir_x + (plane_x * camera_x);
+		ray_dir_y = dir_y + (plane_y * camera_x);
+		//	initialisation de l algo DDA
+		map_x = info->x;
+		map_y = info->y;
+		delta_dist_x = fabs(1 / ray_dir_x);
+		delta_dist_y = fabs(1 / ray_dir_y);
+		//printf("pour x : %d\n", x);
+		//printf("\tcamera_x = %.2f\n\tray_x = %.2f\n\tray_y = %.2f\n", camera_x, ray_dir_x, ray_dir_y);
+		//printf("\tdelta x: %.2f\tdelta y: %.2f\n", delta_dist_x, delta_dist_y);
+		//	calcul en X
+		if (ray_dir_x < 0)
+		{
+			step_x = -1;
+			side_dist_x = (info->user_x - map_x) * delta_dist_x;
+		}
+		else
+		{
+			step_x = 1;
+			side_dist_x = (map_x + 1.0 - info->user_x) * delta_dist_x;
+		}
+		//	calclul en Y
+		if (ray_dir_y < 0)
+		{
+			step_y = -1;
+			side_dist_y = (info->user_y - map_y) * delta_dist_y;
+		}
+		else
+		{
+			step_y = 1;
+			side_dist_y = (map_y + 1.0 - info->user_y) * delta_dist_y;
+		}
+		//	DDA on avance jusqu a un mur
+		hit = 0;
+		while (!hit)
+		{
+			if (side_dist_x < side_dist_y)
+			{
+				side_dist_x += delta_dist_y;
+				map_x += step_x;
+				side = 0;
+			}
+			else
+			{
+				side_dist_y += delta_dist_y;
+				map_y += step_y;
+				side = 1;
+			}
+			hit = info->map[map_y][map_x] == '1';
+		}
+		//printf(BBLUE"Mur detecte en map[%d][%d]\n"RESET, map_y, map_x);
+		//	on a touche un mur
+		//	calcul de la distance perpendiculaire au mur
+		perp_wall_dist = (map_y - info->user_y + (1 - step_y) / 2) / ray_dir_y;
+		if (!side)
+			perp_wall_dist = (map_x - info->user_x + (1 - step_x) / 2) / ray_dir_x;
+		//printf("Ray %d:\tperp_dist=%.2f\tmap_x=%d\tmap_y=%d\tside=%d\n", x, perp_wall_dist, map_x, map_y, side);
+		//	calcul hauteur des mur
+		line_height = (int)HEIGHT / perp_wall_dist;
+		//printf(BBLUE"\tHauteur mur : %d\n"RESET, line_height);
+		//	limite de dessin
+		draw_start = -line_height / 2 + HEIGHT / 2;
+		if (draw_start < 0)
+			draw_start = 0;
+		draw_end = line_height / 2 + HEIGHT / 2;
+		if (draw_end >= HEIGHT)
+			draw_end = HEIGHT - 1;
+		//printf(BYELLOW"\tle mur commence a : %d\t fini: %d\n"RESET, draw_start, draw_end);
+		//	couleur du mur
+		color = 0xFF0000;
+		if (side)
+			color = 0xAAAAAA;
+		//	dessiner la colone de pixel
+		//y = 0;
+		//while (++y <= draw_end)
+		//	ft_draw_diag(info->game, x, x + RAY_STEP, draw_start, draw_end, next_draw_start, next_draw_end, color);
+		ft_set_pixel(info->game, x, draw_start, draw_end, color);
+		//x += RAY_STEP;
+		x++;
+	}
+	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
+}
+*/

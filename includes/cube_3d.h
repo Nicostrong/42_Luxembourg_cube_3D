@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/15 11:24:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/17 12:00:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 	# include <X11/keysym.h>
 	# define LINUX			1
 	# define MACOS			0
-	# define LOOP_END(arg)	mlx_loop_end(arg)
-	# define DESTROY(arg)	mlx_destroy_display(arg)
+	# define LOOP_END		mlx_loop_end
+	# define DESTROY		mlx_destroy_display
 
 # elif defined(__APPLE__) && defined(__MACH__)
 
@@ -47,8 +47,8 @@
 	# define LEFT			123
 	# define RIGHT			124
 	# define ESCAP			53
-	# define LOOP_END(arg)
-	# define DESTROY(arg)
+	# define LOOP_END		(void)
+	# define DESTROY		(void)
 
 # endif
 

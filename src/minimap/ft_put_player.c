@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 12:02:17 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/17 14:00:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,54 @@
 #include "../../includes/minimap.h"
 #include "../../includes/structures.h"
 
-/*
- *	il faut lire data.
- *	pour chaque ligne longue de line_size
- *	si le pixel alpha est 'FF' on passe au suivant
- */
-void	ft_put_player(t_info *info, t_img *player, int x, int y)
+unsigned int	get_pixel_color(t_img *img, int x, int y)
 {
-	/*int			index;
-	int			line;
-	int			mini_x;
-	int			mini_y;
-	uint32_t	*player_data;
-	uint32_t	*mini_data;
-	uint32_t	pixel;
+	char *pixel;
 
-	player_data = (uint32_t *)player->addr;
-	mini_data = (uint32_t *)info->mini->addr;
-	line = -1;
-	while (++line < MINI_S_PL)
+	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
+        return (0);
+	pixel = img->addr;
+	pixel += y * img->size + x * (img->bpp / 8);
+	return *(unsigned int *)pixel;
+}
+
+void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
+{
+	int				height;
+	int				width;
+	unsigned int	pixel_color;
+	unsigned int	*dest_pixel;
+	unsigned char	alpha;
+
+	height = -1;
+	while (++height < img_s->h)
 	{
-		index = -1;
-		while (++index < MINI_S_PL)
+		width = -1;
+		while (++width < img_s->w)
 		{
-			pixel = player_data[line * MINI_S_PL + index];
-			if (pixel != 0xFF000000)
+			pixel_color = get_pixel_color(img_s, width, height);
+			alpha = (pixel_color >> 24) & 0xFF;
+			if (!alpha)
 			{
-				mini_x = x - (MINI_S_PL / 2) + index;
-				mini_y = y - (MINI_S_PL / 2) + line;
-				mini_data[mini_y * (info->mini->size / 4) + mini_x] = pixel;
+				dest_pixel = (unsigned int *) \
+					(img_d->addr + (height + y) * img_d->size + \
+					(width + x) * (img_d->bpp / 8));
+				*dest_pixel = pixel_color;
 			}
 		}
-	}*/
+	}
+}
+
+void	ft_put_player(t_info *info, t_img *player, int x, int y)
+{
+
 	if (player)
-		mlx_put_image_to_window(info->mlx, info->mini->win, player->img, \
-				x - 5, y - 5);
+	{
+		ft_put_imgalpha(info->mini, info->player, x - (info->player->w / 2), \
+			y - (info->player->h / 2));
+		mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, \
+			0, 0);
+	}
 	else
 		ft_put_circle(info, x, y);
 	return ;

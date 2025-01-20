@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/20 11:21:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/20 13:44:28 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,37 @@
 #include "../../includes/raycasting.h"
 #include "../../includes/structures.h"
 
-static void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
+ * </summary>
+ *
+ * <description>
+ * 	ft_set_pixel set all pixel color of the image in y.
+ * </description>
+ *
+ * <param type="t_win *" name="win">windows of the image</param>
+ * <param type="int" name="x">index x of the image</param>
+ * <param type="int" name="y_start">start index y of the wall</param>
+ * <param type="int" name="y_end">end index y of the wall</param>
+ * <param type="int" name="color">color of the wall</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
+static void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 {
 	char	*pixel;
 	int		y;
+	t_win	*win;
 
 	if (x < 0 || x >= WIDTH || y_end < 0 || y_start >= HEIGHT)
 		return ;
+	win = info->game;
 	if (y_start < 0)
 		y_start = 0;
 	if (y_end >= HEIGHT)
@@ -31,7 +55,8 @@ static void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
 	while (y < y_start)
 	{
 		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
-		*(unsigned int *)pixel = 0x0000FF;
+		//*(unsigned int *)pixel = ft_get_color(0, info->sky_color->r, info->sky_color->g, info->sky_color->b);
+		*(unsigned int *)pixel = 0x005555;
 		y++;
 	}
 	//	print wall
@@ -45,11 +70,31 @@ static void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
 	while (y < HEIGHT)
 	{
 		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
-		*(unsigned int *)pixel = 0x00FFFF;;
+		//*(unsigned int *)pixel = ft_get_color(0, info->floor_color->r, info->floor_color->g, info->floor_color->b);
+		*(unsigned int *)pixel = 0xA08A0A;
 		y++;
 	}
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
+ * </summary>
+ *
+ * <description>
+ * 	ft_set_dir_and_plan set the direction and the plan of the raycasting.
+ * </description>
+ *
+ * <param type="t_info *" name="info">general structure</param>
+ * <param type="t_raycast *" name="ray">raycasting structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
 void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
 {
 	ray->dir_x = cos(info->user_deg);
@@ -59,6 +104,25 @@ void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
 	ray->prev_draw_end = HEIGHT / 2;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_cal_ray_dir(t_raycast *ray, int x)
+ * </summary>
+ *
+ * <description>
+ * 	ft_cal_ray_dir calculate the direction of the ray.
+ * </description>
+ *
+ * <param type="t_raycast *" name="ray">raycasting structure</param>
+ * <param type="int" name="x">index x of the image</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
 void	ft_cal_ray_dir(t_raycast *ray, int x)
 {
 	ray->camera_x = 2 * x / (double)(WIDTH - 1) - 1;
@@ -66,6 +130,25 @@ void	ft_cal_ray_dir(t_raycast *ray, int x)
 	ray->ray_dir_y = ray->dir_y + ray->plane_y * ray->camera_x;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_init_dda(t_info *info, t_raycast *ray)
+ * </summary>
+ *
+ * <description>
+ * 	ft_init_dda initialize the DDA algorithm.
+ * </description>
+ *
+ * <param type="t_info *" name="info">general structure</param>
+ * <param type="t_raycast *" name="ray">raycasting structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
 void	ft_init_dda(t_info *info, t_raycast *ray)
 {
 	ray->map_x = (int)info->user_x;
@@ -94,6 +177,25 @@ void	ft_init_dda(t_info *info, t_raycast *ray)
 	}
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_hit_wall(t_info *info, t_raycast *ray)
+ * </summary>
+ *
+ * <description>
+ * 	ft_hit_wall check if the ray hit a wall.
+ * </description>
+ *
+ * <param type="t_info *" name="info">general structure</param>
+ * <param type="t_raycast *" name="ray">raycasting structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
 void	ft_hit_wall(t_info *info, t_raycast *ray)
 {
 	int	hit;
@@ -107,6 +209,7 @@ void	ft_hit_wall(t_info *info, t_raycast *ray)
 			ray->map_x += ray->step_x;
 			ray->side = 0;
 			ray->wall = (ray->step_x == -1) ? 0 : 2;
+			ray->texture = (ray->step_x == -1) ? info->w_w_img : info->w_e_img;
 		}
 		else
 		{
@@ -114,13 +217,35 @@ void	ft_hit_wall(t_info *info, t_raycast *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 			ray->wall = (ray->step_y == -1) ? 1 : 3;
+			ray->texture = (ray->step_y == -1) ? info->w_n_img : info->w_s_img;
 		}
 		hit = info->map[ray->map_y][ray->map_x] == '1';
 	}
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_set_limit_wall(t_info *info, t_raycast *ray)
+ * </summary>
+ *
+ * <description>
+ * 	ft_set_limit_wall set the limit of the wall.
+ * </description>
+ *
+ * <param type="t_info *" name="info">general structure</param>
+ * <param type="t_raycast *" name="ray">raycasting structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ * 
+ */
 void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 {
+	double	wall_x;
+
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - info->user_x + \
 			(1 - ray->step_x) / 2) / ray->ray_dir_x;
@@ -134,8 +259,17 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
 	if (ray->draw_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
+	if (ray->side == 0)
+		wall_x = info->user_y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		wall_x = info->user_x + ray->perp_wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x);
+	ray->text_x = (int)(wall_x * (double)info->w_n_img->w);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		ray->text_x = info->w_n_img->w - ray->text_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		ray->text_x = info->w_n_img->w - ray->text_x - 1;
 }
-
 
 /*
  * <cat>cube_3D</cat>
@@ -148,7 +282,7 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
  * 	ft_raycasting display the map on the screan with a 3D view.
  * </description>
  *
- * <param type="t_info *" name="info">general structure/param>
+ * <param type="t_info *" name="info">general structure</param>
  *
  * <return>
  * 	void.
@@ -175,7 +309,8 @@ void	ft_raycasting(t_info *info)
 			ray.color = 0x00AFAF;	//	color cyan
 		else if (ray.wall == 3)
 			ray.color = 0xFF00FF;	//	color magenta
-		ft_set_pixel(info->game, x, ray.draw_start, ray.draw_end, ray.color);
+		//ft_draw_texture(info, &ray, x);
+		ft_set_pixel(info, x, ray.draw_start, ray.draw_end, ray.color);
 		ray.prev_draw_end = ray.draw_end;
 	}
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);

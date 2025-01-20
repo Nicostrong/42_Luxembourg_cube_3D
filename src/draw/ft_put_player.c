@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 09:47:03 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/20 12:45:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	trgb(int t, int r, int g, int b)
  * @param b Composante bleue de la couleur (0-255).
  * @return Couleur en format entier (RGB).
  */
-static int	ft_get_color(int t,int r, int g, int b)
+int	ft_get_color(int t,int r, int g, int b)
 {
 	return (trgb(t, r, g, b));
 }

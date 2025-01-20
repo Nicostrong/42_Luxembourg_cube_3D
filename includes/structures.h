@@ -6,15 +6,15 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/20 11:12:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/20 12:57:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-/**
- * Struct: Texture data
+/*
+ *	Texture struct
  */
 typedef struct s_texture
 {
@@ -28,74 +28,6 @@ typedef struct s_texture
 	void			*addr;				//	Address of image
 }					t_img;
 
-/**
- * Struct: Keyboard data
- */
-typedef struct s_keyb
-{
-	int				up;
-	int				dow;
-	int				lf;
-	int				lr;
-	int				is_azerty;
-	int				is_press;
-}					t_keyb;
-
-/**
- * Struct: User
- */
-typedef struct s_user
-{
-	int				coox;				// Position user en X
-	int				cooy;				// Position user en Y
-	int				dir;				// Orientation user
-	int				cooxm;				// Coo de la sourie en x
-	int				cooym;				// Coo de la sourie en y
-}					t_user;
-
-
-/**
- * Struct: data
- */
-typedef struct s_data
-{
-	void			*img;
-	void			*mlx;
-	void			*win;
-	void			*addr;
-	int				bpp;
-	int				line_len;
-	int				endian;
-	char			*fic;				// path .cub
-	long			lastfram;			// Timer de la derniere frame
-	int				gfxno;				// 1 si NO trouvé, 0 sinon
-	int				gfxso;				// 1 si SO trouvé, 0 sinon
-	int				gfxwe;				// 1 si WE trouvé, 0 sinon
-	int				gfxea;				// 1 si EA trouvé, 0 sinon
-	int				gfxfloor;			// 1 si FT trouvé, 0 sinon
-	int				gfxsky;				// 1 si CT trouvé, 0 sinon
-	int				gfxf;				// 1 si F trouvé, 0 sinon
-	int				gfxc;				// 1 si C trouvé, 0 sinon
-	int				readmap;			// Confirme la lecture de la map
-	char			**map;				// Stockage de la map
-	int				ymap;				// Heigt map
-	int				xmap;				// Weight map
-    int				ismapvalid; 		// 1 si valide, 0 sinon
-    int				isspawn;      		// 1 si spawn trouvé, 0 sinon
-	int				spposx;				// Position spawn en x
-	int				spposy;				// Position spawn en y
-	int				sprot;				// Orientation player E = 0, N = 270, S = 90
-	//t_texture		gfx[NBTEXTURES];
-	t_keyb			keyb;
-	t_user			userd;
-}					t_data;
-
-/*Uniquement utiliser dans render*/
-typedef struct	s_pixel
-{
-	int				x;
-	int				y;
-}					t_pixel;
 
 /*
  *	Animation struct
@@ -111,15 +43,12 @@ typedef struct s_anim
 }					t_anim;
 
 /*
- *	Nico structure for setting game
- */
-
-/*
- *	Color RGB
+ *	Color struct
  */
 
 typedef struct s_color
 {
+	int				t;
 	int				r;
 	int				g;
 	int				b;
@@ -191,6 +120,9 @@ typedef struct s_info
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 
+/*
+ *	Raycasting struct
+ */
 typedef struct s_raycasting
 {
 	double	camera_x;
@@ -215,7 +147,9 @@ typedef struct s_raycasting
 	int		draw_start;
 	int		draw_end;
 	int		prev_draw_end;
+	int		text_x;
 	int		color;
+	t_img	*texture;
 }			t_raycast;
 
 /*
@@ -231,7 +165,6 @@ void	ft_print_minimap(t_info *info, char **map);
 
 double	ft_normalize_rot(double angle);
 
-void	ft_render(t_info *info);
 void	ft_init_img(t_info **info);
 void	ft_free_info(t_info *info);
 void	ft_free_window(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/17 14:01:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/20 10:18:26 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,13 +160,12 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
  * </return>
  *
  */
-static double	ft_draw_ray(t_info *info, double x, double y, char **map)
+static void	ft_draw_ray(t_info *info, double x, double y, char **map)
 {
 	int		grid_x;
 	int		grid_y;
 	double	dx;
 	double	dy;
-	double	distance;
 
 	dx = cos(info->user_deg);
 	dy = sin(info->user_deg);
@@ -174,16 +173,15 @@ static double	ft_draw_ray(t_info *info, double x, double y, char **map)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
 		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
-		distance = sqrt(pow(x - (MINI_W / 2), 2) + pow(y - (MINI_H / 2), 2));
 		if (grid_x < 0 || grid_x >= info->mini_w || grid_y < 0 || grid_y >= info->mini_h)
-			return (distance);
+			return ;
 		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] ==  ' ')
-			return (distance);
+			return ;
 		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0x000000);
 		x += dx;
 		y += dy;
 	}
-	return (distance);
+	return ;
 }
 
 /*
@@ -220,9 +218,7 @@ void	ft_minimap(t_info *info)
 	mlx_do_sync(info->mlx);
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
-	info->len_ray = ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
-	//if (DEBUG)
-	//	printf(BYELLOW"Len of ray from plyer to wall: %.2f\n"RESET, info->len_ray);
+	ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
 	//ft_print_user_data(info);
 	ft_free_array(map);
 	ft_raycasting(info);

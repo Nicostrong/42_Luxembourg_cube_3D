@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 13:40:34 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/20 11:12:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,6 @@ typedef struct s_info
 	double		user_deg;		//	orientation of player in radian
 	double		user_y;			//	position y of player on map
 	double		user_x;			//	position x of player on map.
-	double		len_ray;		//	lenght of ray from player and wall
 	char		*map_path;		//	path of the map
 	char		*line;			//	line read>
 	char		**map;			//	map array
@@ -191,6 +190,33 @@ typedef struct s_info
 	//t_anim		*c_anim;		//	animation of collectable
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
+
+typedef struct s_raycasting
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		wall;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		prev_draw_end;
+	int		color;
+}			t_raycast;
 
 /*
  *	Strucuture fonctions

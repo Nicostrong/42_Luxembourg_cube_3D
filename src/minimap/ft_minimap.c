@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/20 10:18:26 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:19:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	ft_set_img(t_info *info, char **map)
 					info->mini->addr[index_pxl++] = info->colors[w] & 0xFF;
 					info->mini->addr[index_pxl++] = (info->colors[w] >> 8) & 0xFF;
 					info->mini->addr[index_pxl++] = (info->colors[w] >> 16) & 0xFF;
-					info->mini->addr[index_pxl++] = (info->colors[w] >> 24) &0xFF;
+					info->mini->addr[index_pxl++] = (info->colors[w] >> 24) & 0xFF;
 				}
 			}
 		}
@@ -173,9 +173,10 @@ static void	ft_draw_ray(t_info *info, double x, double y, char **map)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
 		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
-		if (grid_x < 0 || grid_x >= info->mini_w || grid_y < 0 || grid_y >= info->mini_h)
+		if (grid_x < 0 || grid_x >= info->mini_w || \
+			grid_y < 0 || grid_y >= info->mini_h)
 			return ;
-		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] ==  ' ')
+		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
 			return ;
 		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0x000000);
 		x += dx;
@@ -211,15 +212,12 @@ void	ft_minimap(t_info *info)
 	map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
-	/*if (DEBUG)
-		ft_print_minimap(info, map);*/
+	if (DEBUG)
+		ft_print_minimap(info, map);
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
-	//mlx_string_put(info->mlx, info->mini->win,  MINI_W / 2, MINI_H / 2, 0xFF0000, "X");
 	ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
-	//ft_print_user_data(info);
 	ft_free_array(map);
-	ft_raycasting(info);
 }

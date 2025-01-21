@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/20 12:57:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 17:22:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
  *	Texture struct
  */
+
 typedef struct s_texture
 {
 	char			*img_path;			//	Path to the image
@@ -27,7 +28,6 @@ typedef struct s_texture
 	void			*img;				//	Image
 	void			*addr;				//	Address of image
 }					t_img;
-
 
 /*
  *	Animation struct
@@ -68,6 +68,7 @@ typedef struct s_info_map
 /*
  *	Structure for windows
  */
+
 typedef struct s_info_windows
 {
 	int			bpp;			//	bits by pixell
@@ -116,13 +117,15 @@ typedef struct s_info
 	t_img		*player;		//	player image
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
-	//t_anim		*c_anim;		//	animation of collectable
+	t_anim		*c_anim;		//	animation of collectable
+	t_anim		*d_anim;		//	animation of door
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 
 /*
  *	Raycasting struct
  */
+
 typedef struct s_raycasting
 {
 	double	camera_x;

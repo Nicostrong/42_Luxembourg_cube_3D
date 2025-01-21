@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2024/12/12 10:21:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 14:51:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@
 # define E_M_IMG	"\033[1;31mError\n\tmlx new image for minimap.\033[0m"
 # define E_M_ADR	"\033[1;31mError\n\tmlx get data addr for minimap.\033[0m"
 
-#define W_N_IMG_E	1 << 0
-#define W_S_IMG_E	1 << 1
-#define W_E_IMG_E	1 << 2
-#define W_W_IMG_E	1 << 3
-#define F_IMG_E		1 << 4
-#define S_IMG_E		1 << 5
-#define E_COL_S		1 << 6
-#define E_COL_F		1 << 7
+# define W_N_IMG_E	1	//	1 << 0
+# define W_S_IMG_E	2	//	1 << 1
+# define W_E_IMG_E	4	//	1 << 2
+# define W_W_IMG_E	8	//	1 << 3
+# define F_IMG_E	16	//	1 << 4
+# define S_IMG_E	32	//	1 << 5
+# define E_COL_S	64	//	1 << 6
+# define E_COL_F	128	//	1 << 7
 
 /*
  *	Fonction error

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/08 15:12:37 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:21:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	char	*line;
 	char	*sub_line;
 	char	**array;
-	int 	fd;
+	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -115,7 +115,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
  */
 static void	ft_set_all_xpm(t_info *info)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (info->info_map[++i].t_img)

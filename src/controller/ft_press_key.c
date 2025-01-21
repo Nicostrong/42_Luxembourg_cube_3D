@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 10:00:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 17:25:25 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ int	ft_press_key(int keysym, t_info *info)
 	else if (keysym == XK_Right)
 		info->user_deg += ROTATE;
 	info->user_deg = ft_normalize_rot(info->user_deg);
-	ft_minimap(info);
-	//ft_raycasting(info);
+	if (BONUS)
+	{
+		if (keysym == XK_space)
+			ft_open_door(info);
+		ft_minimap(info);
+	}
+	ft_raycasting(info);
 	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:19:44 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/14 11:38:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:16:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
-//#include "../../includes/setting_game.h"
 #include "../../includes/minimap.h"
 #include "../../includes/structures.h"
 #include "../../includes/error.h"
@@ -41,17 +40,21 @@ static char	**ft_init_map(t_info *info)
 	info->mini_h = 5;
 	if (fabs(info->user_y - info->y) != 0.5)
 		info->mini_h = 6;
-	//printf("fabs user_y - y : %.2f\n", fabs(info->user_y - info->y));
 	info->mini_w = 7;
 	if (fabs(info->user_x - info->x) != 0.5)
 		info->mini_w = 8;
-	//printf("fabs user_x - x : %.2f\n", fabs(info->user_x - info->x));
-	//printf("mini_w: %d\tmini_h: %d\n", info->mini_w, info->mini_h);
+	if (DEBUG)
+	{
+		printf("fabs user_y - y : %.2f\n", fabs(info->user_y - info->y));
+		printf("fabs user_x - x : %.2f\n", fabs(info->user_x - info->x));
+		printf("mini_w: %d\tmini_h: %d\n", info->mini_w, info->mini_h);
+	}
 	map = ft_calloc(info->mini_h + 1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
 	return (map);
 }
+
 /*
  * <cat>cube_3D</cat>
  *
@@ -119,7 +122,7 @@ char	**ft_get_minimap(t_info *info)
  */
 void	ft_get_heights(t_info *info)
 {
-	int	i;
+	int		i;
 	double	offset;
 
 	if ((info->user_y - info->y) <= 0.5)

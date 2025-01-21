@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/17 14:00:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:19:58 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 unsigned int	get_pixel_color(t_img *img, int x, int y)
 {
-	char *pixel;
+	char	*pixel;
 
 	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
-        return (0);
+		return (0);
 	pixel = img->addr;
 	pixel += y * img->size + x * (img->bpp / 8);
-	return *(unsigned int *)pixel;
+	return (*(unsigned int *)pixel);
 }
 
 void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
@@ -54,7 +54,6 @@ void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
 
 void	ft_put_player(t_info *info, t_img *player, int x, int y)
 {
-
 	if (player)
 	{
 		ft_put_imgalpha(info->mini, info->player, x - (info->player->w / 2), \
@@ -66,4 +65,3 @@ void	ft_put_player(t_info *info, t_img *player, int x, int y)
 		ft_put_circle(info, x, y);
 	return ;
 }
-

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/16 17:19:30 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/21 17:28:47 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
-CC_OPT			=	-g -o3 -D DEBUG=1
-CC_DEF			=	
+CC_OPT			=	-g -o3
+CC_DEF			=	-D DEBUG=1
 
 DEB				=	valgrind
 DEB_OPT			=	--tool=memcheck \
@@ -85,8 +85,35 @@ endif
 
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
-					./src/controller/ft_mouse_move.c \
 					./src/controller/ft_move.c \
+					./src/debug/ft_print_info.c \
+					./src/draw/ft_put_player.c \
+					./src/exit/ft_error.c \
+					./src/exit/ft_exit.c \
+					./src/minimap/ft_put_player.c \
+					./src/parser/ft_check_arg.c \
+					./src/parser/ft_parse_utils_1.c \
+					./src/parser/ft_parse_utils_2.c \
+					./src/parser/ft_parse.c \
+					./src/raycast/ft_raycasting.c \
+					./src/structure/ft_free_structure.c \
+					./src/structure/ft_init_structure.c
+
+SRC				=	$(SRC_COMMON) $(SRC_OS)
+
+OBJ				=	$(SRC:.c=.o)
+
+NAME			=	cube3D
+
+################################################################################
+#	Bonus part																   #
+################################################################################
+
+SRC_BONUS_COM	=	./src/main.c \
+					./src/controller/ft_check_wall.c \
+					./src/controller/ft_move.c \
+					./src/controller/ft_mouse_move.c \
+					./src/controller/ft_door.c \
 					./src/debug/ft_print_info.c \
 					./src/draw/ft_put_player.c \
 					./src/exit/ft_error.c \
@@ -102,11 +129,10 @@ SRC_COMMON		=	./src/main.c \
 					./src/structure/ft_free_structure.c \
 					./src/structure/ft_init_structure.c
 
-SRC				=	$(SRC_COMMON) $(SRC_OS)
+SRC_BONUS		=	$(SRC_BONUS_COM) $(SRC_OS)
+OBJ_BONUS		=	$(SRC_BONUS:.c=.o)
 
-OBJ				=	$(SRC:.c=.o)
-
-NAME			=	cube3D
+NAME_BONUS		=	$(NAME)
 
 ################################################################################
 #	Colors																	   #
@@ -164,7 +190,7 @@ SLEEP_TIME		=	0.001
 
 define compile_c_to_o
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
-	@$(CC) $(CFLAGS) $(CC_OPT) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) -c -o $@ $<
 	@printf $(BLUE)"\r\033[K\033[0KCompiling files => $< ["
 	@for i in $$(seq 0 $$(($(CURRENT_FILE)*100/$(NUM_FILES)))); do \
 		printf $(YELLOW)"="; \
@@ -222,7 +248,8 @@ endef
 #	Rules
 ################################################################################
 
-all:		$(MLX_DIR)/$(MLX_NAME)\
+all:		fclean \
+			$(MLX_DIR)/$(MLX_NAME)\
 			$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
 			$(NAME)
@@ -243,34 +270,40 @@ $(GNL_DIR)/$(GNL_NAME):
 $(MLX_DIR)/$(MLX_NAME):
 	@$(MAKE) -sC $(MLX_DIR)
 
+bonus:		CC_DEF += -D BONUS=1
+bonus:		NUM_FILES=$(NB_BONUS)
+bonus:		fclean \
+			$(MLX_DIR)/$(MLX_NAME)\
+			$(LIBFT_DIR)/$(LIBFT_NAME) \
+			$(GNL_DIR)/$(GNL_NAME) \
+			$(OBJ_BONUS)
+	@echo "Compiling with BONUS"
+	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS) -o $(NAME)
+
 clean:
 	$(call delete_progress, ./src/*.o)
 	$(call delete_progress, ./src/controller/*.o)
 	$(call delete_progress, ./src/debug/*.o)
 	$(call delete_progress, ./src/draw/*.o)
 	$(call delete_progress, ./src/exit/*.o)
-	$(call delete_progress, ./src/file/*.o)
-	$(call delete_progress, ./src/map_generator/*.o)
 	$(call delete_progress, ./src/minimap/*.o)
 	$(call delete_progress, ./src/parser/*.o)
+	$(call delete_progress, ./src/raycast/*.o)
 	$(call delete_progress, ./src/structure/*.o)
-	$(call delete_progress, ./src/texture/*.o)
-	$(call delete_progress, ./src/utils/*.o)
-	$(call delete_progress, ./src/validate/*.o)
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@$(MAKE) -sC $(GNL_DIR) clean
 	@$(MAKE) -sC $(MLX_DIR) clean
 
-fclean: clean
+fclean: 	clean
 	$(call delete_file, $(NAME))
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 
-re: fclean all
+re: 		fclean all
 	@echo ""
 	@echo "$(CGREEN)all files of the programm $(NAME) recompiled with success!$(RESET)"
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re bonus
 
 ################################################################################
 #	Extra

@@ -6,14 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/15 10:36:33 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:25:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/error.h"
 #include "../../includes/structures.h"
-
 
 /*
  * <cat>cube_3D</cat>
@@ -110,8 +109,8 @@ static void	ft_set_direction(char c, t_info *info)
  */
 static void	ft_get_pos_player(char **map, t_info *info)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (map[++i])
@@ -119,7 +118,7 @@ static void	ft_get_pos_player(char **map, t_info *info)
 		j = -1;
 		while (map[i][++j])
 		{
-			if (ft_strchr("NSEW",map[i][j]))
+			if (ft_strchr("NSEW", map[i][j]))
 			{
 				info->user_x = j + 0.5;
 				info->x = j;

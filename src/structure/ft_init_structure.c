@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 10:00:12 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 11:01:10 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,8 @@ t_info	*ft_init_info(char *path)
 	if (!info->mlx)
 		ft_perror_exit(E_MLX, info);
 	info->game = ft_init_info_win(info, WIDTH, HEIGHT, TITLE);
-	info->mini = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
+	if (BONUS)
+		info->mini = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
 	ft_init_img_color(info);
 	info->info_map = ft_init_info_path(info);
 	return (info);

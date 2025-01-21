@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/13 10:00:41 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/21 17:41:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
  */
 int	ft_press_key_mac(int keysym, t_info *info)
 {
+	printf("\t\t\tKeysym = %d\n", keysym);
 	if (keysym == ESCAP)
 		ft_exit(info);
 	else if (keysym == KZ || keysym == UP)
@@ -51,7 +52,12 @@ int	ft_press_key_mac(int keysym, t_info *info)
 	else if (keysym == KE || keysym == RIGHT)
 		info->user_deg += ROTATE;
 	info->user_deg = ft_normalize_rot(info->user_deg);
-	ft_minimap(info);
-	//ft_raycasting(info);
+	if (BONUS)
+	{
+		if (keysym == SPACE)
+			ft_open_door(info);
+		ft_minimap(info);
+	}
+	ft_raycasting(info);
 	return (0);
 }

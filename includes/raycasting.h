@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:06:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/22 11:47:42 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 14:50:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
  *	Functions raycasting
  */
 
-int	ft_raycasting(t_info *info);
-int	ft_put_wall(t_img *wall, int y_start, int y_end, int y, int tex_x);
+int		ft_put_wall(t_img *wall, int y_start, int y_end, int y, int tex_x);
+
+void	ft_raycasting(t_info *info);
 
 #endif

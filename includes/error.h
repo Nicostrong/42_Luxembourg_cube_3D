@@ -6,20 +6,32 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/21 14:51:37 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 13:52:07 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
+/*
+ *	Define std
+ */
+
 # define E_USAGE	"\033[1;31mUsage\n\t./cub3d <map.cub>\033[0m"
-# define E_MLX		"\033[1;31mError\n\tMlx error.\033[0m"
-# define E_CUB		"\033[1;31mError\n\tNot a .cub file\033[0m"
-# define E_HIDDEN	"\033[1;31mError\n\tHidden file .cub not .cub file\033[0m"
 # define E_EXIST	"\033[1;31mError\n\tFile not exist.\033[0m"
 # define E_OPEN		"\033[1;31mError\n\tFile not readable.\033[0m"
 # define E_READ		"\033[1;31mError\n\tReading error.\033[0m"
+# define E_MALLOC	"\033[1;31mError\n\tMalloc.\033[0m"
+# define E_THREAD	"\033[1;31mError\n\tThread.\033[0m"
+# define E_MUTEX	"\033[1;31mError:\n\tMutex error.\033[0m"
+# define E_JOIN_TH	"\033[1;31mError:\n\tThread join error.\033[0m"
+
+/*
+ *	Define error map
+ */
+
+# define E_CUB		"\033[1;31mError\n\tNot a .cub file\033[0m"
+# define E_HIDDEN	"\033[1;31mError\n\tHidden file .cub not .cub file\033[0m"
 # define E_PARAM	"\033[1;31mError\n\tFile .cub not valid\033[0m"
 # define E_MAP		"\033[1;31mError\n\tMissing or bad map.\033[0m"
 # define E_SKY		"\033[1;31mError\n\tMissing sky.\033[0m"
@@ -43,13 +55,22 @@
 # define E_CLOSE	"\033[1;31mError\n\tMap not closed.\033[0m"
 # define E_SPAWN	"\033[1;31mError\n\tMissing player on map.\033[0m"
 # define E_EXIT		"\033[1;31mError\n\tMissing exit on map.\033[0m"
-# define E_MALLOC	"\033[1;31mError\n\tMalloc.\033[0m"
+
+/*
+ *	Define error MLX
+ */
+
+# define E_MLX		"\033[1;31mError\n\tMLX error.\033[0m"
 # define E_WIN		"\033[1;31mError\n\tmlx new window.\033[0m"
 # define E_IMG		"\033[1;31mError\n\tmlx new image.\033[0m"
 # define E_ADR		"\033[1;31mError\n\tmlx get data addr.\033[0m"
 # define E_M_WIN	"\033[1;31mError\n\tmlx new window for minimap.\033[0m"
 # define E_M_IMG	"\033[1;31mError\n\tmlx new image for minimap.\033[0m"
 # define E_M_ADR	"\033[1;31mError\n\tmlx get data addr for minimap.\033[0m"
+
+/*
+ *	Define error messages
+ */
 
 # define W_N_IMG_E	1	//	1 << 0
 # define W_S_IMG_E	2	//	1 << 1

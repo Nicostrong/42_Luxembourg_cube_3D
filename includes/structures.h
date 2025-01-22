@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/22 12:58:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 14:54:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ typedef struct s_thread
 	pthread_mutex_t	m_map;			// protection of access map
 	pthread_mutex_t	m_user_x;		// protection for position user in x
 	pthread_mutex_t	m_user_y;		// protection for position user in y
-	pthread_mutex_t	m_user_d;		// protection for rotation user 
+	pthread_mutex_t	m_user_d;		// protection for rotation user
+	pthread_mutex_t	m_stop;		// protection for stop thread
 }	t_thread;
 
 /*
@@ -109,6 +110,7 @@ typedef struct s_info
 	int			mini_h;			//	height of the minimap array
 	int			mini_w;			//	width of the minimap array
 	int			move;			//	bool for changing view
+	int			stop;			//	to stop the thread
 	int			*colors;		//	all color for a line of minimap
 	int			*widths;		//	all widths of minimap
 	int			*heights;		//	all heights of minimap

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 11:21:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 13:02:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,5 +238,6 @@ t_info	*ft_get_all_info(char *path)
 	ft_check_map(info);
 	ft_set_all_xpm(info);
 	ft_check_texture_s_f(info);
+	ft_init_thread(info);
 	return (info);
 }

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 11:19:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 11:54:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_get_color(t_info *info, char *line)
+ * 	void	ft_set_color(t_info *info, char *line)
  * </summary>
  *
  * <description>
- * 	ft_get_color set all color for a line.
+ * 	ft_set_color set all color for a line.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
@@ -34,7 +34,7 @@
  * </return>
  *
  */
-static void	ft_get_color(t_info *info, char *line)
+static void	ft_set_color(t_info *info, char *line)
 {
 	int	index;
 
@@ -82,7 +82,7 @@ static void	ft_set_img(t_info *info, char **map)
 	m = -1;
 	while (map[++m])
 	{
-		ft_get_color(info, map[m]);
+		ft_set_color(info, map[m]);
 		y = -1;
 		while (++y < (int)info->heights[m])
 		{
@@ -160,15 +160,48 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
  * </return>
  *
  */
-static void	ft_draw_ray(t_info *info, double x, double y, char **map)
+/*
+static void ft_draw_ray(t_info *info, double x, double y, char **map)
+{
+    double angles[3] = {
+        info->user_deg - (M_PI / 6), // Rayon gauche
+        info->user_deg,              // Rayon central
+        info->user_deg + (M_PI / 6)  // Rayon droit
+    };
+    int     grid_x;
+    int     grid_y;
+
+    for (int i = 0; i < 3; i++)
+    {
+        double  dx = cos(angles[i]);
+        double  dy = sin(angles[i]);
+        double  ray_x = x;
+        double  ray_y = y;
+        while (ray_x >= 0 && ray_y >= 0 && ray_x < MINI_W && ray_y < MINI_H)
+        {
+            grid_x = ft_get_map_case((int)ray_x, info->widths, info->mini_w);
+            grid_y = ft_get_map_case((int)ray_y, info->heights, info->mini_h);
+            if (grid_x < 0 || grid_x >= info->mini_w || \
+                grid_y < 0 || grid_y >= info->mini_h)
+                break ;
+            if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
+                break ;
+            mlx_pixel_put(info->mlx, info->mini->win, (int)ray_x, (int)ray_y, 0x000000);
+            ray_x += dx;
+            ray_y += dy;
+        }
+    }
+}*/
+
+static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **map)
 {
 	int		grid_x;
 	int		grid_y;
 	double	dx;
 	double	dy;
 
-	dx = cos(info->user_deg);
-	dy = sin(info->user_deg);
+	dx = cos(angle);
+	dy = sin(angle);
 	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
@@ -218,6 +251,8 @@ void	ft_minimap(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
 	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
-	ft_draw_ray(info, MINI_W / 2, MINI_H / 2, map);
+	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
+	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, map);
+	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
 	ft_free_array(map);
 }

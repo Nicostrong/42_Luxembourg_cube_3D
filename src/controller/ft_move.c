@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 11:07:42 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 10:48:05 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	info->x = floor(new_x);
 	info->y = floor(new_y);
 	info->map[info->y][info->x] = 'P';
+	info->move = 1;
 	return ;
 }
 

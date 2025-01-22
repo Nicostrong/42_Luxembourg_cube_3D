@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/20 13:44:28 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 12:52:34 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
  */
 static void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 {
+	char	*base_pixel;
 	char	*pixel;
 	int		y;
 	t_win	*win;
@@ -50,31 +51,20 @@ static void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 		y_start = 0;
 	if (y_end >= HEIGHT)
 		y_end = HEIGHT - 1;
-	y = 0;
-	//	print sky
-	while (y < y_start)
+	base_pixel = win->addr + x * (win->bpp / 8);
+	y = -1;
+	while (++y < HEIGHT)
 	{
-		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
-		//*(unsigned int *)pixel = ft_get_color(0, info->sky_color->r, info->sky_color->g, info->sky_color->b);
-		*(unsigned int *)pixel = 0x005555;
-		y++;
-	}
-	//	print wall
-	while (y < y_end)
-	{
-		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
-		*(unsigned int *)pixel = color;
-		y++;
-	}
-	//	print floor
-	while (y < HEIGHT)
-	{
-		pixel = win->addr + (y * win->size + x * (win->bpp / 8));
-		//*(unsigned int *)pixel = ft_get_color(0, info->floor_color->r, info->floor_color->g, info->floor_color->b);
-		*(unsigned int *)pixel = 0xA08A0A;
-		y++;
+		pixel = base_pixel + y * win->size;
+		if (y < y_start)
+			*(unsigned int *)pixel = info->sky_color->color;
+		else if (y < y_end)
+			*(unsigned int *)pixel = color; //ft_put_wall(info->w_n_img, y_start, y_end, y, x);
+		else
+			*(unsigned int *)pixel = info->floor_color->color;
 	}
 }
+
 
 /*
  * <cat>cube_3D</cat>
@@ -289,11 +279,13 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
  * </return>
  * 
  */
-void	ft_raycasting(t_info *info)
+int	ft_raycasting(t_info *info)
 {
 	t_raycast	ray;
 	int			x;
 
+	if (!info->move)
+		return (0);
 	ft_set_dir_and_plan(info, &ray);
 	x = -1;
 	while (++x < WIDTH)
@@ -302,17 +294,20 @@ void	ft_raycasting(t_info *info)
 		ft_init_dda(info, &ray);
 		ft_hit_wall(info, &ray);
 		ft_set_limit_wall(info, &ray);
-		ray.color = 0x000000;	//	color black
+		ray.color = 0x1D1430;		//	OUEST
 		if (ray.wall == 1)
-			ray.color = 0xFFFF00;	//	color yellow
+			ray.color = 0xFFFF00;	//	NORD
 		else if (ray.wall == 2)
-			ray.color = 0x00AFAF;	//	color cyan
+			ray.color = 0x00AFAF;	//	SUD
 		else if (ray.wall == 3)
-			ray.color = 0xFF00FF;	//	color magenta
+			ray.color = 0xFF00FF;	//	EST
 		//ft_draw_texture(info, &ray, x);
 		ft_set_pixel(info, x, ray.draw_start, ray.draw_end, ray.color);
 		ray.prev_draw_end = ray.draw_end;
+		//x += (int)RAY_STEP;
 	}
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
+	info->move = 0;
+	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 17:41:19 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 08:49:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 #include "../../includes/minimap.h"
+#include "../../includes/raycasting.h"
 
 /*
  * <cat>cube_3D</cat>

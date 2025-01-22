@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_door.c                                          :+:      :+:    :+:   */
+/*   ft_put_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 17:27:00 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/22 08:50:31 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/01/22 10:57:29 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/01/22 11:22:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
-#include "../../includes/structures.h"
-#include "../../includes/setting_game.h"
 
-void	ft_open_door(t_info *info)
+int	ft_put_wall(t_img *wall, int y_start, int y_end, int y, int tex_x)
 {
-	(void)info;
-	printf(REDC"\t\tDoor open\n"RESET);
+	int			tex_y;
+	char		*pixel_ptr;
+	uint32_t	color;
+
+	tex_y = (y - y_start) * wall->h / (y_end - y_start);
+	(void)tex_x;
+	if (tex_y < 0) tex_y = 0;
+	if (tex_y >= wall->h) tex_y = wall->h - 1;
+	pixel_ptr = wall->addr + (tex_y * wall->size + 2 * (wall->bpp / 8));
+	color = *(uint32_t *)pixel_ptr;
+	return (color);
 }

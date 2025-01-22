@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 17:25:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 10:51:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 #include "../../includes/minimap.h"
+#include "../../includes/raycasting.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -51,6 +52,7 @@ int	ft_press_key(int keysym, t_info *info)
 	else if (keysym == XK_Right)
 		info->user_deg += ROTATE;
 	info->user_deg = ft_normalize_rot(info->user_deg);
+	info->move = 1;
 	if (BONUS)
 	{
 		if (keysym == XK_space)

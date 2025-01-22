@@ -6,12 +6,23 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 17:22:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 12:58:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+# include <pthread.h>
+typedef struct s_thread
+{
+	pthread_t		t_mini;
+	pthread_t		t_game;
+	pthread_mutex_t	m_map;			// protection of access map
+	pthread_mutex_t	m_user_x;		// protection for position user in x
+	pthread_mutex_t	m_user_y;		// protection for position user in y
+	pthread_mutex_t	m_user_d;		// protection for rotation user 
+}	t_thread;
 
 /*
  *	Texture struct
@@ -52,6 +63,7 @@ typedef struct s_color
 	int				r;
 	int				g;
 	int				b;
+	int				color;
 }					t_color;
 
 /*
@@ -96,6 +108,7 @@ typedef struct s_info
 	int			use_s_img;		//	1 if use sky image, 0 if use color
 	int			mini_h;			//	height of the minimap array
 	int			mini_w;			//	width of the minimap array
+	int			move;			//	bool for changing view
 	int			*colors;		//	all color for a line of minimap
 	int			*widths;		//	all widths of minimap
 	int			*heights;		//	all heights of minimap
@@ -119,6 +132,7 @@ typedef struct s_info
 	t_color		*sky_color;		//	sky color
 	t_anim		*c_anim;		//	animation of collectable
 	t_anim		*d_anim;		//	animation of door
+	t_thread	*thread;		//	thread structure
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 

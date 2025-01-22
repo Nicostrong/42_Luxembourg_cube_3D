@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 11:01:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 10:53:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ t_info	*ft_init_info(char *path)
 	info->fd = open(path, O_RDONLY);
 	if (info->fd < 0)
 		ft_perror_exit(E_OPEN, info);
+	info->move = 1;
 	info->colors = ft_calloc(8, sizeof(int));
 	info->widths = ft_calloc(8, sizeof(double));
 	info->heights = ft_calloc(6, sizeof(double));

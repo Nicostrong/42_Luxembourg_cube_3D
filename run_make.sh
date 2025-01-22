@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/29 08:09:39 by nfordoxc          #+#    #+#              #
-#    Updated: 2024/12/18 08:33:47 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/22 07:45:01 by nfordoxc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ WATCH_DIRS=(
 	"./lib"
 ) 
 
-COMMAND="make"
+COMMAND="make bonus"
 
 calculate_checksum()
 {

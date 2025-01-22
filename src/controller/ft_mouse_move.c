@@ -6,11 +6,10 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:55:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 11:05:57 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 10:47:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 #include "../../includes/minimap.h"
@@ -43,6 +42,7 @@ int	ft_mouse_move(int x, int y, t_info *info)
 	else if (x > info->mouse_rot)
 		info->user_deg += ROTATE;
 	info->mouse_rot = x;
+	info->move = 1;
 	ft_minimap(info);
 	return (0);
 }

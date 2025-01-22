@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/21 17:22:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/22 10:07:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/error.h"
 #include "../../includes/structures.h"
+#include "../../includes/setting_game.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -135,6 +136,7 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 	new->r = ft_atoi(array[0]);
 	new->g = ft_atoi(array[1]);
 	new->b = ft_atoi(array[2]);
+	new->color = ft_get_color(new->t, new->r, new->g, new->b);
 	ft_free_array(array);
 	if (new->r < 0 || new->r > 255 || new->g < 0 || new->g > 255 \
 		|| new->b < 0 || new->b > 255)

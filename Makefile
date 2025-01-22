@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/21 17:28:47 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/22 11:07:19 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,9 @@ SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
 					./src/controller/ft_move.c \
 					./src/debug/ft_print_info.c \
+					./src/draw/ft_get_color.c \
 					./src/draw/ft_put_player.c \
+					./src/draw/ft_put_wall.c \
 					./src/exit/ft_error.c \
 					./src/exit/ft_exit.c \
 					./src/minimap/ft_put_player.c \
@@ -115,7 +117,9 @@ SRC_BONUS_COM	=	./src/main.c \
 					./src/controller/ft_mouse_move.c \
 					./src/controller/ft_door.c \
 					./src/debug/ft_print_info.c \
+					./src/draw/ft_get_color.c \
 					./src/draw/ft_put_player.c \
+					./src/draw/ft_put_wall.c \
 					./src/exit/ft_error.c \
 					./src/exit/ft_exit.c \
 					./src/minimap/ft_minimap_utils.c \

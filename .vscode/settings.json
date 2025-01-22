@@ -46,7 +46,9 @@
         "vector": "cpp",
         "time.h": "c",
         "math.h": "c",
-        "structures.h": "c"
+        "structures.h": "c",
+        "chrono": "c",
+        "text_encoding": "c"
     },
     "files.exclude": {
         "**/.git": true,

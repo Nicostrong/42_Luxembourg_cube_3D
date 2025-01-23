@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:59:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 17:17:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ typedef struct s_info_windows
 	void		*img;			//	img to print
 }				t_win;
 
- /*
-  *	Main structure
-  */
+/*
+ *	Main structure
+ */
 
 typedef struct s_info
 {
@@ -175,8 +175,6 @@ typedef struct s_raycasting
 /*
  *	Strucuture fonctions
  */
-
-//	DEBUG
 
 void	ft_print_map(t_info *info);
 void	ft_print_info(t_info *info);

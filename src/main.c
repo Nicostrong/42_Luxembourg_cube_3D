@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 15:54:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:58:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
  * </return>
  *
  */
-void	ft_title(void)
+static void	ft_title(void)
 {
 	printf(BBLUE T1 RESET);
 	printf(BBLUE"⸭"BYELLOW T2 BBLUE"⸭\n"RESET);

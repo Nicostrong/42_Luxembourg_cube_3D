@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:57:00 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 17:18:37 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  */
 
 # define FPS 			30
-# define FRAMT 			(1000 / FPS)
+# define FRAMT 			33.3333333				//	(1000 / FPS)
 # define SPEED_COL		50000
 
 /*

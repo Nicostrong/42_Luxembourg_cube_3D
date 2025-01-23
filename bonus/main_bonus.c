@@ -6,16 +6,15 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 16:04:03 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube_3d.h"
-#include "../includes/title.h"
-#include "../includes/structures.h"
-#include "../includes/setting_game.h"
-#include "../includes/minimap.h"
-#include "../includes/raycasting.h"
+#include "../includes/cube_3d_bonus.h"
+#include "../includes/title_bonus.h"
+#include "../includes/setting_game_bonus.h"
+#include "../includes/minimap_bonus.h"
+#include "../includes/raycasting_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -35,7 +34,7 @@
  * </return>
  *
  */
-void	ft_title(void)
+static void	ft_title(void)
 {
 	printf(BBLUE B1 RESET);
 	printf(BBLUE"⸭"BYELLOW B2 BBLUE"⸭\n"RESET);
@@ -74,25 +73,26 @@ int main(int argc, char *argv[])
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
 	ft_title();
-	ft_print_info(info);
-	mlx_loop_hook(info->mlx, &ft_raycasting, info);
-	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
-	if (BONUS)
-	{
-		ft_minimap(info);
-		mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
-		mlx_hook(info->mini->win, 17, 0, &ft_exit, info);
-		if (LINUX)
-			mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key, info);
-		else if (MACOS)
-			mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
-	}
 	if (DEBUG)
+	{
+		ft_print_info(info);
 		ft_print_user_data(info);
+	}
+	ft_minimap(info);
+	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
+	mlx_hook(info->mini->win, 17, 0, &ft_exit, info);
+	mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
 	if (LINUX)
+	{
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key, info);
+	}
 	else if (MACOS)
+	{
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key_mac, info);
+		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
+	}
+	mlx_loop_hook(info->mlx, &ft_raycasting, info);
 	mlx_loop(info->mlx);
 	return (0);
 }

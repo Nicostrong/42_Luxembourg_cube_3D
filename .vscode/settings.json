@@ -48,7 +48,12 @@
         "math.h": "c",
         "structures.h": "c",
         "chrono": "c",
-        "text_encoding": "c"
+        "text_encoding": "c",
+        "__node_handle": "c",
+        "complex": "c",
+        "functional": "c",
+        "mutex": "c",
+        "tuple": "c"
     },
     "files.exclude": {
         "**/.git": true,

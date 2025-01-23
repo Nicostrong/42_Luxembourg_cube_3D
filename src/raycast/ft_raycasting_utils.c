@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:36 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 17:32:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_set_pixel(t_win *win, int x, int y_start, int y_end, int color)
+ * 	void	ft_set_pixel(t_info *info, int x, t_raycast *ray)
  * </summary>
  *
  * <description>
@@ -27,38 +27,36 @@
  *
  * <param type="t_win *" name="win">windows of the image</param>
  * <param type="int" name="x">index x of the image</param>
- * <param type="int" name="y_start">start index y of the wall</param>
- * <param type="int" name="y_end">end index y of the wall</param>
- * <param type="int" name="color">color of the wall</param>
+ * <param type="t_raycast *" name="rayt">raycasting structure</param>
  *
  * <return>
  * 	void.
  * </return>
  * 
  */
-void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
+void	ft_set_pixel(t_info *info, int x, t_raycast *ray)
 {
 	char	*base_pixel;
 	char	*pixel;
 	int		y;
 	t_win	*win;
 
-	if (x < 0 || x >= WIDTH || y_end < 0 || y_start >= HEIGHT)
+	if (x < 0 || x >= WIDTH || ray->draw_end < 0 || ray->draw_start >= HEIGHT)
 		return ;
 	win = info->game;
-	if (y_start < 0)
-		y_start = 0;
-	if (y_end >= HEIGHT)
-		y_end = HEIGHT - 1;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	if (ray->draw_end >= HEIGHT)
+		ray->draw_end = HEIGHT - 1;
 	base_pixel = win->addr + x * (win->bpp / 8);
 	y = -1;
 	while (++y < HEIGHT)
 	{
 		pixel = base_pixel + y * win->size;
-		if (y < y_start)
+		if (y < ray->draw_start)
 			*(unsigned int *)pixel = info->sky_color->color;
-		else if (y < y_end)
-			*(unsigned int *)pixel = color; //ft_put_wall(info->w_n_img, y_start, y_end, y, x);
+		else if (y < ray->draw_end)
+			*(unsigned int *)pixel = ray->color; //ft_put_wall(info->w_n_img, y_start, y_end, y, x);
 		else
 			*(unsigned int *)pixel = info->floor_color->color;
 	}

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 17:37:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,16 +149,24 @@ static void	ft_hit_wall(t_info *info, t_raycast *ray)
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
 			ray->side = 0;
-			ray->wall = (ray->step_x == -1) ? 0 : 2;
-			ray->texture = (ray->step_x == -1) ? info->w_w_img : info->w_e_img;
+			ray->wall = 2;
+			if (ray->step_x == -1)
+				ray->wall = 0;
+			ray->texture = info->w_e_img;
+			if (ray->step_x == -1)
+				ray->texture = info->w_w_img;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
 			ray->side = 1;
-			ray->wall = (ray->step_y == -1) ? 1 : 3;
-			ray->texture = (ray->step_y == -1) ? info->w_n_img : info->w_s_img;
+			ray->wall = 3;
+			if (ray->step_y == -1)
+				ray->wall = 1;
+			ray->texture = info->w_s_img;
+			if (ray->step_y == -1)
+				ray->texture = info->w_n_img;
 		}
 		hit = info->map[ray->map_y][ray->map_x] == '1';
 	}
@@ -205,11 +213,11 @@ int	ft_raycasting(t_info *info)
 			ray.color = 0x00AFAF;	//	SUD
 		else if (ray.wall == 3)
 			ray.color = 0xFF00FF;	//	EST
-		ft_set_pixel(info, x, ray.draw_start, ray.draw_end, ray.color);
+		ft_set_pixel(info, x, &ray);
 		ray.prev_draw_end = ray.draw_end;
 		//x += (int)RAY_STEP;
 	}
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;
-	return  (1);
+	return (1);
 }

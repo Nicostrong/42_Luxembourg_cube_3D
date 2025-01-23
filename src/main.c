@@ -6,13 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 14:47:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:54:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_3d.h"
 #include "../includes/title.h"
-#include "../includes/structures.h"
 #include "../includes/setting_game.h"
 #include "../includes/raycasting.h"
 
@@ -73,15 +72,17 @@ int	main(int argc, char *argv[])
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
 	ft_title();
-	ft_print_info(info);
-	mlx_loop_hook(info->mlx, &ft_raycasting, info);
-	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
 	if (DEBUG)
+	{
+		ft_print_info(info);
 		ft_print_user_data(info);
+	}
 	if (LINUX)
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key, info);
 	else if (MACOS)
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key_mac, info);
+	mlx_loop_hook(info->mlx, &ft_raycasting, info);
+	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
 	mlx_loop(info->mlx);
 	return (0);
 }

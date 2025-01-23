@@ -6,13 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:07:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/error.h"
-#include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
 
 /*

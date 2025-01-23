@@ -6,14 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:36 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 11:58:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/setting_game.h"
 #include "../../includes/raycasting.h"
-#include "../../includes/structures.h"
 
 /*
  * <cat>cube_3D</cat>

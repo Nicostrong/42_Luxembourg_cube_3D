@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/23 15:13:14 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/23 15:49:13 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,11 @@ SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
 					./src/controller/ft_move.c \
 					./src/controller/ft_rotate.c \
+					./src/debug/ft_print_color.c \
+					./src/debug/ft_print_img.c \
 					./src/debug/ft_print_info.c \
+					./src/debug/ft_print_map.c \
+					./src/debug/ft_print_user.c \
 					./src/draw/ft_get_color.c \
 					./src/draw/ft_put_wall.c \
 					./src/exit/ft_error.c \

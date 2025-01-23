@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:59:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:44:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,6 @@ typedef struct s_raycasting
 /*
  *	Strucuture fonctions
  */
-
-//	DEBUG
-
-void	ft_print_map(t_info *info);
-void	ft_print_info(t_info *info);
-void	ft_print_user_data(t_info *info);
-void	ft_print_minimap(t_info *info, char **map);
 
 void	ft_init_img(t_info **info);
 void	ft_free_info(t_info *info);

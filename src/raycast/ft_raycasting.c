@@ -6,14 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 12:01:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/setting_game.h"
 #include "../../includes/raycasting.h"
-#include "../../includes/structures.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -214,4 +213,3 @@ int	ft_raycasting(t_info *info)
 	info->move = 0;
 	return  (1);
 }
-

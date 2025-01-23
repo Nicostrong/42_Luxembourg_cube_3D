@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setting_game.h                                     :+:      :+:    :+:   */
+/*   setting_game_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:11:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 14:57:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SETTING_GAME_H
-# define SETTING_GAME_H
+#ifndef SETTING_GAME_BONUS_H
+# define SETTING_GAME_BONUS_H
 
-# define TITLE			"Cube3D"				//	project name
+# define TITLE			"Cube3D++"				//	project name
 # define WIDTH			1500					//	1920
 # define HEIGHT			1000					//	1080
 # define NBTEXTURES		6						//	number of textures
-# define ROTATE			0.5	//0.02					//	in radian
-# define STEP			0.5	//0.05					//	size of step
+# define ROTATE			0.02					//	in radian
+# define STEP			0.05					//	size of step
 # define D_WALL			0.2						//	distance min near wall
 
 /*

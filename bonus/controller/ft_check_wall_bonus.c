@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_wall.c                                    :+:      :+:    :+:   */
+/*   ft_check_wall_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:57:24 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:33:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -106,7 +107,6 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 				*new_x = info->x + 1 - D_WALL;
 		}
 	}
-	return ;
 }
 
 /*
@@ -155,7 +155,6 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 				*new_y = info->y + 1 - D_WALL;
 		}
 	}
-	return ;
 }
 
 /*
@@ -194,5 +193,4 @@ void	ft_check_wall(t_info *info, double *new_x, double *new_y)
 		ft_check_x(info, dirx, new_x, new_y);
 	else if (diry != 0 && !dirx)
 		ft_check_y(info, diry, new_y, new_x);
-	return ;
 }

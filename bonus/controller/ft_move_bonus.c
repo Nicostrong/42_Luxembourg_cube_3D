@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move.c                                          :+:      :+:    :+:   */
+/*   ft_move_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:04:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -63,3 +64,29 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	return ;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	double	ft_normalize_rot(double angle)
+ * </summary>
+ *
+ * <description>
+ * 	ft_normalize_rot put the rotation radian on the range [0;PI] or [0;-PI].
+ * </description>
+ *
+ * <param type="double" name="angle">angle to adjuste</param>
+ *
+ * <return>
+ * 	the new value of the angle adjusted or not.
+ * </return>
+ *
+ */
+double	ft_normalize_rot(double angle)
+{
+	while (angle > M_PI)
+		angle -= 2 * M_PI;
+	while (angle < -M_PI)
+		angle += 2 * M_PI;
+	return (angle);
+}

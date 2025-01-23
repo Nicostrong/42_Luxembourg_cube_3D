@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_press_key_mac.c                                 :+:      :+:    :+:   */
+/*   ft_press_key_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:49:17 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
+#include "../../includes/raycasting.h"
 
 /*
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	int	ft_press_key_mac(int keysym, t_info *info)
+ * 	int	ft_press_key(int keysym, t_info *info)
  * </summary>
  *
  * <description>
- * 	ft_press_key_mac manage the key pressed by the user on Mac.
+ * 	ft_press_key manage the key pressed by the user on Linux.
  * </description>
  *
  * <param type="int" name="keysym">key pressed</param>
@@ -33,22 +35,30 @@
  * </return>
  *
  */
-int	ft_press_key_mac(int keysym, t_info *info)
+int	ft_press_key(int keysym, t_info *info)
 {
-	if (keysym == ESCAP)
+	if (keysym == XK_Escape)
 		ft_exit(info);
-	else if (keysym == KZ || keysym == UP)
+	else if (keysym == XK_Up || keysym == XK_w)
 		ft_move(info, 0, 1);
-	else if (keysym == KS || keysym == DOWN)
+	else if (keysym == XK_Down || keysym == XK_s)
 		ft_move(info, 0, -1);
-	else if (keysym == KQ)
+	else if (keysym == XK_a)
 		ft_move(info, -M_PI_2, 1);
-	else if (keysym == KD)
+	else if (keysym == XK_d)
 		ft_move(info, M_PI_2, 1);
-	else if (keysym == KA || keysym == LEFT)
-		ft_rotate(info, -ROTATE);
-	else if (keysym == KE || keysym == RIGHT)
-		ft_rotate(info, ROTATE);
+	else if (keysym == XK_Left)
+		info->user_deg -= ROTATE;
+	else if (keysym == XK_Right)
+		info->user_deg += ROTATE;
+	info->user_deg = ft_normalize_rot(info->user_deg);
 	info->move = 1;
+	if (BONUS)
+	{
+		if (keysym == XK_space)
+			ft_open_door(info);
+		ft_minimap(info);
+	}
+	ft_raycasting(info);
 	return (0);
 }

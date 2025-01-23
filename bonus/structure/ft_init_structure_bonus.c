@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_structure.c                                :+:      :+:    :+:   */
+/*   ft_init_structure_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:07:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/error.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
+#include "../../includes/minimap.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -60,7 +61,6 @@ void	ft_init_img(t_info **info)
 		(*info)->w_w_img->img_path, &(*info)->w_w_img->h, &(*info)->w_w_img->w);
 	if (!(*info)->w_w_img)
 		ft_perror_exit(E_XPM, *info);
-	return ;
 }
 
 /*
@@ -105,11 +105,11 @@ static t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_init_all_img(t_info *info)
+ * 	void	ft_init_img_color(t_info *info)
  * </summary>
  *
  * <description>
- * 	ft_init_all_img initialise all imgage of wall and player.
+ * 	ft_init_img_color initialise all img and color structure.
  * </description>
  *
  * <param type="t_info *" name="info">structure info</param>
@@ -119,7 +119,7 @@ static t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
  * </return>
  *
  */
-static void	ft_init_all_img(t_info *info)
+static void	ft_init_img_color(t_info *info)
 {
 	info->s_img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!info->s_img)
@@ -139,7 +139,24 @@ static void	ft_init_all_img(t_info *info)
 	info->w_w_img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!info->w_w_img)
 		ft_perror_exit(E_MALLOC, info);
-	return ;
+	info->player = (t_img *)ft_calloc(1, sizeof(t_img));
+	if (info->player)
+	{
+		info->player->img_path = ft_strdup(MINI_I_PL);
+		info->player->w = MINI_S_PL;
+		info->player->h = MINI_S_PL;
+		info->player->img = mlx_xpm_file_to_image(info->mlx, \
+			info->player->img_path, &info->player->w, &info->player->h);
+		info->player->addr = mlx_get_data_addr(info->player->img, \
+			&info->player->bpp, &info->player->size, &info->player->endian);
+	}
+	/*info->floor_color = (t_color *)ft_calloc(1, sizeof(t_color));
+	if (!info->floor_color)
+		ft_perror_exit(E_MALLOC, info);
+	info->sky_color = (t_color *)ft_calloc(1, sizeof(t_color));
+	if (!info->sky_color)
+		ft_perror_exit(E_MALLOC, info);
+	*/
 }
 
 /*
@@ -219,11 +236,18 @@ t_info	*ft_init_info(char *path)
 	if (info->fd < 0)
 		ft_perror_exit(E_OPEN, info);
 	info->move = 1;
+	info->colors = ft_calloc(8, sizeof(int));
+	info->widths = ft_calloc(8, sizeof(double));
+	info->heights = ft_calloc(6, sizeof(double));
+	if (!info->colors || !info->widths || !info->heights)
+		ft_perror_exit(E_MALLOC, info);
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_perror_exit(E_MLX, info);
 	info->game = ft_init_info_win(info, WIDTH, HEIGHT, TITLE);
-	ft_init_all_img(info);
+	if (BONUS)
+		info->mini = ft_init_info_win(info, MINI_W, MINI_H, MINI_TITRE);
+	ft_init_img_color(info);
 	info->info_map = ft_init_info_path(info);
 	return (info);
 }

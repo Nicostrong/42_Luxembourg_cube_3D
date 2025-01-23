@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_info.c                                    :+:      :+:    :+:   */
+/*   ft_print_info_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:05:26 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ft_print_info(t_info *info)
 	printf("\tposition user_y: %.2f\n", info->user_y);
 	printf("\tposition user_x: %.2f\n", info->user_x);
 	printf("\trotation user_deg: %.2f\n", info->user_deg);
+	/*if (info->c_fund >= 0)
+		printf("\tc_fund: %d\n", info->c_fund);
+	if (info->move_nbr >= 0)
+		printf("\tmove_nbr: %d\n", info->move_nbr);*/
 	if (info->p_nbr >= 0)
 		printf("\tp_nbr: %d\n", info->p_nbr);
 	if (info->map_path)
@@ -112,6 +116,15 @@ void	ft_print_info(t_info *info)
 		printf("\tb: %d\n", info->sky_color->b);
 		printf("\tcolor: %x\n", info->sky_color->color);
 	}
+	if (info->player)
+	{
+		printf(BBLUE"player_img:\n"RESET);
+		printf("\tpath: %s\n", info->player->img_path);
+		printf("\th: %d\n", info->player->h);
+		printf("\tw: %d\n", info->player->w);
+		printf("\timg: %p\n", info->player->img);
+		printf("\taddr: %p\n", info->player->addr);
+	}
 }
 
 void	ft_print_map(t_info *info)
@@ -137,3 +150,24 @@ void	ft_print_user_data(t_info *info)
 	printf("\trotation user_deg: %.2f\n", info->user_deg);
 }
 
+void	ft_print_minimap(t_info *info, char **map)
+{
+	printf("***************\n");
+	printf(BRED"MINIMAP DEBUG\n"RESET);
+	printf("***************\n");
+	if (map)
+	{
+		printf("minimap\n");
+		ft_putstrarray(map);
+	}
+	printf("position user_x: %.2f\n", info->user_x);
+	printf("position user_y: %.2f\n", info->user_y);
+	/*printf("Dim minimap:\n");
+	for (int y = 0; y < 6; y++)
+		printf("\theights [%d]: %d\n", y, info->heights[y]);
+	for (int x = 0; x < 8; x++)
+		printf("\t\twidths [%d]: %d\n", x, info->widths[x]);
+	printf("color line:\n");
+	for (int c = 0; c < 8; c++)
+		printf("\tcolors: %d\n", info->colors[c]);*/
+}

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/29 08:09:39 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/01/22 07:45:01 by nfordoxc         ###   ########.fr        #
+#    Updated: 2025/01/23 09:20:13 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,18 @@
 
 WATCH_DIRS=(
 	"./src"
+	"./bonus"
 	"./includes"
 	"./lib"
 ) 
 
-COMMAND="make bonus"
+if [ -z "$1" ]
+	then
+		echo "Command to execute needed like \"make bonus\" !!"
+		exit 1
+fi
+
+COMMAND=$1
 
 calculate_checksum()
 {

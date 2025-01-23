@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   structures_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURES_H
-# define STRUCTURES_H
+#ifndef STRUCTURES_BONUS_H
+# define STRUCTURES_BONUS_H
+
+# include <pthread.h>
+
+typedef struct s_thread
+{
+	pthread_t		t_mini;
+	pthread_t		t_game;
+	pthread_mutex_t	m_map;			// protection of access map
+	pthread_mutex_t	m_user_x;		// protection for position user in x
+	pthread_mutex_t	m_user_y;		// protection for position user in y
+	pthread_mutex_t	m_user_d;		// protection for rotation user
+	pthread_mutex_t	m_stop;		// protection for stop thread
+}	t_thread;
 
 /*
  *	Texture struct
@@ -28,6 +41,19 @@ typedef struct s_texture
 	void			*img;				//	Image
 	void			*addr;				//	Address of image
 }					t_img;
+
+/*
+ *	Animation struct
+ */
+
+typedef struct s_anim
+{
+	int				speed;
+	int				chrono;
+	int				cur_img;
+	int				nb_img;
+	void			**array_img;
+}					t_anim;
 
 /*
  *	Color struct
@@ -73,15 +99,22 @@ typedef struct s_info_windows
 
 typedef struct s_info
 {
-	int			fd;				//	fd of map
+	int			fd;				//	fd file .cub
 	int			h;				//	height of map
 	int			w;				//	width of map
 	int			x;				//	position x of player
 	int			y;				//	position y of player
+	int			mouse_rot;		//	rotation with mouse mouse
 	int			p_nbr;			//	number of player
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color
+	int			mini_h;			//	height of the minimap array
+	int			mini_w;			//	width of the minimap array
 	int			move;			//	bool for changing view
+	int			stop;			//	to stop the thread
+	int			*colors;		//	all color for a line of minimap
+	int			*widths;		//	all widths of minimap
+	int			*heights;		//	all heights of minimap
 	double		user_deg;		//	orientation of player in radian
 	double		user_y;			//	position y of player on map
 	double		user_x;			//	position x of player on map.
@@ -90,14 +123,19 @@ typedef struct s_info
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
 	t_win		*game;			//	structure window for game
+	t_win		*mini;			//	structure window for minimap	
 	t_img		*s_img;			//	sky image
 	t_img		*f_img;			//	floor image
 	t_img		*w_n_img;		//	wall north image
 	t_img		*w_e_img;		//	wall east image
 	t_img		*w_s_img;		//	wall south image
 	t_img		*w_w_img;		//	wall weast image
+	t_img		*player;		//	player image
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
+	t_anim		*c_anim;		//	animation of collectable
+	t_anim		*d_anim;		//	animation of door
+	t_thread	*thread;		//	thread structure
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 

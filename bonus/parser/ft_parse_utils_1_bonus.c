@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_utils_1.c                                 :+:      :+:    :+:   */
+/*   ft_parse_utils_1_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 11:48:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  * <description>
  * 	ft_ismap check if the line is a map.
  * 	A map contain only ' ', '0', '1', '2', 'N', 'S', 'E', 'W'.
+ * 	A bonus map contain also 'C' for collectable and 'D' for door.
  * </description>
  *
  * <param type="char *" name="line">line to check</param>
@@ -42,8 +43,16 @@ static int	ft_ismap(char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (!ft_strchr(" 01NSEW", line[i]))
-			return (0);
+		if (BONUS)
+		{
+			if (!ft_strchr(" 01NSEWCD", line[i]))
+				return (0);
+		}
+		else
+		{
+			if (!ft_strchr(" 01NSEW", line[i]))
+				return (0);
+		}
 	}
 	return (1);
 }
@@ -92,7 +101,6 @@ static void	ft_get_map(t_info *info)
 			ft_perror_exit(E_MAP, info);
 	}
 	info->map = map;
-	return ;
 }
 
 /*
@@ -144,7 +152,6 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 		info->sky_color = new;
 	else
 		ft_free(new);
-	return ;
 }
 
 /*
@@ -231,5 +238,4 @@ void	ft_read_file(t_info *info)
 	}
 	if (error)
 		ft_perror_exit(E_PARAM, info);
-	return ;
 }

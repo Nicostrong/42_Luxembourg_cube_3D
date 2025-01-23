@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   error_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 14:55:27 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 14:54:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef ERROR_BONUS_H
+# define ERROR_BONUS_H
 
 /*
  *	Define std
@@ -22,6 +22,9 @@
 # define E_OPEN		"\033[1;31mError\n\tFile not readable.\033[0m"
 # define E_READ		"\033[1;31mError\n\tReading error.\033[0m"
 # define E_MALLOC	"\033[1;31mError\n\tMalloc.\033[0m"
+# define E_THREAD	"\033[1;31mError\n\tThread.\033[0m"
+# define E_MUTEX	"\033[1;31mError:\n\tMutex error.\033[0m"
+# define E_JOIN_TH	"\033[1;31mError:\n\tThread join error.\033[0m"
 
 /*
  *	Define error map
@@ -51,6 +54,7 @@
 # define E_XPM		"\033[1;31mError\n\tXPM error.\033[0m"
 # define E_CLOSE	"\033[1;31mError\n\tMap not closed.\033[0m"
 # define E_SPAWN	"\033[1;31mError\n\tMissing player on map.\033[0m"
+# define E_EXIT		"\033[1;31mError\n\tMissing exit on map.\033[0m"
 
 /*
  *	Define error MLX

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/22 11:07:19 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/23 15:13:14 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ endif
 
 LIB_PROG		=
 LIB_OPTI		=
-LIB_OPTI		=
 LIB_NAME		=
 
 MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
@@ -86,18 +85,18 @@ endif
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
 					./src/controller/ft_move.c \
+					./src/controller/ft_rotate.c \
 					./src/debug/ft_print_info.c \
 					./src/draw/ft_get_color.c \
-					./src/draw/ft_put_player.c \
 					./src/draw/ft_put_wall.c \
 					./src/exit/ft_error.c \
 					./src/exit/ft_exit.c \
-					./src/minimap/ft_put_player.c \
 					./src/parser/ft_check_arg.c \
 					./src/parser/ft_parse_utils_1.c \
 					./src/parser/ft_parse_utils_2.c \
 					./src/parser/ft_parse.c \
 					./src/raycast/ft_raycasting.c \
+					./src/raycast/ft_raycasting_utils.c \
 					./src/structure/ft_free_structure.c \
 					./src/structure/ft_init_structure.c
 
@@ -111,32 +110,33 @@ NAME			=	cube3D
 #	Bonus part																   #
 ################################################################################
 
-SRC_BONUS_COM	=	./src/main.c \
-					./src/controller/ft_check_wall.c \
-					./src/controller/ft_move.c \
-					./src/controller/ft_mouse_move.c \
-					./src/controller/ft_door.c \
-					./src/debug/ft_print_info.c \
-					./src/draw/ft_get_color.c \
-					./src/draw/ft_put_player.c \
-					./src/draw/ft_put_wall.c \
-					./src/exit/ft_error.c \
-					./src/exit/ft_exit.c \
-					./src/minimap/ft_minimap_utils.c \
-					./src/minimap/ft_minimap.c \
-					./src/minimap/ft_put_player.c \
-					./src/parser/ft_check_arg.c \
-					./src/parser/ft_parse_utils_1.c \
-					./src/parser/ft_parse_utils_2.c \
-					./src/parser/ft_parse.c \
-					./src/raycast/ft_raycasting.c \
-					./src/structure/ft_free_structure.c \
-					./src/structure/ft_init_structure.c
+SRC_BONUS_COM	=	./bonus/main_bonus.c \
+					./bonus/controller/ft_check_wall_bonus.c \
+					./bonus/controller/ft_move_bonus.c \
+					./bonus/controller/ft_mouse_move_bonus.c \
+					./bonus/controller/ft_door_bonus.c \
+					./bonus/debug/ft_print_info_bonus.c \
+					./bonus/draw/ft_get_color_bonus.c \
+					./bonus/draw/ft_put_player_bonus.c \
+					./bonus/draw/ft_put_wall_bonus.c \
+					./bonus/exit/ft_error_bonus.c \
+					./bonus/exit/ft_exit_bonus.c \
+					./bonus/minimap/ft_minimap_utils_bonus.c \
+					./bonus/minimap/ft_minimap_bonus.c \
+					./bonus/minimap/ft_put_player_bonus.c \
+					./bonus/parser/ft_check_arg_bonus.c \
+					./bonus/parser/ft_parse_utils_1_bonus.c \
+					./bonus/parser/ft_parse_utils_2_bonus.c \
+					./bonus/parser/ft_parse_bonus.c \
+					./bonus/raycast/ft_raycasting_bonus.c \
+					./bonus/structure/ft_free_structure_bonus.c \
+					./bonus/structure/ft_init_structure_bonus.c
 
 SRC_BONUS		=	$(SRC_BONUS_COM) $(SRC_OS)
+
 OBJ_BONUS		=	$(SRC_BONUS:.c=.o)
 
-NAME_BONUS		=	$(NAME)
+NAME_BONUS		=	cube3D++
 
 ################################################################################
 #	Colors																	   #
@@ -223,7 +223,7 @@ endef
 
 define delete_progress
 	@$(RM) $(1) > /dev/null 2>&1
-	@for i in $$(seq 100 -1 0); do \
+	@for i in $$(seq 100 -1 1); do \
 		printf "\r\033[K\033[0K"; \
 		if [ $$((i % 4)) -eq 0 ]; then \
 			printf "$(BRED)DELETE - ["; \
@@ -234,7 +234,7 @@ define delete_progress
 		else \
 			printf "$(BRED)DELETE \\ ["; \
 		fi; \
-		for j in $$(seq 0 $$i); do \
+		for j in $$(seq 0 $$(($$i - 1))); do \
 			printf '='; \
 		done; \
 		printf " %d/100 ]$(RESET)" $$i; \
@@ -252,8 +252,7 @@ endef
 #	Rules
 ################################################################################
 
-all:		fclean \
-			$(MLX_DIR)/$(MLX_NAME)\
+all:		$(MLX_DIR)/$(MLX_NAME)\
 			$(LIBFT_DIR)/$(LIBFT_NAME) \
 			$(GNL_DIR)/$(GNL_NAME) \
 			$(NAME)
@@ -261,6 +260,7 @@ all:		fclean \
 $(NAME):	NUM_FILES=$(NB_SRC)
 $(NAME):	$(OBJ)
 	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ) $(MYLIBS) -o $(NAME)
+	@echo "$(CGREEN)all files of the programm $(NAME) compiled with success!$(RESET)"
 
 %.o :		%.c
 	$(call compile_c_to_o)
@@ -283,6 +283,7 @@ bonus:		fclean \
 			$(OBJ_BONUS)
 	@echo "Compiling with BONUS"
 	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS) -o $(NAME)
+	@echo "$(CGREEN)all files of the programm $(NAME_BONUS) compiled with success!$(RESET)"
 
 clean:
 	$(call delete_progress, ./src/*.o)
@@ -294,6 +295,15 @@ clean:
 	$(call delete_progress, ./src/parser/*.o)
 	$(call delete_progress, ./src/raycast/*.o)
 	$(call delete_progress, ./src/structure/*.o)
+	$(call delete_progress, ./bonus/*.o)
+	$(call delete_progress, ./bonus/controller/*.o)
+	$(call delete_progress, ./bonus/debug/*.o)
+	$(call delete_progress, ./bonus/draw/*.o)
+	$(call delete_progress, ./bonus/exit/*.o)
+	$(call delete_progress, ./bonus/minimap/*.o)
+	$(call delete_progress, ./bonus/parser/*.o)
+	$(call delete_progress, ./bonus/raycast/*.o)
+	$(call delete_progress, ./bonus/structure/*.o)
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@$(MAKE) -sC $(GNL_DIR) clean
 	@$(MAKE) -sC $(MLX_DIR) clean
@@ -304,8 +314,6 @@ fclean: 	clean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 
 re: 		fclean all
-	@echo ""
-	@echo "$(CGREEN)all files of the programm $(NAME) recompiled with success!$(RESET)"
 
 .PHONY: all clean fclean re bonus
 

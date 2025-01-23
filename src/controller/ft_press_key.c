@@ -6,15 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/22 10:51:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 14:49:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
 #include "../../includes/structures.h"
 #include "../../includes/setting_game.h"
-#include "../../includes/minimap.h"
-#include "../../includes/raycasting.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -48,17 +46,9 @@ int	ft_press_key(int keysym, t_info *info)
 	else if (keysym == XK_d)
 		ft_move(info, M_PI_2, 1);
 	else if (keysym == XK_Left)
-		info->user_deg -= ROTATE;
+		ft_rotate(info, -ROTATE);
 	else if (keysym == XK_Right)
-		info->user_deg += ROTATE;
-	info->user_deg = ft_normalize_rot(info->user_deg);
+		ft_rotate(info, ROTATE);
 	info->move = 1;
-	if (BONUS)
-	{
-		if (keysym == XK_space)
-			ft_open_door(info);
-		ft_minimap(info);
-	}
-	ft_raycasting(info);
 	return (0);
 }

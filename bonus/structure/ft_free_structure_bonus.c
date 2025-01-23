@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_structure.c                                :+:      :+:    :+:   */
+/*   ft_free_structure_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:06:55 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
  * </summary>
  *
  * <description>
- * 	ft_free_window destroy the image of the windows game and free the windows 
- * 	pointer and the mlx pointer.
+ * 	ft_free_window free the both windows and the mlx pointer.
  * </description>
  *
  * <param type="t_info *" name="info">pointer to the structure to free</param>
@@ -42,14 +41,61 @@ void	ft_free_window(t_info *info)
 		info->game->win = NULL;
 		ft_free(info->game);
 	}
+	if (info->mini)
+	{
+		mlx_destroy_image(info->mlx, info->mini->img);
+		mlx_clear_window(info->mlx, info->mini->win);
+		mlx_destroy_window(info->mlx, info->mini->win);
+		info->mini->win = NULL;
+		ft_free(info->mini);
+	}
 	if (info->mlx)
 	{
 		DESTROY(info->mlx);
 		ft_free(info->mlx);
 		info->mlx = NULL;
 	}
-	return ;
 }
+
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_free_anim(t_anim *anim, t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_free_anim free a structure t_anim.
+ * </description>
+ *
+ * <param type="t_anim *" name="anim">anim struct to free</param>
+ * <param type="t_info *" name="info">pointer to the structure to free</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+/*
+static void	ft_free_anim(t_anim *anim, t_info *info)
+{
+	int	index;
+
+	index = 0;
+	if (anim->array_img)
+	{
+		while (index < anim->nb_img && anim->array_img[index])
+		{
+			mlx_destroy_image(info->mlx, anim->array_img[index]);
+			anim->array_img[index] = NULL;
+			index++;
+		}
+		ft_free(anim->array_img);
+		anim->array_img = NULL;
+		ft_free(anim);
+		anim = NULL;
+	}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -122,42 +168,8 @@ static void	ft_free_all_images(t_info *info)
 		ft_free_img_struct(info->w_s_img, info);
 	if (info->w_w_img)
 		ft_free_img_struct(info->w_w_img, info);
-	return ;
-}
-
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
- * 	void	ft_free_simple_pointer(t_info *info)
- * </summary>
- *
- * <description>
- * 	ft_free_simple_pointer free the the simple pointer on the info structure.
- * </description>
- *
- * <param type="t_info *" name="info">structure to free</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-void	ft_free_simple_pointer(t_info *info)
-{
-	if (!info)
-		return ;
-	if (info->map_path)
-		ft_free(info->map_path);
-	if (info->map)
-		ft_free_array(info->map);
-	if (info->floor_color)
-		ft_free(info->floor_color);
-	if (info->sky_color)
-		ft_free(info->sky_color);
-	if (info->info_map)
-		ft_free(info->info_map);
-	return ;
+	if (info->player)
+		ft_free_img_struct(info->player, info);
 }
 
 /*
@@ -172,7 +184,7 @@ void	ft_free_simple_pointer(t_info *info)
  * 	function to free all part of the structure.
  * </description>
  *
- * <param type="t_info *" name="info">structure to free</param>
+ * <param type="t_info *" name="info">pointer to the structure to free</param>
  *
  * <return>
  * 	void.
@@ -190,9 +202,24 @@ void	ft_free_info(t_info *info)
 		ft_free(info->line);
 		get_next_line(-1);
 	}
-	ft_free_simple_pointer(info);
+	if (info->colors)
+		ft_free(info->colors);
+	if (info->widths)
+		ft_free(info->widths);
+	if (info->heights)
+		ft_free(info->heights);
+	if (info->map_path)
+		ft_free(info->map_path);
+	if (info->map)
+		ft_free_array(info->map);
+	if (info->floor_color)
+		ft_free(info->floor_color);
+	if (info->sky_color)
+		ft_free(info->sky_color);
+	if (info->info_map)
+		ft_free(info->info_map);
 	ft_free_all_images(info);
+	//ft_free_anim(info->c_anim, info);
 	ft_free_window(info);
 	ft_free(info);
-	return ;
 }

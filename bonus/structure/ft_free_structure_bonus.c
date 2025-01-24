@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:53:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 16:06:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	ft_free_window(t_info *info)
  * </return>
  *
  */
-/*
 static void	ft_free_anim(t_anim *anim, t_info *info)
 {
 	int	index;
@@ -94,7 +93,8 @@ static void	ft_free_anim(t_anim *anim, t_info *info)
 		ft_free(anim);
 		anim = NULL;
 	}
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -130,7 +130,6 @@ static void	ft_free_img_struct(t_img *img, t_info *info)
 		}
 		ft_free(img);
 		img = NULL;
-		return ;
 	}
 	return ;
 }
@@ -169,6 +168,8 @@ static void	ft_free_all_images(t_info *info)
 		ft_free_img_struct(info->w_w_img, info);
 	if (info->player)
 		ft_free_img_struct(info->player, info);
+	if (info->door)
+		ft_free_img_struct(info->door, info);
 }
 
 /*
@@ -196,31 +197,19 @@ void	ft_free_info(t_info *info)
 		return ;
 	if (info->fd > 2)
 		close(info->fd);
-	if (info->line)
-	{
-		ft_free(info->line);
-		get_next_line(-1);
-	}
-	if (info->colors)
-		ft_free(info->colors);
-	if (info->widths)
-		ft_free(info->widths);
-	if (info->heights)
-		ft_free(info->heights);
-	if (info->map_path)
-		ft_free(info->map_path);
-	if (info->map)
-		ft_free_array(info->map);
-	if (info->floor_color)
-		ft_free(info->floor_color);
-	if (info->sky_color)
-		ft_free(info->sky_color);
-	if (info->info_map)
-		ft_free(info->info_map);
+	ft_free(info->colors);
+	ft_free(info->widths);
+	ft_free(info->heights);
+	ft_free(info->map_path);
+	ft_free_array(info->map);
+	ft_free(info->floor_color);
+	ft_free(info->sky_color);
+	ft_free(info->info_map);
 	if (info->thread)
 		ft_clean_thread_mutex(info->thread);
+	ft_free(info->thread);
 	ft_free_all_images(info);
-	//ft_free_anim(info->c_anim, info);
+	ft_free_anim(info->c_anim, info);
 	ft_free_window(info);
 	ft_free(info);
 }

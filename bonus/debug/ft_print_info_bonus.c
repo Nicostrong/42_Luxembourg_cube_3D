@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:32:00 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 16:06:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static void	ft_print_data(t_info *info)
 		printf("\tp_nbr: %d\n", info->p_nbr);
 	if (info->map_path)
 		printf("\tmap_path: %s\n", info->map_path);
-	if (info->line)
-		printf("\tline: %s\n", info->line);
 	if (info->map)
 	{
 		printf(BBLUE"map:\n"RESET);
@@ -204,6 +202,7 @@ void	ft_print_info(t_info *info)
 	ft_print_wall(info);
 	ft_print_sky_floor(info);
 	ft_print_player_door(info);
+	ft_print_anim(info);
 	ft_print_thread(info);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:57:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 15:50:21 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 		ft_perror_exit(E_XPM, info);
 	ft_free_array(array);
 	ft_free(sub_line);
+	ft_free(info->line);
 	return ;
 }
 

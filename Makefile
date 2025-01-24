@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/24 15:02:53 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/24 15:14:12 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ NAME			=	cube3D
 
 SRC_BONUS_COM	=	./bonus/main_bonus.c \
 					./bonus/controller/ft_check_wall_bonus.c \
+					./bonus/debug/ft_print_anim_bonus.c \
 					./bonus/debug/ft_print_color_bonus.c \
 					./bonus/debug/ft_print_img_bonus.c \
 					./bonus/debug/ft_print_info_bonus.c \

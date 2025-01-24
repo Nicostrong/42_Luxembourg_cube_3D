@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:15:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:36:11 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,4 +229,5 @@ void	ft_read_file(t_info *info)
 	}
 	if (error)
 		ft_perror_exit(E_PARAM, info);
+	close(info->fd);
 }

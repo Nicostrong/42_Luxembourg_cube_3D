@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:28:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 13:32:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,39 @@ static void	ft_print_sky_floor(t_info *info)
  * <cat>cube_3D</cat>
  *
  * <summary>
+ * 	void	ft_print_player_door(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_print_player_door print all information about the player and the door.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+static void	ft_print_player_door(t_info *info)
+{
+	if (info->player)
+	{
+		printf(BBLUE"player_img:\n"RESET);
+		ft_print_img(info->player);
+	}
+	if (info->door)
+	{
+		printf(BBLUE"door_img:\n"RESET);
+		ft_print_img(info->door);
+	}
+	return ;
+}
+
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
  * 	void	ft_print_info(t_info *info)
  * </summary>
  *
@@ -170,6 +203,7 @@ void	ft_print_info(t_info *info)
 	ft_print_data(info);
 	ft_print_wall(info);
 	ft_print_sky_floor(info);
+	ft_print_player_door(info);
 	ft_print_thread(info);
 	return ;
 }

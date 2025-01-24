@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:51:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:35:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_anim
 	int				cur_img;
 	int				nb_img;
 	int				len;
+	char			*path;
 	void			**array_img;
 }					t_anim;
 
@@ -103,6 +104,7 @@ typedef struct s_info_windows
 
 typedef struct s_info
 {
+	int			is_valid;		//	bool valid map
 	int			fd;				//	fd file .cub
 	int			h;				//	height of map
 	int			w;				//	width of map
@@ -123,7 +125,7 @@ typedef struct s_info
 	double		user_y;			//	position y of player on map
 	double		user_x;			//	position x of player on map.
 	char		*map_path;		//	path of the map
-	char		*line;			//	line read>
+	char		*line;			//	line read
 	char		**map;			//	map array
 	void		*mlx;			//	mlx api
 	t_win		*game;			//	structure window for game

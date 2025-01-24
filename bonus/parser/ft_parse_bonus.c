@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:36:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:57:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@
  * </return>
  * 
  */
-/*static void	ft_check_texture_s_f(t_info *info)
+static void	ft_check_texture_s_f(t_info *info)
 {
 	if (info->s_img->img_path && info->s_img->img)
 		info->use_s_img = 1;
 	if (info->f_img->img_path && info->f_img->img)
 		info->use_f_img = 1;
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -60,27 +61,25 @@
  * </return>
  *
  */
-/*static void	ft_get_size_xpm(t_info *info, char *path, int i)
+static void	ft_get_size_xpm(t_info *info, char *path, int i)
 {
-	char	*line;
 	char	*sub_line;
 	char	**array;
-	int		fd;
 
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	info->fd = open(path, O_RDONLY);
+	if (info->fd == -1)
 		ft_perror_exit(E_XPM, info);
-	line = get_next_line(fd);
-	while (line && line[0] != '"')
+	info->line = get_next_line(info->fd);
+	while (info->line && info->line[0] != '"')
 	{
-		ft_free(line);
-		line = get_next_line(fd);
+		ft_free(info->line);
+		info->line = get_next_line(info->fd);
 	}
-	close(fd);
+	close(info->fd);
 	get_next_line(-1);
-	if (!line)
+	if (!info->line)
 		ft_perror_exit(E_READ, info);
-	sub_line = ft_strremoveset(line, "\"");
+	sub_line = ft_strremoveset(info->line, "\"");
 	array = ft_split(sub_line, ' ');
 	if (array && array[0] && array[1])
 	{
@@ -91,8 +90,8 @@
 		ft_perror_exit(E_XPM, info);
 	ft_free_array(array);
 	ft_free(sub_line);
-	ft_free(line);
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -112,7 +111,7 @@
  * </return>
  *
  */
-/*static void	ft_set_all_xpm(t_info *info)
+static void	ft_set_all_xpm(t_info *info)
 {
 	int	i;
 
@@ -121,6 +120,7 @@
 	{
 		if (info->info_map[i].t_img && (*info->info_map[i].t_img)->img_path)
 		{
+			printf("index : %d\n", i);
 			ft_get_size_xpm(info, (*info->info_map[i].t_img)->img_path, i);
 			(*info->info_map[i].t_img)->img = mlx_xpm_file_to_image(info->mlx, \
 				(*info->info_map[i].t_img)->img_path, \
@@ -135,7 +135,8 @@
 				ft_perror_exit(E_ADR, info);
 		}
 	}
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -155,7 +156,7 @@
  * </return>
  *
  */
-/*static void	ft_check_path(t_info *info)
+static void	ft_check_path(t_info *info)
 {
 	int	error;
 
@@ -172,9 +173,14 @@
 		error |= F_IMG_E;
 	if (info->s_img->img_path && access(info->s_img->img_path, F_OK) == -1)
 		error |= S_IMG_E;
+	if (info->player->img_path && access(info->player->img_path, F_OK) == -1)
+		error |= P_IMG_E;
+	if (info->door->img_path && access(info->door->img_path, F_OK) == -1)
+		error |= D_IMG_E;
 	if (error)
 		ft_error_msg(error, 1, info);
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -194,18 +200,19 @@
  * </return>
  *
  */
-/*static void	ft_check_color_s_f(t_info *info)
+static void	ft_check_color_s_f(t_info *info)
 {
 	int	error;
 
 	error = 0;
 	if (!info->sky_color)
-		error |= 1 << 6;
+		error |= E_COL_S;
 	if (!info->floor_color)
-		error |= 1 << 7;
+		error |= E_COL_F;
 	if (error)
 		ft_error_msg(error, 1, info);
-}*/
+	return ;
+}
 
 /*
  * <cat>cube_3D</cat>
@@ -231,13 +238,12 @@ t_info	*ft_get_all_info(char *path)
 	t_info	*info;
 
 	info = ft_init_info(path);
-	ft_print_info(info);
-	/*ft_read_file(info);
+	ft_read_file(info);
 	ft_check_color_s_f(info);
 	ft_check_path(info);
 	ft_check_map(info);
 	ft_set_all_xpm(info);
-	ft_check_texture_s_f(info);*/
-	//ft_init_thread(info);
+	ft_check_texture_s_f(info);
+	ft_init_thread(info);
 	return (info);
 }

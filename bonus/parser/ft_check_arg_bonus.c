@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:31 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 08:01:32 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 15:00:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static int	ft_check_open_cub(char *path)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	int	ft_check_arg(int argc, char *argv)
+ * 	void	ft_check_arg(int argc, char *argv)
  * </summary>
  *
  * <description>
@@ -129,12 +129,11 @@ static int	ft_check_open_cub(char *path)
  * <param type="char *" name="argv">array of arguments</param>
  *
  * <return>
- * 	0 if error.
- * 	1 if no error.
+ * 	void.
  * </return>
  *
  */
-int	ft_check_arg(int argc, char **argv)
+void	ft_check_arg(int argc, char **argv)
 {
 	if (argc != 2)
 		ft_perror_exit(E_USAGE, NULL);
@@ -144,5 +143,5 @@ int	ft_check_arg(int argc, char **argv)
 		ft_perror_exit(E_HIDDEN, NULL);
 	if (!ft_check_open_cub(argv[argc - 1]))
 		ft_perror_exit(E_OPEN, NULL);
-	return (1);
+	return ;
 }

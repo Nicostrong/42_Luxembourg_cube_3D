@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 10:58:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:49:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_info_map	*ft_init_info_path(t_info *info)
 {
 	t_info_map	*info_map;
 
-	info_map = ft_calloc(9, sizeof(t_info_map));
+	info_map = ft_calloc(11, sizeof(t_info_map));
 	if (!info_map)
 		ft_perror_exit(E_MALLOC, info);
 	info_map[0].key = "NO";
@@ -82,14 +82,14 @@ static t_info_map	*ft_init_info_path(t_info *info)
 	info_map[4].t_img = &info->f_img;
 	info_map[5].key = "CT";
 	info_map[5].t_img = &info->s_img;
-	info_map[6].key = "F";
-	info_map[6].color = &info->floor_color;
-	info_map[7].key = "C";
-	info_map[7].color = &info->sky_color;
-	info_map[8].key = "P";
-	info_map[8].t_img = &info->player;
-	info_map[9].key = "D";
-	info_map[9].t_img = &info->door;
+	info_map[6].key = "P";
+	info_map[6].t_img = &info->player;
+	info_map[7].key = "D";
+	info_map[7].t_img = &info->door;
+	info_map[8].key = "F";
+	info_map[8].color = &info->floor_color;
+	info_map[9].key = "C";
+	info_map[9].color = &info->sky_color;
 	return (info_map);
 }
 

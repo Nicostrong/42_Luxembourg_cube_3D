@@ -9,8 +9,8 @@ CT ./gfx/sky.xpm
 F 255,248,220
 C 135,206,250
 
-P "./gfx/m_player.xpm"
-D "./gfx/door.xpm"
+P ./gfx/player.xpm
+D ./gfx/door.xpm
 
 MAP
 111111  111111   111111  111111

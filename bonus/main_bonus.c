@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 13:19:54 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 15:01:33 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,8 @@ int main(int argc, char *argv[])
 	ft_check_arg(argc, argv);
 	info = ft_get_all_info(argv[1]);
 	ft_title();
-	if (DEBUG)
-	{
-		ft_print_info(info);
-		ft_print_user_data(info);
-	}
+	ft_print_info(info);
+	ft_print_user_data(info);
 	/*ft_minimap(info);
 	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
 	mlx_hook(info->mini->win, 17, 0, &ft_exit, info);

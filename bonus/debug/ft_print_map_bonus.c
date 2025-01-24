@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:20:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:00:20 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 13:35:26 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
  */
 void	ft_print_map(t_info *info)
 {
+	printf("***************\n");
+	printf(BBLUE"\tM A P\n"RESET);
+	printf("***************\n");
 	if (info->map)
 		ft_putstrarray(info->map);
 	else

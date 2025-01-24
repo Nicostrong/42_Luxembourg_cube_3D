@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:39:02 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:02:38 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:50:21 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ t_anim	*ft_init_anim(t_info *info)
 	col->cur_img = CUR_COL;
 	col->nb_img = N_COL;
 	col->len = S_COL;
-	printf("col->speed : %d\n", col->speed);
-	printf("col->chrono : %d\n", col->chrono);
-	printf("col->cur_img : %d\n", col->cur_img);
-	printf("col->nb_img : %d\n", col->nb_img);
-	printf("col->len : %d\n", col->len);
 	col->array_img = (void **)ft_calloc(col->nb_img, sizeof(void *));
 	if (!col->array_img)
 		ft_perror_exit(E_MALLOC, NULL);

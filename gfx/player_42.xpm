@@ -1,5 +1,5 @@
 /* XPM */
-static char * m_player[] = {
+static char * player_xpm[] = {
 "42 42 1315 2",
 "  	c None",
 ". 	c #CCD877",

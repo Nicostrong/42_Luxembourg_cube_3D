@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/24 11:32:08 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/24 15:02:53 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
 CC_OPT			=	-g -o3
-CC_DEF			=	-D DEBUG=1
+CC_DEF			=	
 
 DEB				=	valgrind
 DEB_OPT			=	--tool=memcheck \

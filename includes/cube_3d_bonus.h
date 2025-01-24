@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 11:32:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 15:01:44 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,6 @@
 
 # endif
 
-# if defined(DEBUG)
-	# define DEBUG	1
-# else
-	# define DEBUG	0
-# endif
-
 /*
 *	Personal Library
 */
@@ -86,11 +80,11 @@ void	ft_print_user_data(t_info *info);
 */
 
 int		ft_exit(t_info *info);
-int		ft_check_arg(int argc, char **argv);
 int		ft_perror_exit(char *str_error, t_info *info);
 
 void	ft_init_mlx(t_info *info);
 void	ft_read_file(t_info *info);
 void	ft_check_map(t_info *info);
+void	ft_check_arg(int argc, char **argv);
 
 #endif

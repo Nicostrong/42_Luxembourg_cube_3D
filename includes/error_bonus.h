@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 14:54:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:25:03 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define E_WE		"\033[1;31mError\n\tMissing WE.\033[0m"
 # define E_C		"\033[1;31mError\n\tMissing C.\033[0m"
 # define E_F		"\033[1;31mError\n\tMissing F.\033[0m"
+# define E_P		"\033[1;31mError\n\tMissing P.\033[0m"
+# define E_D		"\033[1;31mError\n\tMissing D.\033[0m"
 # define E_TEXTURE	"\033[1;31mError\n\tFile texture.\033[0m"
 # define E_CT		"\033[1;31mError\n\tFile texture sky.\033[0m"
 # define E_FT		"\033[1;31mError\n\tFile texture floor.\033[0m"
@@ -72,14 +74,16 @@
  *	Define error messages
  */
 
-# define W_N_IMG_E	1	//	1 << 0
-# define W_S_IMG_E	2	//	1 << 1
-# define W_E_IMG_E	4	//	1 << 2
-# define W_W_IMG_E	8	//	1 << 3
-# define F_IMG_E	16	//	1 << 4
-# define S_IMG_E	32	//	1 << 5
-# define E_COL_S	64	//	1 << 6
-# define E_COL_F	128	//	1 << 7
+# define W_N_IMG_E	1
+# define W_S_IMG_E	2
+# define W_E_IMG_E	4
+# define W_W_IMG_E	8
+# define F_IMG_E	16
+# define S_IMG_E	32
+# define E_COL_S	64
+# define E_COL_F	128
+# define P_IMG_E	256
+# define D_IMG_E	512
 
 /*
  *	Fonction error

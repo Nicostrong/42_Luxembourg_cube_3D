@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:01:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 14:41:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
  * </return>
  *
  */
-static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
+static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 {
 	if (x < 0 || y < 0 || x >= info->w || y >= info->h)
 		return ;
@@ -43,14 +43,14 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
 		return ;
 	if (map[y][x] == ' ')
 	{
-		*is_valid = 0;
+		info->is_valid = 0;
 		return ;
 	}
 	map[y][x] = '2';
-	ft_flood_fill(map, x, y - 1, info, is_valid);
-	ft_flood_fill(map, x + 1, y, info, is_valid);
-	ft_flood_fill(map, x, y + 1, info, is_valid);
-	ft_flood_fill(map, x - 1, y, info, is_valid);
+	ft_flood_fill(map, x, y - 1, info);
+	ft_flood_fill(map, x + 1, y, info);
+	ft_flood_fill(map, x, y + 1, info);
+	ft_flood_fill(map, x - 1, y, info);
 	return ;
 }
 
@@ -155,7 +155,6 @@ static void	ft_get_pos_player(char **map, t_info *info)
 void	ft_check_map(t_info *info)
 {
 	char	**map_cpy;
-	int		is_valid;
 
 	if (!info->map)
 		ft_perror_exit(E_MAP, info);
@@ -163,10 +162,10 @@ void	ft_check_map(t_info *info)
 	map_cpy = ft_strarraycpy(info->map);
 	if (!map_cpy)
 		ft_perror_exit(E_MALLOC, info);
-	is_valid = 1;
-	ft_flood_fill(map_cpy, info->user_x, info->user_y, info, &is_valid);
+	info->is_valid = 1;
+	ft_flood_fill(map_cpy, info->user_x, info->user_y, info);
 	ft_free_array(map_cpy);
-	if (!is_valid)
+	if (!info->is_valid)
 		ft_perror_exit(E_CLOSE, info);
 	return ;
 }

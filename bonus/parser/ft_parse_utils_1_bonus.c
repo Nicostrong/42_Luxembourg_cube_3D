@@ -6,14 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 08:15:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube_3d.h"
-#include "../../includes/error.h"
-#include "../../includes/structures.h"
-#include "../../includes/setting_game.h"
+#include "../../includes/cube_3d_bonus.h"
+#include "../../includes/error_bonus.h"
+#include "../../includes/setting_game_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -25,7 +24,7 @@
  * <description>
  * 	ft_ismap check if the line is a map.
  * 	A map contain only ' ', '0', '1', '2', 'N', 'S', 'E', 'W'.
- * 	A bonus map contain also 'C' for collectable and 'D' for door.
+ * 	A bonus map contain also 'I' for collectable and 'D' for door.
  * </description>
  *
  * <param type="char *" name="line">line to check</param>
@@ -43,16 +42,8 @@ static int	ft_ismap(char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (BONUS)
-		{
-			if (!ft_strchr(" 01NSEWCD", line[i]))
-				return (0);
-		}
-		else
-		{
-			if (!ft_strchr(" 01NSEW", line[i]))
-				return (0);
-		}
+		if (!ft_strchr(" 01NSEWID", line[i]))
+			return (0);
 	}
 	return (1);
 }

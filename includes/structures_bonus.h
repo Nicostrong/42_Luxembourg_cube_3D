@@ -6,17 +6,20 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:17:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 11:51:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_BONUS_H
 # define STRUCTURES_BONUS_H
 
-# include <pthread.h>
-
 typedef struct s_thread
 {
+	int				mut_map;		//	if m_map is initialized
+	int				mut_x;			//	if m_user_x is initialized
+	int				mut_y;			//	if m_user_y is initialized
+	int				mut_d;			//	if m_user_d is initialized
+	int				mut_stop;		//	if m_stop is initialized
 	pthread_t		t_mini;
 	pthread_t		t_game;
 	pthread_mutex_t	m_map;			// protection of access map
@@ -52,6 +55,7 @@ typedef struct s_anim
 	int				chrono;
 	int				cur_img;
 	int				nb_img;
+	int				len;
 	void			**array_img;
 }					t_anim;
 
@@ -131,10 +135,10 @@ typedef struct s_info
 	t_img		*w_s_img;		//	wall south image
 	t_img		*w_w_img;		//	wall weast image
 	t_img		*player;		//	player image
+	t_img		*door;			//	door image
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
 	t_anim		*c_anim;		//	animation of collectable
-	t_anim		*d_anim;		//	animation of door
 	t_thread	*thread;		//	thread structure
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
@@ -176,16 +180,23 @@ typedef struct s_raycasting
  *	Strucuture fonctions
  */
 
-void	ft_print_map(t_info *info);
-void	ft_print_info(t_info *info);
-void	ft_print_user_data(t_info *info);
-void	ft_print_minimap(t_info *info, char **map);
+void		ft_print_map(t_info *info);
+void		ft_print_info(t_info *info);
+void		ft_print_user_data(t_info *info);
+void		ft_print_minimap(t_info *info, char **map);
 
-void	ft_init_img(t_info **info);
-void	ft_free_info(t_info *info);
-void	ft_free_window(t_info *info);
+void		ft_init_mlx(t_info *info);
+void		ft_init_img(t_info *info);
+void		ft_free_info(t_info *info);
+void		ft_init_color(t_info *info);
+void		ft_free_window(t_info *info);
+void		ft_clean_thread_mutex(t_thread *thread);
 
-t_info	*ft_init_info(char *path);
-t_info	*ft_get_all_info(char *path);
+t_info		*ft_init_info(char *path);
+t_info		*ft_get_all_info(char *path);
+
+t_anim		*ft_init_anim(t_info *info);
+
+t_thread	*ft_init_thread(t_info *info);
 
 #endif

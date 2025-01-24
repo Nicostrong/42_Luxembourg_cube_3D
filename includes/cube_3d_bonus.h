@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 16:04:20 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 11:32:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <math.h>
+# include <pthread.h>
 # include <sys/time.h>
 
 # if defined(__linux__)
@@ -68,6 +69,17 @@
 # include "../lib/gnl/get_next_line.h"
 # include "./structures_bonus.h"
 # include "./color_bonus.h"
+
+/*
+ *	DEBUG
+ */
+
+void	ft_print_img(t_img *img);
+void	ft_print_map(t_info *info);
+void	ft_print_info(t_info *info);
+void	ft_print_thread(t_info *info);
+void	ft_print_color(t_color *color);
+void	ft_print_user_data(t_info *info);
 
 /*
 * Fonction init mlx

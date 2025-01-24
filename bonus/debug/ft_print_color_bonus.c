@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_print_color_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:33:53 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:03:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/01/23 15:34:45 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/01/24 08:00:05 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cube_3d_bonus.h"
 
 /*
- * <cat>memory</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_free(void *ptr)
- * <\summary>
- * 
+ * 	void	ft_print_color(t_color *color)
+ * </summary>
+ *
  * <description>
- * 	ft_free set all bit to zero, free the ptr and set to null.
+ * 	ft_print_color print all information about a color structure.
  * </description>
  *
- * <param type="void *" name="ptr">pointer to free</param>
+ * <param type="t_color *" name="color">structure color</param>
  *
  * <return>
- * 	void
+ * 	void.
  * </return>
  *
  */
-void	ft_free(void *ptr)
+void	ft_print_color(t_color *color)
 {
-	if (ptr != NULL)
-	{
-		ft_memset(ptr, 0, ft_strlen(ptr));
-		free(ptr);
-		ptr = NULL;
-	}
+	printf("\tt: %d\n", color->t);
+	printf("\tr: %d\n", color->r);
+	printf("\tg: %d\n", color->g);
+	printf("\tb: %d\n", color->b);
+	printf("\tcolor: %x\n", color->color);
 	return ;
 }

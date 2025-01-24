@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:21:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 13:21:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WIDTH			1500					//	1920
 # define HEIGHT			1000					//	1080
 # define NBTEXTURES		6						//	number of textures
-# define ROTATE			0.02					//	in radian
-# define STEP			0.05					//	size of step
+# define ROTATE			0.02					//	speed rotating
+# define STEP			0.05					//	speed moving
 # define D_WALL			0.2						//	distance min near wall
 
 /*

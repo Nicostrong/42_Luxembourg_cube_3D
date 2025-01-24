@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_wall_bonus.c                                :+:      :+:    :+:   */
+/*   ft_print_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 10:57:29 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:00:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/01/23 15:20:14 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/01/24 08:00:20 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 
-int	ft_put_wall(t_img *wall, int y_start, int y_end, int y, int tex_x)
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_print_map(t_info *info)
+ * </summary>
+ *
+ * <description>
+ * 	ft_print_map print the map.
+ * </description>
+ *
+ * <param type="t_info" name="info">The structure with all information</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+void	ft_print_map(t_info *info)
 {
-	int			tex_y;
-	char		*pixel_ptr;
-	uint32_t	color;
-
-	tex_y = (y - y_start) * wall->h / (y_end - y_start);
-	(void)tex_x;
-	if (tex_y < 0) tex_y = 0;
-	if (tex_y >= wall->h) tex_y = wall->h - 1;
-	pixel_ptr = wall->addr + (tex_y * wall->size + 2 * (wall->bpp / 8));
-	color = *(uint32_t *)pixel_ptr;
-	return (color);
+	if (info->map)
+		ft_putstrarray(info->map);
+	else
+		printf(REDC"\tmap is NULL\n"RESET);
+	return ;
 }

@@ -6,14 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:19:44 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 08:01:21 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube_3d.h"
-#include "../../includes/minimap.h"
-#include "../../includes/structures.h"
-#include "../../includes/error.h"
+#include "../../includes/cube_3d_bonus.h"
+#include "../../includes/minimap_bonus.h"
+#include "../../includes/error_bonus.h"
 
 /*
  * <cat>cube_3D</cat>

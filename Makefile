@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/23 15:49:13 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/24 11:32:08 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,15 +76,16 @@ MYLIBS_BONUS	=
 #	Mandatory part															   #
 ################################################################################
 
-ifeq ($(UNAME), Linux)
-	SRC_OS		=	./src/controller/ft_press_key.c
-else
-	SRC_OS		=	./src/controller/ft_press_key_mac.c
-endif
+#ifeq ($(UNAME), Linux)
+#	SRC_OS		=	./src/controller/ft_press_key.c
+#else
+#	SRC_OS		=	./src/controller/ft_press_key_mac.c
+#endif
 
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
 					./src/controller/ft_move.c \
+					./src/controller/ft_press_key.c \
 					./src/controller/ft_rotate.c \
 					./src/debug/ft_print_color.c \
 					./src/debug/ft_print_img.c \
@@ -116,11 +117,33 @@ NAME			=	cube3D
 
 SRC_BONUS_COM	=	./bonus/main_bonus.c \
 					./bonus/controller/ft_check_wall_bonus.c \
+					./bonus/debug/ft_print_color_bonus.c \
+					./bonus/debug/ft_print_img_bonus.c \
+					./bonus/debug/ft_print_info_bonus.c \
+					./bonus/debug/ft_print_map_bonus.c \
+					./bonus/debug/ft_print_thread_bonus.c \
+					./bonus/debug/ft_print_user_bonus.c \
+					./bonus/draw/ft_get_color_bonus.c \
+					./bonus/exit/ft_error_bonus.c \
+					./bonus/exit/ft_exit_bonus.c \
+					./bonus/parser/ft_check_arg_bonus.c \
+					./bonus/parser/ft_parse_utils_1_bonus.c \
+					./bonus/parser/ft_parse_utils_2_bonus.c \
+					./bonus/parser/ft_parse_bonus.c \
+					./bonus/structure/ft_free_structure_bonus.c \
+					./bonus/structure/ft_init_anim_bonus.c \
+					./bonus/structure/ft_init_img_color_bonus.c \
+					./bonus/structure/ft_init_mlx_bonus.c \
+					./bonus/structure/ft_init_structure_bonus.c \
+					./bonus/structure/ft_init_thread_bonus.c
+
+#					./bonus/raycast/ft_raycasting_bonus.c \
+					./bonus/controller/ft_press_key_bonus.c \
+					./bonus/controller/ft_check_wall_bonus.c \
 					./bonus/controller/ft_move_bonus.c \
 					./bonus/controller/ft_mouse_move_bonus.c \
 					./bonus/controller/ft_door_bonus.c \
 					./bonus/debug/ft_print_info_bonus.c \
-					./bonus/draw/ft_get_color_bonus.c \
 					./bonus/draw/ft_put_player_bonus.c \
 					./bonus/draw/ft_put_wall_bonus.c \
 					./bonus/exit/ft_error_bonus.c \
@@ -132,7 +155,6 @@ SRC_BONUS_COM	=	./bonus/main_bonus.c \
 					./bonus/parser/ft_parse_utils_1_bonus.c \
 					./bonus/parser/ft_parse_utils_2_bonus.c \
 					./bonus/parser/ft_parse_bonus.c \
-					./bonus/raycast/ft_raycasting_bonus.c \
 					./bonus/structure/ft_free_structure_bonus.c \
 					./bonus/structure/ft_init_structure_bonus.c
 
@@ -278,7 +300,6 @@ $(GNL_DIR)/$(GNL_NAME):
 $(MLX_DIR)/$(MLX_NAME):
 	@$(MAKE) -sC $(MLX_DIR)
 
-bonus:		CC_DEF += -D BONUS=1
 bonus:		NUM_FILES=$(NB_BONUS)
 bonus:		fclean \
 			$(MLX_DIR)/$(MLX_NAME)\
@@ -286,7 +307,7 @@ bonus:		fclean \
 			$(GNL_DIR)/$(GNL_NAME) \
 			$(OBJ_BONUS)
 	@echo "Compiling with BONUS"
-	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS) -o $(NAME_BONUS)
 	@echo "$(CGREEN)all files of the programm $(NAME_BONUS) compiled with success!$(RESET)"
 
 clean:
@@ -314,6 +335,7 @@ clean:
 
 fclean: 	clean
 	$(call delete_file, $(NAME))
+	$(call delete_file, $(NAME_BONUS))
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 

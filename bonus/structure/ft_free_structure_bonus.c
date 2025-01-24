@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 11:53:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube_3d.h"
-#include "../../includes/structures.h"
+#include "../../includes/cube_3d_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -218,6 +217,8 @@ void	ft_free_info(t_info *info)
 		ft_free(info->sky_color);
 	if (info->info_map)
 		ft_free(info->info_map);
+	if (info->thread)
+		ft_clean_thread_mutex(info->thread);
 	ft_free_all_images(info);
 	//ft_free_anim(info->c_anim, info);
 	ft_free_window(info);

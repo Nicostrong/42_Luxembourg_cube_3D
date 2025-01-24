@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_print_img_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:33:53 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:03:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/01/23 15:23:52 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/01/24 08:00:10 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cube_3d_bonus.h"
 
 /*
- * <cat>memory</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_free(void *ptr)
- * <\summary>
- * 
+ * 	void	ft_print_img(t_img *img)
+ * </summary>
+ *
  * <description>
- * 	ft_free set all bit to zero, free the ptr and set to null.
+ * 	ft_print_img print all information about an image structure.
  * </description>
  *
- * <param type="void *" name="ptr">pointer to free</param>
+ * <param type="t_img *" name="img">image structure</param>
  *
  * <return>
- * 	void
+ * 	void.
  * </return>
  *
  */
-void	ft_free(void *ptr)
+void	ft_print_img(t_img *img)
 {
-	if (ptr != NULL)
-	{
-		ft_memset(ptr, 0, ft_strlen(ptr));
-		free(ptr);
-		ptr = NULL;
-	}
+	printf("\tpath: %s\n", img->img_path);
+	printf("\th: %d\n", img->h);
+	printf("\tw: %d\n", img->w);
+	printf("\timg: %p\n", img->img);
+	printf("\taddr: %p\n", img->addr);
 	return ;
 }

@@ -6,13 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 09:13:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 11:36:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube_3d.h"
-#include "../../includes/error.h"
-#include "../../includes/structures.h"
+#include "../../includes/cube_3d_bonus.h"
+#include "../../includes/error_bonus.h"
 
 /*
  *	<cat>cube_3D</cat>
@@ -33,13 +32,13 @@
  * </return>
  * 
  */
-static void	ft_check_texture_s_f(t_info *info)
+/*static void	ft_check_texture_s_f(t_info *info)
 {
 	if (info->s_img->img_path && info->s_img->img)
 		info->use_s_img = 1;
 	if (info->f_img->img_path && info->f_img->img)
 		info->use_f_img = 1;
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -61,7 +60,7 @@ static void	ft_check_texture_s_f(t_info *info)
  * </return>
  *
  */
-static void	ft_get_size_xpm(t_info *info, char *path, int i)
+/*static void	ft_get_size_xpm(t_info *info, char *path, int i)
 {
 	char	*line;
 	char	*sub_line;
@@ -93,7 +92,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	ft_free_array(array);
 	ft_free(sub_line);
 	ft_free(line);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -113,7 +112,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
  * </return>
  *
  */
-static void	ft_set_all_xpm(t_info *info)
+/*static void	ft_set_all_xpm(t_info *info)
 {
 	int	i;
 
@@ -136,7 +135,7 @@ static void	ft_set_all_xpm(t_info *info)
 				ft_perror_exit(E_ADR, info);
 		}
 	}
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -156,7 +155,7 @@ static void	ft_set_all_xpm(t_info *info)
  * </return>
  *
  */
-static void	ft_check_path(t_info *info)
+/*static void	ft_check_path(t_info *info)
 {
 	int	error;
 
@@ -175,7 +174,7 @@ static void	ft_check_path(t_info *info)
 		error |= S_IMG_E;
 	if (error)
 		ft_error_msg(error, 1, info);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -195,7 +194,7 @@ static void	ft_check_path(t_info *info)
  * </return>
  *
  */
-static void	ft_check_color_s_f(t_info *info)
+/*static void	ft_check_color_s_f(t_info *info)
 {
 	int	error;
 
@@ -206,7 +205,7 @@ static void	ft_check_color_s_f(t_info *info)
 		error |= 1 << 7;
 	if (error)
 		ft_error_msg(error, 1, info);
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -232,12 +231,13 @@ t_info	*ft_get_all_info(char *path)
 	t_info	*info;
 
 	info = ft_init_info(path);
-	ft_read_file(info);
+	ft_print_info(info);
+	/*ft_read_file(info);
 	ft_check_color_s_f(info);
 	ft_check_path(info);
 	ft_check_map(info);
 	ft_set_all_xpm(info);
-	ft_check_texture_s_f(info);
-	ft_init_thread(info);
+	ft_check_texture_s_f(info);*/
+	//ft_init_thread(info);
 	return (info);
 }

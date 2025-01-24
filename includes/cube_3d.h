@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 17:15:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 08:03:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@
 # include "../lib/gnl/get_next_line.h"
 # include "./structures.h"
 # include "./color.h"
-
 
 /*
  *	DEBUG

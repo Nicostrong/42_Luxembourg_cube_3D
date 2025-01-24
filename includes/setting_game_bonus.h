@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:18:37 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/24 11:42:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,20 @@
 # define D_WALL			0.2						//	distance min near wall
 
 /*
+ *	Collectable
+ */
+
+# define N_COL			4						//	number of image
+# define S_COL			64						//	size of collectable
+# define CUR_COL		0						//	current image
+# define SPEED_COL		50000
+
+/*
  *	FPS
  */
 
 # define FPS 			30
 # define FRAMT 			33.3333333				//	(1000 / FPS)
-# define SPEED_COL		50000
 
 /*
  *	Functions game

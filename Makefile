@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/25 10:40:46 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/25 14:03:50 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,216 +14,209 @@
 #	Makefile variables
 ################################################################################
 
-CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra
-CC_OPT			=	-g -o3
-CC_DEF			=	
+CC					=	cc
+CFLAGS				=	-Wall -Werror -Wextra
+CC_OPT				=	-g -o3
+CC_DEF				=	
 
-DEB				=	valgrind
-DEB_OPT			=	--tool=memcheck \
-					--leak-check=full \
-					--show-leak-kinds=definite,indirect,possible \
-					--track-fds=yes \
-					2> error
+DEB					=	valgrind
+DEB_OPT				=	--tool=memcheck \
+						--leak-check=full \
+						--show-leak-kinds=definite,indirect,possible \
+						--track-fds=yes \
+						2> error
 
+ARG0				=	
 
-ARG0			=	
+RM					=	rm -f
 
-RM				=	rm -f
+UNAME				:=	$(shell uname)
 
 ################################################################################
 #	Librairies																   #
 ################################################################################
 
-LIBFT_DIR		=	./lib/libft
-FT_PRINTF_DIR	=	./lib/ft_printf
-GNL_DIR			=	./lib/gnl
-MLX_L_DIR		=	./lib/mlx_linux
-MLX_M_DIR		=	./lib/mlx_mac
+LIBFT_DIR			=	./lib/libft
+FT_PRINTF_DIR		=	./lib/ft_printf
+GNL_DIR				=	./lib/gnl
+MLX_L_DIR			=	./lib/mlx_linux
+MLX_M_DIR			=	./lib/mlx_mac
 
-LIBFT_NAME		=	-lft
-FT_PRINTF_NAME	=	-lftprintf
-GNL_NAME		=	-lgnl
-MLX_L_NAME		=	-lmlx
-MLX_M_NAME		=	-lmlx
-MLX_L_FLAGS		=	-lXext -lX11 -lm -lz
-MLX_M_FLAGS		=	-framework OpenGL -framework AppKit
+LIBFT_NAME			=	-lft
+FT_PRINTF_NAME		=	-lftprintf
+GNL_NAME			=	-lgnl
+MLX_L_NAME			=	-lmlx
+MLX_M_NAME			=	-lmlx
+MLX_L_FLAGS			=	-lXext -lX11 -lm -lz
+MLX_M_FLAGS			=	-framework OpenGL -framework AppKit
 
-UNAME			=	$(shell uname)
 ifeq ($(UNAME), Linux)
-	MLX_DIR		=	$(MLX_L_DIR)
-	MLX_NAME	=	$(MLX_L_NAME)
-	MLX_FLAGS	=	$(MLX_L_FLAGS)
+	MLX_DIR			=	$(MLX_L_DIR)
+	MLX_NAME		=	$(MLX_L_NAME)
+	MLX_FLAGS		=	$(MLX_L_FLAGS)
 else
-	MLX_DIR		=	$(MLX_M_DIR)
-	MLX_NAME	=	$(MLX_M_NAME)
-	MLX_FLAGS	=	$(MLX_M_FLAGS)
+	MLX_DIR			=	$(MLX_M_DIR)
+	MLX_NAME		=	$(MLX_M_NAME)
+	MLX_FLAGS		=	$(MLX_M_FLAGS)
 endif
 
+LIB_PROG			=
+LIB_OPTI			=
+LIB_NAME			=
 
-LIB_PROG		=
-LIB_OPTI		=
-LIB_NAME		=
+MYLIBS				=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
+						-L$(GNL_DIR) $(GNL_NAME)\
+						-L$(MLX_DIR)  $(MLX_NAME)\
+						$(MLX_FLAGS)
 
-MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
-					-L$(GNL_DIR) $(GNL_NAME)\
-					-L$(MLX_DIR)  $(MLX_NAME)\
-					$(MLX_FLAGS)
-
-MYLIBS_BONUS	=
+MYLIBS_BONUS		=	$(MYLIBS)
 
 ################################################################################
 #	Specifics files															   #
 ################################################################################
 
 ifeq ($(UNAME), Linux)
-	ifeq ($@, "bonus")
-		SRC_OS		=	./bonus/controller/ft_press_key_bonus.c
-	else
-		SRC_OS		=	./src/controller/ft_press_key.c
-	endif
+	SRC_OS			=	./src/controller/ft_press_key.c
+	SRC_OS_BONUS	=	./bonus/controller/ft_press_key_bonus.c
 else
-	ifeq ($@, "bonus")
-		SRC_OS		=	./bonus/controller/ft_press_key_mac_bonus.c
-	else
-		SRC_OS		=	./src/controller/ft_press_key_mac.c
-	endif
+	SRC_OS			=	./src/controller/ft_press_key_mac.c
+	SRC_OS_BONUS	=	./bonus/controller/ft_press_key_mac_bonus.c
 endif
 
 ################################################################################
 #	Mandatory part															   #
 ################################################################################
 
-SRC_COMMON		=	./src/main.c \
-					./src/controller/ft_check_wall.c \
-					./src/controller/ft_move.c \
-					./src/controller/ft_rotate.c \
-					./src/debug/ft_print_color.c \
-					./src/debug/ft_print_img.c \
-					./src/debug/ft_print_info.c \
-					./src/debug/ft_print_map.c \
-					./src/debug/ft_print_user.c \
-					./src/draw/ft_get_color.c \
-					./src/draw/ft_put_wall.c \
-					./src/exit/ft_error.c \
-					./src/exit/ft_exit.c \
-					./src/parser/ft_check_arg.c \
-					./src/parser/ft_parse_utils_1.c \
-					./src/parser/ft_parse_utils_2.c \
-					./src/parser/ft_parse.c \
-					./src/raycast/ft_raycasting.c \
-					./src/raycast/ft_raycasting_utils.c \
-					./src/structure/ft_free_structure.c \
-					./src/structure/ft_init_structure.c
+SRC_COMMON			=	./src/main.c \
+						./src/controller/ft_check_wall.c \
+						./src/controller/ft_move.c \
+						./src/controller/ft_rotate.c \
+						./src/debug/ft_print_color.c \
+						./src/debug/ft_print_img.c \
+						./src/debug/ft_print_info.c \
+						./src/debug/ft_print_map.c \
+						./src/debug/ft_print_user.c \
+						./src/draw/ft_get_color.c \
+						./src/draw/ft_put_wall.c \
+						./src/exit/ft_error.c \
+						./src/exit/ft_exit.c \
+						./src/parser/ft_check_arg.c \
+						./src/parser/ft_parse_utils_1.c \
+						./src/parser/ft_parse_utils_2.c \
+						./src/parser/ft_parse.c \
+						./src/raycast/ft_raycasting.c \
+						./src/raycast/ft_raycasting_utils.c \
+						./src/structure/ft_free_structure.c \
+						./src/structure/ft_init_structure.c
 
-SRC				=	$(SRC_COMMON) $(SRC_OS)
+SRC					=	$(SRC_COMMON) $(SRC_OS)
 
-OBJ				=	$(SRC:.c=.o)
+OBJ					=	$(SRC:.c=.o)
 
-NAME			=	cube3D
+NAME				=	cube3D
 
 ################################################################################
 #	Bonus part																   #
 ################################################################################
 
-SRC_BONUS_COM	=	./bonus/main_bonus.c \
-					./bonus/controller/ft_check_wall_bonus.c \
-					./bonus/debug/ft_print_anim_bonus.c \
-					./bonus/debug/ft_print_color_bonus.c \
-					./bonus/debug/ft_print_img_bonus.c \
-					./bonus/debug/ft_print_info_bonus.c \
-					./bonus/debug/ft_print_map_bonus.c \
-					./bonus/debug/ft_print_thread_bonus.c \
-					./bonus/debug/ft_print_user_bonus.c \
-					./bonus/draw/ft_get_color_bonus.c \
-					./bonus/exit/ft_error_bonus.c \
-					./bonus/exit/ft_exit_bonus.c \
-					./bonus/parser/ft_check_arg_bonus.c \
-					./bonus/parser/ft_parse_utils_1_bonus.c \
-					./bonus/parser/ft_parse_utils_2_bonus.c \
-					./bonus/parser/ft_parse_bonus.c \
-					./bonus/structure/ft_free_structure_bonus.c \
-					./bonus/structure/ft_init_anim_bonus.c \
-					./bonus/structure/ft_init_img_color_bonus.c \
-					./bonus/structure/ft_init_mlx_bonus.c \
-					./bonus/structure/ft_init_structure_bonus.c \
-					./bonus/structure/ft_init_thread_bonus.c
+SRC_BONUS_COM		=	./bonus/main_bonus.c \
+						./bonus/controller/ft_check_wall_bonus.c \
+						./bonus/controller/ft_door_bonus.c \
+						./bonus/controller/ft_move_bonus.c \
+						./bonus/controller/ft_rotate_bonus.c \
+						./bonus/debug/ft_print_anim_bonus.c \
+						./bonus/debug/ft_print_color_bonus.c \
+						./bonus/debug/ft_print_img_bonus.c \
+						./bonus/debug/ft_print_info_bonus.c \
+						./bonus/debug/ft_print_map_bonus.c \
+						./bonus/debug/ft_print_thread_bonus.c \
+						./bonus/debug/ft_print_user_bonus.c \
+						./bonus/draw/ft_get_color_bonus.c \
+						./bonus/exit/ft_error_bonus.c \
+						./bonus/exit/ft_exit_bonus.c \
+						./bonus/parser/ft_check_arg_bonus.c \
+						./bonus/parser/ft_parse_utils_1_bonus.c \
+						./bonus/parser/ft_parse_utils_2_bonus.c \
+						./bonus/parser/ft_parse_bonus.c \
+						./bonus/structure/ft_free_structure_bonus.c \
+						./bonus/structure/ft_init_anim_bonus.c \
+						./bonus/structure/ft_init_img_color_bonus.c \
+						./bonus/structure/ft_init_mlx_bonus.c \
+						./bonus/structure/ft_init_structure_bonus.c \
+						./bonus/structure/ft_init_thread_bonus.c
 
-#					./bonus/raycast/ft_raycasting_bonus.c \
-					./bonus/controller/ft_check_wall_bonus.c \
-					./bonus/controller/ft_move_bonus.c \
-					./bonus/controller/ft_mouse_move_bonus.c \
-					./bonus/controller/ft_door_bonus.c \
-					./bonus/debug/ft_print_info_bonus.c \
-					./bonus/draw/ft_put_player_bonus.c \
-					./bonus/draw/ft_put_wall_bonus.c \
-					./bonus/exit/ft_error_bonus.c \
-					./bonus/exit/ft_exit_bonus.c \
-					./bonus/minimap/ft_minimap_utils_bonus.c \
-					./bonus/minimap/ft_minimap_bonus.c \
-					./bonus/minimap/ft_put_player_bonus.c \
-					./bonus/parser/ft_check_arg_bonus.c \
-					./bonus/parser/ft_parse_utils_1_bonus.c \
-					./bonus/parser/ft_parse_utils_2_bonus.c \
-					./bonus/parser/ft_parse_bonus.c \
-					./bonus/structure/ft_free_structure_bonus.c \
-					./bonus/structure/ft_init_structure_bonus.c
+#						./bonus/raycast/ft_raycasting_bonus.c \
+						./bonus/controller/ft_mouse_move_bonus.c \
+						./bonus/debug/ft_print_info_bonus.c \
+						./bonus/draw/ft_put_player_bonus.c \
+						./bonus/draw/ft_put_wall_bonus.c \
+						./bonus/exit/ft_error_bonus.c \
+						./bonus/exit/ft_exit_bonus.c \
+						./bonus/minimap/ft_minimap_utils_bonus.c \
+						./bonus/minimap/ft_minimap_bonus.c \
+						./bonus/minimap/ft_put_player_bonus.c \
+						./bonus/parser/ft_check_arg_bonus.c \
+						./bonus/parser/ft_parse_utils_1_bonus.c \
+						./bonus/parser/ft_parse_utils_2_bonus.c \
+						./bonus/parser/ft_parse_bonus.c \
+						./bonus/structure/ft_free_structure_bonus.c \
+						./bonus/structure/ft_init_structure_bonus.c
 
-SRC_BONUS		=	$(SRC_BONUS_COM) $(SRC_OS)
+SRC_BONUS			=	$(SRC_BONUS_COM) $(SRC_OS_BONUS)
 
-OBJ_BONUS		=	$(SRC_BONUS:.c=.o)
+OBJ_BONUS			=	$(SRC_BONUS:.c=.o)
 
-NAME_BONUS		=	cube3D++
+NAME_BONUS			=	cube3D++
 
 ################################################################################
 #	Colors																	   #
 ################################################################################
 
-RESET			=	'\033[0m'
+RESET				=	'\033[0m'
 
 # Regular
 
-BLACK			=	'\033[0;30m'
-RED				=	'\033[0;31m'
-GREEN			=	'\033[0;32m'
-YELLOW			=	'\033[0;93m'
-BLUE			=	'\033[0;34m'
-PURPLE			=	'\033[0;35m'
-CYAN			=	'\033[0;36m'
-WHITE			=	'\033[0;97m'
+BLACK				=	'\033[0;30m'
+RED					=	'\033[0;31m'
+GREEN				=	'\033[0;32m'
+YELLOW				=	'\033[0;93m'
+BLUE				=	'\033[0;34m'
+PURPLE				=	'\033[0;35m'
+CYAN				=	'\033[0;36m'
+WHITE				=	'\033[0;97m'
 
 # Bold
 
-BBLACK			=	'\033[1;30m'
-BRED			=	'\033[1;31m'
-BGREEN			=	'\033[1;92m'
-BYELLOW			=	'\033[1;93m'
-BBLUE			=	'\033[1;94m'
-BPURPLE			=	'\033[1;95m'
-BCYAN			=	'\033[1;96m'
-BWHITE			=	'\033[1;97m'
+BBLACK				=	'\033[1;30m'
+BRED				=	'\033[1;31m'
+BGREEN				=	'\033[1;92m'
+BYELLOW				=	'\033[1;93m'
+BBLUE				=	'\033[1;94m'
+BPURPLE				=	'\033[1;95m'
+BCYAN				=	'\033[1;96m'
+BWHITE				=	'\033[1;97m'
 
 # Blink
 
-CBLACK			=	'\033[5;30m'
-CRED			=	'\033[5;31m'
-CGREEN			=	'\033[5;32m'
-CYELLOW			=	'\033[5;93m'
-CBLUE			=	'\033[5;34m'
-CPURPLE			=	'\033[5;35m'
-CCYAN			=	'\033[5;36m'
-CWHITE			=	'\033[5;97m'
+CBLACK				=	'\033[5;30m'
+CRED				=	'\033[5;31m'
+CGREEN				=	'\033[5;32m'
+CYELLOW				=	'\033[5;93m'
+CBLUE				=	'\033[5;34m'
+CPURPLE				=	'\033[5;35m'
+CCYAN				=	'\033[5;36m'
+CWHITE				=	'\033[5;97m'
 
 ################################################################################
 #	Progress bar															   #
 ################################################################################
 
-CURRENT_FILE	= 	0
-NB_SRC			=	$(words $(SRC))
-NB_BONUS		=	$(words $(SRC_BONUS))
-NB_TESTER		=	$(words $(SRC_TESTER))
-NB_TESTER_BONUS	=	$(words $(BONUS_TESTER))
-SLEEP_TIME		=	0.001
+CURRENT_FILE		= 	0
+NB_SRC				=	$(words $(SRC))
+NB_BONUS			=	$(words $(SRC_BONUS))
+NB_TESTER			=	$(words $(SRC_TESTER))
+NB_TESTER_BONUS		=	$(words $(BONUS_TESTER))
+SLEEP_TIME			=	0.001
 
 ################################################################################
 #	Functions
@@ -289,17 +282,28 @@ endef
 #	Rules
 ################################################################################
 
-all:		$(MLX_DIR)/$(MLX_NAME)\
-			$(LIBFT_DIR)/$(LIBFT_NAME) \
-			$(GNL_DIR)/$(GNL_NAME) \
-			$(NAME)
+all:			$(MLX_DIR)/$(MLX_NAME)\
+				$(LIBFT_DIR)/$(LIBFT_NAME) \
+				$(GNL_DIR)/$(GNL_NAME) \
+				$(NAME)
 
-$(NAME):	NUM_FILES=$(NB_SRC)
-$(NAME):	$(OBJ)
+bonus:			fclean \
+				$(MLX_DIR)/$(MLX_NAME)\
+				$(LIBFT_DIR)/$(LIBFT_NAME) \
+				$(GNL_DIR)/$(GNL_NAME) \
+				$(NAME_BONUS)
+
+$(NAME):		NUM_FILES=$(NB_SRC)
+$(NAME):		$(OBJ)
 	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ) $(MYLIBS) -o $(NAME)
 	@echo "$(CGREEN)all files of the programm $(NAME) compiled with success!$(RESET)"
 
-%.o :		%.c
+$(NAME_BONUS):	NUM_FILES=$(NB_BONUS)
+$(NAME_BONUS):	$(OBJ_BONUS)
+	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS_BONUS) -o $(NAME_BONUS)
+	@echo "$(CGREEN)all files of the programm $(NAME_BONUS) compiled with success!$(RESET)"
+
+%.o :			%.c
 	$(call compile_c_to_o)
 
 $(LIBFT_DIR)/$(LIBFT_NAME):
@@ -310,16 +314,6 @@ $(GNL_DIR)/$(GNL_NAME):
 
 $(MLX_DIR)/$(MLX_NAME):
 	@$(MAKE) -sC $(MLX_DIR)
-
-bonus:		NUM_FILES=$(NB_BONUS)
-bonus:		fclean \
-			$(MLX_DIR)/$(MLX_NAME)\
-			$(LIBFT_DIR)/$(LIBFT_NAME) \
-			$(GNL_DIR)/$(GNL_NAME) \
-			$(OBJ_BONUS)
-	@echo "Compiling with BONUS"
-	@$(CC) $(CFLAGS) $(CC_OPT) $(CC_DEF) $(OBJ_BONUS) $(MYLIBS) -o $(NAME_BONUS)
-	@echo "$(CGREEN)all files of the programm $(NAME_BONUS) compiled with success!$(RESET)"
 
 clean:
 	$(call delete_progress, ./src/*.o)
@@ -344,13 +338,13 @@ clean:
 	@$(MAKE) -sC $(GNL_DIR) clean
 	@$(MAKE) -sC $(MLX_DIR) clean
 
-fclean: 	clean
+fclean: 		clean
 	$(call delete_file, $(NAME))
 	$(call delete_file, $(NAME_BONUS))
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
 	@$(MAKE) -sC $(GNL_DIR) fclean
 
-re: 		fclean all
+re: 			fclean all
 
 .PHONY: all clean fclean re bonus
 

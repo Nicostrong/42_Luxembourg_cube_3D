@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:57:24 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 10:48:27 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 {
 	if (info->map[info->y][info->x + dirx] == '1')
 	{
-		printf(REDC"\tWALL in X + dirx\n"RESET);
+		printf(REDC"\t\tWALL in X + dirx\n"RESET);
 		if (dirx < 0 && *new_x - info->x < D_WALL)
 			*new_x = floor(*new_x) + D_WALL;
 		else if (dirx > 0 && *new_x - info->x > 1 - D_WALL)
@@ -92,11 +92,11 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 	}
 	else if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
-		printf(REDC"\tFORBIDDEN ZONE X\n"RESET);
+		printf(REDC"\t\tFORBIDDEN ZONE X\n"RESET);
 		if (info->user_x - info->x >= D_WALL && \
 			info->user_x - info->x <= 1 - D_WALL)
 		{
-			printf(REDC"\told pos.X allowed\n"RESET);
+			printf(REDC"\t\told pos.X allowed\n"RESET);
 			if (dirx < 0 && *new_x - info->x < D_WALL && \
 			(*new_y - info->y < D_WALL || *new_y - info->y > 1 - D_WALL))
 				*new_x = info->x + D_WALL;
@@ -133,7 +133,7 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 {
 	if (info->map[info->y + diry][info->x] == '1')
 	{
-		printf(REDC"\tWALL in Y + diry\n"RESET);
+		printf(REDC"\t\tWALL in Y + diry\n"RESET);
 		if (diry < 0 && *new_y < floor(*new_y) + D_WALL)
 			*new_y = floor(*new_y) + D_WALL;
 		else if (diry > 0 && *new_y > ceil(*new_y) - D_WALL)
@@ -141,11 +141,11 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 	}
 	else if (ft_isforbidden_zone(info, *new_x, *new_y))
 	{
-		printf(REDC"\tFORBIDDEN ZONE Y\n"RESET);
+		printf(REDC"\t\tFORBIDDEN ZONE Y\n"RESET);
 		if (info->user_y - info->y >= D_WALL && \
 			info->user_y - info->y <= 1 - D_WALL)
 		{
-			printf(REDC"\told pos.Y allowed\n"RESET);
+			printf(REDC"\t\told pos.Y allowed\n"RESET);
 			if (diry < 0 && *new_y - info->y < D_WALL && \
 				(*new_x - info->x < D_WALL || *new_x - info->x > 1 - D_WALL))
 				*new_y = info->y + D_WALL;

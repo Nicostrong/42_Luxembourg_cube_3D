@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:24:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 10:54:06 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@
  */
 static double	ft_normalize_rot(double angle)
 {
-	while (angle > M_PI)
-		angle -= 2 * M_PI;
-	while (angle < -M_PI)
-		angle += 2 * M_PI;
+	if (angle > M_PI || angle < -M_PI)
+	{
+		while (angle > M_PI)
+			angle -= 2 * M_PI;
+		while (angle < -M_PI)
+			angle += 2 * M_PI;
+		printf(REDC"\t\tnormalize angle\n"RESET);
+	}
 	return (angle);
 }
 
@@ -64,10 +68,11 @@ void	ft_rotate(t_info *info, double angle_rotation)
 	printf("***************************************************************\n");
 	printf(BYELLOW"\t\t\tROTATE of player\n"RESET);
 	printf("***************************************************************\n");
-	printf("\tcurrent angle user:\t%.2f\n", info->user_deg);
+	printf("current angle user:\t%.2f\n", info->user_deg);
 	info->user_deg += angle_rotation;
 	info->user_deg = ft_normalize_rot(info->user_deg);
-	printf("\tnew angle user:\t%.2f\n", info->user_deg);
+	printf("new angle user:\t\t%.2f\n", info->user_deg);
+	printf(BBLUE"\t\t\tROTATE\n"RESET);
 	printf("***************************************************************\n");
 	return ;
 }

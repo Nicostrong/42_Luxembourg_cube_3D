@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/24 15:14:12 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/25 10:40:46 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,19 +73,30 @@ MYLIBS			=	-L$(LIBFT_DIR) $(LIBFT_NAME)\
 MYLIBS_BONUS	=
 
 ################################################################################
-#	Mandatory part															   #
+#	Specifics files															   #
 ################################################################################
 
-#ifeq ($(UNAME), Linux)
-#	SRC_OS		=	./src/controller/ft_press_key.c
-#else
-#	SRC_OS		=	./src/controller/ft_press_key_mac.c
-#endif
+ifeq ($(UNAME), Linux)
+	ifeq ($@, "bonus")
+		SRC_OS		=	./bonus/controller/ft_press_key_bonus.c
+	else
+		SRC_OS		=	./src/controller/ft_press_key.c
+	endif
+else
+	ifeq ($@, "bonus")
+		SRC_OS		=	./bonus/controller/ft_press_key_mac_bonus.c
+	else
+		SRC_OS		=	./src/controller/ft_press_key_mac.c
+	endif
+endif
+
+################################################################################
+#	Mandatory part															   #
+################################################################################
 
 SRC_COMMON		=	./src/main.c \
 					./src/controller/ft_check_wall.c \
 					./src/controller/ft_move.c \
-					./src/controller/ft_press_key.c \
 					./src/controller/ft_rotate.c \
 					./src/debug/ft_print_color.c \
 					./src/debug/ft_print_img.c \
@@ -139,7 +150,6 @@ SRC_BONUS_COM	=	./bonus/main_bonus.c \
 					./bonus/structure/ft_init_thread_bonus.c
 
 #					./bonus/raycast/ft_raycasting_bonus.c \
-					./bonus/controller/ft_press_key_bonus.c \
 					./bonus/controller/ft_check_wall_bonus.c \
 					./bonus/controller/ft_move_bonus.c \
 					./bonus/controller/ft_mouse_move_bonus.c \

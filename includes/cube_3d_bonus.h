@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 15:06:16 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 13:58:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <math.h>
-# include <pthread.h>
 # include <sys/time.h>
 
 # if defined(__linux__)

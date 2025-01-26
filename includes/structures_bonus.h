@@ -6,12 +6,18 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:35:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 13:58:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_BONUS_H
 # define STRUCTURES_BONUS_H
+
+/*
+ *	Library for threads
+ */
+
+# include <pthread.h>
 
 typedef struct s_thread
 {
@@ -26,7 +32,7 @@ typedef struct s_thread
 	pthread_mutex_t	m_user_x;		// protection for position user in x
 	pthread_mutex_t	m_user_y;		// protection for position user in y
 	pthread_mutex_t	m_user_d;		// protection for rotation user
-	pthread_mutex_t	m_stop;		// protection for stop thread
+	pthread_mutex_t	m_stop;			// protection for stop thread
 }	t_thread;
 
 /*

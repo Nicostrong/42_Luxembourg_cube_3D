@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 07:57:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 13:51:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	printf("new_x:\t\t%.2f\tnew_y:\t\t%.2f\n", new_x, new_y);
 	printf("***************************************************************\n");
 	ft_check_wall(info, &new_x, &new_y);
-	printf("adjustation:\nnew_x: %.2f\tnew_y: %.2f\n\t"\
-		BBLUE"MOVING\n"RESET, new_x, new_y);
+	printf("adjustation:\nnew_x: %.2f\tnew_y: %.2f\torientation: %.2f\n\t\t\t"\
+		BBLUE"MOVING\n"RESET, new_x, new_y, info->user_deg);
 	printf("***************************************************************\n");
 	if (info->map[(int)floor(new_y)][(int)floor(new_x)] == '1')
 		return ;

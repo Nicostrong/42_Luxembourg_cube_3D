@@ -6,14 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:13:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/25 13:55:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
-#include "../../includes/minimap_bonus.h"
-#include "../../includes/raycasting_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -36,7 +34,6 @@
  */
 int	ft_press_key_mac(int keysym, t_info *info)
 {
-	printf("\t\t\tKeysym = %d\n", keysym);
 	if (keysym == ESCAP)
 		ft_exit(info);
 	else if (keysym == KZ || keysym == UP)
@@ -48,13 +45,11 @@ int	ft_press_key_mac(int keysym, t_info *info)
 	else if (keysym == KD)
 		ft_move(info, M_PI_2, 1);
 	else if (keysym == KA || keysym == LEFT)
-		info->user_deg -= ROTATE;
+		ft_rotate(info, -ROTATE);
 	else if (keysym == KE || keysym == RIGHT)
-		info->user_deg += ROTATE;
-	info->user_deg = ft_normalize_rot(info->user_deg);
-	if (keysym == SPACE)
-		ft_open_door(info);
-	ft_minimap(info);
-	ft_raycasting(info);
+		ft_rotate(info, ROTATE);
+	/*else if (keysym == SPACE)
+		ft_door(info);*/
+	info->move = 1;
 	return (0);
 }

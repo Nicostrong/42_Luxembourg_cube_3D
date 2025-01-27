@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 09:34:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 11:32:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ static void	ft_print_data(t_info *info)
  */
 static void	ft_print_wall(t_info *info)
 {
+	printf("***************\n");
+	printf(BGREEN"WALL\n"RESET);
+	printf("***************\n");
 	if (info->w_n_img)
 	{
 		printf(BBLUE"w_n_img:\n"RESET);
@@ -98,54 +101,6 @@ static void	ft_print_wall(t_info *info)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_print_sky_floor(t_info *info)
- * </summary>
- *
- * <description>
- * 	ft_print_sky_floor print all information about the sky and the floor.
- * 	It prints the sky and floor images and the sky and floor colors.
- * </description>
- *
- * <param type="t_info *" name="info">main structure</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-static void	ft_print_sky_floor(t_info *info)
-{
-	if (info->s_img)
-	{
-		printf(BBLUE"s_img:\n"RESET);
-		ft_print_img(info->s_img);
-	}
-	if (info->use_s_img)
-		printf(GREENC"\tuse Sky texture\n"RESET);
-	if (info->f_img)
-	{
-		printf(BBLUE"f_img:\n"RESET);
-		ft_print_img(info->f_img);
-	}
-	if (info->use_f_img)
-		printf(GREENC"\tuse Floor texture\n"RESET);
-	if (info->floor_color)
-	{
-		printf(BBLUE"floor_color:\n"RESET);
-		ft_print_color(info->floor_color);
-	}
-	if (info->sky_color)
-	{
-		printf(BBLUE"sky_color:\n"RESET);
-		ft_print_color(info->sky_color);
-	}
-	return ;
-}
-
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
  * 	void	ft_print_player_door(t_info *info)
  * </summary>
  *
@@ -162,11 +117,17 @@ static void	ft_print_sky_floor(t_info *info)
  */
 static void	ft_print_player_door(t_info *info)
 {
+	printf("***************\n");
+	printf(BGREEN"PLAYER\n"RESET);
+	printf("***************\n");
 	if (info->player)
 	{
 		printf(BBLUE"player_img:\n"RESET);
 		ft_print_img(info->player);
 	}
+	printf("***************\n");
+	printf(BGREEN"DOOR\n"RESET);
+	printf("***************\n");
 	if (info->door)
 	{
 		printf(BBLUE"door_img:\n"RESET);
@@ -196,7 +157,7 @@ static void	ft_print_player_door(t_info *info)
 void	ft_print_info(t_info *info)
 {
 	printf("***************\n");
-	printf(BBLUE"INFO STRUCTURE\n"RESET);
+	printf(BGREEN"INFO STRUCTURE\n"RESET);
 	printf("***************\n");
 	if (!info)
 	{

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:02:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:55:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:00:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,35 +87,3 @@ t_thread	*ft_init_thread(t_info *info)
 	return (thread);
 }
 
-/*
- * <cat>cube3D</cat>
- *
- * <summary>
- * 	void	ft_clean_thread_mutex(t_thread *thread)
- * </summary>
- *
- * <description>
- * 	ft_clean_thread_mutex destroy all mutex.
- * </description>
- *
- * <param type="t_thread *" name="thread">thread structure</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-void	ft_clean_thread_mutex(t_thread *thread)
-{
-	if (thread->mut_map)
-		pthread_mutex_destroy(&thread->m_map);
-	if (thread->mut_x)
-		pthread_mutex_destroy(&thread->m_user_x);
-	if (thread->mut_y)
-		pthread_mutex_destroy(&thread->m_user_y);
-	if (thread->mut_d)
-		pthread_mutex_destroy(&thread->m_user_d);
-	if (thread->mut_stop)
-		pthread_mutex_destroy(&thread->m_stop);
-	return ;
-}

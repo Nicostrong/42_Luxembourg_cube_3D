@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:57:58 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:32:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ void	ft_minimap(t_info *info)
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
-	ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
+	//ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
 	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, map);
 	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, map);

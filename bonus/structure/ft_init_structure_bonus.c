@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:49:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 12:58:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ t_info	*ft_init_info(char *path)
 	ft_init_arrays(info);
 	ft_init_mlx(info);
 	ft_init_img(info);
-	ft_init_color(info);
 	info->c_anim = ft_init_anim(info);
 	info->thread = ft_init_thread(info);
 	info->info_map = ft_init_info_path(info);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_img_color_bonus.c                          :+:      :+:    :+:   */
+/*   ft_init_img_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:50:21 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 10:52:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 11:35:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,3 @@ void	ft_init_img(t_info *info)
 	return ;
 }
 
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
- * 	void	ft_init_color(t_info *info)
- * </summary>
- *
- * <description>
- * 	ft_init_color initialise all color structure.
- * </description>
- *
- * <param type="t_info *" name="info">structure info</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-void	ft_init_color(t_info *info)
-{
-	info->floor_color = (t_color *)ft_calloc(1, sizeof(t_color));
-	if (!info->floor_color)
-		ft_perror_exit(E_MALLOC, info);
-	info->sky_color = (t_color *)ft_calloc(1, sizeof(t_color));
-	if (!info->sky_color)
-		ft_perror_exit(E_MALLOC, info);
-	return ;
-}

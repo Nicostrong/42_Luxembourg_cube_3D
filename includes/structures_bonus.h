@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/25 13:58:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:12:10 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_texture
 	int				size;				//	Size line
 	int				endian;				//	Endian
 	void			*img;				//	Image
-	void			*addr;				//	Address of image
+	void			*addr;				//	Array of image pixel
 }					t_img;
 
 /*
@@ -196,9 +196,9 @@ void		ft_print_minimap(t_info *info, char **map);
 void		ft_init_mlx(t_info *info);
 void		ft_init_img(t_info *info);
 void		ft_free_info(t_info *info);
-void		ft_init_color(t_info *info);
 void		ft_free_window(t_info *info);
-void		ft_clean_thread_mutex(t_thread *thread);
+void		ft_clean_thread_mutex(t_thread **thread);
+void		ft_create_thread(t_info *info, t_thread *thread);
 
 t_info		*ft_init_info(char *path);
 t_info		*ft_get_all_info(char *path);

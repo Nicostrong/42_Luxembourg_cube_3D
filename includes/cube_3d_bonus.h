@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/25 13:58:40 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:26:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void	ft_print_info(t_info *info);
 void	ft_print_anim(t_info *info);
 void	ft_print_thread(t_info *info);
 void	ft_print_color(t_color *color);
+void	ft_print_sky_floor(t_info *info);
 void	ft_print_user_data(t_info *info);
+void	ft_print_minimap(t_info *info, char **map);
 
 /*
 * Fonction init mlx

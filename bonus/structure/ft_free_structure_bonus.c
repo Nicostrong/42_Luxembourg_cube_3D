@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 11:05:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 12:59:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,8 +204,7 @@ void	ft_free_info(t_info *info)
 	ft_free((void **)&info->sky_color);
 	ft_free((void **)&info->info_map);
 	if (info->thread)
-		ft_clean_thread_mutex(info->thread);
-	ft_free((void **)&info->thread);
+		ft_clean_thread_mutex(&info->thread);
 	ft_free_all_images(info);
 	ft_free_anim(info->c_anim, info);
 	ft_free_window(info);

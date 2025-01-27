@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:19:58 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:17:34 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_texture
 	int				size;				//	Size line
 	int				endian;				//	Endian
 	void			*img;				//	Image
-	void			*addr;				//	Address of image
+	void			*addr;				//	Array of image pixel
 }					t_img;
 
 /*

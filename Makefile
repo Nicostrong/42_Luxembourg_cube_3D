@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/27 09:08:24 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/27 13:24:32 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,32 +129,36 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/debug/ft_print_img_bonus.c \
 						./bonus/debug/ft_print_info_bonus.c \
 						./bonus/debug/ft_print_map_bonus.c \
+						./bonus/debug/ft_print_minimap_bonus.c \
+						./bonus/debug/ft_print_sky_floor_bonus.c \
 						./bonus/debug/ft_print_thread_bonus.c \
 						./bonus/debug/ft_print_user_bonus.c \
 						./bonus/draw/ft_get_color_bonus.c \
+						./bonus/draw/ft_put_player_bonus.c \
 						./bonus/exit/ft_error_bonus.c \
 						./bonus/exit/ft_exit_bonus.c \
+						./bonus/minimap/ft_minimap_utils_bonus.c \
+						./bonus/minimap/ft_minimap_bonus.c \
+						./bonus/minimap/ft_put_player_bonus.c \
 						./bonus/parser/ft_check_arg_bonus.c \
 						./bonus/parser/ft_parse_utils_1_bonus.c \
 						./bonus/parser/ft_parse_utils_2_bonus.c \
 						./bonus/parser/ft_parse_bonus.c \
 						./bonus/structure/ft_free_structure_bonus.c \
 						./bonus/structure/ft_init_anim_bonus.c \
-						./bonus/structure/ft_init_img_color_bonus.c \
+						./bonus/structure/ft_init_img_bonus.c \
 						./bonus/structure/ft_init_mlx_bonus.c \
 						./bonus/structure/ft_init_structure_bonus.c \
-						./bonus/structure/ft_init_thread_bonus.c
+						./bonus/thread/ft_clean_thread_bonus.c \
+						./bonus/thread/ft_init_thread_bonus.c
 
 #						./bonus/raycast/ft_raycasting_bonus.c \
+						./bonus/thread/ft_run_thread_bonus.c \
 						./bonus/controller/ft_mouse_move_bonus.c \
 						./bonus/debug/ft_print_info_bonus.c \
-						./bonus/draw/ft_put_player_bonus.c \
 						./bonus/draw/ft_put_wall_bonus.c \
 						./bonus/exit/ft_error_bonus.c \
 						./bonus/exit/ft_exit_bonus.c \
-						./bonus/minimap/ft_minimap_utils_bonus.c \
-						./bonus/minimap/ft_minimap_bonus.c \
-						./bonus/minimap/ft_put_player_bonus.c \
 						./bonus/parser/ft_check_arg_bonus.c \
 						./bonus/parser/ft_parse_utils_1_bonus.c \
 						./bonus/parser/ft_parse_utils_2_bonus.c \

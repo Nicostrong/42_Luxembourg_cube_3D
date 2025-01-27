@@ -6,32 +6,37 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:03:19 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:03:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 13:02:53 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/cube_3d_bonus.h"
+#include "../../includes/error_bonus.h"
+#include "../../includes/minimap_bonus.h"
+#include "../../includes/raycasting_bonus.h"
+
 void	ft_run_mini(t_info *info)
 {
-	pthread_mutex_lock(info->thread->m_stop);
+	pthread_mutex_lock(&info->thread->m_stop);
 	while (!info->stop)
 	{
-		pthread_mutex_unlock(info->thread->m_stop);
+		pthread_mutex_unlock(&info->thread->m_stop);
 		ft_minimap(info);
-		pthread_mutex_lock(info->thread->m_stop);
+		pthread_mutex_lock(&info->thread->m_stop);
 	}
-	pthread_mutex_unlock(info->thread->m_stop);
+	pthread_mutex_unlock(&info->thread->m_stop);
 }
 
 void	ft_run_raycast(t_info *info)
 {
-	pthread_mutex_lock(info->thread->m_stop);
+	pthread_mutex_lock(&info->thread->m_stop);
 	while (!info->stop)
 	{
-		pthread_mutex_unlock(info->thread->m_stop);
+		pthread_mutex_unlock(&info->thread->m_stop);
 		ft_raycasting(info);
-		pthread_mutex_lock(info->thread->m_stop);
+		pthread_mutex_lock(&info->thread->m_stop);
 	}
-	pthread_mutex_unlock(info->thread->m_stop);
+	pthread_mutex_unlock(&info->thread->m_stop);
 }
 
 /*
@@ -53,7 +58,7 @@ void	ft_run_raycast(t_info *info)
  * </return>
  * 
  */
-static void	ft_create_thread(t_info *info, t_thread *thread)
+void	ft_create_thread(t_info *info, t_thread *thread)
 {
 	int	ret;
 

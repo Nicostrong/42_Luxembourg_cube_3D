@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:53:12 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:12:34 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ char	*ft_strremoveset(char const *s1, char *charset)
 		return (NULL);
 	if (!charset)
 		return (ft_strdup(s1));
-	tmp = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
+	tmp = (char *)ft_calloc(ft_strlen(s1) + 1, sizeof(char));
+	if (!tmp)
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (s1[++i])
@@ -50,6 +52,6 @@ char	*ft_strremoveset(char const *s1, char *charset)
 			tmp[j++] = s1[i];
 	tmp[j] = '\0';
 	new = ft_strdup(tmp);
-	ft_free(tmp);
+	ft_free((void **)&tmp);
 	return (new);
 }

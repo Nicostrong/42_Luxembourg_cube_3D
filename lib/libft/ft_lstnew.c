@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:21:02 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:15:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+	new = (t_list *)ft_calloc(1, sizeof(t_list));
 	if (!new)
 		return (NULL);
 	new->content = content;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:33:53 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:03:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:57:07 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
  * <cat>memory</cat>
  *
  * <summary>
- * 	void	ft_free(void *ptr)
+ * 	void	ft_free(void **ptr)
  * <\summary>
  * 
  * <description>
  * 	ft_free set all bit to zero, free the ptr and set to null.
  * </description>
  *
- * <param type="void *" name="ptr">pointer to free</param>
+ * <param type="void **" name="ptr">pointer to free</param>
  *
  * <return>
  * 	void
  * </return>
  *
  */
-void	ft_free(void *ptr)
+void	ft_free(void **ptr)
 {
-	if (ptr != NULL)
+	if (ptr && *ptr)
 	{
-		ft_memset(ptr, 0, ft_strlen(ptr));
-		free(ptr);
-		ptr = NULL;
+		ft_bzero(*ptr, sizeof(**ptr));
+		free(*ptr);
+		*ptr = NULL;
 	}
 	return ;
 }

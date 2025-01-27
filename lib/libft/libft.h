@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:59:21 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/18 13:26:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:57:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 char		**ft_free_array(char **array);
 
 void		ft_bzero(void *s, size_t n);
-void		ft_free(void *ptr);
+void		ft_free(void **ptr);
 
 void		*ft_memset(void *s, int c, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);

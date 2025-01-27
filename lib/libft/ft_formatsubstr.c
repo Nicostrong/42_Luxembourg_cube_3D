@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:55:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/20 07:40:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:14:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ char	*ft_formatsubstr(char const *s, int start, size_t len, char c)
 	if (!s)
 		return (ft_create_string(len, c));
 	if (len == 0)
-		return (ft_calloc(1, sizeof(char)));
+		return ((char *)ft_calloc(1, sizeof(char)));
 	prefix_len = 0;
 	if (start < 0)
 		prefix_len = (size_t)(-start);
@@ -159,6 +159,6 @@ char	*ft_formatsubstr(char const *s, int start, size_t len, char c)
 	if (ft_strlen(sub) == len)
 		return (sub);
 	new = ft_copy_str(sub, c, len, prefix_len);
-	ft_free(sub);
+	ft_free((void **)&sub);
 	return (new);
 }

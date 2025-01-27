@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:48:15 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:09:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strdup(const char *s)
 	if (!s)
 		return (NULL);
 	len_s = ft_strlen(s) + 1;
-	cpy = (char *)malloc(len_s * sizeof(char));
+	cpy = (char *)ft_calloc(len_s, sizeof(char));
 	if (!cpy)
 		return (NULL);
 	cpy = ft_memcpy(cpy, s, len_s);

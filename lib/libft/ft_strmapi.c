@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 16:05:29 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:11:05 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	index;
 
 	index = 0;
-	ret = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	ret = (char *)ft_calloc((ft_strlen(s) + 1), sizeof(char));
 	if (!ret)
 		return (NULL);
 	while (s[index])
@@ -47,6 +47,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		ret[index] = f(index, s[index]);
 		index++;
 	}
-	ret[index] = '\0';
+	ret[index] = 0;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/23 14:55:27 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:23:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,12 @@
  *	Define error messages
  */
 
-# define W_N_IMG_E	1	//	1 << 0
-# define W_S_IMG_E	2	//	1 << 1
-# define W_E_IMG_E	4	//	1 << 2
-# define W_W_IMG_E	8	//	1 << 3
-# define F_IMG_E	16	//	1 << 4
-# define S_IMG_E	32	//	1 << 5
-# define E_COL_S	64	//	1 << 6
-# define E_COL_F	128	//	1 << 7
+# define W_N_IMG_E	1
+# define W_S_IMG_E	2
+# define W_E_IMG_E	4
+# define W_W_IMG_E	8
+# define E_COL_S	16
+# define E_COL_F	32
 
 /*
  *	Fonction error

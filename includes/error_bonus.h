@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 14:25:03 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:48:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,10 @@
 # define W_S_IMG_E	2
 # define W_E_IMG_E	4
 # define W_W_IMG_E	8
-# define F_IMG_E	16
-# define S_IMG_E	32
-# define E_COL_S	64
-# define E_COL_F	128
-# define P_IMG_E	256
-# define D_IMG_E	512
+# define E_COL_S	16
+# define E_COL_F	32
+# define P_IMG_E	64
+# define D_IMG_E	128
 
 /*
  *	Fonction error

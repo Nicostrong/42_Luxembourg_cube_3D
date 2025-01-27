@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:25:42 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	ft_get_map(t_info *info)
 			if (info->w < (int)ft_strlen(info->line))
 				info->w = ft_strlen(info->line);
 			info->h++;
-			ft_free(info->line);
+			ft_free((void **)&info->line);
 			info->line = get_next_line(info->fd);
 		}
 		else
@@ -142,7 +142,7 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 	else if (ft_strequal(str, "C"))
 		info->sky_color = new;
 	else
-		ft_free(new);
+		ft_free((void **)&new);
 	return ;
 }
 
@@ -223,7 +223,7 @@ void	ft_read_file(t_info *info)
 				ft_get_map(info);
 			ft_free_array(array);
 		}
-		ft_free(info->line);
+		ft_free((void **)&info->line);
 		info->line = NULL;
 		if (!error)
 			info->line = get_next_line(info->fd);

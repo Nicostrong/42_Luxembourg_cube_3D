@@ -6,14 +6,13 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/29 08:09:39 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/01/23 09:20:13 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/27 09:24:31 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
-
+# ajouter "./src"
 WATCH_DIRS=(
-	"./src"
 	"./bonus"
 	"./includes"
 	"./lib"

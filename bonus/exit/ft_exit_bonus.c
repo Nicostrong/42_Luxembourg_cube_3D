@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:09:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:04:30 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ int	ft_perror_exit(char *str_error, t_info *info)
 {
 	if (str_error)
 		ft_putendl_fd(str_error, 2);
-	//pthread_mutex_lock(info->thread->m_stop);
-	info->stop = 1;
-	//pthread_mutex_unlock(info->thread->m_stop);
 	if (info)
+	{
+		//pthread_mutex_lock(info->thread->m_stop);
+		info->stop = 1;
+		//pthread_mutex_unlock(info->thread->m_stop);
 		ft_free_info(info);
+	}
 	exit(EXIT_FAILURE);
 }
 
@@ -65,10 +67,13 @@ int	ft_perror_exit(char *str_error, t_info *info)
  */
 int	ft_exit(t_info *info)
 {
-	//pthread_mutex_lock(info->thread->m_stop);
-	info->stop = 1;
-	//pthread_mutex_unlock(info->thread->m_stop);
-	LOOP_END(info->mlx);
-	ft_free_info(info);
+	if (info)
+	{
+		//pthread_mutex_lock(info->thread->m_stop);
+		info->stop = 1;
+		//pthread_mutex_unlock(info->thread->m_stop);
+		LOOP_END(info->mlx);
+		ft_free_info(info);
+	}
 	exit(EXIT_SUCCESS);
 }

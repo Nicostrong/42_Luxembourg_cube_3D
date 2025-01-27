@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:36:11 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:23:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 	else if (ft_strequal(str, "C"))
 		info->sky_color = new;
 	else
-		ft_free(new);
+		ft_free((void **)&new);
 }
 
 /*

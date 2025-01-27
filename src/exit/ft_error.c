@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:32:13 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:22:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ void	ft_error_msg(int value, int exit, t_info *info)
 		ft_putendl_fd(E_EAT, 2);
 	if (value & W_W_IMG_E)
 		ft_putendl_fd(E_WET, 2);
-	if (value & F_IMG_E)
-		ft_putendl_fd(E_FT, 2);
-	if (value & S_IMG_E)
-		ft_putendl_fd(E_CT, 2);
 	if (value & E_COL_S)
 		ft_putendl_fd(E_C, 2);
 	if (value & E_COL_F)

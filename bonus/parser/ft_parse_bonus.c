@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 15:50:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:58:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
  */
 static void	ft_check_texture_s_f(t_info *info)
 {
-	if (info->s_img->img_path && info->s_img->img)
+	if (info->s_img && info->s_img->img)
 		info->use_s_img = 1;
-	if (info->f_img->img_path && info->f_img->img)
+	if (info->f_img && info->f_img->img)
 		info->use_f_img = 1;
 	return ;
 }
@@ -121,7 +121,6 @@ static void	ft_set_all_xpm(t_info *info)
 	{
 		if (info->info_map[i].t_img && (*info->info_map[i].t_img)->img_path)
 		{
-			printf("index : %d\n", i);
 			ft_get_size_xpm(info, (*info->info_map[i].t_img)->img_path, i);
 			(*info->info_map[i].t_img)->img = mlx_xpm_file_to_image(info->mlx, \
 				(*info->info_map[i].t_img)->img_path, \
@@ -171,9 +170,9 @@ static void	ft_check_path(t_info *info)
 	if (!info->w_w_img->img_path || access(info->w_w_img->img_path, F_OK) == -1)
 		error |= W_W_IMG_E;
 	if (info->f_img->img_path && access(info->f_img->img_path, F_OK) == -1)
-		error |= F_IMG_E;
+		ft_free(&info->f_img->img_path);
 	if (info->s_img->img_path && access(info->s_img->img_path, F_OK) == -1)
-		error |= S_IMG_E;
+		ft_free(&info->s_img->img_path);
 	if (info->player->img_path && access(info->player->img_path, F_OK) == -1)
 		error |= P_IMG_E;
 	if (info->door->img_path && access(info->door->img_path, F_OK) == -1)

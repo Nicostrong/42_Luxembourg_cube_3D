@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 16:06:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 09:34:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	ft_print_data(t_info *info)
 	printf("\tposition user_y: %.2f\n", info->user_y);
 	printf("\tposition user_x: %.2f\n", info->user_x);
 	printf("\trotation user_deg: %.2f\n", info->user_deg);
+	printf("\tSTOP: %d\n\tMOVE: %d\n", info->stop, info->move);
 	if (info->p_nbr >= 0)
 		printf("\tp_nbr: %d\n", info->p_nbr);
 	if (info->map_path)
@@ -119,11 +120,15 @@ static void	ft_print_sky_floor(t_info *info)
 		printf(BBLUE"s_img:\n"RESET);
 		ft_print_img(info->s_img);
 	}
+	if (info->use_s_img)
+		printf(GREENC"\tuse Sky texture\n"RESET);
 	if (info->f_img)
 	{
 		printf(BBLUE"f_img:\n"RESET);
 		ft_print_img(info->f_img);
 	}
+	if (info->use_f_img)
+		printf(GREENC"\tuse Floor texture\n"RESET);
 	if (info->floor_color)
 	{
 		printf(BBLUE"floor_color:\n"RESET);

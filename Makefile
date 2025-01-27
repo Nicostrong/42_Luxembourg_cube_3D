@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/25 14:03:50 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/27 09:08:24 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -287,8 +287,7 @@ all:			$(MLX_DIR)/$(MLX_NAME)\
 				$(GNL_DIR)/$(GNL_NAME) \
 				$(NAME)
 
-bonus:			fclean \
-				$(MLX_DIR)/$(MLX_NAME)\
+bonus:			$(MLX_DIR)/$(MLX_NAME)\
 				$(LIBFT_DIR)/$(LIBFT_NAME) \
 				$(GNL_DIR)/$(GNL_NAME) \
 				$(NAME_BONUS)

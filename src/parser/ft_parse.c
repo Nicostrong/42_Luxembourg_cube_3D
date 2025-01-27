@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:28:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	line = get_next_line(fd);
 	while (line && line[0] != '"')
 	{
-		ft_free(line);
+		ft_free((void **)&line);
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -91,8 +91,8 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	else
 		ft_perror_exit(E_XPM, info);
 	ft_free_array(array);
-	ft_free(sub_line);
-	ft_free(line);
+	ft_free((void **)&sub_line);
+	ft_free((void **)&line);
 	return ;
 }
 
@@ -172,9 +172,9 @@ static void	ft_check_path(t_info *info)
 	if (!info->w_w_img->img_path || access(info->w_w_img->img_path, F_OK) == -1)
 		error |= W_W_IMG_E;
 	if (info->f_img->img_path && access(info->f_img->img_path, F_OK) == -1)
-		error |= F_IMG_E;
+		ft_free((void **)&info->f_img->img_path);
 	if (info->s_img->img_path && access(info->s_img->img_path, F_OK) == -1)
-		error |= S_IMG_E;
+		ft_free((void **)&info->s_img->img_path);
 	if (error)
 		ft_error_msg(error, 1, info);
 	return ;

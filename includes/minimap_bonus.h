@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 14:56:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:51:42 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define MINI_S_PL		10						//	size image player
 # define MINI_S_BLOC	40						//	size bloc
 # define PRAY 			5						//	size player on minimap
+# define WALL			0xFF0000				//	color of wall
+# define FLOOR			0xFFFF00				//	color of the floor
+# define EMPTY			0x0000FF				//	color of none
 
 /*
  *	Functions minimap

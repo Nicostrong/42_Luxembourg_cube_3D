@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:23:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 11:02:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	ft_get_map(t_info *info)
 {
 	char	**map;
 
-	map = ft_calloc(1, sizeof(char *));
+	map = (char **)ft_calloc(1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);
 	while (info && info->line && ft_strncmp(info->line, "\n", 1))
@@ -85,7 +85,7 @@ static void	ft_get_map(t_info *info)
 			if (info->w < (int)ft_strlen(info->line))
 				info->w = ft_strlen(info->line);
 			info->h++;
-			ft_free(info->line);
+			ft_free((void **)&info->line);
 			info->line = get_next_line(info->fd);
 		}
 		else
@@ -222,7 +222,7 @@ void	ft_read_file(t_info *info)
 				ft_get_map(info);
 			ft_free_array(array);
 		}
-		ft_free(info->line);
+		ft_free((void **)&info->line);
 		info->line = NULL;
 		if (!error)
 			info->line = get_next_line(info->fd);

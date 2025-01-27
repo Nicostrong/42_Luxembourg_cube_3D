@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:01:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:57:58 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	ft_set_color(t_info *info, char *line)
 	while (line[++index])
 	{
 		if (line[index] == '1')
-			info->colors[index] = 0xFF0000;
+			info->colors[index] = WALL;
 		else if (line[index] == '0' || line[index] == 'P')
-			info->colors[index] = 0xFFFF00;
+			info->colors[index] = FLOOR;
 		else
-			info->colors[index] = 0x0000FF;
+			info->colors[index] = EMPTY;
 	}
 	return ;
 }
@@ -91,6 +91,37 @@ static void	ft_set_img(t_info *info, char **map)
 				x = -1;
 				while (++x < (int)info->widths[w])
 				{
+					*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)info->colors[w];
+					index_pxl += 4;
+				}
+			}
+		}
+	}
+	return ;
+}
+/*
+static void	ft_set_img(t_info *info, char **map)
+{
+	int	m;
+	int	w;
+	int	x;
+	int	y;
+	int	index_pxl;
+
+	index_pxl = 0;
+	m = -1;
+	while (map[++m])
+	{
+		ft_set_color(info, map[m]);
+		y = -1;
+		while (++y < (int)info->heights[m])
+		{
+			w = -1;
+			while (++w < info->mini_w)
+			{
+				x = -1;
+				while (++x < (int)info->widths[w])
+				{
 					info->mini->addr[index_pxl++] = info->colors[w] & 0xFF;
 					info->mini->addr[index_pxl++] = (info->colors[w] >> 8) & 0xFF;
 					info->mini->addr[index_pxl++] = (info->colors[w] >> 16) & 0xFF;
@@ -99,7 +130,7 @@ static void	ft_set_img(t_info *info, char **map)
 			}
 		}
 	}
-}
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -244,8 +275,7 @@ void	ft_minimap(t_info *info)
 	map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
-	if (DEBUG)
-		ft_print_minimap(info, map);
+	ft_print_minimap(info, map);
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	mlx_do_sync(info->mlx);
@@ -254,4 +284,5 @@ void	ft_minimap(t_info *info)
 	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, map);
 	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
 	ft_free_array(map);
+	return ;
 }

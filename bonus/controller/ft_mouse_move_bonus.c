@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:55:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 07:57:42 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:36:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_mouse_move(int x, int y, t_info *info)
 {
 	(void)y;
 	if (x < info->mouse_rot)
-		info->user_deg -= ROTATE;
+		ft_rotate(info, -ROTATE);
 	else if (x > info->mouse_rot)
-		info->user_deg += ROTATE;
+		ft_rotate(info, +ROTATE);
 	info->mouse_rot = x;
 	info->move = 1;
 	ft_minimap(info);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/25 13:56:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 11:10:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ft_press_key(int keysym, t_info *info)
 		ft_rotate(info, -ROTATE);
 	else if (keysym == XK_Right)
 		ft_rotate(info, ROTATE);
-	/*else if (keysym == SPACE)
-		ft_door(info);*/
+	else if (keysym == XK_space)
+		ft_open_door(info);
 	info->move = 1;
 	return (0);
 }

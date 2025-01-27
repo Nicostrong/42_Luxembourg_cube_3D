@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/25 13:51:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 10:34:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,3 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	return ;
 }
 
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
- * 	double	ft_normalize_rot(double angle)
- * </summary>
- *
- * <description>
- * 	ft_normalize_rot put the rotation radian on the range [0;PI] or [0;-PI].
- * </description>
- *
- * <param type="double" name="angle">angle to adjuste</param>
- *
- * <return>
- * 	the new value of the angle adjusted or not.
- * </return>
- *
- */
-double	ft_normalize_rot(double angle)
-{
-	while (angle > M_PI)
-		angle -= 2 * M_PI;
-	while (angle < -M_PI)
-		angle += 2 * M_PI;
-	return (angle);
-}

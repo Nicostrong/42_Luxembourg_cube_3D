@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 09:58:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/27 11:08:45 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	info->line = get_next_line(info->fd);
 	while (info->line && info->line[0] != '"')
 	{
-		ft_free(info->line);
+		ft_free((void **)&info->line);
 		info->line = get_next_line(info->fd);
 	}
 	close(info->fd);
@@ -89,8 +89,8 @@ static void	ft_get_size_xpm(t_info *info, char *path, int i)
 	else
 		ft_perror_exit(E_XPM, info);
 	ft_free_array(array);
-	ft_free(sub_line);
-	ft_free(info->line);
+	ft_free((void **)&sub_line);
+	ft_free((void **)&info->line);
 	return ;
 }
 
@@ -170,9 +170,9 @@ static void	ft_check_path(t_info *info)
 	if (!info->w_w_img->img_path || access(info->w_w_img->img_path, F_OK) == -1)
 		error |= W_W_IMG_E;
 	if (info->f_img->img_path && access(info->f_img->img_path, F_OK) == -1)
-		ft_free(&info->f_img->img_path);
+		ft_free((void **)&info->f_img->img_path);
 	if (info->s_img->img_path && access(info->s_img->img_path, F_OK) == -1)
-		ft_free(&info->s_img->img_path);
+		ft_free((void **)&info->s_img->img_path);
 	if (info->player->img_path && access(info->player->img_path, F_OK) == -1)
 		error |= P_IMG_E;
 	if (info->door->img_path && access(info->door->img_path, F_OK) == -1)

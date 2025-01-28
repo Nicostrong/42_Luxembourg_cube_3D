@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:05:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 15:17:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 09:44:20 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_print_anim(t_info *info)
 {
 	t_anim	*anim;
 
-	printf("***************\n");
-	printf(BBLUE"ANIM STRUCTURE\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BBLUE"\tANIM STRUCTURE\n"RESET);
+	printf("******************************\n");
 	if (!info->c_anim)
 	{
 		printf(REDC"\tcollectable animation is NULL\n"RESET);

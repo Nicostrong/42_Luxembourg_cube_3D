@@ -6,12 +6,41 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:02:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:00:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 10:06:52 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/error_bonus.h"
+
+/*
+ * <cat>cube3D</cat>
+ *
+ * <summary>
+ * 	void	ft_init_single_mutex(t_info *info, pthread_mutex_t *mut, int *flag)
+ * </summary>
+ *
+ * <description>
+ * 	ft_init_single_mutex initialise a single mutex and check if it fail and set 
+ * 	the flag to 1 in success.
+ * </description>
+ *
+ * <param type="t_info *" name="info">info structure</param>
+ * <param type="pthread_mutex_t *" name="mut">mutex to init</param>
+ * <param type="int *" name="flag">flag of mutex</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+static void	ft_init_single_mutex(t_info *info, pthread_mutex_t *mut, int *flag)
+{
+	if (pthread_mutex_init(mut, NULL))
+		ft_perror_exit(E_MUTEX, info);
+	*flag = 1;
+	return ;
+}
 
 /*
  * <cat>cube3D</cat>
@@ -34,26 +63,13 @@
  */
 static void	ft_init_mutex(t_info *info, t_thread *thread)
 {
-	if (pthread_mutex_init(&thread->m_map, NULL))
-		ft_perror_exit(E_MUTEX, info);
-	else
-		thread->mut_map = 1;
-	if (pthread_mutex_init(&thread->m_user_x, NULL))
-		ft_perror_exit(E_MUTEX, info);
-	else
-		thread->mut_x = 1;
-	if (pthread_mutex_init(&thread->m_user_y, NULL))
-		ft_perror_exit(E_MUTEX, info);
-	else
-		thread->mut_y = 1;
-	if (pthread_mutex_init(&thread->m_user_d, NULL))
-		ft_perror_exit(E_MUTEX, info);
-	else
-		thread->mut_d = 1;
-	if (pthread_mutex_init(&thread->m_stop, NULL))
-		ft_perror_exit(E_MUTEX, info);
-	else
-		thread->mut_stop = 1;
+	ft_init_single_mutex(info, &thread->m_map, &thread->mut_map);
+	ft_init_single_mutex(info, &thread->m_x, &thread->mut_x);
+	ft_init_single_mutex(info, &thread->m_y, &thread->mut_y);
+	ft_init_single_mutex(info, &thread->m_user_x, &thread->mut_user_x);
+	ft_init_single_mutex(info, &thread->m_user_y, &thread->mut_user_y);
+	ft_init_single_mutex(info, &thread->m_user_d, &thread->mut_user_d);
+	ft_init_single_mutex(info, &thread->m_stop, &thread->mut_stop);
 	return ;
 }
 

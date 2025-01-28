@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:03 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 08:00:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
  */
 void	ft_print_user_data(t_info *info)
 {
-	printf("***************\n");
-	printf(BGOLD"USER DATA\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGOLD"\tUSER DATA\n"RESET);
+	printf("******************************\n");
 	printf("\tfd of the map: %d\n", info->fd);
 	printf("\theight of the map: %d\n", info->h);
 	printf("\twidth of the map: %d\n", info->w);

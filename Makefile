@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/27 13:24:32 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/28 14:03:43 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -150,7 +150,8 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/structure/ft_init_mlx_bonus.c \
 						./bonus/structure/ft_init_structure_bonus.c \
 						./bonus/thread/ft_clean_thread_bonus.c \
-						./bonus/thread/ft_init_thread_bonus.c
+						./bonus/thread/ft_init_thread_bonus.c \
+						./bonus/thread/ft_run_thread_bonus.c
 
 #						./bonus/raycast/ft_raycasting_bonus.c \
 						./bonus/thread/ft_run_thread_bonus.c \

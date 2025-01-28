@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:26:49 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:35:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
  */
 void	ft_print_thread(t_info *info)
 {
-	printf("***************\n");
-	printf(BBLUE"THREAD STRUCTURE\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BBLUE"\tTHREAD STRUCTURE\n"RESET);
+	printf("******************************\n");
 	if (!info->thread)
 	{
 		printf(REDC"\tthread is NULL\n"RESET);

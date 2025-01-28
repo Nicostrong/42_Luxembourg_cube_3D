@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:09:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:29:41 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_print_minimap(t_info *info, char **map)
 {
 	int	i;
 
-	printf("***************\n");
+	printf("******************************\n");
 	printf(BBLUE"\tM I N I M A P\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
 	if (map)
 		ft_putstrarray(map);
 	else

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:12:10 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 10:06:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@
 typedef struct s_thread
 {
 	int				mut_map;		//	if m_map is initialized
-	int				mut_x;			//	if m_user_x is initialized
-	int				mut_y;			//	if m_user_y is initialized
-	int				mut_d;			//	if m_user_d is initialized
+	int				mut_x;			//	if m_x is initialized
+	int				mut_y;			//	if m_y is initialized
+	int				mut_user_x;		//	if m_user_x is initialized
+	int				mut_user_y;		//	if m_user_y is initialized
+	int				mut_user_d;		//	if m_user_d is initialized
 	int				mut_stop;		//	if m_stop is initialized
 	pthread_t		t_mini;
 	pthread_t		t_game;
 	pthread_mutex_t	m_map;			// protection of access map
-	pthread_mutex_t	m_user_x;		// protection for position user in x
-	pthread_mutex_t	m_user_y;		// protection for position user in y
+	pthread_mutex_t	m_x;			// protection for position user in x round
+	pthread_mutex_t	m_y;			// protection for position user in y round
+	pthread_mutex_t	m_user_x;		// protection for position user in x float
+	pthread_mutex_t	m_user_y;		// protection for position user in y float
 	pthread_mutex_t	m_user_d;		// protection for rotation user
 	pthread_mutex_t	m_stop;			// protection for stop thread
 }	t_thread;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 11:32:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ static void	ft_print_data(t_info *info)
  */
 static void	ft_print_wall(t_info *info)
 {
-	printf("***************\n");
-	printf(BGREEN"WALL\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tWALL\n"RESET);
+	printf("******************************\n");
 	if (info->w_n_img)
 	{
 		printf(BBLUE"w_n_img:\n"RESET);
@@ -117,17 +117,17 @@ static void	ft_print_wall(t_info *info)
  */
 static void	ft_print_player_door(t_info *info)
 {
-	printf("***************\n");
-	printf(BGREEN"PLAYER\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tPLAYER\n"RESET);
+	printf("******************************\n");
 	if (info->player)
 	{
 		printf(BBLUE"player_img:\n"RESET);
 		ft_print_img(info->player);
 	}
-	printf("***************\n");
-	printf(BGREEN"DOOR\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tDOOR\n"RESET);
+	printf("******************************\n");
 	if (info->door)
 	{
 		printf(BBLUE"door_img:\n"RESET);
@@ -156,9 +156,9 @@ static void	ft_print_player_door(t_info *info)
  */
 void	ft_print_info(t_info *info)
 {
-	printf("***************\n");
-	printf(BGREEN"INFO STRUCTURE\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tINFO STRUCTURE\n"RESET);
+	printf("******************************\n");
 	if (!info)
 	{
 		printf(REDC"\tinfo is NULL\n"RESET);

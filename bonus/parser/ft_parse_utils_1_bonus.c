@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 11:02:40 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 11:23:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,11 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 	new->r = ft_atoi(array[0]);
 	new->g = ft_atoi(array[1]);
 	new->b = ft_atoi(array[2]);
+	new->t = ft_atoi(array[3]);
 	new->color = ft_get_color(new->t, new->r, new->g, new->b);
 	ft_free_array(array);
 	if (new->r < 0 || new->r > 255 || new->g < 0 || new->g > 255 \
-		|| new->b < 0 || new->b > 255)
+		|| new->b < 0 || new->b > 255 || new->t < 0 || new->t > 255)
 	{
 		if (ft_strequal(str, "F"))
 			ft_perror_exit(E_F_COLOR, info);

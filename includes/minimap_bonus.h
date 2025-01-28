@@ -6,12 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:26:43 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 14:14:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_BONUS_H
 # define MINIMAP_BONUS_H
+
+# include "color_bonus.h"
 
 /*
  *	Setting Mini Map
@@ -24,9 +26,9 @@
 # define MINI_S_PL		10						//	size image player
 # define MINI_S_BLOC	40						//	size bloc
 # define PRAY 			5						//	size player on minimap
-# define WALL			0xFF0000				//	color of wall
-# define FLOOR			0xFFFF00				//	color of the floor
-# define EMPTY			0x0000FF				//	color of none
+# define WALL			SILVER
+# define FLOOR			GOLD
+# define EMPTY			PINK
 
 /*
  *	Functions minimap
@@ -34,7 +36,8 @@
 
 char	**ft_get_minimap(t_info *info);
 
-void	ft_minimap(t_info *info);
+int		ft_minimap(t_info *info);
+
 void	ft_get_widths(t_info *info);
 void	ft_get_heights(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);

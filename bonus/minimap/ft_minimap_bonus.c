@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:32:52 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 14:14:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **m
 			return ;
 		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
 			return ;
-		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, 0x000000);
+		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, BLUE);
 		x += dx;
 		y += dy;
 	}
@@ -267,7 +267,7 @@ static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **m
  * </return>
  *
  */
-void	ft_minimap(t_info *info)
+int	ft_minimap(t_info *info)
 {
 	char	**map;
 
@@ -278,11 +278,11 @@ void	ft_minimap(t_info *info)
 	ft_print_minimap(info, map);
 	ft_set_img(info, map);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
-	mlx_do_sync(info->mlx);
 	//ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
 	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, map);
 	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, map);
+	//mlx_do_sync(info->mlx);
 	ft_free_array(map);
-	return ;
+	return (0);
 }

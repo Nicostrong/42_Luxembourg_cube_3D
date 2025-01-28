@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:20:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:03:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/28 10:09:13 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	ft_print_floor(t_info *info)
 		printf(GREENC"\tuse Floor texture\n"RESET);
 	if (info->floor_color)
 	{
-		printf(BBLUE"floorcolor:\n"RESET);
+		printf(BBLUE"floor_color:\n"RESET);
 		ft_print_color(info->floor_color);
 	}
 	if (!info->use_f_img)
@@ -109,13 +109,13 @@ static void	ft_print_floor(t_info *info)
  */
 void	ft_print_sky_floor(t_info *info)
 {
-	printf("***************\n");
-	printf(BGREEN"SKY\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tSKY\n"RESET);
+	printf("******************************\n");
 	ft_print_sky(info);
-	printf("***************\n");
-	printf(BGREEN"FLOOR\n"RESET);
-	printf("***************\n");
+	printf("******************************\n");
+	printf(BGREEN"\tFLOOR\n"RESET);
+	printf("******************************\n");
 	ft_print_floor(info);
 	return ;
 }

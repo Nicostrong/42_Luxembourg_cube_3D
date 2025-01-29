@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 14:14:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/29 07:47:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define WALL			SILVER
 # define FLOOR			GOLD
 # define EMPTY			PINK
+# define DOOR			BLACK
+# define ITEM			BLUE
 
 /*
  *	Functions minimap

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:07:33 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/29 09:36:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ unsigned int	get_pixel_color(t_img *img, int x, int y)
 	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
 		return (0);
 	pixel = img->addr;
-	pixel += y * img->size + x * (img->bpp / 8);
+	pixel += (y * img->size) + (x * (img->bpp / 8));
+	printf("PIXEL : %ud\n", *(unsigned int *)pixel);
 	return (*(unsigned int *)pixel);
 }
 
@@ -53,7 +54,7 @@ void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
 
 void	ft_put_player(t_info *info, t_img *player, int x, int y)
 {
-	if (player)
+	if (player && player->addr)
 	{
 		ft_put_imgalpha(info->mini, info->player, x - (info->player->w / 2), \
 			y - (info->player->h / 2));

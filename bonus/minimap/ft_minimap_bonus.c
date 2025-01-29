@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 14:14:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/29 11:48:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ static void	ft_set_color(t_info *info, char *line)
 	{
 		if (line[index] == '1')
 			info->colors[index] = WALL;
-		else if (line[index] == '0' || line[index] == 'P')
+		else if (line[index] == '0' || \
+			line[index] == 'P' || \
+			line[index] == 'I' || \
+			line[index] == 'D')
 			info->colors[index] = FLOOR;
 		else
 			info->colors[index] = EMPTY;
@@ -71,27 +74,42 @@ static void	ft_set_color(t_info *info, char *line)
  */
 static void	ft_set_img(t_info *info, char **map)
 {
-	int	m;
+	int	h;
 	int	w;
 	int	x;
 	int	y;
 	int	index_pxl;
 
 	index_pxl = 0;
-	m = -1;
-	while (map[++m])
+	y = -1;
+	while (++y < info->mini_h)
 	{
-		ft_set_color(info, map[m]);
-		y = -1;
-		while (++y < (int)info->heights[m])
+		ft_set_color(info, map[y]);
+		h = -1;
+		while (++h < (int)info->heights[y])
 		{
-			w = -1;
-			while (++w < info->mini_w)
+			x = -1;
+			while (++x < info->mini_w)
 			{
-				x = -1;
-				while (++x < (int)info->widths[w])
+				w = -1;
+				while (++w < (int)info->widths[x])
 				{
-					*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)info->colors[w];
+					if (map[y][x] == 'D' && \
+						((x > 0 && map[y][x - 1] == '1') || \
+						(x < info->mini_w && map[y][x + 1] == '1')) && \
+						h > ((info->heights[y] / 2) - 2) && h < ((info->heights[y] / 2) + 2))
+						*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)DOOR;
+					else if (map[y][x] == 'D' && \
+						((y > 0 && map[y - 1][x] == '1') || \
+						(y < info->mini_h - 1 && map[y + 1][x] == '1')) && \
+						w > ((info->widths[x] / 2) - 2) && w < ((info->widths[x] / 2) + 2))
+						*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)DOOR;
+					else if (map[y][x] == 'I' && \
+						h > ((info->heights[y] / 2) - 4) && h < ((info->heights[y] / 2) + 4) && \
+						w > ((info->widths[x] / 2) - 4) && w < ((info->widths[x] / 2) + 4))
+						*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)ITEM;
+					else
+						*((unsigned int *)(info->mini->addr + index_pxl)) = (unsigned int)info->colors[x];
 					index_pxl += 4;
 				}
 			}
@@ -99,38 +117,6 @@ static void	ft_set_img(t_info *info, char **map)
 	}
 	return ;
 }
-/*
-static void	ft_set_img(t_info *info, char **map)
-{
-	int	m;
-	int	w;
-	int	x;
-	int	y;
-	int	index_pxl;
-
-	index_pxl = 0;
-	m = -1;
-	while (map[++m])
-	{
-		ft_set_color(info, map[m]);
-		y = -1;
-		while (++y < (int)info->heights[m])
-		{
-			w = -1;
-			while (++w < info->mini_w)
-			{
-				x = -1;
-				while (++x < (int)info->widths[w])
-				{
-					info->mini->addr[index_pxl++] = info->colors[w] & 0xFF;
-					info->mini->addr[index_pxl++] = (info->colors[w] >> 8) & 0xFF;
-					info->mini->addr[index_pxl++] = (info->colors[w] >> 16) & 0xFF;
-					info->mini->addr[index_pxl++] = (info->colors[w] >> 24) & 0xFF;
-				}
-			}
-		}
-	}
-}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -190,39 +176,6 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
  * </return>
  *
  */
-/*
-static void ft_draw_ray(t_info *info, double x, double y, char **map)
-{
-    double angles[3] = {
-        info->user_deg - (M_PI / 6), // Rayon gauche
-        info->user_deg,              // Rayon central
-        info->user_deg + (M_PI / 6)  // Rayon droit
-    };
-    int     grid_x;
-    int     grid_y;
-
-    for (int i = 0; i < 3; i++)
-    {
-        double  dx = cos(angles[i]);
-        double  dy = sin(angles[i]);
-        double  ray_x = x;
-        double  ray_y = y;
-        while (ray_x >= 0 && ray_y >= 0 && ray_x < MINI_W && ray_y < MINI_H)
-        {
-            grid_x = ft_get_map_case((int)ray_x, info->widths, info->mini_w);
-            grid_y = ft_get_map_case((int)ray_y, info->heights, info->mini_h);
-            if (grid_x < 0 || grid_x >= info->mini_w || \
-                grid_y < 0 || grid_y >= info->mini_h)
-                break ;
-            if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
-                break ;
-            mlx_pixel_put(info->mlx, info->mini->win, (int)ray_x, (int)ray_y, 0x000000);
-            ray_x += dx;
-            ray_y += dy;
-        }
-    }
-}*/
-
 static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **map)
 {
 	int		grid_x;
@@ -239,7 +192,9 @@ static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **m
 		if (grid_x < 0 || grid_x >= info->mini_w || \
 			grid_y < 0 || grid_y >= info->mini_h)
 			return ;
-		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
+		if (map[grid_y][grid_x] == '1' || \
+			map[grid_y][grid_x] == 'D' || \
+			map[grid_y][grid_x] == ' ')
 			return ;
 		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, BLUE);
 		x += dx;

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/01/28 14:03:43 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/01/31 17:55:31 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,7 @@ NAME				=	cube3D
 
 SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/controller/ft_check_wall_bonus.c \
+						./bonus/controller/ft_check_door_bonus.c \
 						./bonus/controller/ft_door_bonus.c \
 						./bonus/controller/ft_move_bonus.c \
 						./bonus/controller/ft_rotate_bonus.c \
@@ -134,6 +135,8 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/debug/ft_print_thread_bonus.c \
 						./bonus/debug/ft_print_user_bonus.c \
 						./bonus/draw/ft_get_color_bonus.c \
+						./bonus/draw/ft_put_door_bonus.c \
+						./bonus/draw/ft_put_item_bonus.c \
 						./bonus/draw/ft_put_player_bonus.c \
 						./bonus/exit/ft_error_bonus.c \
 						./bonus/exit/ft_exit_bonus.c \

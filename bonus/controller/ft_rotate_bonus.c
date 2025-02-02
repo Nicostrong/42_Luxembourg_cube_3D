@@ -6,12 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:24:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:36:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/31 08:12:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -74,5 +75,6 @@ void	ft_rotate(t_info *info, double angle_rotation)
 	printf("new angle user:\t\t%.2f\n", info->user_deg);
 	printf(BBLUE"\t\t\tROTATE\n"RESET);
 	printf("***************************************************************\n");
+	ft_minimap(info);
 	return ;
 }

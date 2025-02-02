@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 10:06:24 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/30 10:12:17 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ typedef struct s_info
 	int			y;				//	position y of player
 	int			mouse_rot;		//	rotation with mouse mouse
 	int			p_nbr;			//	number of player
+	int			i_nbr;			//	number of item
+	int			i_col;			//	number of item collected
 	int			use_f_img;		//	1 if use floor image, 0 if use color
 	int			use_s_img;		//	1 if use sky image, 0 if use color
 	int			mini_h;			//	height of the minimap array
@@ -187,6 +189,20 @@ typedef struct s_raycasting
 	int		color;
 	t_img	*texture;
 }			t_raycast;
+
+/*
+ *	Minimap struct
+ */
+
+typedef struct s_minimap
+{
+	int		x;
+	int		y;
+	int		h;
+	int		w;
+	int		index_pxl;
+	char	**map;
+}			t_mini;
 
 /*
  *	Strucuture fonctions

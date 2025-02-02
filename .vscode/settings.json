@@ -56,7 +56,10 @@
         "tuple": "c",
         "error.h": "c",
         "cube_3d_bonus.h": "c",
-        "setting_game_bonus.h": "c"
+        "setting_game_bonus.h": "c",
+        "__bit_reference": "c",
+        "optional": "c",
+        "ratio": "c"
     },
     "files.exclude": {
         "**/.git": true,

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:41:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/30 09:46:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,44 @@ static void	ft_get_pos_player(char **map, t_info *info)
  * <cat>scube_3D</cat>
  *
  * <summary>
+ * 	void	ft_replace_door(char **map)
+ * </summary>
+ *
+ * <description>
+ * 	ft_replace_door replace all char 'D' by 'C' for door close
+ * </description>
+ *
+ * <param type="char**" name="map">map array</param>
+ *
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
+static void	ft_door_items(t_info *info, char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'D')
+				map[i][j] = 'C';
+			if (map[i][j] == 'I')
+				info->i_nbr++;
+		}
+	}
+	return ;
+}
+
+/*
+ * <cat>scube_3D</cat>
+ *
+ * <summary>
  * 	void	ft_check_map(t_info *info)
  * </summary>
  *
@@ -167,5 +205,6 @@ void	ft_check_map(t_info *info)
 	ft_free_array(map_cpy);
 	if (!info->is_valid)
 		ft_perror_exit(E_CLOSE, info);
+	ft_door_items(info, info->map);
 	return ;
 }

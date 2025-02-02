@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:57:24 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 07:56:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/31 17:57:00 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x, double *new_y)
 				*new_x = info->x + 1 - D_WALL;
 		}
 	}
+	return ;
 }
 
 /*
@@ -154,17 +155,18 @@ static void	ft_check_y(t_info *info, int diry, double *new_y, double *new_x)
 				*new_y = info->y + 1 - D_WALL;
 		}
 	}
+	return ;
 }
 
 /*
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_limit_pos(t_info *info, double *new_x, double *new_y)
+ * 	void	ft_check_wall(t_info *info, double *new_x, double *new_y)
  * </summary>
  *
  * <description>
- * 	ft_adjust_pads limite the value of pad near a wall.
+ * 	ft_check_wall check if the player go to a wall or a forbidden zone.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
@@ -192,4 +194,5 @@ void	ft_check_wall(t_info *info, double *new_x, double *new_y)
 		ft_check_x(info, dirx, new_x, new_y);
 	else if (diry != 0 && !dirx)
 		ft_check_y(info, diry, new_y, new_x);
+	return ;
 }

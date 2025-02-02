@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 11:42:40 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/31 17:51:22 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ROTATE			0.02					//	in radian
 # define STEP			0.05					//	size of step
 # define D_WALL			0.2						//	distance min near wall
+# define D_DOOR			0.2						//	distance min near door
 
 /*
  *	Collectable
@@ -50,5 +51,6 @@ void	ft_open_door(t_info *info);
 void	ft_rotate(t_info *info, double angle_rotation);
 void	ft_move(t_info *info, double angle_offset, int dir);
 void	ft_check_wall(t_info *info, double *new_x, double *new_y);
+void	ft_check_door(t_info *info, double *new_x, double *new_y);
 
 #endif

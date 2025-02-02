@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/30 09:53:07 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ static void	ft_print_data(t_info *info)
 	printf("\tSTOP: %d\n\tMOVE: %d\n", info->stop, info->move);
 	if (info->p_nbr >= 0)
 		printf("\tp_nbr: %d\n", info->p_nbr);
+	printf("\tnumber of items collected: %d / %d\n", info->i_col, info->i_nbr);
 	if (info->map_path)
 		printf("\tmap_path: %s\n", info->map_path);
 	if (info->map)
 	{
-		printf(BBLUE"map:\n"RESET);
+		printf(BBLUE "map:\n\n" RESET);
 		ft_putstrarray(info->map);
 	}
 	return ;
@@ -71,7 +72,7 @@ static void	ft_print_data(t_info *info)
  */
 static void	ft_print_wall(t_info *info)
 {
-	printf("******************************\n");
+	printf("\n******************************\n");
 	printf(BGREEN"\tWALL\n"RESET);
 	printf("******************************\n");
 	if (info->w_n_img)

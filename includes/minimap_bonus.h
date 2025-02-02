@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/29 07:47:22 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/01/30 11:06:15 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 char	**ft_get_minimap(t_info *info);
 
 int		ft_minimap(t_info *info);
+int		ft_put_door(t_info *info, t_mini *mini);
+int		ft_put_item(t_info *info, t_mini *mini);
 
 void	ft_get_widths(t_info *info);
 void	ft_get_heights(t_info *info);

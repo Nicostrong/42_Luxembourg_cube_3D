@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/31 08:11:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 10:34:42 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ static void	ft_set_img(t_info *info, t_mini *mini)
 				{
 					if (!ft_put_door(info, mini))
 						if (!ft_put_item(info, mini))
-							*((unsigned int *)(info->mini->addr + mini->index_pxl)) = (unsigned int)info->colors[mini->x];
+							*((unsigned int *)\
+							(info->mini->addr + mini->index_pxl)) = \
+							(unsigned int)info->colors[mini->x];
 					mini->index_pxl += 4;
 				}
 			}
@@ -95,48 +97,6 @@ static void	ft_set_img(t_info *info, t_mini *mini)
 	}
 	return ;
 }
-
-/*
-static void	ft_set_img(t_info *info, t_mini *mini)
-{
-	mini->index_pxl = 0;
-	mini->y = -1;
-	while (++mini->y < info->mini_h)
-	{
-		ft_set_color(info, mini->map[mini->y]);
-		mini->h = -1;
-		while (++mini->h < (int)info->heights[mini->y])
-		{
-			mini->x = -1;
-			while (++mini->x < info->mini_w)
-			{
-				mini->w = -1;
-				while (++mini->w < (int)info->widths[mini->x])
-				{
-					if (mini->map[mini->y][mini->x] == 'C' && \
-						((mini->x > 0 && mini->map[mini->y][mini->x - 1] == '1') || \
-						(mini->x < info->mini_w && mini->map[mini->y][mini->x + 1] == '1')) && \
-						mini->h > ((info->heights[mini->y] / 2) - 2) && mini->h < ((info->heights[mini->y] / 2) + 2))
-						*((unsigned int *)(info->mini->addr + mini->index_pxl)) = (unsigned int)DOOR;
-					else if (mini->map[mini->y][mini->x] == 'C' && \
-						((mini->y > 0 && mini->map[mini->y - 1][mini->x] == '1') || \
-						(mini->y < info->mini_h - 1 && mini->map[mini->y + 1][mini->x] == '1')) && \
-						mini->w > ((info->widths[mini->x] / 2) - 2) && mini->w < ((info->widths[mini->x] / 2) + 2))
-						*((unsigned int *)(info->mini->addr + mini->index_pxl)) = (unsigned int)DOOR;
-					else if ((mini->map[mini->y][mini->x] == 'I' || \
-						mini->map[mini->y][mini->x] == 'J')  && \
-						mini->h > ((info->heights[mini->y] / 2) - 4) && mini->h < ((info->heights[mini->y] / 2) + 4) && \
-						mini->w > ((info->widths[mini->x] / 2) - 4) && mini->w < ((info->widths[mini->x] / 2) + 4))
-						*((unsigned int *)(info->mini->addr + mini->index_pxl)) = (unsigned int)ITEM;
-					else
-						*((unsigned int *)(info->mini->addr + mini->index_pxl)) = (unsigned int)info->colors[mini->x];
-					mini->index_pxl += 4;
-				}
-			}
-		}
-	}
-	return ;
-}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -200,22 +160,24 @@ static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **m
 {
 	int		grid_x;
 	int		grid_y;
+	int		i;
 	double	dx;
 	double	dy;
 
+	i = 0;
 	dx = cos(angle);
 	dy = sin(angle);
-	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H)
+	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H && i < 18)
 	{
 		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
 		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
 		if (grid_x < 0 || grid_x >= info->mini_w || \
 			grid_y < 0 || grid_y >= info->mini_h)
 			return ;
-		if (map[grid_y][grid_x] == '1' || \
-			map[grid_y][grid_x] == 'D' || \
-			map[grid_y][grid_x] == ' ')
-			return ;
+		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
+			return;
+		if (map[grid_y][grid_x] == 'C' || map[grid_y][grid_x] == 'F')
+			i++;
 		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, BLUE);
 		x += dx;
 		y += dy;
@@ -253,7 +215,12 @@ int	ft_minimap(t_info *info)
 	//ft_print_minimap(info, mini.map);
 	ft_set_img(info, &mini);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
-	//ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
+	if (MACOS)
+		mlx_put_image_to_window(info->mlx, info->mini->win, \
+			info->player->img, MINI_W / 2 - (MINI_S_PL / 2), \
+			MINI_H / 2 - (MINI_S_PL / 2));
+	else
+		ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
 	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);
 	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, mini.map);
 	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);

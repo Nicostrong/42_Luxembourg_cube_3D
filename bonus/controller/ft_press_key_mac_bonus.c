@@ -6,12 +6,13 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 11:10:25 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 07:57:48 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -50,6 +51,7 @@ int	ft_press_key_mac(int keysym, t_info *info)
 		ft_rotate(info, ROTATE);
 	else if (keysym == SPACE)
 		ft_open_door(info);
+	ft_minimap(info);
 	info->move = 1;
 	return (0);
 }

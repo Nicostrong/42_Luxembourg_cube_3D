@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:19:44 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:58:27 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/02 16:59:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ static char	**ft_init_map(t_info *info)
 	info->mini_w = 7;
 	if (fabs(info->user_x - info->x) != 0.5)
 		info->mini_w = 8;
-	printf("fabs user_y - y : %.2f\n", fabs(info->user_y - info->y));
-	printf("fabs user_x - x : %.2f\n", fabs(info->user_x - info->x));
-	printf("mini_w: %d\tmini_h: %d\n", info->mini_w, info->mini_h);
 	map = ft_calloc(info->mini_h + 1, sizeof(char *));
 	if (!map)
 		ft_perror_exit(E_MALLOC, info);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/02 14:00:34 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 07:39:38 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,7 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	if (info->map[(int)floor(new_y)][(int)floor(new_x)] == '1')
 		return ;
 	ft_change_pos(info, new_x, new_y);
-	info->move = 1;
-	ft_minimap(info);
+	ft_close_door(info);
 	return ;
 }
 

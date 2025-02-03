@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 07:43:04 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 11:32:57 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 17:32:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - info->user_x + \
 			(1 - ray->step_x) / 2) / ray->ray_dir_x;
-	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	if (ray->wall == 4)
+		ray->line_height = (int)(HEIGHT / (ray->perp_wall_dist + 0.001));
+	else
+		ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
 	ray->draw_start = fmax(0, -ray->line_height / 2 + HEIGHT / 2);
 	ray->draw_end = fmin(HEIGHT - 1, ray->line_height / 2 + HEIGHT / 2);
 	wall_x = info->user_x + ray->perp_wall_dist * ray->ray_dir_x;

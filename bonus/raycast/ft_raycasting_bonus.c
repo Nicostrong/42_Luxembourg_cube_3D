@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 11:38:18 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 17:40:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,12 +193,13 @@ int	ft_raycasting(t_info *info)
 {
 	t_raycast	ray;
 	int			x;
+	double		z_buffer[WIDTH];
 
 	if (!info->move)
 		return (0);
 	ft_set_dir_and_plan(info, &ray);
 	x = -1;
-	while ++(x < WIDTH)
+	while (++x < WIDTH)
 	{
 		ft_cal_ray_dir(&ray, x);
 		ft_init_dda(info, &ray);
@@ -211,11 +212,11 @@ int	ft_raycasting(t_info *info)
 			ray.color = S_WALL;	//	SUD
 		else if (ray.wall == 3)
 			ray.color = E_WALL;	//	EST
-		//ft_draw_texture(info, &ray, x);
 		ft_set_pixel(info, x, ray.draw_start, ray.draw_end, ray.color);
 		ray.prev_draw_end = ray.draw_end;
-		//x += (int)RAY_STEP;
+		z_buffer[x] = ray.perp_wall_dist;
 	}
+	mlx_clear_window(info->mlx, info->game->win);
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:27:00 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 14:02:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 14:10:19 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,32 @@ void	ft_open_door(t_info *info)
 	ft_check_open_door(info, 0, -1, &open);
 	if (open)
 	{
-		printf("\n******************************\n");
-		printf(GREENC"\tDOOR OPEN\n"RESET);
-		printf("******************************\n");
+		printf("\n\t\t******************************\n");
+		printf(GREENC"\t\t\tDOOR OPEN\n"RESET);
+		printf("\t\t******************************\n");
 	}
 	return ;
 }
 
+/*
+ * <cat>cube_3D</cat>
+ *
+ * <summary>
+ * 	void	ft_check_door_diag(t_info *info, int *close)
+ * </summary>
+ *
+ * <description>
+ * 	ft_check_door_diag check if a door in diagonal is open and close it.
+ * </description>
+ *
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="int *" name="close">pointer to close the door</param>
+ * 
+ * <return>
+ * 	void.
+ * </return>
+ *
+ */
 static void	ft_close_door_diag(t_info *info, int *close)
 {
 	if (info->map[info->y - 1][info->x + 1] == 'O')
@@ -185,9 +204,9 @@ void	ft_close_door(t_info *info)
 	ft_check_close_door(info, 0, -1, &close);
 	if (close)
 	{
-		printf("\n******************************\n");
-		printf(GREENC"\tDOOR CLOSE\n"RESET);
-		printf("******************************\n");
+		printf("\n\t\t******************************\n");
+		printf(GREENC"\t\t\tDOOR CLOSE\n"RESET);
+		printf("\t\t******************************\n");
 	}
 	return ;
 }

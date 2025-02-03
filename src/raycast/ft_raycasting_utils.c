@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:36 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:18:19 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 11:41:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	ft_set_pixel(t_info *info, int x, t_raycast *ray)
 	if (x < 0 || x >= WIDTH || ray->draw_end < 0 || ray->draw_start >= HEIGHT)
 		return ;
 	win = info->game;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	if (ray->draw_end >= HEIGHT)
-		ray->draw_end = HEIGHT - 1;
+	//if (ray->draw_start < 0)
+	//	ray->draw_start = 0;
+	//if (ray->draw_end >= HEIGHT)
+	//	ray->draw_end = HEIGHT - 1;
+	ray->draw_start = fmax(0, ray->draw_start);
+	ray->draw_end = fmin(HEIGHT - 1, ray->draw_end);
 	base_pixel = win->addr + x * (win->bpp / 8);
 	y = -1;
 	while (++y < HEIGHT)
@@ -86,27 +88,26 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 {
 	double	wall_x;
 
+	ray->perp_wall_dist = (ray->map_y - info->user_y + \
+		(1 - ray->step_y) / 2) / ray->ray_dir_y;
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - info->user_x + \
 			(1 - ray->step_x) / 2) / ray->ray_dir_x;
-	else
-		ray->perp_wall_dist = (ray->map_y - info->user_y + \
-			(1 - ray->step_y) / 2) / ray->ray_dir_y;
 	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
-	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_end >= HEIGHT)
-		ray->draw_end = HEIGHT - 1;
+	//ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
+	//if (ray->draw_start < 0)
+	//	ray->draw_start = 0;
+	//ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
+	//if (ray->draw_end >= HEIGHT)
+	//	ray->draw_end = HEIGHT - 1;
+	ray->draw_start = fmax(0, -ray->line_height / 2 + HEIGHT / 2);
+	ray->draw_end = fmin(HEIGHT - 1, ray->line_height / 2 + HEIGHT / 2);
+	wall_x = info->user_x + ray->perp_wall_dist * ray->ray_dir_x;
 	if (ray->side == 0)
 		wall_x = info->user_y + ray->perp_wall_dist * ray->ray_dir_y;
-	else
-		wall_x = info->user_x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	ray->text_x = (int)(wall_x * (double)info->w_n_img->w);
-	if (ray->side == 0 && ray->ray_dir_x > 0)
-		ray->text_x = info->w_n_img->w - ray->text_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
+	if ((ray->side == 0 && ray->ray_dir_x > 0) || \
+		(ray->side == 1 && ray->ray_dir_y < 0))
 		ray->text_x = info->w_n_img->w - ray->text_x - 1;
 }

@@ -6,17 +6,24 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:06:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:32:22 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 11:43:54 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
+# include "./color.h"
+
 # define FOV		M_PI / 3					//	Field of view 60°
+# define T_HALF_FOV	tan(FOV / 2)				//	tan of half FOV
 # define D_SCREAN	(WIDTH / 2) / tan(FOV / 2)	//	distance to screan
 # define NBRAY		1500						//	number of ray
 # define RAY_STEP	WIDTH / NBRAY				//	pad of a ray
+# define N_WALL		YELLOW
+# define S_WALL		BLUE
+# define E_WALL		GREEN
+# define W_WALL		RED
 
 /*
  *	Functions raycasting

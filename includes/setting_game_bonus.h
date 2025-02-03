@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/31 17:51:22 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/02 14:22:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_mouse_move(int x, int y, t_info *info);
 int		ft_press_key_mac(int keysym, t_info *info);
 
 void	ft_open_door(t_info *info);
+void	ft_close_door(t_info *info);
 void	ft_rotate(t_info *info, double angle_rotation);
 void	ft_move(t_info *info, double angle_offset, int dir);
 void	ft_check_wall(t_info *info, double *new_x, double *new_y);

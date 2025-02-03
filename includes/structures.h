@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:17:34 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 11:38:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ typedef struct s_info
 
 typedef struct s_raycasting
 {
-	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	dir_x;

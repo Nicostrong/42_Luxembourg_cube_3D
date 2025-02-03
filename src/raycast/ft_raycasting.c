@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 17:37:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 11:38:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
 {
 	ray->dir_x = cos(info->user_deg);
 	ray->dir_y = sin(info->user_deg);
-	ray->plane_x = -ray->dir_y * tan(FOV / 2.0);
-	ray->plane_y = ray->dir_x * tan(FOV / 2.0);
+	ray->plane_x = -ray->dir_y * T_HALF_FOV;
+	ray->plane_y = ray->dir_x * T_HALF_FOV;
 	ray->prev_draw_end = HEIGHT / 2;
 	return ;
 }
@@ -64,9 +64,11 @@ static void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
  */
 static void	ft_cal_ray_dir(t_raycast *ray, int x)
 {
-	ray->camera_x = 2 * x / (double)(WIDTH - 1) - 1;
-	ray->ray_dir_x = ray->dir_x + ray->plane_x * ray->camera_x;
-	ray->ray_dir_y = ray->dir_y + ray->plane_y * ray->camera_x;
+	double	camera_x;
+	
+	camera_x = 2 * x / (double)(WIDTH - 1) - 1;
+	ray->ray_dir_x = ray->dir_x + ray->plane_x * camera_x;
+	ray->ray_dir_y = ray->dir_y + ray->plane_y * camera_x;
 	return ;
 }
 
@@ -139,10 +141,7 @@ static void	ft_init_dda(t_info *info, t_raycast *ray)
  */
 static void	ft_hit_wall(t_info *info, t_raycast *ray)
 {
-	int	hit;
-
-	hit = 0;
-	while (!hit)
+	while (info->map[ray->map_y][ray->map_x] != '1')
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -168,7 +167,6 @@ static void	ft_hit_wall(t_info *info, t_raycast *ray)
 			if (ray->step_y == -1)
 				ray->texture = info->w_n_img;
 		}
-		hit = info->map[ray->map_y][ray->map_x] == '1';
 	}
 	return ;
 }
@@ -206,16 +204,15 @@ int	ft_raycasting(t_info *info)
 		ft_init_dda(info, &ray);
 		ft_hit_wall(info, &ray);
 		ft_set_limit_wall(info, &ray);
-		ray.color = 0x1D1430;		//	OUEST
+		ray.color = W_WALL;		//	OUEST
 		if (ray.wall == 1)
-			ray.color = 0xFFFF00;	//	NORD
+			ray.color = N_WALL;	//	NORD
 		else if (ray.wall == 2)
-			ray.color = 0x00AFAF;	//	SUD
+			ray.color = S_WALL;	//	SUD
 		else if (ray.wall == 3)
-			ray.color = 0xFF00FF;	//	EST
+			ray.color = E_WALL;	//	EST
 		ft_set_pixel(info, x, &ray);
 		ray.prev_draw_end = ray.draw_end;
-		//x += (int)RAY_STEP;
 	}
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;

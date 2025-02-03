@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 10:34:42 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 13:15:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ int	ft_minimap(t_info *info)
 	//ft_print_minimap(info, mini.map);
 	ft_set_img(info, &mini);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
-	if (MACOS)
+	if (MACOS && info->player->img)
 		mlx_put_image_to_window(info->mlx, info->mini->win, \
 			info->player->img, MINI_W / 2 - (MINI_S_PL / 2), \
 			MINI_H / 2 - (MINI_S_PL / 2));

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:27:00 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/02 16:59:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/03 14:02:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,31 @@ void	ft_open_door(t_info *info)
 	return ;
 }
 
+static void	ft_close_door_diag(t_info *info, int *close)
+{
+	if (info->map[info->y - 1][info->x + 1] == 'O')
+	{
+		*close = 1;
+		info->map[info->y - 1][info->x + 1] = 'C';
+	}
+	else if (info->map[info->y + 1][info->x + 1] == 'O')
+	{
+		*close = 1;
+		info->map[info->y + 1][info->x + 1] = 'C';
+	}
+	else if (info->map[info->y + 1][info->x - 1] == 'O')
+	{
+		*close = 1;
+		info->map[info->y + 1][info->x - 1] = 'C';
+	}
+	else if (info->map[info->y - 1][info->x - 1] == 'O')
+	{
+		*close = 1;
+		info->map[info->y - 1][info->x - 1] = 'C';
+	}
+	return ;
+}
+
 /*
  * <cat>cube_3D</cat>
  *
@@ -117,13 +142,15 @@ static void	ft_check_close_door(t_info *info, int dirx, int diry, int *close)
 	door_y = info->user_y + diry;
 	if (info->map[door_y][door_x] == 'O')
 	{
-		if ((dirx != 0 && fabs(info->user_x - (info->x + 0.5)) < 0.05) || \
-			(diry != 0 && fabs(info->user_y - (info->y + 0.5)) < 0.05))
+		if ((dirx != 0 && fabs(info->user_x - (info->x + 0.5)) < 0.1) || \
+			(diry != 0 && fabs(info->user_y - (info->y + 0.5)) < 0.1))
 		{
 			*close = 1;
 			info->map[door_y][door_x] = 'C';
 		}
 	}
+	else
+		ft_close_door_diag(info, close);
 	return ;
 }
 

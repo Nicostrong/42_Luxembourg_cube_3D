@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:23:52 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:47:00 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/04 09:11:28 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_print_img(t_img *img)
 	printf("\tpath: %s\n", img->img_path);
 	printf("\th: %d\n", img->h);
 	printf("\tw: %d\n", img->w);
+	printf("\tsize: %d\n", img->size);
+	printf("\tBPP: %d\n", img->bpp);
 	printf("\timg: %p\n", img->img);
 	printf("\taddr: %p\n", img->addr);
 	return ;

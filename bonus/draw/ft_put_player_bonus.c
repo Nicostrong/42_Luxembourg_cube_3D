@@ -5,94 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:06:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/02/04 14:00:44 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/setting_game_bonus.h"
 #include "../../includes/minimap_bonus.h"
 
-static void	ft_pixel_put(t_info *info, int x, int y, int color)
+unsigned int	get_pixel_color(t_img *img, int x, int y)
 {
-	char	*dst;
+	char	*pixel;
 
-	dst = info->mini->addr + (y * info->mini->size + x * (info->mini->bpp / 8));
-	*(unsigned int *)dst = color;
+	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
+		return (0);
+	pixel = img->addr;
+	pixel += (y * img->size) + (x * (img->bpp / 8));
+	return (*(unsigned int *)pixel);
 }
 
-/*
- * Fonction pour dessiner un joueur
- */
-static void	coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
+void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
 {
-	int	i;
-	int	px;
-	int	nx;
-	int	py;
-	int	ny;
+	int				height;
+	int				width;
+	unsigned int	pixel_color;
+	unsigned int	*dest_pixel;
+	unsigned char	alpha;
 
-	px = centx + y;
-	nx = centx - y;
-	py = centy + x;
-	ny = centy - x;
-	i = nx;
-	while (i <= px)
+	height = -1;
+	while (++height < img_s->h)
 	{
-		if (py >= 0 && (py <= HEIGHT || py <= WIDTH))
-			ft_pixel_put(info, i, py, ft_get_color(0, 0, 0, 255));
-		if (ny >= 0 && (ny <= HEIGHT || ny <= WIDTH))
-			ft_pixel_put(info, i, ny, ft_get_color(0, 0, 0, 255));
-		i++;
+		width = -1;
+		while (++width < img_s->w)
+		{
+			pixel_color = get_pixel_color(img_s, width, height);
+			alpha = (pixel_color >> 24) & 0xFF;
+			if (!alpha)
+			{
+				dest_pixel = (unsigned int *) \
+					(img_d->addr + (height + y) * img_d->size + \
+					(width + x) * (img_d->bpp / 8));
+				*dest_pixel = pixel_color;
+			}
+		}
 	}
 }
 
-/*
- *	Fonction pour dessiner un cercle
- */
-static void	coloris_axe_1(t_info *info, int centx, int centy, int x, int y)
+void	ft_put_player(t_info *info, t_img *player, int x, int y)
 {
-	int	i;
-	int	px;
-	int	nx;
-	int	py;
-	int	ny;
-
-	px = centx + x;
-	nx = centx - x;
-	py = centy + y;
-	ny = centy - y;
-	i = nx;
-	while (i <= px)
+	if (player && player->addr)
 	{
-		if (py >= 0 && (py <= HEIGHT || py <= WIDTH))
-			ft_pixel_put(info, i, py, ft_get_color(0, 0, 0, 255));
-		if (ny >= 0 && (ny <= HEIGHT || ny <= WIDTH))
-			ft_pixel_put(info, i, ny, ft_get_color(0, 0, 0, 255));
-		i++;
+		ft_put_imgalpha(info->mini, info->player, x - (info->player->w / 2), \
+			y - (info->player->h / 2));
+		mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, \
+			0, 0);
 	}
-}
-
-/*
- * Fonction pour dessiner un cercle
- */
-void	ft_put_circle(t_info *info, int centx, int centy)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = PRAY;
-	if (centx < 0 || centx >= WIDTH - PRAY || \
-		centy < 0 - PRAY || centy >= HEIGHT - PRAY)
-		return ;
-	while (y >= x)
-	{
-		coloris_axe_1(info, centx, centy, x, y);
-		coloris_axe_2(info, centx, centy, x, y);
-		x++;
-		if (x * x + y * y > PRAY * PRAY)
-			y--;
-	}
+	else
+		ft_put_circle(info, x, y);
+	return ;
 }

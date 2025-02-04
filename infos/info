@@ -1,3 +1,103 @@
 https://github.com/Glagan/42-cub3d/blob/master/README.md
 https://lodev.org/cgtutor/raycasting.html#Wolfenstein_3D_Textures_
 https://github.com/keuhdall/images_example
+
+Ton idée est intéressante et pourrait simplifier le processus de rendu en utilisant une méthode plus cohérente. Voici un plan détaillé pour mettre en œuvre cette approche :
+
+    Lancement initial des rayons :
+
+        Tire un rayon initial pour toucher le mur. Calcule les coordonnées de la collision, ainsi que la hauteur du mur (en utilisant y_start et y_end).
+
+    Rayons intermédiaires :
+
+        Tire les rayons suivants pour atteindre les extrémités de la case en suivant les coordonnées intérieures. Ces rayons continueront à générer les coordonnées de collision et les hauteurs de mur correspondantes.
+
+    Calcul des points intermédiaires :
+
+        Relie les points obtenus en utilisant les coordonnées (par exemple [3.4; 6], [3.4; 5], etc.) pour tracer les murs. Détermine les hauteurs de mur pour ces points intermédiaires.
+
+    Interpolation des textures :
+
+        Utilise ces coordonnées et hauteurs pour interpoler et remplir les textures de mur en conséquence. Cela signifie que tu vas suivre les coordonnées de chaque point et appliquer la texture appropriée.
+
+    Ajout des portes et items :
+
+        Une fois que les murs sont rendus correctement, rajoute les portes et les items en utilisant les mêmes principes, en ajustant les positions et les textures selon les coordonnées et distances calculées.
+
+Voici un exemple de code pour implémenter cette approche :
+Implémentation
+
+1	Lancer des rayons et obtenir les points de collision :
+
+void shoot_rays_and_collect_points(t_info *info, t_raycast *ray, int *points)
+{
+    int x = 0;
+    while (x < WIDTH)
+    {
+        ft_cal_ray_dir(ray, x);
+        ft_init_dda(info, ray);
+        ft_hit_wall(info, ray);
+        points[x] = calculate_wall_height(info, ray); // Collecte de la hauteur du mur
+        x += 50; // Intervalles
+    }
+}
+
+2	Interpolation des points et remplissage de textures :
+
+void interpolate_and_render_walls(t_info *info, int *points)
+{
+    int x = 0;
+    while (x < WIDTH)
+    {
+        if (points[x] != 0)
+        {
+            int height = points[x];
+            int next_x = x + 50; // Intervalles
+            if (next_x < WIDTH && points[next_x] != 0)
+            {
+                int next_height = points[next_x];
+                // Remplissage et interpolation des textures ici
+                fill_texture(info, x, height, next_x, next_height);
+            }
+        }
+        x += 50;
+    }
+}
+
+3	Remplissage de textures :
+
+void fill_texture(t_info *info, int x_start, int height_start, int x_end, int height_end)
+{
+    int y;
+    for (y = height_start; y <= height_end; y++)
+    {
+        // Appliquer la texture entre les points start et end
+        apply_texture(info, x_start, y);
+        apply_texture(info, x_end, y);
+    }
+}
+
+4	Fonction raycasting principale :
+
+int ft_raycasting(t_info *info)
+{
+    t_raycast   ray;
+    int         points[WIDTH];
+
+    if (!info->move)
+        return (0);
+    ft_set_dir_and_plan(info, &ray);
+
+    shoot_rays_and_collect_points(info, &ray, points);
+    interpolate_and_render_walls(info, points);
+
+    // Ajout des portes et des items ici (utilise les points collectés)
+    ft_set_door_item(info, &ray, points);
+
+    mlx_clear_window(info->mlx, info->game->win);
+    mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
+    info->move = 0;
+    ft_minimap(info);
+    return (0);
+}
+Cette approche te permettra de simplifier le rendu des murs en utilisant des points de référence. Assure-toi de tester et d'ajuster selon tes besoins spécifiques. Cela devrait rendre ton code plus clair et plus facile à maintenir. Bonne chance avec ton projet !

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 07:43:04 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 17:32:12 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/04 10:34:01 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,34 @@
  * </return>
  * 
  */
+void	ft_set_pixel(t_info *info, int x, t_raycast *ray)
+{
+	char	*base_pixel;
+	char	*pixel;
+	int		y;
+	t_win	*win;
+
+	if (x < 0 || x >= WIDTH || ray->draw_end < 0 || ray->draw_start >= HEIGHT)
+		return ;
+	win = info->game;
+	ray->draw_start = fmax(0, ray->draw_start);
+	ray->draw_end = fmin(HEIGHT - 1, ray->draw_end);
+	base_pixel = win->addr + x * (win->bpp / 8);
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		pixel = base_pixel + y * win->size;
+		if (y < ray->draw_start)
+			*(unsigned int *)pixel = info->sky_color->color;
+		else if (y < ray->draw_end)
+			*(unsigned int *)pixel = ray->color;
+		else
+			*(unsigned int *)pixel = info->floor_color->color;
+	}
+	return ;
+}
+
+/*
 void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 {
 	char	*base_pixel;
@@ -61,8 +89,7 @@ void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 			*(unsigned int *)pixel = info->floor_color->color;
 	}
 	return ;
-}
-
+}*/
 /*
  * <cat>cube_3D</cat>
  *

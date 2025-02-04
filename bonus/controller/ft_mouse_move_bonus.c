@@ -6,11 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:55:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:36:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/04 12:11:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/structures_bonus.h"
+#include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
 #include "../../includes/minimap_bonus.h"
 

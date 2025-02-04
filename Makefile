@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/02/03 10:54:31 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/02/04 14:00:28 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,6 +123,7 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/controller/ft_check_wall_bonus.c \
 						./bonus/controller/ft_check_door_bonus.c \
 						./bonus/controller/ft_door_bonus.c \
+						./bonus/controller/ft_mouse_move_bonus.c \
 						./bonus/controller/ft_move_bonus.c \
 						./bonus/controller/ft_rotate_bonus.c \
 						./bonus/debug/ft_print_anim_bonus.c \
@@ -136,13 +137,13 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/debug/ft_print_user_bonus.c \
 						./bonus/draw/ft_get_color_bonus.c \
 						./bonus/draw/ft_put_door_bonus.c \
+						./bonus/draw/ft_put_circle_bonus.c \
 						./bonus/draw/ft_put_item_bonus.c \
 						./bonus/draw/ft_put_player_bonus.c \
 						./bonus/exit/ft_error_bonus.c \
 						./bonus/exit/ft_exit_bonus.c \
 						./bonus/minimap/ft_minimap_utils_bonus.c \
 						./bonus/minimap/ft_minimap_bonus.c \
-						./bonus/minimap/ft_put_player_bonus.c \
 						./bonus/parser/ft_check_arg_bonus.c \
 						./bonus/parser/ft_parse_utils_1_bonus.c \
 						./bonus/parser/ft_parse_utils_2_bonus.c \
@@ -159,7 +160,6 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/thread/ft_run_thread_bonus.c
 
 #						./bonus/thread/ft_run_thread_bonus.c \
-						./bonus/controller/ft_mouse_move_bonus.c \
 						./bonus/debug/ft_print_info_bonus.c \
 						./bonus/draw/ft_put_wall_bonus.c \
 						./bonus/exit/ft_error_bonus.c \

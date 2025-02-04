@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 17:40:47 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/04 14:59:57 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
 #include "../../includes/raycasting_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -167,9 +168,61 @@ static void	ft_hit_wall(t_info *info, t_raycast *ray)
 			if (ray->step_y == -1)
 				ray->texture = info->w_n_img;
 		}
+		/*if (info->map[ray->map_y][ray->map_x] == 'C' || \
+			info->map[ray->map_y][ray->map_x] == 'F')
+		{
+			ray->wall = 4;
+			ray->texture = info->door;
+			ray->map_x += 0.5;// * ray->step_x;
+			ray->map_y += 0.5;// * ray->step_y;
+			return ;
+		}*/
 	}
 	return ;
 }
+/*
+void    ft_set_door_item(t_info *info, t_raycast *ray, double *z_buffer)
+{
+    int x;
+    int y;
+
+	(void)ray;
+    for (y = 0; y < info->h; y++)
+    {
+        for (x = 0; x < info->w; x++)
+        {
+            if (info->map[y][x] == 'C' || info->map[y][x] == 'F')
+            {
+                double door_x = x + 0.5;
+                double door_y = y + 0.5;
+                double dx = door_x - info->user_x;
+                double dy = door_y - info->user_y;
+                double dist = sqrt(dx * dx + dy * dy);
+                double door_angle = atan2(dy, dx) - info->user_deg;
+
+                int door_screen_x = (int)((WIDTH / 2) * (1 + tan(door_angle) / T_HALF_FOV));
+
+                if (door_screen_x >= 0 && door_screen_x < WIDTH && dist < z_buffer[door_screen_x])
+                {
+                    // Rendre la porte
+                    int door_height = (int)(HEIGHT / dist);
+                    int draw_start = -door_height / 2 + HEIGHT / 2;
+                    int draw_end = door_height / 2 + HEIGHT / 2;
+
+                    if (draw_start < 0)
+                        draw_start = 0;
+                    if (draw_end >= HEIGHT)
+                        draw_end = HEIGHT - 1;
+
+                    for (int y = draw_start; y < draw_end; y++)
+                    {
+                        mlx_pixel_put(info->mlx, info->game->win, door_screen_x, y, info->door->img[y % 64][door_screen_x % 64]);
+                    }
+                }
+            }
+        }
+    }
+}*/
 
 /*
  * <cat>cube_3D</cat>
@@ -212,12 +265,65 @@ int	ft_raycasting(t_info *info)
 			ray.color = S_WALL;	//	SUD
 		else if (ray.wall == 3)
 			ray.color = E_WALL;	//	EST
-		ft_set_pixel(info, x, ray.draw_start, ray.draw_end, ray.color);
+		else if (ray.wall == 4)
+			ray.color = PINK;	//	DOOR
+		ft_set_pixel(info, x, &ray);
 		ray.prev_draw_end = ray.draw_end;
 		z_buffer[x] = ray.perp_wall_dist;
 	}
+	//ft_set_door_item(info, &ray, z_buffer);
 	mlx_clear_window(info->mlx, info->game->win);
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;
+	ft_minimap(info);
 	return (0);
 }
+
+/*void    replace_color_with_texture(t_info *info, char *image_path, char *texture_path, int target_color)
+{
+    int     img_width, img_height;
+    void    *img;
+    char    *img_addr;
+    int     bpp, size_line, endian;
+
+    int     tex_width, tex_height;
+    void    *texture;
+    char    *tex_addr;
+
+    // Charger l'image
+    img = mlx_xpm_file_to_image(info->mlx, image_path, &img_width, &img_height);
+    if (!img)
+    {
+        printf("Erreur lors du chargement de l'image\n");
+        return;
+    }
+    img_addr = mlx_get_data_addr(img, &bpp, &size_line, &endian);
+
+    // Charger la texture
+    texture = mlx_xpm_file_to_image(info->mlx, texture_path, &tex_width, &tex_height);
+    if (!texture)
+    {
+        printf("Erreur lors du chargement de la texture\n");
+        return;
+    }
+    tex_addr = mlx_get_data_addr(texture, &bpp, &size_line, &endian);
+
+    // Parcourir l'image et remplacer la couleur cible par la texture
+    for (int y = 0; y < img_height; y++)
+    {
+        for (int x = 0; x < img_width; x++)
+        {
+            int color = *(int*)(img_addr + (y * size_line + x * (bpp / 8)));
+            if (color == target_color)
+            {
+                int tex_x = x % tex_width;
+                int tex_y = y % tex_height;
+                int tex_color = *(int*)(tex_addr + (tex_y * size_line + tex_x * (bpp / 8)));
+                *(int*)(img_addr + (y * size_line + x * (bpp / 8))) = tex_color;
+            }
+        }
+    }
+
+    // Afficher l'image modifiée sur la fenêtre
+    mlx_put_image_to_window(info->mlx, info->game->win, img, 0, 0);
+}*/

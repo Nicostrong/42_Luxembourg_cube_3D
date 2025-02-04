@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/30 11:06:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/04 09:33:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void	ft_get_widths(t_info *info);
 void	ft_get_heights(t_info *info);
 void	ft_put_circle(t_info *info, int centx, int centy);
 void	ft_put_player(t_info *info, t_img *player, int x, int y);
+void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y);
 
 #endif

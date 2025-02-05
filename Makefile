@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/02/04 14:00:28 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/02/05 09:17:37 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,6 +132,7 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/debug/ft_print_info_bonus.c \
 						./bonus/debug/ft_print_map_bonus.c \
 						./bonus/debug/ft_print_minimap_bonus.c \
+						./bonus/debug/ft_print_ray_bonus.c \
 						./bonus/debug/ft_print_sky_floor_bonus.c \
 						./bonus/debug/ft_print_thread_bonus.c \
 						./bonus/debug/ft_print_user_bonus.c \

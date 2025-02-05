@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 11:54:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/05 10:08:49 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,33 +161,43 @@ typedef struct s_info
  *	Raycasting struct
  */
 
-typedef struct s_raycasting
+typedef struct s_raycast
 {
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	perp_wall_dist;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		side;
-	int		wall;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		prev_draw_end;
-	int		text_x;
-	int		color;
-	t_img	*texture;
-}			t_raycast;
+	double	ray_dir_x;			//	Direction du rayon en X
+	double	ray_dir_y;			//	Direction du rayon en Y
+	double	dir_x;				//	Direction du joueur en X
+	double	dir_y;				//	Direction du joueur en Y
+	double	plane_x;			//	Plan de la caméra en X
+	double	plane_y;			//	Plan de la caméra en Y
+	double	delta_dist_x;		//	Distance entre les intersections en X
+	double	delta_dist_y;		//	Distance entre les intersections en Y
+	double	side_dist_x;		//	Distance avant la première intersection en X
+	double	side_dist_y;		//	Distance avant la première intersection en Y
+	double	perp_wall_dist;		//	Distance perpendiculaire à la paroi
+	int		x;					//	Index de la colonne actuelle
+	int		map_x;				//	Position actuelle sur la carte en X
+	int		map_y;				//	Position actuelle sur la carte en Y
+	int		prev_map_x;			//	Pour détecter un changement de cellule en X
+	int		prev_map_y;			//	Pour détecter un changement de cellule en Y
+	int		step_x;				//	Direction du pas en X
+	int		step_y;				//	Direction du pas en Y
+	int		side;				//	Côté de la paroi touché (0 = X, 1 = Y)
+	int		wall;				//	Type de mur touché (Nord, Sud, Est, Ouest)
+	int		line_height;		//	Hauteur du mur affiché sur l’écran
+	int		draw_start;			//	Point de départ du tracé vertical
+	int		draw_end;			//	Point de fin du tracé vertical
+	int		prev_draw_end;		//	Pour gérer les interpolations entre rayons
+	int		text_x;				//	Coordonnée X sur la texture
+	int		color;				//	Couleur du mur (si pas de texture)
+	t_img	*texture;			//	Pointeur vers la texture appliquée
+
+}	t_raycast;
+
+typedef struct s_ray_list
+{
+	t_raycast			ray;
+	struct s_ray_list	*next;
+}						t_lst_ray;
 
 /*
  *	Minimap struct

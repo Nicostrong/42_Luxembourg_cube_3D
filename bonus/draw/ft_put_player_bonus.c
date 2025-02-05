@@ -6,14 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:13:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 14:00:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/05 10:50:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/minimap_bonus.h"
 
-unsigned int	get_pixel_color(t_img *img, int x, int y)
+unsigned int	ft_get_pixel_color(t_img *img, int x, int y)
 {
 	char	*pixel;
 
@@ -38,7 +38,7 @@ void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y)
 		width = -1;
 		while (++width < img_s->w)
 		{
-			pixel_color = get_pixel_color(img_s, width, height);
+			pixel_color = ft_get_pixel_color(img_s, width, height);
 			alpha = (pixel_color >> 24) & 0xFF;
 			if (!alpha)
 			{

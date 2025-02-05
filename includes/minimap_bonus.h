@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 09:33:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/05 10:50:43 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@
  *	Functions minimap
  */
 
-char	**ft_get_minimap(t_info *info);
+char			**ft_get_minimap(t_info *info);
 
-int		ft_minimap(t_info *info);
-int		ft_put_door(t_info *info, t_mini *mini);
-int		ft_put_item(t_info *info, t_mini *mini);
+int				ft_minimap(t_info *info);
+int				ft_put_door(t_info *info, t_mini *mini);
+int				ft_put_item(t_info *info, t_mini *mini);
 
-void	ft_get_widths(t_info *info);
-void	ft_get_heights(t_info *info);
-void	ft_put_circle(t_info *info, int centx, int centy);
-void	ft_put_player(t_info *info, t_img *player, int x, int y);
-void	ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y);
+unsigned int	ft_get_pixel_color(t_img *img, int x, int y);
+
+void			ft_get_widths(t_info *info);
+void			ft_get_heights(t_info *info);
+void			ft_put_circle(t_info *info, int centx, int centy);
+void			ft_put_player(t_info *info, t_img *player, int x, int y);
+void			ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y);
 
 #endif

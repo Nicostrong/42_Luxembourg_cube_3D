@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:06:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 10:31:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/05 09:41:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int		ft_put_wall(t_raycast *ray, int y, int x);
 
 void	ft_set_limit_wall(t_info *info, t_raycast *ray);
 void	ft_draw_door(t_info *info, t_img *door, double *z_buffer);
-void	ft_set_pixel(t_info *info, int x, t_raycast *ray);
+void	ft_set_pixel(t_info *info, t_raycast *ray);
 
 #endif

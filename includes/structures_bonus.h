@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/05 10:08:49 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 07:52:56 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,10 @@ typedef struct s_raycast
 	int		draw_end;			//	Point de fin du tracé vertical
 	int		prev_draw_end;		//	Pour gérer les interpolations entre rayons
 	int		text_x;				//	Coordonnée X sur la texture
+	int		text_y_offset;		//	Decalage de Y dans la texture
 	int		color;				//	Couleur du mur (si pas de texture)
 	t_img	*texture;			//	Pointeur vers la texture appliquée
-
-}	t_raycast;
+}			t_raycast;
 
 typedef struct s_ray_list
 {

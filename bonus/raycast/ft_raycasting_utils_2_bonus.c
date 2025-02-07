@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raycasting_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_raycasting_utils_2_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 07:43:04 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/05 09:41:11 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 07:58:17 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
 	}
 	return ;
 }*/
+
 /*
  * <cat>cube_3D</cat>
  *
@@ -97,6 +98,14 @@ void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
  *
  * <description>
  * 	ft_set_limit_wall set the limit of the wall.
+ * 	For that we make some calculs :
+ * 	1)	perpendicular distance to the wall.
+ * 	2)	height of the wall.
+ * 	3)	position in y to start to draw the wall.
+ * 	4)	position in y to end to draw the wall.
+ * 	5)	correction of both point to draw
+ * 	6)	position of the texture
+ * 	7)	coordonne X of the texture to print
  * </description>
  *
  * <param type="t_info *" name="info">general structure</param>
@@ -108,6 +117,33 @@ void	ft_set_pixel(t_info *info, int x, int y_start, int y_end, int color)
  * 
  */
 void	ft_set_limit_wall(t_info *info, t_raycast *ray)
+{
+	double	wall_x;
+
+	ray->perp_wall_dist = (ray->map_y - info->user_y +  \
+		(1 - ray->step_y) / 2) / ray->ray_dir_y;
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->map_x - info->user_x + \
+			(1 - ray->step_x) / 2) / ray->ray_dir_x;
+	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
+	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
+	ray->text_y_offset = 0;
+	if (ray->line_height > HEIGHT)
+		ray->text_y_offset = ((ray->line_height - HEIGHT) / 2.0) * ray->texture->h / ray->line_height;
+	ray->draw_start = fmax(0, HEIGHT / 2 - ray->line_height / 2);
+	ray->draw_end = fmin(HEIGHT - 1, HEIGHT / 2 + ray->line_height / 2);
+	wall_x = info->user_x + ray->perp_wall_dist * ray->ray_dir_x;
+	if (ray->side == 0)
+		wall_x = info->user_y + ray->perp_wall_dist * ray->ray_dir_y;
+	wall_x -= floor(wall_x);
+	ray->text_x = (int)(wall_x * (double)ray->texture->w);
+	if ((ray->side == 0 && ray->ray_dir_x > 0) || \
+		(ray->side == 1 && ray->ray_dir_y < 0))
+		ray->text_x = ray->texture->w - ray->text_x - 1;
+}
+
+/*void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 {
 	double	wall_x;
 
@@ -131,4 +167,4 @@ void	ft_set_limit_wall(t_info *info, t_raycast *ray)
 		(ray->side == 1 && ray->ray_dir_y < 0))
 		ray->text_x = info->w_n_img->w - ray->text_x - 1;
 	return ;
-}
+}*/

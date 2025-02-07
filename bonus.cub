@@ -6,8 +6,8 @@ EA ./gfx/ewall.xpm
 FT ./gfx/floor.xpm
 CT ./gfx/sky.xpm
 
-F 12,255,248,220
-C 50,135,206,250
+F 255,248,220
+C 135,206,250
 
 P ./gfx/player.xpm
 D ./gfx/door.xpm

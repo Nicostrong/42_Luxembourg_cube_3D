@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/25 10:49:01 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 10:31:07 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_move(t_info *info, double new_padx, double new_pady)
+ * 	void	ft_move(t_info *info, double angle_offset, int dir)
  * </summary>
  *
  * <description>
- * 	ft_move move the player on the map.
+ * 	ft_move move the player on the map. It check if the new position is 
+ * 	available and limit the move in x or y or both if forbidden zone.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
- * <param type="double" name="new_padx">new pad x of the player</param>
- * <param type="double" name="new_pady">new pad y of the player</param>
+ * <param type="double" name="angle_offset">delta new_angle</param>
+ * <param type="int" name="dir">direction of move</param>
  *
  * <return>
  * 	void.

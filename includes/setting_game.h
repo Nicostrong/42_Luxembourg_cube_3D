@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:21:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 14:02:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,20 @@
 # define D_WALL			0.2						//	distance min near wall
 
 /*
- *	FPS
- */
-
-# define FPS 			30
-# define FRAMT 			33.3333333				//	(1000 / FPS)
-# define SPEED_COL		50000
-
-/*
  *	Functions game
  */
 
-int		ft_press_key(int keysym, t_info *info);
-int		ft_get_color(int t, int r, int g, int b);
-int		ft_mouse_move(int x, int y, t_info *info);
-int		ft_press_key_mac(int keysym, t_info *info);
+int				ft_press_key(int keysym, t_info *info);
+int				ft_get_color(int t, int r, int g, int b);
+int				ft_press_key_mac(int keysym, t_info *info);
 
-void	ft_open_door(t_info *info);
-void	ft_rotate(t_info *info, double angle_rotation);
-void	ft_move(t_info *info, double angle_offset, int dir);
-void	ft_check_wall(t_info *info, double *new_x, double *new_y);
+unsigned int	ft_get_pixel_color(t_img *img, int x, int y);
+
+void			ft_rotate(t_info *info, double angle_rotation);
+void			ft_get_size_xpm(t_info *info, char *path, int i);
+void			ft_move(t_info *info, double angle_offset, int dir);
+void			ft_put_pixel_color(t_win *win, int x, int y, int color);
+void			ft_put_imgalpha(t_win *img_d, t_img *img_s, int x, int y);
+void			ft_check_wall(t_info *info, double *new_x, double *new_y);
 
 #endif

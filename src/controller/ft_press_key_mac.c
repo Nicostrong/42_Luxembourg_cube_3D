@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 10:37:28 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@
  * </summary>
  *
  * <description>
- * 	ft_press_key_mac manage the key pressed by the user on Mac.
+ * 	ft_press_key_mac manage the key pressed by the user on Mac. Catch the key 
+ * 	pressed and call the right function to execute the action.
  * </description>
  *
  * <param type="int" name="keysym">key pressed</param>
  * <param type="t_info *" name="info">structure with all info</param>
  *
  * <return>
- * 	exit code 0.
+ * 	0.
  * </return>
  *
  */
@@ -48,6 +49,9 @@ int	ft_press_key_mac(int keysym, t_info *info)
 		ft_rotate(info, -ROTATE);
 	else if (keysym == KE || keysym == RIGHT)
 		ft_rotate(info, ROTATE);
-	info->move = 1;
+	if (keysym == KZ || keysym == UP || keysym == KS || keysym == DOWN || \
+		keysym == KQ || keysym == KD || keysym == KA || keysym == LEFT || \
+		keysym == KE || keysym == RIGHT)
+		info->move = 1;
 	return (0);
 }

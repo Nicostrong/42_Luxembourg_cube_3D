@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:57:29 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 10:31:31 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 10:50:25 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,3 @@ int	ft_put_wall(t_raycast *ray, int y, int x)
 	color = *(uint32_t *)pixel_ptr;
 	return (color);
 }
-
-
-double texture_pos = (double)(y - (-ray->line_height / 2 + HEIGHT / 2)) * ray->texture->h / ray->line_height;
-int texture_y = (int)texture_pos & (ray->texture->h - 1);
-unsigned int *texture_pixels = (unsigned int *)ray->texture->addr;
-unsigned int color = texture_pixels[ray->texture->w * texture_y + ray->text_x];
-
-pixel = base_pixel + y * win->size;
-*(unsigned int *)pixel = color;

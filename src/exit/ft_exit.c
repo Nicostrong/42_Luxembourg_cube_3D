@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 11:10:24 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	ft_perror_exit(char *str_error, t_info *info)
  * </summary>
  *
  * <description>
- * 	ft_exit end the loop and free the structure correctelly before to exit the
- * 	program.
+ * 	ft_exit exit proprely the programm. End the loop and free the structure 
+ * 	correctelly before to exit the program.
  * </description>
  *
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	exit with code 0.

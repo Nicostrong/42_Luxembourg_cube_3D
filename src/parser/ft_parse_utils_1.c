@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 10:25:42 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 13:53:40 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
-#include "../../includes/error.h"
 #include "../../includes/setting_game.h"
 
 /*
@@ -23,7 +22,7 @@
  *
  * <description>
  * 	ft_ismap check if the line is a map.
- * 	A map contain only ' ', '0', '1', '2', 'N', 'S', 'E', 'W'.
+ * 	A map contain only ' ', '0', '1', 'N', 'S', 'E', 'W'.
  * </description>
  *
  * <param type="char *" name="line">line to check</param>
@@ -58,7 +57,7 @@ static int	ft_ismap(char *line)
  * 	ft_get_map get the map from the file and put it in the structure.
  * </description>
  *
- * <param type="t_info *" name="info">general structure/param>
+ * <param type="t_info *" name="info">main structure/param>
  *
  * <return>
  * 	void.
@@ -106,10 +105,12 @@ static void	ft_get_map(t_info *info)
  * 	structure.
  * </description>
  *
- * <param type="char *" name="str">string to parse</param>
+ * <param type="char *" name="str">string with name of texture</param>
+ * <param type="char *" name="color">string with all element of color</param>
+ * <param type="t_info *" name="info">main structure/param>
  *
  * <return>
- * 	a pointer to a structure t_color with all value.
+ * 	void.
  * </return>
  *
  */
@@ -118,19 +119,13 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 	char	**array;
 	t_color	*new;
 
-	new = (t_color *)ft_calloc(1, sizeof(t_color));
-	if (!new)
-		ft_perror_exit(E_MALLOC, info);
 	if (!str)
 		return ;
 	array = ft_split(color, ',');
-	new->r = ft_atoi(array[0]);
-	new->g = ft_atoi(array[1]);
-	new->b = ft_atoi(array[2]);
-	new->color = ft_get_color(new->t, new->r, new->g, new->b);
+	new = ft_set_color_struct(info, array);
 	ft_free_array(array);
-	if (new->r < 0 || new->r > 255 || new->g < 0 || new->g > 255 \
-		|| new->b < 0 || new->b > 255)
+	if (new->t < 0 || new->t > 255 || new->r < 0 || new->r > 255 || \
+		new->g < 0 || new->g > 255 || new->b < 0 || new->b > 255)
 	{
 		if (ft_strequal(str, "F"))
 			ft_perror_exit(E_F_COLOR, info);
@@ -158,7 +153,7 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
  * 	structure info.
  * </description>
  *
- * <param type="t_info *" name="info">general structure/param>
+ * <param type="t_info *" name="info">main structure/param>
  * <param type="char **" name="array">array of string</param>
  *
  * <return>
@@ -198,7 +193,7 @@ static int	ft_extract_info(t_info *info, char **array)
  *  info.
  * </description>
  *
- * <param type="t_info *" name="info">general structure/param>
+ * <param type="t_info *" name="info">main structure/param>
  *
  * <return>
  * 	void.

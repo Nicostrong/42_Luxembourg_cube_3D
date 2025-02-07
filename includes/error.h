@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:46:14 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/27 10:23:08 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 11:11:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ERROR_H
 
 /*
- *	Define std
+ *	Define std error
  */
 
 # define E_USAGE	"\033[1;31mUsage\n\t./cub3d <map.cub>\033[0m"
@@ -76,7 +76,7 @@
 # define E_COL_F	32
 
 /*
- *	Fonction error
+ *	Fonctions error
  */
 
 int		ft_perror_exit(char *str_error, t_info *info);

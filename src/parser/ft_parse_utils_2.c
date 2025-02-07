@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 13:55:02 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d.h"
-#include "../../includes/error.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -22,20 +21,21 @@
  *
  * <description>
  * 	ft_flood_fill replace all char 'O' on the map by the char '2' to simulate 
- * 	all path who the player can use on the map.
+ * 	all path who the player can use on the map, and check if the map is 
+ * 	correctely closed.
  * </description>
  *
- * <param type="char **" name="map"></param>
+ * <param type="char **" name="map">map to check</param>
  * <param type="int" name="x">position on x</param>
  * <param type="int" name="y">position on y</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
  * </return>
  *
  */
-static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
+static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 {
 	if (x < 0 || y < 0 || x >= info->w || y >= info->h)
 		return ;
@@ -43,14 +43,14 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
 		return ;
 	if (map[y][x] == ' ')
 	{
-		*is_valid = 0;
+		info->is_valid = 0;
 		return ;
 	}
 	map[y][x] = '2';
-	ft_flood_fill(map, x, y - 1, info, is_valid);
-	ft_flood_fill(map, x + 1, y, info, is_valid);
-	ft_flood_fill(map, x, y + 1, info, is_valid);
-	ft_flood_fill(map, x - 1, y, info, is_valid);
+	ft_flood_fill(map, x, y - 1, info);
+	ft_flood_fill(map, x + 1, y, info);
+	ft_flood_fill(map, x, y + 1, info);
+	ft_flood_fill(map, x - 1, y, info);
 	return ;
 }
 
@@ -66,7 +66,7 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info, int *is_valid)
  * </description>
  *
  * <param type="char" name="c">char of direction</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -99,7 +99,7 @@ static void	ft_set_direction(char c, t_info *info)
  * </description>
  *
  * <param type="char **" name="map">map array</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -145,7 +145,7 @@ static void	ft_get_pos_player(char **map, t_info *info)
  * 	ft_check_map check if the map is valid.
  * </description>
  *
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -155,7 +155,6 @@ static void	ft_get_pos_player(char **map, t_info *info)
 void	ft_check_map(t_info *info)
 {
 	char	**map_cpy;
-	int		is_valid;
 
 	if (!info->map)
 		ft_perror_exit(E_MAP, info);
@@ -163,10 +162,9 @@ void	ft_check_map(t_info *info)
 	map_cpy = ft_strarraycpy(info->map);
 	if (!map_cpy)
 		ft_perror_exit(E_MALLOC, info);
-	is_valid = 1;
-	ft_flood_fill(map_cpy, info->user_x, info->user_y, info, &is_valid);
+	ft_flood_fill(map_cpy, info->user_x, info->user_y, info);
 	ft_free_array(map_cpy);
-	if (!is_valid)
+	if (!info->is_valid)
 		ft_perror_exit(E_CLOSE, info);
 	return ;
 }

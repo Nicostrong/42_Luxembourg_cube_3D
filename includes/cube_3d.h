@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/24 15:02:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 15:27:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUBE_3D_H
 
 /*
-*	Standart library
-*/
+ *	Standart library
+ */
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -55,13 +55,14 @@
 # endif
 
 /*
-*	Personal Library
-*/
+ *	Personal Library
+ */
 
 # include "../lib/libft/libft.h"
 # include "../lib/gnl/get_next_line.h"
 # include "./structures.h"
 # include "./color.h"
+# include "./error.h"
 
 /*
  *	DEBUG
@@ -74,15 +75,16 @@ void	ft_print_color(t_color *color);
 void	ft_print_user_data(t_info *info);
 
 /*
-* Fonction init mlx
-*/
+ *	Fonctions to start the programm
+ */
 
 int		ft_exit(t_info *info);
 int		ft_check_arg(int argc, char **argv);
-int		ft_perror_exit(char *str_error, t_info *info);
 
 void	ft_init_mlx(t_info *info);
 void	ft_read_file(t_info *info);
 void	ft_check_map(t_info *info);
+
+t_color	*ft_set_color_struct(t_info *info, char **a_color);
 
 #endif

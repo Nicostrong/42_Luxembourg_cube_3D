@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:24:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/25 10:54:06 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 10:39:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
  *
  * <description>
  * 	ft_normalize_rot put the rotation radian on the range [0;PI] or [0;-PI].
+ * 	Print a debug message if make a correction.
  * </description>
  *
  * <param type="double" name="angle">angle to adjuste</param>
@@ -52,7 +53,7 @@ static double	ft_normalize_rot(double angle)
  * </summary>
  *
  * <description>
- * 	ft_rotate modify the angle of the player.
+ * 	ft_rotate modify the angle of the player. Print some information for debug.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>

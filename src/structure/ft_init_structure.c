@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/07 15:23:50 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * 	structure.
  * </description>
  *
- * <param type="t_info **" name="info">pointer to the structure</param>
+ * <param type="t_info **" name="info">pointer to the main structure</param>
  *
  * <return>
  * 	void.
@@ -74,9 +74,12 @@ void	ft_init_img(t_info **info)
  * </description>
  *
  * <param type="t_info *" name="info">structure info</param>
+ * <param type="int" name="w">width of the window</param>
+ * <param type="int" name="h">eight of the window</param>
+ * <param type="char *" name="title">title of the window</param>
  *
  * <return>
- * 	void.
+ * 	a pointer to t_win structure with all informations.
  * </return>
  *
  */
@@ -111,7 +114,7 @@ static t_win	*ft_init_info_win(t_info *info, int w, int h, char *title)
  * 	ft_init_all_img initialise all imgage of wall and player.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -153,7 +156,7 @@ static void	ft_init_all_img(t_info *info)
  * 	Make the link between the key and the path or color.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	a pointer to the structure info_map full initialised.
@@ -218,6 +221,7 @@ t_info	*ft_init_info(char *path)
 	if (info->fd < 0)
 		ft_perror_exit(E_OPEN, info);
 	info->move = 1;
+	info->is_valid = 1;
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_perror_exit(E_MLX, info);

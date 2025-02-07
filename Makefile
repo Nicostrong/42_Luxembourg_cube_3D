@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/02/06 14:52:07 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/02/07 15:25:31 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,15 +97,18 @@ SRC_COMMON			=	./src/main.c \
 						./src/debug/ft_print_map.c \
 						./src/debug/ft_print_user.c \
 						./src/draw/ft_get_color.c \
-						./src/draw/ft_put_wall.c \
+						./src/draw/ft_working_pixel.c \
 						./src/exit/ft_error.c \
 						./src/exit/ft_exit.c \
 						./src/parser/ft_check_arg.c \
+						./src/parser/ft_parse.c \
 						./src/parser/ft_parse_utils_1.c \
 						./src/parser/ft_parse_utils_2.c \
-						./src/parser/ft_parse.c \
+						./src/parser/ft_parse_utils_3.c \
 						./src/raycast/ft_raycasting.c \
-						./src/raycast/ft_raycasting_utils.c \
+						./src/raycast/ft_raycasting_utils_1.c \
+						./src/raycast/ft_raycasting_utils_2.c \
+						./src/raycast/ft_raycasting_utils_3.c \
 						./src/structure/ft_free_structure.c \
 						./src/structure/ft_init_structure.c
 

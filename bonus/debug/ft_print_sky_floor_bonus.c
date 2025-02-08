@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:20:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 10:09:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 14:24:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,3 @@ void	ft_print_sky_floor(t_info *info)
 	ft_print_floor(info);
 	return ;
 }
-

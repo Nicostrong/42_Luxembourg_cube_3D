@@ -6,12 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 09:09:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:35:29 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
+#include "../../includes/setting_game_bonus.h"
 
 /*
  *	<cat>cube_3D</cat>
@@ -38,59 +38,6 @@ static void	ft_check_texture_s_f(t_info *info)
 		info->use_s_img = 1;
 	if (info->f_img && info->f_img->img)
 		info->use_f_img = 1;
-	return ;
-}
-
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
- * 	void	ft_get_size_xpm(t_info *info, char *path, int i)
- * </summary>
- *
- * <description>
- * 	ft_get_size_xpm get the size of the xpm file.
- * </description>
- *
- * <param type="t_info *" name="info">main structure</param>
- * <param type="char *" name="path">path of xpm file</param>
- * <param type="int" name="i">index of the texture</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-static void	ft_get_size_xpm(t_info *info, char *path, int i)
-{
-	char	*sub_line;
-	char	**array;
-
-	info->fd = open(path, O_RDONLY);
-	if (info->fd == -1)
-		ft_perror_exit(E_XPM, info);
-	info->line = get_next_line(info->fd);
-	while (info->line && info->line[0] != '"')
-	{
-		ft_free((void **)&info->line);
-		info->line = get_next_line(info->fd);
-	}
-	close(info->fd);
-	get_next_line(-1);
-	if (!info->line)
-		ft_perror_exit(E_READ, info);
-	sub_line = ft_strremoveset(info->line, "\"");
-	array = ft_split(sub_line, ' ');
-	if (array && array[0] && array[1])
-	{
-		(*info->info_map[i].t_img)->w = ft_atoi(array[0]);
-		(*info->info_map[i].t_img)->h = ft_atoi(array[1]);
-	}
-	else
-		ft_perror_exit(E_XPM, info);
-	ft_free_array(array);
-	ft_free((void **)&sub_line);
-	ft_free((void **)&info->line);
 	return ;
 }
 
@@ -127,7 +74,7 @@ static void	ft_set_all_xpm(t_info *info)
 				&(*info->info_map[i].t_img)->w, &(*info->info_map[i].t_img)->h);
 			if (!(*info->info_map[i].t_img)->img && i < 4)
 				ft_perror_exit(E_IMG, info);
-			(*info->info_map[i].t_img)->addr = mlx_get_data_addr( \
+			(*info->info_map[i].t_img)->addr = mlx_get_data_addr(\
 				(*info->info_map[i].t_img)->img, \
 				&(*info->info_map[i].t_img)->bpp, \
 				&(*info->info_map[i].t_img)->size, \

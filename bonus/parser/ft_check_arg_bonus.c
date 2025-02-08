@@ -6,12 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:31 by phkevin           #+#    #+#             */
-/*   Updated: 2025/01/27 11:16:35 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
+#include "../../includes/setting_game_bonus.h"
 
 /*
  * <cat>cube_3D</cat>

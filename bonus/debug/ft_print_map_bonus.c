@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:20:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 09:46:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 14:10:09 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * 	ft_print_map print the map.
  * </description>
  *
- * <param type="t_info" name="info">The structure with all information</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.

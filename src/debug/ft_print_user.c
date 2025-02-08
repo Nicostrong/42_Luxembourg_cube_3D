@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:03 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 10:42:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 14:10:41 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * 	ft_print_user_data print all information about the user.
  * </description>
  *
- * <param type="t_info" name="info">main structure</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.

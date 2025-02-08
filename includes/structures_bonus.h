@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 07:52:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:28:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ typedef struct s_anim
 
 typedef struct s_color
 {
-	int				t;
 	int				r;
 	int				g;
 	int				b;
+	int				t;
 	int				color;
 }					t_color;
 
@@ -174,6 +174,8 @@ typedef struct s_raycast
 	double	side_dist_x;		//	Distance avant la première intersection en X
 	double	side_dist_y;		//	Distance avant la première intersection en Y
 	double	perp_wall_dist;		//	Distance perpendiculaire à la paroi
+	double	step;				//	step of texture maping
+	double	tex_pos;			//	position of texture
 	int		x;					//	Index de la colonne actuelle
 	int		map_x;				//	Position actuelle sur la carte en X
 	int		map_y;				//	Position actuelle sur la carte en Y
@@ -190,8 +192,13 @@ typedef struct s_raycast
 	int		text_x;				//	Coordonnée X sur la texture
 	int		text_y_offset;		//	Decalage de Y dans la texture
 	int		color;				//	Couleur du mur (si pas de texture)
+	char	*base_pixel;		//	pixel de depart
 	t_img	*texture;			//	Pointeur vers la texture appliquée
 }			t_raycast;
+
+/*
+ *	Linkedlist of ray
+ */
 
 typedef struct s_ray_list
 {
@@ -214,13 +221,8 @@ typedef struct s_minimap
 }			t_mini;
 
 /*
- *	Strucuture fonctions
+ *	Strucuture functions
  */
-
-void		ft_print_map(t_info *info);
-void		ft_print_info(t_info *info);
-void		ft_print_user_data(t_info *info);
-void		ft_print_minimap(t_info *info, char **map);
 
 void		ft_init_mlx(t_info *info);
 void		ft_init_img(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/03 13:15:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:30:14 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	ft_set_img(t_info *info, t_mini *mini)
 				{
 					if (!ft_put_door(info, mini))
 						if (!ft_put_item(info, mini))
-							*((unsigned int *)\
+							*((unsigned int *) \
 							(info->mini->addr + mini->index_pxl)) = \
 							(unsigned int)info->colors[mini->x];
 					mini->index_pxl += 4;
@@ -175,7 +175,7 @@ static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **m
 			grid_y < 0 || grid_y >= info->mini_h)
 			return ;
 		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
-			return;
+			return ;
 		if (map[grid_y][grid_x] == 'C' || map[grid_y][grid_x] == 'F')
 			i++;
 		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, BLUE);
@@ -208,6 +208,8 @@ int	ft_minimap(t_info *info)
 {
 	t_mini	mini;
 
+	if (!info->move)
+		return (0);
 	mlx_clear_window(info->mlx, info->mini->win);
 	mini.map = ft_get_minimap(info);
 	ft_get_widths(info);
@@ -224,7 +226,6 @@ int	ft_minimap(t_info *info)
 	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);
 	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, mini.map);
 	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);
-	//mlx_do_sync(info->mlx);
 	ft_free_array(mini.map);
 	return (0);
 }

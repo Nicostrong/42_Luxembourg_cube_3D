@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:02:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/28 10:06:52 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
 
 /*
  * <cat>cube3D</cat>
@@ -25,7 +24,7 @@
  * 	the flag to 1 in success.
  * </description>
  *
- * <param type="t_info *" name="info">info structure</param>
+ * <param type="t_info *" name="info">main structure</param>
  * <param type="pthread_mutex_t *" name="mut">mutex to init</param>
  * <param type="int *" name="flag">flag of mutex</param>
  *
@@ -53,7 +52,7 @@ static void	ft_init_single_mutex(t_info *info, pthread_mutex_t *mut, int *flag)
  * 	ft_init_mutex initialise all global mutex on the struct info.
  * </description>
  *
- * <param type="t_info *" name="info">info structure</param>
+ * <param type="t_info *" name="info">main structure</param>
  * <param type="t_thread *" name="thread">thread structure</param>
  *
  * <return>
@@ -84,7 +83,7 @@ static void	ft_init_mutex(t_info *info, t_thread *thread)
  * 	ft_init_thread initialise thread structure and init all mutex.
  * </description>
  *
- * <param type="t_info *" name="info">info structure</param>
+ * <param type="t_info *" name="info">main structure</param>
  * <param type="t_thread *" name="thread">thread structure</param>
  *
  * <return>
@@ -102,4 +101,3 @@ t_thread	*ft_init_thread(t_info *info)
 	ft_init_mutex(info, thread);
 	return (thread);
 }
-

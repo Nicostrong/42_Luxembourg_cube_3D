@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 15:08:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:28:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,10 @@ typedef struct s_raycast
 	t_img	*texture;			//	Pointeur vers la texture appliquée
 }			t_raycast;
 
+/*
+ *	Linkedlist of ray
+ */
+
 typedef struct s_ray_list
 {
 	t_raycast			ray;
@@ -148,7 +152,7 @@ typedef struct s_ray_list
 }						t_lst_ray;
 
 /*
- *	Strucuture fonctions
+ *	Strucuture functions
  */
 
 void	ft_init_img(t_info **info);

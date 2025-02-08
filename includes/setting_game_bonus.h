@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 08:32:39 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:28:04 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@
 # define SPEED_COL		50000
 
 /*
- *	FPS
- */
-
-# define FPS 			30
-# define FRAMT 			33.3333333				//	(1000 / FPS)
-
-/*
  *	Functions game
  */
 
@@ -52,6 +45,7 @@ unsigned int	ft_get_pixel_color(t_img *img, int x, int y);
 void			ft_open_door(t_info *info);
 void			ft_close_door(t_info *info);
 void			ft_rotate(t_info *info, double angle_rotation);
+void			ft_get_size_xpm(t_info *info, char *path, int i);
 void			ft_move(t_info *info, double angle_offset, int dir);
 void			ft_put_pixel_color(t_win *win, int x, int y, int color);
 void			ft_check_wall(t_info *info, double *new_x, double *new_y);

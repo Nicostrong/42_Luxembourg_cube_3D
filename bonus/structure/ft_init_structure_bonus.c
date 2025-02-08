@@ -6,12 +6,11 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 12:58:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
 #include "../../includes/setting_game_bonus.h"
 
 /*
@@ -25,7 +24,7 @@
  * 	ft_init_arrays alloc and initialise all arrays for the minimap.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -42,8 +41,6 @@ static void	ft_init_arrays(t_info *info)
 	return ;
 }
 
-
-
 /*
  * <cat>cube_3D</cat>
  *
@@ -56,7 +53,7 @@ static void	ft_init_arrays(t_info *info)
  * 	Make the link between the key and the path or color.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	a pointer to the structure info_map full initialised.
@@ -133,15 +130,3 @@ t_info	*ft_init_info(char *path)
 	info->move = 1;
 	return (info);
 }
-
-/*
-if (info->player)
-{
-	info->player->img_path = ft_strdup(MINI_I_PL);
-	info->player->w = MINI_S_PL;
-	info->player->h = MINI_S_PL;
-	info->player->img = mlx_xpm_file_to_image(info->mlx, \
-		info->player->img_path, &info->player->w, &info->player->h);
-	info->player->addr = mlx_get_data_addr(info->player->img, \
-		&info->player->bpp, &info->player->size, &info->player->endian);
-}*/

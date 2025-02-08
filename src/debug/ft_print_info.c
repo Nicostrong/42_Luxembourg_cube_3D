@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:51:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 14:09:11 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_print_datat_info *info)
+ * 	void	ft_print_data(t_info *info)
  * </summary>
  *
  * <description>
@@ -72,6 +72,9 @@ static void	ft_print_data(t_info *info)
  */
 static void	ft_print_wall(t_info *info)
 {
+	printf("\n******************************\n");
+	printf(BGREEN"\tWALL\n"RESET);
+	printf("******************************\n");
 	if (info->w_n_img)
 	{
 		printf(BBLUE"w_n_img:\n"RESET);

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:13:23 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/05 11:19:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 13:57:39 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,3 @@ void	ft_move(t_info *info, double angle_offset, int dir)
 	ft_close_door(info);
 	return ;
 }
-

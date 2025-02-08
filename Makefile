@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/02/07 15:25:31 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/02/08 15:30:57 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,10 +152,12 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/parser/ft_check_arg_bonus.c \
 						./bonus/parser/ft_parse_utils_1_bonus.c \
 						./bonus/parser/ft_parse_utils_2_bonus.c \
+						./bonus/parser/ft_parse_utils_3_bonus.c \
 						./bonus/parser/ft_parse_bonus.c \
 						./bonus/raycast/ft_raycasting_bonus.c \
 						./bonus/raycast/ft_raycasting_utils_1_bonus.c \
 						./bonus/raycast/ft_raycasting_utils_2_bonus.c \
+						./bonus/raycast/ft_raycasting_utils_3_bonus.c \
 						./bonus/structure/ft_free_structure_bonus.c \
 						./bonus/structure/ft_init_anim_bonus.c \
 						./bonus/structure/ft_init_img_bonus.c \

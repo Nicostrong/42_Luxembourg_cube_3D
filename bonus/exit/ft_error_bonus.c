@@ -6,26 +6,26 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:32:13 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/27 09:47:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_error_msg(int value, int exit)
+ * 	void	ft_error_msg(int value, int exit, t_info *info)
  * </summary>
  *
  * <description>
- * 	ft_error_msg print the error message on stderror and exit if exit is true.
+ * 	ft_error_msg print all error messages on stderror and exit if exit is true.
+ * 	The value is a binary value to select all individual message error to print.
  * </description>
  *
  * <param type="int" name="value">value for error message</param>
- * <param type="int" name="exit">exit if true</param>
+ * <param type="int" name="exit">bool value for exit</param>
  * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
@@ -53,4 +53,5 @@ void	ft_error_msg(int value, int exit, t_info *info)
 		ft_putendl_fd(E_D, 2);
 	if (exit)
 		ft_perror_exit(NULL, info);
+	return ;
 }

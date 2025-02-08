@@ -6,12 +6,12 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/30 09:46:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
+#include "../../includes/setting_game_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -22,13 +22,14 @@
  *
  * <description>
  * 	ft_flood_fill replace all char 'O' on the map by the char '2' to simulate 
- * 	all path who the player can use on the map.
+ * 	all path who the player can use on the map, and check if the map is 
+ * 	correctely closed.
  * </description>
  *
- * <param type="char **" name="map"></param>
+ * <param type="char **" name="map">map to check</param>
  * <param type="int" name="x">position on x</param>
  * <param type="int" name="y">position on y</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -55,7 +56,7 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_set_direction(char c, t_info *info)
@@ -66,7 +67,7 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info)
  * </description>
  *
  * <param type="char" name="c">char of direction</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -87,7 +88,7 @@ static void	ft_set_direction(char c, t_info *info)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_get_pos_player(char **map, t_info *info)
@@ -99,7 +100,7 @@ static void	ft_set_direction(char c, t_info *info)
  * </description>
  *
  * <param type="char **" name="map">map array</param>
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.
@@ -135,16 +136,17 @@ static void	ft_get_pos_player(char **map, t_info *info)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_replace_door(char **map)
+ * 	void	ft_door_items(t_info *info, char **map)
  * </summary>
  *
  * <description>
- * 	ft_replace_door replace all char 'D' by 'C' for door close
+ * 	ft_door_items replace all char 'D' by 'C' and count the number of items.
  * </description>
  *
+ * <param type="t_info *" name="info">main structure</param>
  * <param type="char**" name="map">map array</param>
  *
  * <return>
@@ -173,7 +175,7 @@ static void	ft_door_items(t_info *info, char **map)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_check_map(t_info *info)
@@ -183,7 +185,7 @@ static void	ft_door_items(t_info *info, char **map)
  * 	ft_check_map check if the map is valid.
  * </description>
  *
- * <param type="t_info *" name="info">structure with all info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	void.

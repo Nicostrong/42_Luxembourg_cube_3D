@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:01:52 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/02 13:56:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 13:57:31 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static void	ft_check_x(t_info *info, int dirx, double *new_x)
 			*new_x < (info->x + 1 - D_DOOR) && \
 			info->user_x >= (info->x + 1 - D_DOOR))
 		{
-			printf(REDC"\tDOOR vers la gauche detected\n"RESET);
+			printf(REDC"\tDOOR in left detected\n"RESET);
 			*new_x = ceil(*new_x) - D_DOOR;
 		}
 		else if (dirx > 0 && \
 			*new_x > (info->x + D_DOOR) && \
 			info->user_x <= (info->x + D_DOOR))
 		{
-			printf(REDC"\tDOOR vers la droite detected\n"RESET);
+			printf(REDC"\tDOOR in right detected\n"RESET);
 			*new_x = floor(*new_x) + D_DOOR;
 		}
 	}
@@ -83,18 +83,18 @@ static void	ft_check_y(t_info *info, int diry, double *new_y)
 	if (info->map[info->y][info->x] == 'F')
 	{
 		printf(REDC"\tDOOR in Y detected\n"RESET);
-		if (diry < 0 &&  \
+		if (diry < 0 && \
 			*new_y < (info->y + 1 - D_DOOR) && \
 			info->user_y >= (info->y + 1 - D_DOOR))
 		{
-			printf(REDC"\tDOOR vers le haut detected\n"RESET);
+			printf(REDC"\tDOOR in up detected\n"RESET);
 			*new_y = ceil(*new_y) - D_DOOR;
 		}
 		else if (diry > 0 && \
 			*new_y > (info->y + D_DOOR) && \
 			info->user_y <= (info->y + D_DOOR))
 		{
-			printf(REDC"\tDOOR vers le bas detected\n"RESET);
+			printf(REDC"\tDOOR in down detected\n"RESET);
 			*new_y = floor(*new_y) + D_DOOR;
 		}
 	}

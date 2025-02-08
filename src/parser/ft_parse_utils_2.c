@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 13:55:02 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:05:09 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_set_direction(char c, t_info *info)
@@ -87,7 +87,7 @@ static void	ft_set_direction(char c, t_info *info)
 }
 
 /*
- * <cat>scube_3D</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_get_pos_player(char **map, t_info *info)
@@ -162,6 +162,7 @@ void	ft_check_map(t_info *info)
 	map_cpy = ft_strarraycpy(info->map);
 	if (!map_cpy)
 		ft_perror_exit(E_MALLOC, info);
+	info->is_valid = 1;
 	ft_flood_fill(map_cpy, info->user_x, info->user_y, info);
 	ft_free_array(map_cpy);
 	if (!info->is_valid)

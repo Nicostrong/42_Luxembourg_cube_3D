@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 08:34:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:07:51 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	ft_set_dir_and_plan(t_info *info, t_raycast *ray)
 static void	ft_cal_ray_dir(t_raycast *ray)
 {
 	double	camera_x;
-	
+
 	camera_x = 2 * ray->x / (double)(WIDTH - 1) - 1;
 	ray->ray_dir_x = ray->dir_x + ray->plane_x * camera_x;
 	ray->ray_dir_y = ray->dir_y + ray->plane_y * camera_x;
@@ -124,57 +124,6 @@ static void	ft_init_dda(t_info *info, t_raycast *ray)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_hit_wall(t_info *info, t_raycast *ray)
- * </summary>
- *
- * <description>
- * 	ft_hit_wall check if the ray hit a wall.
- * </description>
- *
- * <param type="t_info *" name="info">general structure</param>
- * <param type="t_raycast *" name="ray">raycasting structure</param>
- *
- * <return>
- * 	void.
- * </return>
- * 
- */
-static void	ft_hit_wall(t_info *info, t_raycast *ray)
-{
-	while (info->map[ray->map_y][ray->map_x] != '1')
-	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-			ray->wall = 2;
-			if (ray->step_x == -1)
-				ray->wall = 0;
-			ray->texture = info->w_e_img;
-			if (ray->step_x == -1)
-				ray->texture = info->w_w_img;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-			ray->wall = 3;
-			if (ray->step_y == -1)
-				ray->wall = 1;
-			ray->texture = info->w_s_img;
-			if (ray->step_y == -1)
-				ray->texture = info->w_n_img;
-		}
-	}
-	return ;
-}
-
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
  * 	void	ft_raycasting(t_info *info)
  * </summary>
  *
@@ -192,10 +141,11 @@ static void	ft_hit_wall(t_info *info, t_raycast *ray)
 int	ft_raycasting(t_info *info)
 {
 	t_raycast	ray;
-	t_lst_ray	*ray_list = NULL;
+	t_lst_ray	*ray_list;
 
 	if (!info->move)
 		return (0);
+	ray_list = NULL;
 	mlx_clear_window(info->mlx, info->game->win);
 	ft_set_dir_and_plan(info, &ray);
 	ray.x = -1;
@@ -213,6 +163,5 @@ int	ft_raycasting(t_info *info)
 	ft_free_ray_list(ray_list);
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;
-	ft_minimap(info);
 	return (0);
 }

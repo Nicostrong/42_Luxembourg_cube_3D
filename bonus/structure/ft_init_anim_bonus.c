@@ -6,16 +6,15 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:39:02 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:50:21 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
-#include "../../includes/error_bonus.h"
 #include "../../includes/setting_game_bonus.h"
 
 /*
- * <cat>so_long</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	void	ft_init_anim_img(t_info *info, t_anim *col)
@@ -25,7 +24,7 @@
  * 	ft_init_anim_image initialise all image of the collectable animation.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  * <param type="t_anim *" name="col">anim structure for collectable</param>
  *
  * <return>
@@ -55,7 +54,7 @@ static void	ft_init_anim_img(t_info *info, t_anim *col)
 }
 
 /*
- * <cat>so_long</cat>
+ * <cat>cube_3D</cat>
  *
  * <summary>
  * 	t_anim	*ft_init_anim(t_info *info)
@@ -65,14 +64,13 @@ static void	ft_init_anim_img(t_info *info, t_anim *col)
  * 	ft_init_anim initialise the animation structure for collectable.
  * </description>
  *
- * <param type="t_info *" name="info">structure info</param>
+ * <param type="t_info *" name="info">main structure</param>
  *
  * <return>
  * 	pointer to animation structure of collectable.
  * </return>
  *
  */
-
 t_anim	*ft_init_anim(t_info *info)
 {
 	t_anim	*col;

@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:17:18 by phkevin           #+#    #+#             */
-/*   Updated: 2025/02/08 15:33:03 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/10 10:14:30 by nfordoxc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,35 @@
 
 # if defined(__linux__)
 
-	# include "../lib/mlx_linux/mlx.h"
-	# include <X11/keysym.h>
-	# define LINUX			1
-	# define MACOS			0
-	# define LOOP_END		mlx_loop_end
-	# define DESTROY		mlx_destroy_display
+#  include "../lib/mlx_linux/mlx.h"
+#  include <X11/keysym.h>
+#  define LINUX			1
+#  define MACOS			0
+#  define LOOP_END		mlx_loop_end
+#  define DESTROY		mlx_destroy_display
 
-# elif defined(__APPLE__) && defined(__MACH__)
+# elif defined(__APPLE__)
+#  if defined(__MACH__)
 
-	# include "../lib/mlx_mac/mlx.h"
-	# define MACOS			1
-	# define LINUX			0
-	# define KA				0
-	# define KE				14
-	# define KZ				6
-	# define KQ				12
-	# define KS				1
-	# define KD				2
-	# define UP				126
-	# define DOWN			125
-	# define LEFT			123
-	# define RIGHT			124
-	# define ESCAP			53
-	# define SPACE			49
-	# define LOOP_END		(void)
-	# define DESTROY		(void)
+#   include "../lib/mlx_mac/mlx.h"
+#   define MACOS		1
+#   define LINUX		0
+#   define KA			0
+#   define KE			14
+#   define KZ			6
+#   define KQ			12
+#   define KS			1
+#   define KD			2
+#   define UP			126
+#   define DOWN			125
+#   define LEFT			123
+#   define RIGHT		124
+#   define ESCAP		53
+#   define SPACE		49
+#   define LOOP_END		(void)
+#   define DESTROY		(void)
 
+#  endif
 # endif
 
 /*

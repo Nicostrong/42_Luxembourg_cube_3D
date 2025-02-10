@@ -6,13 +6,14 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:55:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/04 12:11:59 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/10 07:44:44 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube_3d_bonus.h"
 #include "../../includes/setting_game_bonus.h"
 #include "../../includes/minimap_bonus.h"
+#include "../../includes/raycasting_bonus.h"
 
 /*
  * <cat>cube_3D</cat>
@@ -44,5 +45,6 @@ int	ft_mouse_move(int x, int y, t_info *info)
 	info->mouse_rot = x;
 	info->move = 1;
 	ft_minimap(info);
+	ft_raycasting(info);
 	return (0);
 }

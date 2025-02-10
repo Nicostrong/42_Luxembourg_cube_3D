@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	ft_raycasting(info);
 	mlx_hook(info->game->win, 17, 0, &ft_exit, info);
 	mlx_hook(info->mini->win, 17, 0, &ft_exit, info);
-	//mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
+	mlx_hook(info->game->win, 6, 1L << 6, &ft_mouse_move, info);
 	if (LINUX)
 	{
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key, info);

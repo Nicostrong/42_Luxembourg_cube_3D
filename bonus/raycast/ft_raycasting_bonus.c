@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:07:51 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 13:49:39 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	ft_cal_ray_dir(t_raycast *ray)
  * 	void	ft_init_dda(t_info *info, t_raycast *ray)
  * </summary>
  *
- * <description>
+ * <description>	//ft_print_minimap(info, mini.map);
  * 	ft_init_dda initialize the DDA algorithm.
  * </description>
  *
@@ -161,7 +161,7 @@ int	ft_raycasting(t_info *info)
 	}
 	ft_draw_image(info, ray_list);
 	ft_free_ray_list(ray_list);
-	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 1, 1);
 	info->move = 0;
 	return (0);
 }

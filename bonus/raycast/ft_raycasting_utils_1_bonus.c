@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting_utils_1_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:52:19 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/10 07:52:45 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 14:10:13 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_init_draw_column(t_info *info, t_raycast *ray)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_set_pixel_color(t_info *info, t_raycast *ray, char *pixel, int y)
+ * 	void	ft_set_pix_col(t_info *info, t_raycast *ray, int y)
  * </summary>
  *
  * <description>
@@ -57,7 +57,6 @@ static void	ft_init_draw_column(t_info *info, t_raycast *ray)
  *
  * <param type="t_info *" name="info">main structure</param>
  * <param type="t_raycast *" name="ray">raycasting structure</param>
- * <param type="char *" name="pixel">value of the pixel</param>
  * <param type="int" name="y">position of pixel in y</param>
  * 
  * <return>
@@ -65,22 +64,18 @@ static void	ft_init_draw_column(t_info *info, t_raycast *ray)
  * </return>
  * 
  */
-static void	ft_set_pixel_color(t_info *info, t_raycast *ray, char *pixel, int y)
+static void	ft_set_pix_col(t_info *info, t_raycast *ray, int y)
 {
 	int	tex_y;
 	int	color;
 
-	if (y < ray->draw_start)
-		*(unsigned int *)pixel = info->sky_color->color;
-	else if (y < ray->draw_end)
+	if ((y >= ray->draw_start) && (y < ray->draw_end))
 	{
 		tex_y = ((int)ray->tex_pos) % ray->texture->h;
 		ray->tex_pos += ray->step;
 		color = ft_get_pixel_color(ray->texture, ray->text_x, tex_y);
 		ft_put_pixel_color(info->game, ray->x, y, color);
 	}
-	else
-		*(unsigned int *)pixel = info->floor_color->color;
 	return ;
 }
 
@@ -92,7 +87,8 @@ static void	ft_set_pixel_color(t_info *info, t_raycast *ray, char *pixel, int y)
  * </summary>
  *
  * <description>
- * 	ft_draw_column set all pixel of a column pixel one by one.
+ * 	ft_draw_column set all pixel of a 	ft_put_sky(info, 0, 0);
+	ft_put_floor(info, 0, HEIGHT/2);column pixel one by one.
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
@@ -105,16 +101,12 @@ static void	ft_set_pixel_color(t_info *info, t_raycast *ray, char *pixel, int y)
  */
 static void	ft_draw_column(t_info *info, t_raycast *ray)
 {
-	int		y;
-	char	*pixel;
+	int	y;
 
 	ft_init_draw_column(info, ray);
 	y = -1;
 	while (++y < HEIGHT)
-	{
-		pixel = ray->base_pixel + y * info->game->size;
-		ft_set_pixel_color(info, ray, pixel, y);
-	}
+		ft_set_pix_col(info, ray, y);
 	return ;
 }
 
@@ -143,6 +135,8 @@ void	ft_draw_image(t_info *info, t_lst_ray *lst_ray)
 	t_lst_ray	*current;
 	t_lst_ray	*next;
 
+	ft_put_sky(info, 0, 0);
+	ft_put_floor(info, 0, HEIGHT / 2);
 	current = lst_ray;
 	while (current && current->next)
 	{

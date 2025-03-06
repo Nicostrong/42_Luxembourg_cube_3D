@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/07 13:53:40 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/06 13:33:31 by nfordoxc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	ft_get_map(t_info *info)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	t_color	*ft_extract_color(char *str)
+ * 	int	ft_extract_color(char *str)
  * </summary>
  *
  * <description>
@@ -110,17 +110,17 @@ static void	ft_get_map(t_info *info)
  * <param type="t_info *" name="info">main structure/param>
  *
  * <return>
- * 	void.
+ * 	0 if no error, or 1
  * </return>
  *
  */
-static void	ft_extract_color(char *str, char *color, t_info *info)
+static int	ft_extract_color(char *str, char *color, t_info *info)
 {
 	char	**array;
 	t_color	*new;
 
 	if (!str)
-		return ;
+		return (0);
 	array = ft_split(color, ',');
 	new = ft_set_color_struct(info, array);
 	ft_free_array(array);
@@ -128,9 +128,10 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 		new->g < 0 || new->g > 255 || new->b < 0 || new->b > 255)
 	{
 		if (ft_strequal(str, "F"))
-			ft_perror_exit(E_F_COLOR, info);
+			ft_putendl_fd(E_F_COLOR, 2);
 		else if (ft_strequal(str, "C"))
-			ft_perror_exit(E_C_COLOR, info);
+			ft_putendl_fd(E_C_COLOR, 2);
+		return (ft_free((void **)&new), 1);
 	}
 	if (ft_strequal(str, "F"))
 		info->floor_color = new;
@@ -138,7 +139,7 @@ static void	ft_extract_color(char *str, char *color, t_info *info)
 		info->sky_color = new;
 	else
 		ft_free((void **)&new);
-	return ;
+	return (0);
 }
 
 /*
@@ -174,7 +175,7 @@ static int	ft_extract_info(t_info *info, char **array)
 				!(*(info->info_map[i].t_img))->img_path)
 				(*(info->info_map[i].t_img))->img_path = ft_strdup(array[1]);
 			else if (info->info_map[i].color)
-				ft_extract_color(array[0], array[1], info);
+				return (ft_extract_color(array[0], array[1], info));
 			return (0);
 		}
 	}
@@ -223,6 +224,7 @@ void	ft_read_file(t_info *info)
 		if (!error)
 			info->line = get_next_line(info->fd);
 	}
+	get_next_line(-1);
 	if (error)
 		ft_perror_exit(E_PARAM, info);
 	return ;

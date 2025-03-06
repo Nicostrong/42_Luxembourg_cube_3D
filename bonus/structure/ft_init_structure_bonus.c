@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_structure_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:57:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 10:34:25 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ static void	ft_init_arrays(t_info *info)
 	if (!info->colors || !info->widths || !info->heights)
 		ft_perror_exit(E_MALLOC, info);
 	return ;
+}
+
+static void	ft_init_info_path2(t_info *info, t_info_map *info_map)
+{
+	info_map[5].key = "CT";
+	info_map[5].t_img = &info->s_img;
+	info_map[6].key = "P";
+	info_map[6].t_img = &info->player;
+	info_map[7].key = "D";
+	info_map[7].t_img = &info->door;
+	info_map[8].key = "F";
+	info_map[8].color = &info->floor_color;
+	info_map[9].key = "C";
+	info_map[9].color = &info->sky_color;
 }
 
 /*
@@ -77,16 +91,7 @@ static t_info_map	*ft_init_info_path(t_info *info)
 	info_map[3].t_img = &info->w_e_img;
 	info_map[4].key = "FT";
 	info_map[4].t_img = &info->f_img;
-	info_map[5].key = "CT";
-	info_map[5].t_img = &info->s_img;
-	info_map[6].key = "P";
-	info_map[6].t_img = &info->player;
-	info_map[7].key = "D";
-	info_map[7].t_img = &info->door;
-	info_map[8].key = "F";
-	info_map[8].color = &info->floor_color;
-	info_map[9].key = "C";
-	info_map[9].color = &info->sky_color;
+	ft_init_info_path2(info, info_map);
 	return (info_map);
 }
 
@@ -125,8 +130,8 @@ t_info	*ft_init_info(char *path)
 	ft_init_mlx(info);
 	ft_init_img(info);
 	info->c_anim = ft_init_anim(info);
-	info->thread = ft_init_thread(info);
 	info->info_map = ft_init_info_path(info);
+	info->mouse_rot = WIDTH / 2;
 	info->move = 1;
 	return (info);
 }

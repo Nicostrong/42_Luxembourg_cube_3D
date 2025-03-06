@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minimap_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:30:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 14:37:32 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static void	ft_set_img(t_info *info, t_mini *mini)
  * </return>
  *
  */
-static int	ft_get_map_case(int coord, int *sizes, int max_value)
+int	ft_get_map_case(int coord, int *sizes, int max_value)
 {
 	int	i;
 	int	cumulative_size;
@@ -132,57 +132,6 @@ static int	ft_get_map_case(int coord, int *sizes, int max_value)
 			return (i);
 	}
 	return (-1);
-}
-
-/*
- * <cat>cube_3D</cat>
- *
- * <summary>
- * 	void	ft_draw_ray(t_info *info, double x, double y, char **map)
- * </summary>
- *
- * <description>
- * 	ft_dray_ray draw the ray from the player to the limit of the window or the 
- *  first wall.
- * </description>
- *
- * <param type="t_info *" name="info">main structure</param>
- * <param type="double" name="x">position of the player in x</param>
- * <param type="double" name="y">position of the player in y</param>
- * <param type="char **" name="map">minimap array</param>
- *
- * <return>
- * 	void.
- * </return>
- *
- */
-static void	ft_draw_ray(t_info *info, double angle, double x, double y, char **map)
-{
-	int		grid_x;
-	int		grid_y;
-	int		i;
-	double	dx;
-	double	dy;
-
-	i = 0;
-	dx = cos(angle);
-	dy = sin(angle);
-	while (x >= 0 && y >= 0 && x < MINI_W && y < MINI_H && i < 18)
-	{
-		grid_x = ft_get_map_case((int)x, info->widths, info->mini_w);
-		grid_y = ft_get_map_case((int)y, info->heights, info->mini_h);
-		if (grid_x < 0 || grid_x >= info->mini_w || \
-			grid_y < 0 || grid_y >= info->mini_h)
-			return ;
-		if (map[grid_y][grid_x] == '1' || map[grid_y][grid_x] == ' ')
-			return ;
-		if (map[grid_y][grid_x] == 'C' || map[grid_y][grid_x] == 'F')
-			i++;
-		mlx_pixel_put(info->mlx, info->mini->win, (int)x, (int)y, BLUE);
-		x += dx;
-		y += dy;
-	}
-	return ;
 }
 
 /*
@@ -214,7 +163,6 @@ int	ft_minimap(t_info *info)
 	mini.map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
-	//ft_print_minimap(info, mini.map);
 	ft_set_img(info, &mini);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	if (MACOS && info->player->img)
@@ -223,9 +171,9 @@ int	ft_minimap(t_info *info)
 			MINI_H / 2 - (MINI_S_PL / 2));
 	else
 		ft_put_player(info, info->player, MINI_W / 2, MINI_H / 2);
-	ft_draw_ray(info, info->user_deg - (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);
-	ft_draw_ray(info, info->user_deg, MINI_W / 2, MINI_H / 2, mini.map);
-	ft_draw_ray(info, info->user_deg + (M_PI / 6), MINI_W / 2, MINI_H / 2, mini.map);
+	ft_d_rmi(info, MINI_W / 2, MINI_H / 2, mini.map);
+	ft_d_r(info, MINI_W / 2, MINI_H / 2, mini.map);
+	ft_d_rma(info, MINI_W / 2, MINI_H / 2, mini.map);
 	ft_free_array(mini.map);
 	return (0);
 }

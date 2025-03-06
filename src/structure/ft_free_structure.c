@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_structure.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:11:56 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/06 13:25:57 by nfordoxc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

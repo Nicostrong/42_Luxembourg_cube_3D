@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_press_key_mac_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:28:39 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 14:05:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/17 12:03:08 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,5 @@ int	ft_press_key_mac(int keysym, t_info *info)
 		keysym == KQ || keysym == KD || keysym == KA || keysym == LEFT || \
 		keysym == KE || keysym == RIGHT || keysym == SPACE)
 		info->move = 1;
-	ft_minimap(info);
-	ft_raycasting(info);
 	return (0);
 }

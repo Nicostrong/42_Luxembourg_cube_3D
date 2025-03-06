@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setting_game_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:10:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:28:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 11:47:41 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # define WIDTH			1500					//	1920
 # define HEIGHT			1000					//	1080
 # define NBTEXTURES		6						//	number of textures
-# define ROTATE			0.02					//	in radian
+# define ROTATE			0.05					//	in radian
 # define STEP			0.05					//	size of step
 # define D_WALL			0.3						//	distance min near wall
 # define D_DOOR			0.2						//	distance min near door
+# define M_REFRESH		3						//	refresh x diff mouse
 
 /*
  *	Collectable

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
+#    By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/02/08 15:30:57 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/06 12:54:02 by nfordoxc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,20 @@ CC_DEF				=
 DEB					=	valgrind
 DEB_OPT				=	--tool=memcheck \
 						--leak-check=full \
-						--show-leak-kinds=definite,indirect,possible \
-						--track-fds=yes \
-						2> error
+						--show-leak-kinds=all \
+						--track-fds=yes
 
-ARG0				=	
+DEB_OUT				=	2> error
+
+ARG0				=	"./maps/error_test/C_novalid.cub"
+
+ARG1				=	./maps/error_test/EA_novalid.cub
+
+ARG2				=	./maps/error_test/SO_noexist.cub
+
+ARG3				=	./maps/error_test/F_noexist.cub
+
+ARG4				=	./maps/bmap_zarb5_f.cub
 
 RM					=	rm -f
 
@@ -137,7 +146,6 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/debug/ft_print_minimap_bonus.c \
 						./bonus/debug/ft_print_ray_bonus.c \
 						./bonus/debug/ft_print_sky_floor_bonus.c \
-						./bonus/debug/ft_print_thread_bonus.c \
 						./bonus/debug/ft_print_user_bonus.c \
 						./bonus/draw/ft_get_color_bonus.c \
 						./bonus/draw/ft_put_door_bonus.c \
@@ -147,6 +155,7 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/draw/ft_working_pixel_bonus.c \
 						./bonus/exit/ft_error_bonus.c \
 						./bonus/exit/ft_exit_bonus.c \
+						./bonus/minimap/ft_draw_circle.c \
 						./bonus/minimap/ft_minimap_utils_bonus.c \
 						./bonus/minimap/ft_minimap_bonus.c \
 						./bonus/parser/ft_check_arg_bonus.c \
@@ -158,26 +167,12 @@ SRC_BONUS_COM		=	./bonus/main_bonus.c \
 						./bonus/raycast/ft_raycasting_utils_1_bonus.c \
 						./bonus/raycast/ft_raycasting_utils_2_bonus.c \
 						./bonus/raycast/ft_raycasting_utils_3_bonus.c \
+						./bonus/raycast/ft_raycasting_utils_4_bonus.c \
 						./bonus/structure/ft_free_structure_bonus.c \
 						./bonus/structure/ft_init_anim_bonus.c \
 						./bonus/structure/ft_init_img_bonus.c \
 						./bonus/structure/ft_init_mlx_bonus.c \
 						./bonus/structure/ft_init_structure_bonus.c \
-						./bonus/thread/ft_clean_thread_bonus.c \
-						./bonus/thread/ft_init_thread_bonus.c \
-						./bonus/thread/ft_run_thread_bonus.c
-
-#						./bonus/thread/ft_run_thread_bonus.c \
-						./bonus/debug/ft_print_info_bonus.c \
-						./bonus/draw/ft_put_wall_bonus.c \
-						./bonus/exit/ft_error_bonus.c \
-						./bonus/exit/ft_exit_bonus.c \
-						./bonus/parser/ft_check_arg_bonus.c \
-						./bonus/parser/ft_parse_utils_1_bonus.c \
-						./bonus/parser/ft_parse_utils_2_bonus.c \
-						./bonus/parser/ft_parse_bonus.c \
-						./bonus/structure/ft_free_structure_bonus.c \
-						./bonus/structure/ft_init_structure_bonus.c
 
 SRC_BONUS			=	$(SRC_BONUS_COM) $(SRC_OS_BONUS)
 
@@ -331,6 +326,22 @@ $(GNL_DIR)/$(GNL_NAME):
 $(MLX_DIR)/$(MLX_NAME):
 	@$(MAKE) -sC $(MLX_DIR)
 
+deb:			all
+	@echo "$(BBLUE)==========	RUN DEBUG MODE	==========$(RESET)"
+ifeq ($(arg),ARG0)
+	$(DEB) $(DEB_OPT) ./$(NAME) $(ARG0) $(DEB_OUT)
+else ifeq ($(arg),ARG1)
+	$(DEB) $(DEB_OPT) ./$(NAME) $(ARG1) $(DEB_OUT)
+else ifeq ($(arg),ARG2)
+	$(DEB) $(DEB_OPT) ./$(NAME) $(ARG2) $(DEB_OUT)
+else ifeq ($(arg),ARG3)
+	$(DEB) $(DEB_OPT) ./$(NAME) $(ARG3) $(DEB_OUT)
+else ifeq ($(arg),ARG4)
+	$(DEB) $(DEB_OPT) ./$(NAME) $(ARG4) $(DEB_OUT)
+else
+	@echo "$(RESET)Usage: make deb arg=ARG0|ARG1|ARG2|ARG3|ARG4"
+endif
+
 clean:
 	$(call delete_progress, ./src/*.o)
 	$(call delete_progress, ./src/controller/*.o)
@@ -362,7 +373,7 @@ fclean: 		clean
 
 re: 			fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus deb
 
 ################################################################################
 #	Extra

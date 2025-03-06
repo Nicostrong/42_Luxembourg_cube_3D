@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_circle_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 14:32:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/03 09:49:20 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_pixel_put(t_info *info, int x, int y, int color)
  * </return>
  *
  */
-static void	coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
+static void	coloris_axe_2(t_info *info, int x, int y)
 {
 	int	i;
 	int	px;
@@ -75,10 +75,10 @@ static void	coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
 	int	py;
 	int	ny;
 
-	px = centx + y;
-	nx = centx - y;
-	py = centy + x;
-	ny = centy - x;
+	px = info->centx + y;
+	nx = info->centx - y;
+	py = info->centy + x;
+	ny = info->centy - x;
 	i = nx;
 	while (i <= px)
 	{
@@ -112,9 +112,9 @@ static void	coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
  * <return>
  * 	void.
  * </return>
- *
+ * 
  */
-static void	coloris_axe_1(t_info *info, int centx, int centy, int x, int y)
+static void	coloris_axe_1(t_info *info, int x, int y)
 {
 	int	i;
 	int	px;
@@ -122,10 +122,10 @@ static void	coloris_axe_1(t_info *info, int centx, int centy, int x, int y)
 	int	py;
 	int	ny;
 
-	px = centx + x;
-	nx = centx - x;
-	py = centy + y;
-	ny = centy - y;
+	px = info->centx + x;
+	nx = info->centx - x;
+	py = info->centy + y;
+	ny = info->centy - y;
 	i = nx;
 	while (i <= px)
 	{
@@ -168,10 +168,12 @@ void	ft_put_circle(t_info *info, int centx, int centy)
 	if (centx < 0 || centx >= WIDTH - PRAY || \
 		centy < 0 - PRAY || centy >= HEIGHT - PRAY)
 		return ;
+	info->centx = centx;
+	info->centy = centy;
 	while (y >= x)
 	{
-		coloris_axe_1(info, centx, centy, x, y);
-		coloris_axe_2(info, centx, centy, x, y);
+		coloris_axe_1(info, x, y);
+		coloris_axe_2(info, x, y);
 		x++;
 		if (x * x + y * y > PRAY * PRAY)
 			y--;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting_utils_2_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 07:43:04 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:08:48 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 14:53:11 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void	ft_set_pixel(t_info *info, t_raycast *ray)
  * 	3)	position in y to start to draw the wall.
  * 	4)	position in y to end to draw the wall.
  * 	5)	correction of both point to draw
- * 	6)	position of the texture
+ * 	6)	position of the		tex_y = ((int)ray->tex_pos) % ray->texture->h;
+		ray->tex_pos += ray->step;
+		color = ft_get_pixel_color(ray->texture, ray->text_x, tex_y);
+		ft_put_pixel_color(info->game, ray->x, y, color); texture
  * 	7)	coordonne X of the texture to print
  * </description>
  *
@@ -207,6 +210,12 @@ void	ft_hit_wall(t_info *info, t_raycast *ray)
 {
 	while (info->map[ray->map_y][ray->map_x] != '1')
 	{
+		if (info->map[ray->map_y][ray->map_x] == 'C')
+		{
+			ft_hit_door(info, ray);
+			ray->door = 1;
+			break ;
+		}
 		if (ray->side_dist_x < ray->side_dist_y)
 			ft_hit_wall_x(info, ray);
 		else

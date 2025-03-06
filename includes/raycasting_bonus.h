@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:06:45 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:23:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 14:12:03 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@
 int		ft_raycasting(t_info *info);
 
 void	ft_free_ray_list(t_lst_ray *lst_ray);
+void	ft_put_sky(t_info *info, int x, int y);
+void	ft_put_floor(t_info *info, int x, int y);
+void	ft_hit_door(t_info *info, t_raycast *ray);
 void	ft_hit_wall(t_info *info, t_raycast *ray);
 void	ft_set_pixel(t_info *info, t_raycast *ray);
+void	ft_hit_collect(t_info *info, t_raycast *ray);
 void	ft_draw_image(t_info *info, t_lst_ray *list);
 void	ft_set_limit_wall(t_info *info, t_raycast *ray);
 void	add_ray_to_list(t_lst_ray **list, t_raycast ray);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mouse_move_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:55:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/10 07:44:44 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/17 12:03:24 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@
 int	ft_mouse_move(int x, int y, t_info *info)
 {
 	(void)y;
-	if (x < info->mouse_rot)
-		ft_rotate(info, -ROTATE);
-	else if (x > info->mouse_rot)
-		ft_rotate(info, +ROTATE);
-	info->mouse_rot = x;
-	info->move = 1;
-	ft_minimap(info);
-	ft_raycasting(info);
+	info->mouse_diff++;
+	if (info->mouse_diff > M_REFRESH)
+	{
+		if ((x < info->mouse_rot + 100) && x < info->mouse_lc)
+			ft_rotate(info, -ROTATE);
+		else if ((x > info->mouse_rot - 100) && x > info->mouse_lc)
+			ft_rotate(info, +ROTATE);
+		info->mouse_lc = x;
+		info->move = 1;
+		info->mouse_diff = 0;
+	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_info_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:44:11 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/01/30 09:53:07 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 10:32:33 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,5 @@ void	ft_print_info(t_info *info)
 	ft_print_sky_floor(info);
 	ft_print_player_door(info);
 	ft_print_anim(info);
-	ft_print_thread(info);
 	return ;
 }

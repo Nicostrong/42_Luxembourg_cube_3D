@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:57 by phkevin           #+#    #+#             */
-/*   Updated: 2025/02/08 13:58:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 13:37:23 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,29 @@ static void	ft_title(void)
 	return ;
 }
 
+/**
+ * @brief Met à jour les rayons et la minimap.
+ * 
+ * Cette fonction met à jour l'affichage de la minimap 
+ * et exécute le raycasting pour le rendu.
+ * 
+ * @param info Structure contenant les informations du jeu.
+ * @return Retourne toujours 0.
+ */
+static int	ft_update_ray(t_info *info)
+{
+	ft_minimap(info);
+	ft_raycasting(info);
+	return (0);
+}
+
 /*
  * <cat>cube_3D</cat>
  *
  * <summary>
  *	cube_3D
  * </summary>
- *
- * <description>
- *	cube_3D is a 3D game playing with a map. The programm need to be lauching 
+ *&ft_raycastingg with a map. The programm need to be lauching 
  *	with a path to the map. The map need to be *.cub.
  * </description>
  *
@@ -66,7 +80,7 @@ static void	ft_title(void)
  * </return>
  *
  */
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_info	*info;
 
@@ -90,9 +104,7 @@ int main(int argc, char *argv[])
 		mlx_hook(info->game->win, 2, 1L << 0, &ft_press_key_mac, info);
 		mlx_hook(info->mini->win, 2, 1L << 0, &ft_press_key_mac, info);
 	}
-	//mlx_loop_hook(info->mlx, &ft_minimap, info);
-	//ft_create_thread(info, info->thread);
-	//mlx_loop_hook(info->mlx, &ft_raycasting, info);
+	mlx_loop_hook(info->mlx, &ft_update_ray, info);
 	mlx_loop(info->mlx);
 	return (0);
 }

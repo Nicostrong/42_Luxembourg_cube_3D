@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_structure_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:36:26 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:13:30 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 10:33:17 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,6 @@ void	ft_free_info(t_info *info)
 	ft_free((void **)&info->floor_color);
 	ft_free((void **)&info->sky_color);
 	ft_free((void **)&info->info_map);
-	if (info->thread)
-		ft_clean_thread_mutex(&info->thread);
 	ft_free_all_images(info);
 	ft_free_anim(info->c_anim, info);
 	ft_free_window(info);

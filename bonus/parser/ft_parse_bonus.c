@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:14 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:35:29 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 10:29:21 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void	ft_check_path(t_info *info)
 	if (info->s_img->img_path && access(info->s_img->img_path, F_OK) == -1)
 		ft_free((void **)&info->s_img->img_path);
 	if (info->player->img_path && access(info->player->img_path, F_OK) == -1)
-		error |= P_IMG_E;
+		ft_free((void **)&info->player->img_path);
 	if (info->door->img_path && access(info->door->img_path, F_OK) == -1)
 		error |= D_IMG_E;
 	if (error)

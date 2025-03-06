@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:21:54 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/06 07:27:50 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 14:37:12 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,15 @@ char			**ft_get_minimap(t_info *info);
 int				ft_minimap(t_info *info);
 int				ft_put_door(t_info *info, t_mini *mini);
 int				ft_put_item(t_info *info, t_mini *mini);
+int				ft_get_map_case(int coord, int *sizes, int max_value);
 
 void			ft_get_widths(t_info *info);
 void			ft_get_heights(t_info *info);
 void			ft_put_circle(t_info *info, int centx, int centy);
 void			ft_put_player(t_info *info, t_img *player, int x, int y);
+
+void			ft_d_rmi(t_info *info, double x, double y, char **map);
+void			ft_d_rma(t_info *info, double x, double y, char **map);
+void			ft_d_r(t_info *info, double x, double y, char **map);
 
 #endif

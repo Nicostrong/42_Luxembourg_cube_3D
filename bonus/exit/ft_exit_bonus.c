@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 08:32:59 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 14:47:09 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/24 13:42:00 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int	ft_perror_exit(char *str_error, t_info *info)
 		ft_putendl_fd(str_error, 2);
 	if (info)
 	{
-		//pthread_mutex_lock(info->thread->m_stop);
 		info->stop = 1;
-		//pthread_mutex_unlock(info->thread->m_stop);
 		ft_free_info(info);
 	}
 	exit(EXIT_FAILURE);
@@ -69,9 +67,7 @@ int	ft_exit(t_info *info)
 {
 	if (info)
 	{
-		//pthread_mutex_lock(info->thread->m_stop);
 		info->stop = 1;
-		//pthread_mutex_unlock(info->thread->m_stop);
 		LOOP_END(info->mlx);
 		ft_free_info(info);
 	}

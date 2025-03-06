@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ray_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 09:12:09 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 14:23:36 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/17 14:25:56 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_print_ray(t_info *info, t_raycast *ray)
 	printf("\tposition in x: %d\n", ray->x);
 	printf("\tray->side = %d\n", ray->side);
 	printf("\tray->wall = %d\n", ray->wall);
+	printf("\tray->door	 = %d\n", ray->door);
 	printf("\tray->dist_y = %.2f\n", ray->side_dist_y);
 	printf("\tray->dist_x = %.2f\n", ray->side_dist_x);
 	printf("\tray->map_x = %d\n", ray->map_x);

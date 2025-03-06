@@ -3,41 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structures_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 07:04:31 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:28:04 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/05 10:35:45 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_BONUS_H
 # define STRUCTURES_BONUS_H
-
-/*
- *	Library for threads
- */
-
-# include <pthread.h>
-
-typedef struct s_thread
-{
-	int				mut_map;		//	if m_map is initialized
-	int				mut_x;			//	if m_x is initialized
-	int				mut_y;			//	if m_y is initialized
-	int				mut_user_x;		//	if m_user_x is initialized
-	int				mut_user_y;		//	if m_user_y is initialized
-	int				mut_user_d;		//	if m_user_d is initialized
-	int				mut_stop;		//	if m_stop is initialized
-	pthread_t		t_mini;
-	pthread_t		t_game;
-	pthread_mutex_t	m_map;			// protection of access map
-	pthread_mutex_t	m_x;			// protection for position user in x round
-	pthread_mutex_t	m_y;			// protection for position user in y round
-	pthread_mutex_t	m_user_x;		// protection for position user in x float
-	pthread_mutex_t	m_user_y;		// protection for position user in y float
-	pthread_mutex_t	m_user_d;		// protection for rotation user
-	pthread_mutex_t	m_stop;			// protection for stop thread
-}	t_thread;
 
 /*
  *	Texture struct
@@ -121,6 +95,8 @@ typedef struct s_info
 	int			x;				//	position x of player
 	int			y;				//	position y of player
 	int			mouse_rot;		//	rotation with mouse mouse
+	int			mouse_diff;		//	interval refresh mouse
+	int			mouse_lc;		//	last x
 	int			p_nbr;			//	number of player
 	int			i_nbr;			//	number of item
 	int			i_col;			//	number of item collected
@@ -133,6 +109,8 @@ typedef struct s_info
 	int			*colors;		//	all color for a line of minimap
 	int			*widths;		//	all widths of minimap
 	int			*heights;		//	all heights of minimap
+	int			centx;
+	int			centy;
 	double		user_deg;		//	orientation of player in radian
 	double		user_y;			//	position y of player on map
 	double		user_x;			//	position x of player on map.
@@ -153,7 +131,6 @@ typedef struct s_info
 	t_color		*floor_color;	//	floor color
 	t_color		*sky_color;		//	sky color
 	t_anim		*c_anim;		//	animation of collectable
-	t_thread	*thread;		//	thread structure
 	t_info_map	*info_map;		//	Link between char and variable in structure
 }				t_info;
 
@@ -185,6 +162,7 @@ typedef struct s_raycast
 	int		step_y;				//	Direction du pas en Y
 	int		side;				//	Côté de la paroi touché (0 = X, 1 = Y)
 	int		wall;				//	Type de mur touché (Nord, Sud, Est, Ouest)
+	int		door;				//	Confirme la porte toucher
 	int		line_height;		//	Hauteur du mur affiché sur l’écran
 	int		draw_start;			//	Point de départ du tracé vertical
 	int		draw_end;			//	Point de fin du tracé vertical
@@ -228,14 +206,10 @@ void		ft_init_mlx(t_info *info);
 void		ft_init_img(t_info *info);
 void		ft_free_info(t_info *info);
 void		ft_free_window(t_info *info);
-void		ft_clean_thread_mutex(t_thread **thread);
-void		ft_create_thread(t_info *info, t_thread *thread);
 
 t_info		*ft_init_info(char *path);
 t_info		*ft_get_all_info(char *path);
 
 t_anim		*ft_init_anim(t_info *info);
-
-t_thread	*ft_init_thread(t_info *info);
 
 #endif

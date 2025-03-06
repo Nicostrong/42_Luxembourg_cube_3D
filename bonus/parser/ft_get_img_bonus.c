@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_img_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:04:52 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/08 15:38:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/17 13:08:54 by phkevin          ###   Luxembour.lu      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,3 +110,4 @@ void	ft_get_img(t_info **info)
 	ft_get_f_and_s_img(info);
 	return ;
 }
+z

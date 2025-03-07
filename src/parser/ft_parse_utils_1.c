@@ -50,7 +50,7 @@ static int	ft_ismap(char *line)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_get_map(t_info *info)
+ * 	int	ft_get_map(t_info *info)
  * </summary>
  *
  * <description>
@@ -60,25 +60,23 @@ static int	ft_ismap(char *line)
  * <param type="t_info *" name="info">main structure/param>
  *
  * <return>
- * 	void.
+ * 	0 if no error of map or 1 if error
  * </return>
  *
  */
-static void	ft_get_map(t_info *info)
+static int	ft_get_map(t_info *info)
 {
-	char	**map;
-
-	map = ft_calloc(1, sizeof(char *));
-	if (!map)
+	info->map = ft_calloc(1, sizeof(char *));
+	if (!info->map)
 		ft_perror_exit(E_MALLOC, info);
 	while (info && info->line && ft_strncmp(info->line, "\n", 1))
 	{
 		if (ft_strlen(info->line) < 3)
-			ft_perror_exit(E_MAP, info);
+			return (1);
 		if (ft_ismap(info->line))
 		{
-			map = ft_append_str(map, info->line);
-			if (!map)
+			info->map = ft_append_str(info->map, info->line);
+			if (!info->map)
 				ft_perror_exit(E_MALLOC, info);
 			if (info->w < (int)ft_strlen(info->line))
 				info->w = ft_strlen(info->line);
@@ -87,10 +85,9 @@ static void	ft_get_map(t_info *info)
 			info->line = get_next_line(info->fd);
 		}
 		else
-			ft_perror_exit(E_MAP, info);
+			return (1);
 	}
-	info->map = map;
-	return ;
+	return (0);
 }
 
 /*
@@ -186,7 +183,7 @@ static int	ft_extract_info(t_info *info, char **array)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	ft_read_file(t_info *info)
+ * 	void	ft_read_file(t_info *info, int error)
  * </summary>
  *
  * <description>
@@ -194,29 +191,29 @@ static int	ft_extract_info(t_info *info, char **array)
  *  info.
  * </description>
  *
- * <param type="t_info *" name="info">main structure/param>
+ * <param type="t_info *" name="info">main structure</param>
+ * <param type="int" name="error">bool error value</param>
  *
  * <return>
  * 	void.
  * </return>
  *
  */
-void	ft_read_file(t_info *info)
+void	ft_read_file(t_info *info, int error)
 {
 	char	**array;
-	int		error;
 
-	error = 0;
 	info->line = get_next_line(info->fd);
 	while (info->line && !error)
 	{
 		if (ft_strlen(info->line) > 0)
 		{
 			array = ft_split(info->line, ' ');
+			array[0] = ft_strtrimfree(array[0], "\t");
 			if (array[0] && array[1] && !ft_ismap(info->line))
 				error = ft_extract_info(info, array);
 			else if (ft_ismap(info->line))
-				ft_get_map(info);
+				error = ft_get_map(info);
 			ft_free_array(array);
 		}
 		ft_free((void **)&info->line);

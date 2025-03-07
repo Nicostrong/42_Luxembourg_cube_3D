@@ -41,7 +41,7 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 		return ;
 	if (map[y][x] == '1' || map[y][x] == '2')
 		return ;
-	if (map[y][x] == ' ')
+	if (map[y][x] == ' ' || x == 0 || y == 0 || x == (int)ft_strlen(map[y]))
 	{
 		info->is_valid = 0;
 		return ;

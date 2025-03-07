@@ -145,7 +145,6 @@ int	ft_raycasting(t_info *info)
 	if (!info->move)
 		return (0);
 	ray_list = NULL;
-	mlx_clear_window(info->mlx, info->game->win);
 	ft_set_dir_and_plan(info, &ray);
 	ray.x = -1;
 	while (++ray.x < WIDTH)
@@ -160,6 +159,7 @@ int	ft_raycasting(t_info *info)
 	}
 	ft_draw_image(info, ray_list);
 	ft_free_ray_list(ray_list);
+	mlx_clear_window(info->mlx, info->game->win);
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 0, 0);
 	info->move = 0;
 	return (0);

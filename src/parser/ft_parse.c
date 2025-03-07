@@ -150,9 +150,9 @@ static void	ft_check_color_s_f(t_info *info)
 
 	error = 0;
 	if (!info->sky_color)
-		error |= 1 << 6;
+		error |= E_COL_S;
 	if (!info->floor_color)
-		error |= 1 << 7;
+		error |= E_COL_F;
 	if (error)
 		ft_error_msg(error, 1, info);
 	return ;
@@ -180,9 +180,11 @@ static void	ft_check_color_s_f(t_info *info)
 t_info	*ft_get_all_info(char *path)
 {
 	t_info	*info;
+	int		error;
 
+	error = 0;
 	info = ft_init_info(path);
-	ft_read_file(info);
+	ft_read_file(info, error);
 	ft_check_color_s_f(info);
 	ft_check_path(info);
 	ft_check_map(info);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strtrimfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 14:39:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by nfordoxc         ###   Luxembourg.lu     */
+/*   Created: 2025/03/07 10:39:32 by nfordoxc          #+#    #+#             */
+/*   Updated: 2025/03/07 18:11:18 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ char	*ft_strtrimfree(char *s1, char const *set)
 	while (ft_strchr(set, s1[end - 1]) && end > start)
 		end--;
 	new = ft_substr(s1, start, (end - start));
-    free(s1);
+	free(s1);
 	return (new);
 }

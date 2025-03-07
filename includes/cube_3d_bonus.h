@@ -87,9 +87,9 @@ int		ft_exit(t_info *info);
 int		ft_perror_exit(char *str_error, t_info *info);
 
 void	ft_init_mlx(t_info *info);
-void	ft_read_file(t_info *info);
 void	ft_check_map(t_info *info);
 void	ft_check_arg(int argc, char **argv);
+void	ft_read_file(t_info *info, int error);
 
 t_color	*ft_set_color_struct(t_info *info, char **a_color);
 

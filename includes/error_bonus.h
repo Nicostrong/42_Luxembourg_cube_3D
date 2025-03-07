@@ -55,7 +55,7 @@
 # define E_C_COLOR	"\033[1;31mError\n\tValue sky color not available.\033[0m"
 # define E_XPM		"\033[1;31mError\n\tXPM error.\033[0m"
 # define E_CLOSE	"\033[1;31mError\n\tMap not closed.\033[0m"
-# define E_SPAWN	"\033[1;31mError\n\tMissing player on map.\033[0m"
+# define E_SPAWN	"\033[1;31mError\n\tMissing or many player on map.\033[0m"
 # define E_EXIT		"\033[1;31mError\n\tMissing exit on map.\033[0m"
 
 /*

@@ -132,7 +132,7 @@ static char * sky_xpm[] = {
 "8.	c #8C735A",
 "9.	c #856B55",
 "0.	c #886E58",
-"  . + @ . # $ % $ & & * $ = . . % @ @ $ & & . % - ; % > + - + * # & @ @ , $ @ ' @ $ . . $ % @ ) . > + @ . & . % @ $ & . @ ! @ @ ",
+"~ { ] { ~ ^ / ( _ / _ _ : < [ } | { { 1 | | 1 _ / / _ { { { { _ _ / / < < < 2 / / / / / / / / < < 3 _ / 4 < { | ] 1 / ^ 5 ^ < { ",
 "~ { ] { ~ ^ / ( _ / _ _ : < [ } | { { 1 | | 1 _ / / _ { { { { _ _ / / < < < 2 / / / / / / / / < < 3 _ / 4 < { | ] 1 / ^ 5 ^ < { ",
 "6 7 / ^ 8 9 ^ ~ 0 a a 5 9 7 ] b c { _ ] d d e _ 7 < / < ~ 7 ~ _ 1 1 / 7 5 8 9 8 5 ~ / / < ~ f 7 7 7 ^ a a 7 / / < ^ 6 9 9 a < { ",
 "5 ~ _ ~ a ^ _ 1 _ ^ a 5 6 < ] b | _ _ ] d d ] 1 1 { < 7 a ^ ~ _ 1 1 1 1 1 < 7 ~ _ | ] { < 7 7 _ | 1 { { 1 | 1 _ ~ ^ 5 5 ^ ~ / { ",
@@ -193,6 +193,7 @@ static char * sky_xpm[] = {
 "M L R T F S Y K N Y $.4.y Y *.F K Q L O Y O K L M T T Q 7.A ,.T M  .S *.R R O O x L P Q M y 8.(.6 7 _ 1 { _ { 1 _ ~ 8 9 8 a < 1 ",
 "8 9.^ ~ < / < < / _ { { < ~ ~ 7 a 6 6 5 ^ ^ 5 a < / / _ / < < / { ] h h | / 0.6 6 5 ^ 7 ^ 5 8 9 6 ^ 7 ^ 6 8 5 < _ / 7 5 6 ^ < _ ",
 "/ / < ~ 7 ^ a a ^ ~ / _ ~ ~ < < ~ ~ ~ / / 7 6 9 8 8 6 9.5 5 a ^ ~ _ 1 _ a ^ / { { _ / < < { | _ ^ / { _ ^ 6 6 ^ ~ ~ ^ 7 < _ 1 ] ",
-"/ / < ~ 7 ^ ^ 7 < / { 1 1 | 1 { / < < / / 7 6 8 7 ~ 7 7 a 5 8 9 9 8 6 5 5 ~ { ] e | / ~ 7 ~ / ^ 8 ~ { 1 ~ 5 6 7 / { { _ / / / / ",
-"] | 1 _ / < < ~ 7 ^ a ^ < < 7 5 8 8 a < _ / 7 ~ | e e ] | _ < 7 ^ ^ 7 7 ~ < / _ 1 ] ] | { / ~ a a / 1 1 ~ 5 6 ^ < / < / _ < 7 ^ ",
-"k h | u ~ ^ a 5 6 8 g a h b ] _ ~ f / { { < 5 6 ~ < / / / ~ ^ a a a a a a a ^ 7 < { ] e ] | _ < ~ { 1 _ ^ 6 6 ^ 7 ^ 6 2 e 1 / 7 "};
+"V ` ` J L M K O K P Q /.S Y L M O S #.*.S Y J Y T O K K O J R N K Y #.*.J N L N R O O R O J V V J N L K J R z N R K Q (.V T J R ",
+"Y S W J M Q L N L P M K Y R L N V $.{.$.S T T T Y V S V O N N O J O N N K K K R J Y J O R R R Y V O K B J O R T ` ` Y O J O O O ",
+"J V W V R L R W ].$.S O J O R K K R O J T V W ` W T J K P  .H K T V L L Y T Y T V S S S S W ` V O R N P M O S S T Y T Y O J Y Y ",
+"P P P M N O Y V V S S V O K K K _._.K K R J Y Y O L P L K R R T W ` Y K N K J T W ` ` W S S S :.Q K J J J T W V R Q U P K O O O "};

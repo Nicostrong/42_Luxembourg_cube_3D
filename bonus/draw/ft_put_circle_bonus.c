@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_circle_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:28:07 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/03/03 09:49:20 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2025/03/07 18:03:41 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_pixel_put(t_info *info, int x, int y, int color)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	coloris_axe_2(t_info *info, int centx, int centy, int x, int y)
+ * 	void	coloris_axe_2(t_info *info, int x, int y)
  * </summary>
  *
  * <description>
@@ -57,8 +57,6 @@ static void	ft_pixel_put(t_info *info, int x, int y, int color)
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
- * <param type="int" name="centx">center in x</param>
- * <param type="int" name="centy">center in y</param>
  * <param type="int" name="x">coordinate in x</param>
  * <param type="int" name="y">coordinate in y</param>
  *
@@ -95,7 +93,7 @@ static void	coloris_axe_2(t_info *info, int x, int y)
  * <cat>cube_3D</cat>
  *
  * <summary>
- * 	void	coloris_axe_1(t_info *info, int centx, int centy, int x, int y)
+ * 	void	coloris_axe_1(t_info *info, int x, int y)
  * </summary>
  *
  * <description>
@@ -104,8 +102,6 @@ static void	coloris_axe_2(t_info *info, int x, int y)
  * </description>
  *
  * <param type="t_info *" name="info">main structure</param>
- * <param type="int" name="centx">center in x</param>
- * <param type="int" name="centy">center in y</param>
  * <param type="int" name="x">coordinate in x</param>
  * <param type="int" name="y">coordinate in y</param>
  *

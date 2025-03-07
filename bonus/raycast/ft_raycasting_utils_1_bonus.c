@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting_utils_1_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:52:19 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/03/05 14:10:13 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2025/03/07 18:08:47 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * <return>
  * 	void.
  * </return>
- * 
+ *
  */
 static void	ft_init_draw_column(t_info *info, t_raycast *ray)
 {

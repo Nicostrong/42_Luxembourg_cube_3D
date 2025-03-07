@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minimap_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 10:30:34 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/24 14:37:32 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2025/03/07 18:05:08 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,11 +159,11 @@ int	ft_minimap(t_info *info)
 
 	if (!info->move)
 		return (0);
-	mlx_clear_window(info->mlx, info->mini->win);
 	mini.map = ft_get_minimap(info);
 	ft_get_widths(info);
 	ft_get_heights(info);
 	ft_set_img(info, &mini);
+	mlx_clear_window(info->mlx, info->mini->win);
 	mlx_put_image_to_window(info->mlx, info->mini->win, info->mini->img, 0, 0);
 	if (MACOS && info->player->img)
 		mlx_put_image_to_window(info->mlx, info->mini->win, \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:45:32 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/03/05 13:49:39 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2025/03/07 18:08:36 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ int	ft_raycasting(t_info *info)
 	if (!info->move)
 		return (0);
 	ray_list = NULL;
-	mlx_clear_window(info->mlx, info->game->win);
 	ft_set_dir_and_plan(info, &ray);
 	ray.x = -1;
 	while (++ray.x < WIDTH)
@@ -161,6 +160,7 @@ int	ft_raycasting(t_info *info)
 	}
 	ft_draw_image(info, ray_list);
 	ft_free_ray_list(ray_list);
+	mlx_clear_window(info->mlx, info->game->win);
 	mlx_put_image_to_window(info->mlx, info->game->win, info->game->img, 1, 1);
 	info->move = 0;
 	return (0);

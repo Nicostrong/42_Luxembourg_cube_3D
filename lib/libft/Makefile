@@ -77,6 +77,7 @@ SRC				=	ft_charchr.c \
 					ft_append_str.c \
 					ft_strjoin.c \
 					ft_strtrim.c \
+					ft_strtrimfree.c \
 					ft_strremoveset.c \
 					ft_formatsubstr.c \
 					ft_split.c \

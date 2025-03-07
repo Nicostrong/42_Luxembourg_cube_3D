@@ -1,0 +1,23 @@
+NO ./gfx/nwall.xpm
+
+SO ./gfx/swall.xpm
+
+WE ./gfx/wwall.xpm
+
+
+F 255,248,220
+
+EA ./gfx/ewall.xpm
+
+FT ./gfx/floor.xpm
+CT ./gfx/sky.xpm
+
+
+C 135,206,250
+
+MAP
+ 11111
+1001001
+1011001
+10W111
+ 11

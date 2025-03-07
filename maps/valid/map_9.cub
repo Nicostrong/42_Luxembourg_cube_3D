@@ -1,10 +1,10 @@
-  NO ./gfx/colorstone.xpm
+  NO ./gfx/nwall.xpm
 
-     SO ./gfx/bluestone.xpm
+     SO ./gfx/swall.xpm
 
-  WE ./gfx/greystone.xpm
+  WE ./gfx/wwall.xpm
 
-EA ./gfx/wood.xpm
+EA ./gfx/ewall.xpm
 
 FT ./gfx/floor.xpm
 CT ./gfx/sky.xpm
@@ -14,8 +14,8 @@ C 135,206,250
 
 MAP
 1111111111111111111111111
-1000000000110000000000001
-101100000111000000S000001
+1000000000110S00000000001
+1011000001110000000000001
 1001000000000000000000001
 1111111110110000011100001
 1000000000110000011101111

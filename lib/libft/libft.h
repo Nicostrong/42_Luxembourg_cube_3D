@@ -71,6 +71,7 @@ char		*ft_strdup(const char *s);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_join_array(char **a_str, char *sep);
+char		*ft_strtrimfree(char *s1, char const *set);
 char		*ft_strndup(const char *s, size_t nbr_char);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);

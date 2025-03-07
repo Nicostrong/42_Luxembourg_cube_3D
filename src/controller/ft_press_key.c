@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_press_key.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phkevin <phkevin@42luxembourg.lu>          +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:55 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/10 14:07:45 by phkevin          ###   Luxembour.lu      */
+/*   Updated: 2025/03/07 17:50:35 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 

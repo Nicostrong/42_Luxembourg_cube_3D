@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 08:56:01 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/03/07 17:53:23 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/09 10:51:55 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	ft_flood_fill(char **map, int x, int y, t_info *info)
 		return ;
 	if (map[y][x] == '1' || map[y][x] == '2')
 		return ;
-	if (map[y][x] == ' ' || x == 0 || y == 0 || x == (int)ft_strlen(map[y]))
+	if (map[y][x] == ' ' || x == 0 || y == 0 || y == (info->h - 1) \
+		|| x == (int)ft_strlen(map[y]))
 	{
 		info->is_valid = 0;
 		return ;

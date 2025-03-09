@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 09:46:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/03/07 17:49:47 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/09 10:53:47 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,20 @@ list_error_map=(
 	./maps/bad/EA_novalid.cub
 	./maps/bad/F_noexist.cub
 	./maps/bad/F_novalid.cub
-	./maps/bad/Map_noclose.cub
-	./maps/bad/Map_noexist.cub
-	./maps/bad/Map_novalid.cub
+	./maps/bad/map_noexist.cub
+	./maps/bad/map_novalid_1.cub
+	./maps/bad/map_novalid_2.cub
 	./maps/bad/multi_player.cub
+	./maps/bad/no_closed_1.cub	
+	./maps/bad/no_closed_2.cub
+	./maps/bad/no_closed_3.cub
+	./maps/bad/no_closed_4.cub
+	./maps/bad/no_closed_5.cub
+	./maps/bad/no_closed_6.cub
+	./maps/bad/no_closed_7.cub
+	./maps/bad/no_closed_8.cub
+	./maps/bad/no_closed_9.cub
+	./maps/bad/no_closed_10.cub
 	./maps/bad/NO_noexist.cub
 	./maps/bad/NO_novalid.cub
 	./maps/bad/no_player.cub

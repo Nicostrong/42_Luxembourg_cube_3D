@@ -135,11 +135,6 @@ static char	*ft_get_line(char *str)
 		*(line + index) = *(str + index);
 		index++;
 	}
-	/*if (*(str + index) == '\n')
-	{
-		*(line + index) = '\n';
-		index++;
-	}*/
 	*(line + index) = 0;
 	return (line);
 }

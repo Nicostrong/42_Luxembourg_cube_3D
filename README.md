@@ -1,8 +1,8 @@
-# Cube3D
+# __Cube3D__
 
 Cube3D est un projet de l'école 42 qui consiste a creer un jeu en 3D en utilisant la librairie mlx de l'école 42 et l'algorithme de raycasting.
 
-## Table des matières
+## __Table des matières__
 
 -[Introduction](#introduction)
 -[Mandatory](#mandatory)
@@ -12,11 +12,11 @@ Cube3D est un projet de l'école 42 qui consiste a creer un jeu en 3D en utilisa
 -[Installation_Bonus](#installation)
 -[Auteurs](#auteurs)
 
-## Introduction
+## __Introduction__
 
 <img src="./images/Mandatory.png" alt="Titre du jeu en mandatory" width="400" height="100">
 
-## Mandatory
+## __Mandatory__
 
 <img src="./images/Game_Mandatory.png" alt="Image du gameplay en verison mandatory" width="600" height="400">
 
@@ -31,9 +31,9 @@ git clone git@github.com:Nicostrong/42_Luxembourg_cube_3D.git
 
 ## Bonus
 
-<img src="./images/Bonus.png" alt="Titre du jeu en bonus" width="600" height="300">
+<img src="./images/Bonus.png" alt="Titre du jeu en bonus" width="500" height="100">
 
-<img src="./images/Game_Bonus.png" alt="Image du gameplay en version bonus" width="500" height="300">
+<img src="./images/Game_Bonus.png" alt="Image du gameplay en version bonus" width="600" height="400">
 
 ## Installetion Bonus
 

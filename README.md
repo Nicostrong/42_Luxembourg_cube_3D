@@ -2,15 +2,17 @@
 
 Cube3D est un projet de l'école 42 qui consiste a creer un jeu en 3D en utilisant la librairie mlx de l'école 42 et l'algorithme de raycasting.
 
+> ce projet inclu la libmlx en vrsion linux et MacOS
+
 ## __Table des matières__
 
--[Introduction](#introduction)
--[Mandatory](#mandatory)
--[Installation_Mandatory](#installation)
--[Usage](#usage)
--[Bonus](#bonus)
--[Installation_Bonus](#installation)
--[Auteurs](#auteurs)
+- [Introduction](#introduction)
+- [Mandatory](#mandatory)
+- [Installation_Mandatory](#installation)
+- [Usage](#usage)
+- [Bonus](#bonus)
+- [Installation_Bonus](#installation)
+- [Auteurs](#auteurs)
 
 ## __Introduction__
 
@@ -25,7 +27,8 @@ Cube3D est un projet de l'école 42 qui consiste a creer un jeu en 3D en utilisa
 '''bash
 # Clonez le dépôt
 git clone git@github.com:Nicostrong/42_Luxembourg_cube_3D.git
-'''
+'''cpp
+totoototot
 
 ## Usage
 

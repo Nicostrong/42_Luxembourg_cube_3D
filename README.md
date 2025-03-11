@@ -27,8 +27,7 @@ Cube3D est un projet de l'école 42 qui consiste a creer un jeu en 3D en utilisa
 '''bash
 # Clonez le dépôt
 git clone git@github.com:Nicostrong/42_Luxembourg_cube_3D.git
-'''cpp
-totoototot
+'''bash
 
 ## Usage
 

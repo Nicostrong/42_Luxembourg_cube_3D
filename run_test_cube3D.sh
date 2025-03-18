@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 09:46:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/03/09 10:53:47 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/18 12:12:51 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,9 @@ if [ $# -eq 0 ]; then
 fi
 
 if [[ "$*" == *"bonus"* ]]; then
-    NAME="cube3D++"
+    NAME="cub3D++"
 else
-    NAME="cube3D"
+    NAME="cub3D"
 fi
 
 eval "$@"

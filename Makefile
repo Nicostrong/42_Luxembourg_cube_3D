@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/03/07 17:49:01 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/18 12:12:33 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ SRC					=	$(SRC_COMMON) $(SRC_OS)
 
 OBJ					=	$(SRC:.c=.o)
 
-NAME				=	cube3D
+NAME				=	cub3D
 
 ################################################################################
 #	Bonus part																   #
@@ -178,7 +178,7 @@ SRC_BONUS			=	$(SRC_BONUS_COM) $(SRC_OS_BONUS)
 
 OBJ_BONUS			=	$(SRC_BONUS:.c=.o)
 
-NAME_BONUS			=	cube3D++
+NAME_BONUS			=	cub3D++
 
 ################################################################################
 #	Colors																	   #

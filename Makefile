@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
+#    By: nfordoxc <nfordoxc@42.luxembourg.lu>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 12:48:38 by phkevin           #+#    #+#              #
-#    Updated: 2025/03/18 12:12:33 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/19 10:06:52 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 

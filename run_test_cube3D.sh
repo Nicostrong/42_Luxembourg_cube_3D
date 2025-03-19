@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    run_test_cube3D.sh                                 :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
+#    By: nfordoxc <nfordoxc@42.luxembourg.lu>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 09:46:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/03/18 12:12:51 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/19 09:21:38 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ list_error_map=(
 	./maps/bad/map_novalid_1.cub
 	./maps/bad/map_novalid_2.cub
 	./maps/bad/multi_player.cub
+	./maps/bad/multi_texture.cub
 	./maps/bad/no_closed_1.cub	
 	./maps/bad/no_closed_2.cub
 	./maps/bad/no_closed_3.cub
@@ -80,15 +81,11 @@ error_count=0
 chmod -r ./maps/bad/no_read.cub
 
 if [ $# -eq 0 ]; then
-    echo "Usage: bash ./run_test_cube3D.sh \"make || make bonus\""
+    echo "Usage: bash ./run_test_cube3D.sh \"make || make bonus\" \"PROG_NAME\""
     exit 1
 fi
 
-if [[ "$*" == *"bonus"* ]]; then
-    NAME="cub3D++"
-else
-    NAME="cub3D"
-fi
+NAME=$2
 
 eval "$@"
 

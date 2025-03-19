@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
+/*   By: nfordoxc <nfordoxc@42.luxembourg.lu>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:33:30 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/03/07 17:53:14 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/19 09:20:12 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,9 @@ static int	ft_extract_info(t_info *info, char **array)
 			if (info->info_map[i].t_img && \
 				!(*(info->info_map[i].t_img))->img_path)
 				(*(info->info_map[i].t_img))->img_path = ft_strdup(array[1]);
+			else if (info->info_map[i].t_img && \
+				(*(info->info_map[i].t_img))->img_path)
+				return (1);
 			else if (info->info_map[i].color)
 				return (ft_extract_color(array[0], array[1], info));
 			return (0);

@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42.luxembourg.lu>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 09:46:31 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/03/19 09:21:38 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/19 09:35:11 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ list_error_map=(
 	./maps/bad/not_cub
 	./maps/bad/SO_noexist.cub
 	./maps/bad/SO_novalid.cub
+	./maps/bad/tab_map.cub
 	./maps/bad/WE_noexist.cub
 	./maps/bad/WE_novalid.cub
 	./maps/bad/Zarbi.cub
@@ -87,7 +88,7 @@ fi
 
 NAME=$2
 
-eval "$@"
+eval "$1"
 
 clear
 

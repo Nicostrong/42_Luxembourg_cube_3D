@@ -49,6 +49,8 @@ list_error_map=(
 	./maps/bad/NO_novalid.cub
 	./maps/bad/no_player.cub
 	./maps/bad/not_cub
+	./maps/bad/No_F_key.cub
+	./maps/bad/No_C_key.cub
 	./maps/bad/SO_noexist.cub
 	./maps/bad/SO_novalid.cub
 	./maps/bad/tab_map.cub
